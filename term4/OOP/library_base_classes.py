@@ -127,6 +127,7 @@ class User:
             self.__balance = PriceCut.transform_to_price(rest)
         else:
             print("\n!Not enought money!\n")
+            return 0
 
     @property
     def login(self):
@@ -242,7 +243,7 @@ class Menu:
             else:
                 print(f'\nWelcome back, {cls.current_user.login}\n')
                 choose = input(
-                    "\nMake your choise:\n1)See registration form\n2)See my favorite geners\n3)See current balance\n4)See all books in library\n5)Get reccomendations\nPress anything to logout...\n")
+                    "\nMake your choise:\n1)See registration form\n2)See my favorite geners\n3)See current balance\n4)See all books in library\n5)Get reccomendations\n6)Arend a book\nPress anything to logout...\n")
                 if choose == '1':
                     FormShow.show(cls.library.users.get(cls.current_user))
                 elif choose == '2':
@@ -269,12 +270,15 @@ class Menu:
                         form = cls.library.users[cls.current_user]
                         book_to_get = library_books[0]
                         price = cls.library.books[book_to_get]
-                        cls.current_user.withdraw(price)
+                        res = cls.current_user.withdraw(price)
+                        if res == 0:
+                            continue 
                         cls.library.books_amount[book_to_get] -= 1
                         if form.taken_books is None:
                             form.taken_books = [book_to_get]
                         else:
                             form.taken_books.append(book_to_get)
+                        print("\nOperation comlete succesfully\n")
                     else:
                         print("\nBook with such name is not exist")
                 else:
