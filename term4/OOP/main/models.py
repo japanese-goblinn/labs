@@ -1,7 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django.utils import timezone
-from library_base_classes import Book
+# from library_base_classes import Book
 
 
 class BookPost(models.Model):
