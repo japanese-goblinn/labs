@@ -3,20 +3,21 @@ import sys
 import datetime
 import random
 from dataclasses import dataclass
+from abc import ABC, abstractmethod
 from typing import List, Dict, Tuple
 
 
 class Book:
     """
-    Class that discribes  an instance of a book
+    Discribes book instance
     """
 
-    def __init__(self, name: str, author: str, amount_of_pages: int, year: int, genre: List[str]):
+    def __init__(self, name: str, author: str, amount_of_pages: int, year: int, genres: List[str]):
         self.__name = name
         self.__author = author
         self.__year = year
         self.__amount_of_pages = amount_of_pages
-        self.__genre = genre
+        self.__genres = genres
 
     def __repr__(self):
         return self.__name
@@ -39,6 +40,10 @@ class Book:
     @property
     def author(self) -> str:
         return self.__author
+
+    @property
+    def genre(self) -> List[str]:
+        return self.__genres
 
 
 class BookShelf:
@@ -71,6 +76,10 @@ class BookCostEstimate:
 
 
 class BooksCostAgregation:
+    """
+    Matches books from shelf with a cost for each book
+    """
+
     @staticmethod
     def match_books_with_costs(shelf: Dict[Book, int]) -> Dict[Book, str]:
         books_and_costs: Dict[Book, str] = {}
@@ -81,8 +90,21 @@ class BooksCostAgregation:
         return books_and_costs
 
 
+class PriceCut:
+    @staticmethod
+    def transform_to_int(price: str) -> float:
+        if price[0] == '$':
+            return float(price[1:])
+        else:
+            return 0
+    
+    @staticmethod
+    def transform_to_price(price: float) -> str:
+        return f"${price}"
+
+
 class User:
-    def __init__(self, login: str, password: str, balance: str = '$0'):
+    def __init__(self, login: str, password: str, balance: str = '$100'):
         self.__login = login
         self.__password = password
         self.__balance = balance
@@ -96,6 +118,15 @@ class User:
 
     def __repr__(self):
         return self.__login
+
+    def withdraw(self, amount):
+        cur_balance = PriceCut.transform_to_int(self.__balance)
+        withdraw_amount = PriceCut.transform_to_int(amount)
+        if cur_balance >= withdraw_amount:
+            rest = cur_balance - withdraw_amount
+            self.__balance = PriceCut.transform_to_price(rest)
+        else:
+            print("\n!Not enought money!\n")
 
     @property
     def login(self):
@@ -118,6 +149,7 @@ class Form:
     adress: str = ""
     passport_id: str = ""
     fav_geners: str = ""
+    taken_books = None
 
 
 class FormShow:
@@ -143,11 +175,29 @@ class UsersFormsAgregation:
         return forms_dict
 
 
-class Enrollment:
+class Recommendation(ABC):
+    @abstractmethod
+    def get_recommendation(self, user) -> List[Book]:
+        pass
+
+
+class Enrollment(Recommendation):
     def __init__(self, users: Dict[User, Form], books: Dict[Book, str], books_amount: Dict[Book, int]):
         self.__users = users
         self.__books = books
         self.__books_amount = books_amount
+        self.__library_balance = "$0"
+
+    def get_recommendation(self, user) -> List[Book]:
+        books_to_rec: List[Book] = []
+        if user in self.__users:
+            for genre in self.__users[user].fav_geners:
+                for book in self.__books:
+                    if genre in book.genre:
+                        books_to_rec.append(book)
+                    else:
+                        continue
+        return books_to_rec
 
     @property
     def users(self):
@@ -192,7 +242,7 @@ class Menu:
             else:
                 print(f'\nWelcome back, {cls.current_user.login}\n')
                 choose = input(
-                    "\nMake your choise:\n1)See registration form\n2)See my favorite geners\n3)See current balance\n4)See all books in library\nPress anything to logout...\n")
+                    "\nMake your choise:\n1)See registration form\n2)See my favorite geners\n3)See current balance\n4)See all books in library\n5)Get reccomendations\nPress anything to logout...\n")
                 if choose == '1':
                     FormShow.show(cls.library.users.get(cls.current_user))
                 elif choose == '2':
@@ -209,6 +259,24 @@ class Menu:
                     for i, book in enumerate(cls.library.books):
                         print(
                             f"{i+1}. Book:\'{book.name}\', Price: {cls.library.books.get(book)}, Available amount: {cls.library.books_amount.get(book)}")
+                elif choose == '5':
+                    books_for_cur_user = cls.library.get_recommendation(cls.current_user)
+                    print("We recommend you to read: ", books_for_cur_user)
+                elif choose == '6':
+                    book_to_find = input('Write name of the book, that you whant to get: ')
+                    library_books = [book for book in cls.library.books if book.name == book_to_find]
+                    if library_books != []:
+                        form = cls.library.users[cls.current_user]
+                        book_to_get = library_books[0]
+                        price = cls.library.books[book_to_get]
+                        cls.current_user.withdraw(price)
+                        cls.library.books_amount[book_to_get] -= 1
+                        if form.taken_books is None:
+                            form.taken_books = [book_to_get]
+                        else:
+                            form.taken_books.append(book_to_get)
+                    else:
+                        print("\nBook with such name is not exist")
                 else:
                     break
 
@@ -220,7 +288,7 @@ class Menu:
             print("\nSuccessfully loged in...")
             cls.current_user = Admin()
             cls.main_interface()
-        if User(login, password) in cls.users:
+        elif User(login, password) in cls.users:
             print("\nSuccessfully loged in...")
             cls.current_user = User(login, password)
             cls.main_interface()
@@ -258,16 +326,16 @@ class Menu:
 
 def main():
     shelf = BookShelf.make_shelf([
-        Book(name='1984', author='George Orwell', year=1950, amount_of_pages=330,  genre=[
+        Book(name='1984', author='George Orwell', year=1950, amount_of_pages=330,  genres=[
              'Dystopian', 'Political Fiction', 'Social Science', 'Fiction']),
-        Book(name='1984', author='George Orwell', year=1950, amount_of_pages=330, genre=[
+        Book(name='1984', author='George Orwell', year=1950, amount_of_pages=330, genres=[
              'Dystopian', 'Political Fiction', 'Social Science', 'Fiction']),
-        Book(name='1984', author='George Orwell', year=1950, amount_of_pages=330, genre=[
+        Book(name='1984', author='George Orwell', year=1950, amount_of_pages=330, genres=[
              'Dystopian', 'Political Fiction', 'Social Science', 'Fiction']),
         Book(name='Flowers for Algernon', year=1973, amount_of_pages=210,
-             author='Daniel Keyes', genre=['Science Fiction']),
+             author='Daniel Keyes', genres=['Science Fiction']),
         Book(name='Test3', author='f', amount_of_pages=666,
-             year=2018, genre=['Test']),
+             year=2018, genres=['Test']),
     ])
     books_cost = BooksCostAgregation.match_books_with_costs(shelf)
     admin = Admin()
