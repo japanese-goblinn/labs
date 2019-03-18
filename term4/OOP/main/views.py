@@ -1,5 +1,7 @@
 from django.shortcuts import render
+from .models import BookPost
 
-# Create your views here.
+
 def post_link(request):
-    return render(request, 'main/post_link.html', {})
+    books = BookPost.objects.all()
+    return render(request, 'main/post_link.html', {'books': books})

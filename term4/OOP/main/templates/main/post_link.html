@@ -9,6 +9,13 @@
         <div>
             <h1><a href="/">home.</a></h1>
         </div>
+        {% for book in books %}
+            <div>
+                <h3>{{ book.name }}</h3>
+                <p>{{ book.amount_of_pages }}</p>
+                <p>{{ book.year}}</p>
+            </div>
+        {% endfor %}
         <div>
             <p>published: 14.06.2014, 12:14</p>
             <h2><a href="">my first post.</a></h2>
