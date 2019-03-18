@@ -92,7 +92,7 @@ class BooksCostAgregation:
 
 class PriceCut:
     @staticmethod
-    def transform_to_int(price: str) -> float:
+    def transform_to_float(price: str) -> float:
         if price[0] == '$':
             return float(price[1:])
         else:
@@ -100,11 +100,11 @@ class PriceCut:
     
     @staticmethod
     def transform_to_price(price: float) -> str:
-        return f"${price}"
+        return f"${round(price, 2)}"
 
 
 class User:
-    def __init__(self, login: str, password: str, balance: str = '$100'):
+    def __init__(self, login: str, password: str, balance: str = '$1000'):
         self.__login = login
         self.__password = password
         self.__balance = balance
@@ -120,8 +120,8 @@ class User:
         return self.__login
 
     def withdraw(self, amount):
-        cur_balance = PriceCut.transform_to_int(self.__balance)
-        withdraw_amount = PriceCut.transform_to_int(amount)
+        cur_balance = PriceCut.transform_to_float(self.__balance)
+        withdraw_amount = PriceCut.transform_to_float(amount)
         if cur_balance >= withdraw_amount:
             rest = cur_balance - withdraw_amount
             self.__balance = PriceCut.transform_to_price(rest)
@@ -187,7 +187,7 @@ class Enrollment(Recommendation):
         self.__users = users
         self.__books = books
         self.__books_amount = books_amount
-        self.__library_balance = "$0"
+        self.__balance = "$0"
 
     def get_recommendation(self, user) -> List[Book]:
         books_to_rec: List[Book] = []
@@ -215,3 +215,14 @@ class Enrollment(Recommendation):
     @property
     def books(self) -> Dict[Book, str]:
         return self.__books
+
+    @property 
+    def balance(self) -> str:
+        return self.__balance
+
+    @balance.setter
+    def balance(self, value):
+        cur_balance = PriceCut.transform_to_float(self.__balance)
+        sum_to_add = PriceCut.transform_to_float(value)
+        cur_balance += sum_to_add
+        self.__balance = PriceCut.transform_to_price(cur_balance)

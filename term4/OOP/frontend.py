@@ -1,8 +1,13 @@
 from library_base_classes import *
 from typing import List, Dict, Tuple
 
+#TODO:
+#1)add dates to books that was taken from library
+#2)think about how to ask a user about money
+#FIXME:
+#when login second time balance again $1000
+
 class Menu:
-    users: List[User] = []
     current_user = None
     library = None
 
@@ -12,16 +17,19 @@ class Menu:
             if cls.current_user == Admin():
                 print(f'\nWelcome back, {cls.current_user.login}\n')
                 choose = input(
-                    "\nMake your choise:\n1)See registration form\n2)See all users\n3)balance\nPress anything to log out...\n")
+                    "\nMake your choise:\n1)See registration form\n2)See all users\n3)Balance\n4)Library Balance\nPress anything to log out...\n")
                 if choose == '1':
                     FormShow.show(cls.library.users.get(cls.current_user))
                 elif choose == '2':
                     print("\nList of all users:\n")
-                    for user in cls.users:
+                    for user in cls.library.users:
                         print(f"{user}")
                 elif choose == '3':
                     print(
                         f'\nMy current balance: {cls.current_user.balance}\n')
+                elif choose == '4':
+                    print(
+                        f'\nLibrary current balance: {cls.library.balance}\n')
                 else:
                     break
             else:
@@ -57,11 +65,16 @@ class Menu:
                         res = cls.current_user.withdraw(price)
                         if res == 0:
                             continue 
-                        cls.library.books_amount[book_to_get] -= 1
+                        if cls.library.books_amount[book_to_get] > 0:
+                            cls.library.books_amount[book_to_get] -= 1
+                        else:
+                            print("\nOperation failed")
+                            continue
                         if form.taken_books is None:
                             form.taken_books = [book_to_get]
                         else:
                             form.taken_books.append(book_to_get)
+                        cls.library.balance = price
                         print("\nOperation comlete succesfully\n")
                     else:
                         print("\nBook with such name is not exist")
@@ -76,7 +89,7 @@ class Menu:
             print("\nSuccessfully loged in...")
             cls.current_user = Admin()
             cls.main_interface()
-        elif User(login, password) in cls.users:
+        elif User(login, password) in cls.library.users:
             print("\nSuccessfully loged in...")
             cls.current_user = User(login, password)
             cls.main_interface()
@@ -87,8 +100,7 @@ class Menu:
     def register(cls):
         login = input("Input your login: ")
         password = getpass.getpass("Input your password: ")
-        if User(login, password) not in cls.users:
-            cls.users.append(User(login, password))
+        if User(login, password) not in cls.library.users:
             print("\nSuccessfully registered...")
             cls.current_user = User(login, password)
             print("\nPlease, fill in your registration form:\n")
@@ -132,7 +144,6 @@ def main():
     form_and_user = UsersFormsAgregation.match_user_with_form(admin, form)
     library = Enrollment(form_and_user, books_cost, shelf)
     Menu.library = library
-    Menu.users.append(admin)
     while True:
         _input = input(
             "\n!Welcome to ProjectLib alpha 0.1!\n\n Make your choise:\n 1)login\n 2)register\n Press anything to exit...\n")
