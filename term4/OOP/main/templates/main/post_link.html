@@ -1,30 +1,10 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>
-            home.
-        </title>
-    </head>
-    <body>
-        <div>
-            <h1><a href="/">home.</a></h1>
-        </div>
-        {% for book in books %}
-            <div>
-                <h3>{{ book.name }}</h3>
-                <p>{{ book.amount_of_pages }}</p>
-                <p>{{ book.year}}</p>
-            </div>
-        {% endfor %}
-        <div>
-            <p>published: 14.06.2014, 12:14</p>
-            <h2><a href="">my first post.</a></h2>
-            <p>Aenean eu leo quam. pellentesque ornare sem lacinia quam venenatis vestibulum. donec id elit non mi porta gravida at eget metus. fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-        </div>
-        <div>
-            <p>published: 14.06.2014, 12:14</p>
-            <h2><a href="">my second post.</a></h2>
-            <p>aenean eu leo quam. pellentesque ornare sem lacinia quam venenatis vestibulum. donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut f.</p>
-        </div>
-    </body>
-</html>
+{% extends 'main/base.html' %}
+{% block content %}
+    {% for book in books %}
+    <div class="post">
+        <h3><a href="{% url 'book_detail' pk=book.pk %}">{{ book.name }}</a></h3>
+        <p>{{ book.author }}</p>
+        <p>{{ book.year}}</p>
+    </div>
+    {% endfor %}
+{% endblock %}

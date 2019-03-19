@@ -200,6 +200,13 @@ class Enrollment(Recommendation):
                         continue
         return books_to_rec
 
+    def get_user(self, user_to_get):
+        finded = None
+        for user in self.users:
+            if user == user_to_get:
+                finded = user
+        return finded
+
     @property
     def users(self):
         return self.__users

@@ -4,8 +4,7 @@ from typing import List, Dict, Tuple
 #TODO:
 #1)add dates to books that was taken from library
 #2)think about how to ask a user about money
-#FIXME:
-#when login second time balance again $1000
+
 
 class Menu:
     current_user = None
@@ -87,11 +86,13 @@ class Menu:
         password = getpass.getpass("Password: ")
         if login == 'admin' and password == 'admin':
             print("\nSuccessfully loged in...")
-            cls.current_user = Admin()
+            if Admin() in cls.library.users:
+                cls.current_user = cls.library.get_user(Admin())
             cls.main_interface()
         elif User(login, password) in cls.library.users:
             print("\nSuccessfully loged in...")
-            cls.current_user = User(login, password)
+            if User(login, password) in cls.library.users:
+                cls.current_user = cls.library.get_user(User(login, password))
             cls.main_interface()
         else:
             print("\nNo user with such name and password!\nPlease, regiser first...")
