@@ -1,10 +1,16 @@
 {% extends 'main/base.html' %}
 {% block content %}
     {% for book in books %}
-    <div class="post">
-        <h3><a href="{% url 'book_detail' pk=book.pk %}">{{ book.name }}</a></h3>
-        <p>{{ book.author }}</p>
-        <p>{{ book.year}}</p>
+    <div class="card border-primary mb-3" style="max-width: 20rem;">
+        <div class="card-header">
+            <a href="{% url 'book_detail' pk=book.pk %}">{{ book.name }}</a>
+        </div>
+        <div class="card-body">
+            <p class="card-title">{{ book.author }}</p>
+            <p class="card-text">{{ book.year }}</p>
+        </div>
     </div>
+
+    
     {% endfor %}
 {% endblock %}

@@ -5,6 +5,7 @@ import random
 from dataclasses import dataclass
 from abc import ABC, abstractmethod
 from typing import List, Dict, Tuple
+import datetime as dt
 
 
 class Book:
@@ -23,6 +24,7 @@ class Book:
         return self.__name
 
     def __hash__(self):
+        #FIXME:
         lenth = sum(ord(char) for key in Book.__dict__.keys() for char in key)
         return lenth
 
