@@ -11,6 +11,9 @@ class BookPost(models.Model):
     amount_of_pages = models.IntegerField()
     genres = models.CharField(max_length=200)
 
+    def __str__(self):
+        return f"Book \'{self.name}\''"
+
 
 class Form(models.Model):
     name = models.CharField(max_length=100)
