@@ -1,5 +1,10 @@
-from library_base_classes import *
+import books_operations
+import users_operations 
+import forms_operations
 from typing import List, Dict, Tuple
+from library import User, Book, Form, Enrollment
+import getpass
+
 
 #TODO:
 #1)add dates to books that was taken from library
@@ -13,12 +18,12 @@ class Menu:
     @classmethod
     def main_interface(cls):
         while True:
-            if cls.current_user == Admin():
+            if cls.current_user == User('admin', 'admin', '$1000000'):
                 print(f'\nWelcome back, {cls.current_user.login}\n')
                 choose = input(
                     "\nMake your choise:\n1)See registration form\n2)See all users\n3)Balance\n4)Library Balance\nPress anything to log out...\n")
                 if choose == '1':
-                    FormShow.show(cls.library.users.get(cls.current_user))
+                    forms_operations.show_form(cls.library.users.get(cls.current_user))
                 elif choose == '2':
                     print("\nList of all users:\n")
                     for user in cls.library.users:
@@ -36,7 +41,7 @@ class Menu:
                 choose = input(
                     "\nMake your choise:\n1)See registration form\n2)See my favorite geners\n3)See current balance\n4)See all books in library\n5)Get reccomendations\n6)Arend a book\nPress anything to logout...\n")
                 if choose == '1':
-                    FormShow.show(cls.library.users.get(cls.current_user))
+                    forms_operations.show_form(cls.library.users.get(cls.current_user))
                 elif choose == '2':
                     my_books = cls.library.users.get(
                         cls.current_user).fav_geners
@@ -86,8 +91,8 @@ class Menu:
         password = getpass.getpass("Password: ")
         if login == 'admin' and password == 'admin':
             print("\nSuccessfully loged in...")
-            if Admin() in cls.library.users:
-                cls.current_user = cls.library.get_user(Admin())
+            if User('admin', 'admin', '$1000000') in cls.library.users:
+                cls.current_user = cls.library.get_user(User('admin', 'admin', '$1000000'))
             cls.main_interface()
         elif User(login, password) in cls.library.users:
             print("\nSuccessfully loged in...")
@@ -114,9 +119,9 @@ class Menu:
                     continue
                 inpt = input(f"Input your {field}: ")
                 register_info.append(inpt)
-            my_form = UserRegistrationForm.get_form(
+            my_form = users_operations.get_user_form(
                 cls.current_user, register_info)
-            cur_form_and_user = UsersFormsAgregation.match_user_with_form(
+            cur_form_and_user = users_operations.match_user_with_form(
                 cls.current_user, my_form)
             cls.library.users = cur_form_and_user
             print("Registration comlete...\n")
@@ -126,7 +131,7 @@ class Menu:
 
 
 def main():
-    shelf = BookShelf.make_shelf([
+    shelf = books_operations.make_shelf([
         Book(name='1984', author='George Orwell', year=1950, amount_of_pages=330,  genres=[
              'Dystopian', 'Political Fiction', 'Social Science', 'Fiction']),
         Book(name='1984', author='George Orwell', year=1950, amount_of_pages=330, genres=[
@@ -138,11 +143,11 @@ def main():
         Book(name='Test3', author='f', amount_of_pages=666,
              year=2018, genres=['Test']),
     ])
-    books_cost = BooksCostAgregation.match_books_with_costs(shelf)
-    admin = Admin()
-    form = UserRegistrationForm.get_form(
+    books_cost = books_operations.match_books_with_costs(shelf)
+    admin = User('admin', 'admin', '$1000000')
+    form = users_operations.get_user_form(
         admin, ['Admin', 'Adminovich', 'admin', '32ad3min', ["Fiction"]])
-    form_and_user = UsersFormsAgregation.match_user_with_form(admin, form)
+    form_and_user = users_operations.match_user_with_form(admin, form)
     library = Enrollment(form_and_user, books_cost, shelf)
     Menu.library = library
     while True:
