@@ -1,15 +1,22 @@
 from django.shortcuts import render, get_object_or_404
-from .models import BookPost
+from django.views.generic import ListView, DetailView
+from .models import Book
 from .forms import FormPost
 
 
-def post_link(request):
-    books = BookPost.objects.all()
-    return render(request, 'main/post_link.html', {'books': books})
+def list_books(request):
+    books = Book.objects.all()
+    return render(request, 'main/book_list.html', {'books': books})
 
-def book_detail(request, pk):
-    book = get_object_or_404(BookPost, pk=pk)
-    return render(request, 'main/book_detail.html', {'book': book})
+class BookListView(ListView):
+    model = Book
+    template_name = 'main/book_list.html'
+    context_object_name = 'books'
+
+
+class BookDetailView(DetailView):
+    model = Book
+    
 
 def form_new(request):
     if request.method == 'POST':
