@@ -1,3 +1,12 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.book-card-title {
+    font-weight: bold;
+}
 
 .content-container {
     margin-left: 8%;

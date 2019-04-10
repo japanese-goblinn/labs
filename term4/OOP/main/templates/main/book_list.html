@@ -3,7 +3,7 @@
     {% for book in books %}
     <div class="card border-primary mb-3" style="max-width: 20rem;">
         <div class="card-header">
-            <a href="{% url 'book_detail' pk=book.pk %}">{{ book.name }}</a>
+            <a class='book-card-title' href="{% url 'book_detail' pk=book.pk %}">{{ book.name }}</a>
         </div>
         <div class="card-body">
             <p class="card-title">{{ book.author }}</p>

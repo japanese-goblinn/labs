@@ -5,6 +5,9 @@ from django.contrib.auth.decorators import login_required
 from .forms import UserRegistrationForm, UserUpdateForm, ProfileUpdateForm
 
 
+def test(request):
+    return render(request, 'users/test_sign.html')
+
 def register(request):
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)

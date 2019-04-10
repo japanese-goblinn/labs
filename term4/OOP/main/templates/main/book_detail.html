@@ -3,8 +3,10 @@
     <div class="post">
         <h2>{{ book.name }}</h2>
         <p>{{ book.author }}</p>
-        <p>{{ book.year }}</p>
+        <p>{{ book.description }}</p>
         <p>{{ book.amount_of_pages }}</p>
-        <!-- <p>{{ book.geners }}</p> -->
+        {% for genre in book.genres.all %}
+            <p>{{ genre }}</p>
+        {% endfor %}
     </div>
 {% endblock %}

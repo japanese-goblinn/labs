@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/sign_in_up.css' %}">
+</head>
+<body>
+    <div class="container" id="container">
+    <div class="form-container sign-up-container">
+        <form action="#">
+            <h1 class='header-h1'>Create Account</h1>
+            <input type="text" placeholder="Name" />
+            <input type="email" placeholder="Email" />
+            <input type="password" placeholder="Password" />
+            <input type="password" placeholder="Confim Password" />
+            <button class='register-button'>Register</button>
+        </form>
+    </div>
+    <div class="form-container sign-in-container">
+        <form method='POST'>
+        {% comment %} {% csrf_token %} {% endcomment %}
+        <h1 class='header-h1'>Login</h1>
+        <input type="username" placeholder="Username" />
+        <input type="password" placeholder="Password" />
+        <a href="#">Forgot your password?</a>
+        <button type='submit'>Login</button>
+    </form>
+    </div>
+    <div class="overlay-container">
+        <div class="overlay">
+        <div class="overlay-panel overlay-left">
+            <h1>Welcome Back, Book Lover!</h1>
+            <p>
+                To comeback to your favourite books, please login
+            </p>
+            <button class="ghost" id="signIn">Login</button>
+        </div>
+        <div class="overlay-panel overlay-right">
+            <h1>Hello, Friend!</h1>
+            <p>Enter your personal details and start exploring ProjectLib</p>
+            <button class="ghost" id="signUp">Register</button>
+        </div>
+    </div>
+    </div>
+</div>
+<script>
+    const signUpButton = document.getElementById('signUp');
+    const signInButton = document.getElementById('signIn');
+    const container = document.getElementById('container');
+
+    signUpButton.addEventListener('click', () => {
+        container.classList.add('right-panel-active');
+    });
+
+    signInButton.addEventListener('click', () => {
+        container.classList.remove('right-panel-active');
+    });
+</script>
+</body>
+</html>
+
