@@ -6,7 +6,7 @@ from .forms import FormPost
 
 class BookListView(ListView):
     model = Book
-    books = Book.objects.all().count()
+    # books = Book.objects.all()
     template_name = 'main/book_list.html'
     context_object_name = 'books'
 

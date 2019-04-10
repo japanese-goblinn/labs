@@ -1,5 +1,6 @@
 import uuid
 import datetime
+from decimal import Decimal
 from django.db import models
 from django.conf import settings
 from django.utils import timezone
@@ -32,6 +33,11 @@ class Book(models.Model):
     def __str__(self):
         return self.name
 
+    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
+        actual_price = (datetime.datetime.now().year * 0.3 - self.pages * 0.23) / 2
+        self.price = Decimal(actual_price)
+        super().save()
+
 
 class BookInstance(models.Model):
     id = models.AutoField(primary_key=True)
@@ -49,15 +55,6 @@ class BookInstance(models.Model):
     def __str__(self):
         return f"Book Instance {self.book}"
 
-    # def count_cost(self) -> str:
-    #     amount = self.objects.all().filter(name='book__name').count()
-    #     actual_price = (datetime.datetime.now().year * 0.3 - self.pages * 0.23) / amount / 2
-    #     return f'${actual_price}'
-
-    # @property';\\\
-    # def price(self):
-    #     return self.count_cost()
-    
 
 class RegistrationForm(models.Model):
     name = models.CharField(max_length=100)
