@@ -34,8 +34,7 @@ class Book(models.Model):
 
 
 class BookInstance(models.Model):
-    ##FIXME: change to standart id
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4)
+    id = models.AutoField(primary_key=True)
     book = models.ForeignKey("Book", on_delete=models.SET_NULL, null=True)
     back_date = models.DateField(null=True, blank=True)
 
