@@ -1,10 +1,17 @@
 from django.db import models
+from main.models import Genre
 from django.contrib.auth.models import User
 from PIL import Image
 
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    image = models.ImageField(default='default.jpg', upload_to='profile_pics')
+    image = models.ImageField(default='default.png', upload_to='profile_pics')
+    name = models.CharField(max_length=100, default='Name')
+    last_name = models.CharField(max_length=100, default='Last Name')
+    adress = models.CharField(max_length=100, default='Minsk, Belarus')
+    passport_id = models.CharField(max_length=100, default='MP1239023')
+    fav_genres = models.ManyToManyField(Genre, blank=True)
 
     def __str__(self):
         return f'{self.user.username} Profile'

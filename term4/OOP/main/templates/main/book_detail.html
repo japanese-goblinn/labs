@@ -8,5 +8,9 @@
         {% for genre in book.genres.all %}
             <p>{{ genre }}</p>
         {% endfor %}
+        <p>{{ book.get_price }}</p>
+        {% comment %} {% for inst in book.bookinstance_set.all %}
+            <p>{{ inst.id }}</p>
+        {% endfor %} {% endcomment %}
     </div>
 {% endblock %}

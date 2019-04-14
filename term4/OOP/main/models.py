@@ -4,6 +4,7 @@ from decimal import Decimal
 from django.db import models
 from django.conf import settings
 from django.utils import timezone
+from django.contrib.auth.models import User
 
 
 class Author(models.Model):
@@ -12,7 +13,7 @@ class Author(models.Model):
     
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
-
+        
 
 class Genre(models.Model):
     name = models.CharField(max_length=100)
@@ -33,8 +34,11 @@ class Book(models.Model):
     def __str__(self):
         return self.name
 
+    def get_price(self):
+        return f"$ {self.price}"
+
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
-        actual_price = (datetime.datetime.now().year * 0.3 - self.pages * 0.23) / 2
+        actual_price = (datetime.datetime.now().year - self.publication_date.year) / 5
         self.price = Decimal(actual_price)
         super().save()
 
@@ -43,6 +47,7 @@ class BookInstance(models.Model):
     id = models.AutoField(primary_key=True)
     book = models.ForeignKey("Book", on_delete=models.SET_NULL, null=True)
     back_date = models.DateField(null=True, blank=True)
+    taken_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
 
     STATUS = [
         ('av', 'Available'),
@@ -55,10 +60,9 @@ class BookInstance(models.Model):
     def __str__(self):
         return f"Book Instance {self.book}"
 
-
-class RegistrationForm(models.Model):
-    name = models.CharField(max_length=100)
-    surname = models.CharField(max_length=100)
-    adress = models.CharField(max_length=100)
-    passport_id = models.CharField(max_length=100)
-    genres = models.ManyToManyField(Genre)
+    @property
+    def is_expired(self):
+        if self.taken_by:
+            if self.back_date < datetime.date.today():
+                return True
+            return False
