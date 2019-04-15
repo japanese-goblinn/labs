@@ -1,0 +1,10 @@
+{% extends 'main/base.html' %}
+{% block content %}
+    <h2>Library Content</h2>
+    <ul>
+        <li><strong>Books:</strong> {{ books }}</li>
+        <li><strong>Copies:</strong> {{ copies }}</li>
+        <li><strong>Available copies:</strong> {{ av_copies }}</li>
+        <li><strong>Authors:</strong> {{ authors }}</li>
+    </ul>
+{% endblock %}

@@ -16,7 +16,7 @@ def login(request):
             password = form.cleaned_data.get('password')
             user = authenticate(username=username, password=password)
             auth_login(request, user)
-            messages.success(request, f'Welcome back, {username}!')
+            messages.success(request, f'Welcome back, {username}')
             return redirect('home')
     else:
         form = UserLoginForm()
@@ -35,7 +35,7 @@ def register(request):
             password = form.cleaned_data.get('password1')
             user = form.save()
             auth_login(request, user)
-            messages.success(request, f'Everything is set up! Welcome to library, {username}')
+            messages.success(request, f'Welcome to library, {username}')
             return redirect('profile_register')
     else:
         form = UserRegistrationForm()

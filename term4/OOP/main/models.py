@@ -12,7 +12,7 @@ class Author(models.Model):
     last_name = models.CharField(max_length=100)
     
     def __str__(self):
-        return f"{self.first_name} {self.last_name}"
+        return f'{self.first_name} {self.last_name}'
         
 
 class Genre(models.Model):
@@ -24,8 +24,8 @@ class Genre(models.Model):
 
 class Book(models.Model):
     name = models.CharField(max_length=100)
-    author = models.ForeignKey("Author", on_delete=models.SET_NULL, null=True)
-    description = models.TextField(default="Book Description") 
+    author = models.ForeignKey('Author', on_delete=models.SET_NULL, null=True)
+    description = models.TextField(default='Book Description') 
     publication_date = models.DateField()
     pages = models.IntegerField()
     genres = models.ManyToManyField(Genre)
@@ -35,7 +35,11 @@ class Book(models.Model):
         return self.name
 
     def get_price(self):
-        return f"$ {self.price}"
+        return f'$ {self.price}'
+
+    def get_genres_string(self):
+        genres = list(map(str, Book.objects.filter(pk=self.pk)[0].genres.all()))
+        return ', '.join(genres)
 
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
         actual_price = (datetime.datetime.now().year - self.publication_date.year) / 5
@@ -45,7 +49,7 @@ class Book(models.Model):
 
 class BookInstance(models.Model):
     id = models.AutoField(primary_key=True)
-    book = models.ForeignKey("Book", on_delete=models.SET_NULL, null=True)
+    book = models.ForeignKey('Book', on_delete=models.SET_NULL, null=True)
     back_date = models.DateField(null=True, blank=True)
     taken_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
 
@@ -58,9 +62,14 @@ class BookInstance(models.Model):
     status = models.CharField(max_length=3, choices=STATUS, default='av')
 
     def __str__(self):
-        return f"Book Instance {self.book}"
+        return f'Book Instance {self.book}'
 
-    @property
+    def get_status_display(self):
+        for status in self.STATUS:
+            if self.status == status[0]:
+                return status[1]
+        return None
+
     def is_expired(self):
         if self.taken_by:
             if self.back_date < datetime.date.today():

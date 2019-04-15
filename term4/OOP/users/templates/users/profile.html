@@ -8,15 +8,27 @@
         <p class="text-secondary">{{ user.email }}</p>
     </div>
 </div>
-<form method="POST" enctype="multipart/form-data">
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link active" data-toggle="tab" href="#profile">Profile</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#mybooks">My Books</a>
+  </li>
+</ul>
+<div id="myTabContent" class="tab-content">
+  <div class="tab-pane fade active show" id="profile">
+    <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        <fieldset class="form-group">
-            <legend class="border-bottom mb-4">Profile Info</legend>
-            {{ u_form|crispy }}
-            {{ p_form|crispy }}
-        </fieldset>
+        {{ u_form|crispy }}
+        {{ p_form|crispy }}
         <div class="form-group">
             <button class="btn btn-outline-info" type="submit">Update</button>
         </div>
-</form>
+    </form>
+  </div>
+  <div class="tab-pane fade" id="mybooks">
+   <p>None</p>
+  </div>
+</div>
 {% endblock %}

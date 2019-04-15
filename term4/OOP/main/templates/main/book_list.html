@@ -1,14 +1,19 @@
 {% extends 'main/base.html' %}
 {% block content %}
-    {% for book in books %}
-    <div class="card border-primary mb-3" style="max-width: 20rem;">
-        <div class="card-header">
-            <a class='book-card-title' href="{% url 'book_detail' pk=book.pk %}">{{ book.name }}</a>
+    {% if books %}
+        {% for book in books %}
+        <div class="card border-primary mb-3" style="max-width: 20rem;">
+            <div class="card-header">
+                <a class='book-card-title' href="{% url 'book_detail' pk=book.pk %}">{{ book.name }}</a>
+            </div>
+            <div class="card-body">
+                <p class="card-title"><strong>Author:</strong> {{ book.author }}</p>
+                <p class="card-text"><strong>Geners:</strong> {{ book.get_genres_string }}</p>
+                <p class="card-text"><strong>Price:</strong> {{ book.get_price }}</p>
+            </div>
         </div>
-        <div class="card-body">
-            <p class="card-title">{{ book.author }}</p>
-            <p class="card-text">{{ book.year }}</p>
-        </div>
-    </div>
-    {% endfor %}
+        {% endfor %}
+    {% else %}
+        <p>Library is empty</p>
+    {% endif %}
 {% endblock %}

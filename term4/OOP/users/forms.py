@@ -15,6 +15,9 @@ class UserRegistrationForm(UserCreationForm):
 
 
 class UserLoginForm(forms.Form):
+
+    #TODO: add validation for fields 
+
     username = forms.CharField()
     password = forms.CharField()
 
@@ -25,7 +28,6 @@ class UserUpdateForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['username', 'email']
-
 
 
 class ProfileForm(forms.ModelForm):
