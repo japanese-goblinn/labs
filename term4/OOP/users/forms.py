@@ -7,20 +7,34 @@ from .models import Profile
 class UserRegistrationForm(UserCreationForm):
     email = forms.EmailField()
 
+    #TODO: add validation for fields 
+
     class Meta:
         model = User
         fields = ['username', 'email', 'password1', 'password2']
 
 
+class UserLoginForm(forms.Form):
+    username = forms.CharField()
+    password = forms.CharField()
+
+
 class UserUpdateForm(forms.ModelForm):
-    email = forms.EmailField()
+    email = forms.EmailField(required=True)
 
     class Meta:
         model = User
         fields = ['username', 'email']
 
 
-class ProfileUpdateForm(forms.ModelForm):
+
+class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['image']
+        fields = [
+            'name', 
+            'last_name',
+            'passport_id',
+            # 'geners'
+            'image'
+            ]

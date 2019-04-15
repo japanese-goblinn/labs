@@ -14,7 +14,7 @@ class Profile(models.Model):
     fav_genres = models.ManyToManyField(Genre, blank=True)
 
     def __str__(self):
-        return f'{self.user.username} Profile'
+        return f'Profile of {self.user.username} user'
 
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
         super().save()
