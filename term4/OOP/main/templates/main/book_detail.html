@@ -3,6 +3,7 @@
     <div class="post">
         <h1>{{ book.name }}</h1>
         <p><strong>Author:</strong> <a href="{% url 'author_detail' book.author.pk %}">{{ book.author }}</a></p>
+        <p><strong>Publication Date:</strong> {{ book.publication_date }}</p>
         <p><strong>Desctiption:</strong></p>
         <p>{{ book.description }}</p>
         <p><strong>Amount of Pages:</strong> {{ book.pages }}</p>
@@ -26,7 +27,11 @@
                             </p>
                             <p><strong>ID:</strong> {{ copy.id }}</p>
                             {% if copy.back_date %}
-                                <p><strong>Back Date:</strong> {{ copy.back_date }}</p>
+                                {% if not copy.is_expired %}
+                                    <p><strong>Back Date:</strong> {{ copy.back_date }}</p>
+                                {% else %}
+                                    <p class="text-danger"><strong>Back Date:</strong> {{ copy.back_date }}</p>
+                                {% endif %}
                             {% endif %}
                         </div>
                         <div class='col-md-6'>

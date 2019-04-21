@@ -1,10 +1,11 @@
 from django.contrib import admin
-from .models import Book, BookInstance, Author, Genre
+from .models import Book, BookInstance, Author, Genre, Sale
 
-
+   
 class BookInline(admin.TabularInline):
     model = Book
     extra = 0
+
 
 @admin.register(Author)
 class AuthorAdmin(admin.ModelAdmin):
@@ -31,3 +32,9 @@ class BookInstanceAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Genre)
+
+@admin.register(Sale)
+class SaleAdmin(admin.ModelAdmin):
+    list_display = ['gained_money', 'transaction_date']
+    
+    

@@ -1,7 +1,6 @@
 from django import forms
-from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import Profile
+from .models import Profile, CustomUser
 
 
 class UserRegistrationForm(UserCreationForm):
@@ -10,7 +9,7 @@ class UserRegistrationForm(UserCreationForm):
     #TODO: add validation for fields 
 
     class Meta:
-        model = User
+        model = CustomUser
         fields = ['username', 'email', 'password1', 'password2']
 
 
@@ -26,7 +25,7 @@ class UserUpdateForm(forms.ModelForm):
     email = forms.EmailField(required=True)
 
     class Meta:
-        model = User
+        model = CustomUser
         fields = ['username', 'email']
 
 
@@ -37,6 +36,6 @@ class ProfileForm(forms.ModelForm):
             'name', 
             'last_name',
             'passport_id',
-            # 'geners'
+            'fav_genres',
             'image'
             ]

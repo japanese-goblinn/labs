@@ -1,8 +1,12 @@
 {% extends 'main/base.html' %}
 {% block content %}
     <ul>
-    {% for author in authors %}
-        <li><a href={% url 'author_detail' author.id %}>{{ author }}<a/></li>
-    {% endfor %}
+    {% if author %}
+        {% for author in authors %}
+            <li><a href={% url 'author_detail' author.id %}>{{ author }}<a/></li>
+        {% endfor %}
+    {% else %}
+        <p>No authors :c</p>
+    {% endif %}
     </ul>
 {% endblock content %}

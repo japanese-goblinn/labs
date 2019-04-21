@@ -6,8 +6,17 @@
     <div class="media-body">
         <h2 class="account-heading">{{ user.username }}</h2>
         <p class="text-secondary">{{ user.email }}</p>
+        <p class="text-secondary">{{ user.get_balance }}</p>
     </div>
 </div>
+{% if user.is_superuser %}
+  <div class="card text-white bg-info mb-3" style="max-width: 20rem;">
+  <div class="card-body">
+    <h4 class="card-title">Library Balance</h4>
+    <p class="card-text">{{ sales }}</p>
+  </div>
+</div>
+{% endif %}
 <ul class="nav nav-tabs">
   <li class="nav-item">
     <a class="nav-link active" data-toggle="tab" href="#profile">Profile</a>

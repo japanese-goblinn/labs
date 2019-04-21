@@ -1,12 +1,12 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
-from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView
 from .forms import UserRegistrationForm, UserLoginForm, UserUpdateForm, ProfileForm
-from main.models import BookInstance
+from .models import CustomUser
+from main.models import BookInstance, Sale
 
 
 def login(request):
@@ -71,11 +71,12 @@ def profile_update(request):
             messages.success(request, 'Your account has been updated')
     else:
         u_form = UserUpdateForm(instance=request.user)
-        p_form = ProfileForm(instance=request.user.profile)
-        this_user_books = BookInstance.objects.filter(taken_by=request.user)
-    
+        p_form = ProfileForm(instance=request.user.profile) 
+    this_user_books = BookInstance.objects.filter(taken_by=request.user)
+    sales = Sale.count_amount(Sale)
     return render(request, 'users/profile.html', {
         'u_form': u_form,
         'p_form': p_form,
-        'user_books': this_user_books
+        'user_books': this_user_books,
+        'sales': sales
         })
