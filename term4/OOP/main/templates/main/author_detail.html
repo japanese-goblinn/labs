@@ -1,5 +1,11 @@
 {% extends 'main/base.html' %}
 {% block content %}
-    <h2>{{ author }}</h2>
+    <h1>{{ author  }}</h1>
+    <p>Some text</p>
+    <h3>Books by this author</h3>
+    {% for book in author.book_set.all %}
+        <hr>
+        <h5><a href="{% url 'book_detail' pk=book.pk %}">{{ book.name }}</a></h5>
+    {% endfor %}
 {% endblock %}
 

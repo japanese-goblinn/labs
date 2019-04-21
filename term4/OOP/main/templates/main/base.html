@@ -18,7 +18,7 @@
                   <a class="nav-link" href="{% url 'all_books' %}">All Books</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">All Authors</a>
+                  <a class="nav-link" href="{% url 'all_authors' %}">All Authors</a>
                 </li>
               </ul>
               <form class="form-inline my-2 my-lg-0" style="margin-right: 10px">
@@ -54,9 +54,11 @@
               {% endfor %}
             {% endif %}
         </div>
-        <div class="content-container">
-          {% block content %}
-          {% endblock %}
+        <div class="container">
+          <div class="content-container">
+            {% block content %}
+            {% endblock %}
+          </div>
         </div>
         {% block pagination %}
           {% if is_paginated %}

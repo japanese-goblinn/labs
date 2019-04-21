@@ -5,6 +5,7 @@ from django.db import models
 from django.conf import settings
 from django.utils import timezone
 from django.contrib.auth.models import User
+from django.db.models import Q
 
 
 class Author(models.Model):
@@ -34,15 +35,19 @@ class Book(models.Model):
     def __str__(self):
         return self.name
 
+    def get_user_books(self, user):
+        books = self.bookinstance_set.all().filter(Q(taken_by=user) | Q(status='av'))
+        return books
+
     def get_price(self):
         return f'$ {self.price}'
 
     def get_genres_string(self):
-        genres = list(map(str, Book.objects.filter(pk=self.pk)[0].genres.all()))
+        genres = list(map(str, Book.objects.get(pk=self.pk).genres.all()))
         return ', '.join(genres)
 
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
-        actual_price = (datetime.datetime.now().year - self.publication_date.year) / 5
+        actual_price = (datetime.datetime.now().year - self.publication_date.year) / 5.0
         self.price = Decimal(actual_price)
         super().save()
 
@@ -70,8 +75,8 @@ class BookInstance(models.Model):
                 return status[1]
         return None
 
-    def is_expired(self):
-        if self.taken_by:
-            if self.back_date < datetime.date.today():
-                return True
-            return False
+    # def is_expired(self):
+    #     if self.taken_by:
+    #         if self.back_date < datetime.date.today():
+    #             return True
+    #         return False

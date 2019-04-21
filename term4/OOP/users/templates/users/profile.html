@@ -28,7 +28,13 @@
     </form>
   </div>
   <div class="tab-pane fade" id="mybooks">
-   <p>None</p>
+    {% if user_books %}
+      {% for user_book in user_books %}
+          <p><a href={% url 'book_detail' pk=user_book.book.id %}>{{ user_book.book.name }}</a></p>
+      {% endfor %}
+    {% else %}
+      <p>List is empty</p>
+    {% endif %}
   </div>
 </div>
 {% endblock %}
