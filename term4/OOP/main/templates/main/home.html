@@ -1,5 +1,10 @@
 {% extends 'main/base.html' %}
 {% block content %}
+     <div>
+         {% if easter_egg %}
+             <h1>This site is made by @kirillgorbachyonok</h1>
+         {% endif %}
+     </div>
     <h2>Library Content</h2>
     <ul>
         <li><strong>Books:</strong> {{ books }}</li>

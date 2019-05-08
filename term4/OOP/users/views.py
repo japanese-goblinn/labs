@@ -56,7 +56,9 @@ def profile_register(request):
             return redirect('home')
     else:
         form = ProfileForm()
-    return render(request, 'users/profile_registration.html', {'form': form})
+    return render(request, 'users/profile_registration.html', {
+        'form': form
+    })
 
 
 @login_required

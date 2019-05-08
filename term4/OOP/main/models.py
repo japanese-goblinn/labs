@@ -8,13 +8,17 @@ from django.db.models import Q
 from users.models import CustomUser
 
 
+class Counter(models.Model):
+    counts = models.IntegerField(default=0)
+    
+
 class Sale(models.Model):
     gained_money = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     transaction_date = models.DateTimeField()
 
     def count_amount(self):
         amount = self.objects.all()
-        return f'${sum(sale.gained_money for sale in amount)}'
+        return f'${sum(Decimal(sale.gained_money) for sale in amount)}'
 
     def __str__(self):
         return f'{self.transaction_date}'
@@ -89,6 +93,5 @@ class BookInstance(models.Model):
 
     def is_expired(self):
         if self.taken_by:
-            if self.back_date < datetime.date.today():
-                return True
-            return False
+            return self.back_date < datetime.date.today()
+        return None

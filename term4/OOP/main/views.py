@@ -2,13 +2,24 @@ from datetime import date, timedelta, datetime
 from decimal import Decimal
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.db.models import Q
 from django.contrib.auth.decorators import login_required
-from users.models import CustomUser
 from django.views.generic import ListView, DetailView
-from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Book, BookInstance, Author, Genre, Sale
+from .models import Book, BookInstance, Author, Genre, Sale, Counter
 
+
+def easter_egg(request):
+    if not Counter.objects.all():
+        counter = Counter()
+        counter.save()
+    else:
+        counter = Counter.objects.all()[0]
+        counter.counts += 1
+        counter.save()
+        if counter.counts > 50:
+            messages.success(request, 'Now you\'re a Master of the Click, you can be proud for yourself')
+            Counter.objects.all().delete()
+            return True
+    return False
 
 class BookListView(ListView):
     model = Book
@@ -16,6 +27,7 @@ class BookListView(ListView):
     context_object_name = 'books'
 
 
+@login_required
 def book_detail(request, pk):
     this_book = Book.objects.get(pk=pk)
     books = Book.get_user_books(this_book, user=request.user)
@@ -38,6 +50,7 @@ class AuthorDetailView(DetailView):
 
     
 def home(request):
+    egg = easter_egg(request)
     amount_of_books = Book.objects.count()
     amount_of_copies = BookInstance.objects.count()
     available_copies = BookInstance.objects.filter(status='av').count()
@@ -46,14 +59,15 @@ def home(request):
         'books': amount_of_books,
         'copies': amount_of_copies,
         'av_copies': available_copies,
-        'authors': amount_of_authors
+        'authors': amount_of_authors,
+        'easter_egg': egg
     })
 
 
 def search(request):
     if request.GET.get('search') == '/makemerich/':
         user = request.user
-        user.balance += Decimal('1000000')
+        user.balance = Decimal(user.balance) + Decimal('1000000.00')
         user.save()
         messages.success(request, 'NoW yOu RiCh')
         return redirect('profile_update')
@@ -66,7 +80,7 @@ def add_book(request, pk, book_id):
     price = currnet_book.price
     current_user = request.user
     if current_user.can_afford(price):
-        current_user.balance -= price
+        current_user.balance = Decimal(current_user.balance) - Decimal(price)
         this_sale = Sale(gained_money=price, transaction_date=datetime.now())
         book_to_add.taken_by = request.user
         book_to_add.back_date = date.today() + timedelta(days=30)

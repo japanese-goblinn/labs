@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from decimal import Decimal
 from PIL import Image
 
 class CustomUser(AbstractUser):
@@ -13,7 +14,7 @@ class CustomUser(AbstractUser):
         return f'$ {self.balance}'
     
     def can_afford(self, amount):
-        if self.balance - amount >= 0:
+        if Decimal(self.balance) - Decimal(amount) >= 0:
             return True
         else:
             return False
