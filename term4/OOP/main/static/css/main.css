@@ -11,3 +11,20 @@ body {
 .content-container {
     margin: 3%;
 }
+
+.userpic {
+    margin-left: 11px;
+}
+
+.drop-menu {
+    margin-top: 13px;
+}
+
+.profile-image {
+    width: 45px;
+    height: 45px;
+}
+
+.dropdown-toggle {
+    color: white;
+}

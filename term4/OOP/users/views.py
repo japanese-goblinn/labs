@@ -34,7 +34,6 @@ def register(request):
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
             username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password1')
             user = form.save()
             auth_login(request, user)
             messages.success(request, f'Welcome to library, {username}')

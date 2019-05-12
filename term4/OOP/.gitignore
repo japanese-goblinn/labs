@@ -4,3 +4,4 @@
 __pycache__/
 django_venv/
 db.sqlite3
+.idea/
