@@ -24,8 +24,6 @@
                                     {{ error }}
                                 </div>
                             {% endfor %}
-                        {% elif form.non_field_errors %}
-                            {% render_field field class="form-control is-invalid" placeholder=field.label %}
                         {% else %}
                             {% render_field field class="form-control is-valid" placeholder=field.label %}
                         {% endif %}
