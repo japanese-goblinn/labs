@@ -16,10 +16,11 @@ def login(request):
         if form.is_valid(): 
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
-            user = authenticate(username=username, password=password)
-            auth_login(request, user)
-            messages.success(request, f'Welcome back, {username}')
-            return redirect('home')
+            user = authenticate(request, username=username, password=password)
+            if user:
+                auth_login(request, user)
+                messages.success(request, f'Welcome back, {username}')
+                return redirect('home')
     else:
         form = UserLoginForm()
     return render(request, 'users/sign_in_or_up.html', {

@@ -6,8 +6,12 @@ h1 {
     margin: 0;
 }
 
+.form-element {
+    width: 100%;
+}
+
 .header-h1 {
-    margin-bottom: 15px;
+    margin-bottom: 26px;
 }
 
 .register-button {
@@ -46,7 +50,7 @@ a {
     color: #333;
     font-size: 14px;
     text-decoration: none;
-    margin: 15px 0;
+    margin: 10px 0;
 }
 
 button {
