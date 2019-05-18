@@ -1,0 +1,380 @@
+$comment
+	File created using the following command:
+		vcd file lab2.msim.vcd -direction
+$end
+$date
+	Tue May 07 15:42:06 2019
+$end
+$version
+	ModelSim Version 10.5b
+$end
+$timescale
+	1ps
+$end
+
+$scope module lab2_vlg_vec_tst $end
+$var reg 4 ! A [3:0] $end
+$var reg 4 " B [3:0] $end
+$var reg 9 # COSTIL [8:0] $end
+$var reg 1 $ init $end
+$var reg 1 % inpuls $end
+$var wire 1 & Q [7] $end
+$var wire 1 ' Q [6] $end
+$var wire 1 ( Q [5] $end
+$var wire 1 ) Q [4] $end
+$var wire 1 * Q [3] $end
+$var wire 1 + Q [2] $end
+$var wire 1 , Q [1] $end
+$var wire 1 - Q [0] $end
+$var wire 1 . R $end
+
+$scope module i1 $end
+$var wire 1 / gnd $end
+$var wire 1 0 vcc $end
+$var wire 1 1 unknown $end
+$var tri1 1 2 devclrn $end
+$var tri1 1 3 devpor $end
+$var tri1 1 4 devoe $end
+$var wire 1 5 inpuls~combout $end
+$var wire 1 6 init~combout $end
+$var wire 1 7 inst45|inst2~combout $end
+$var wire 1 8 inst45|inst3~combout $end
+$var wire 1 9 inst45|inst4~combout $end
+$var wire 1 : inst23|inst5~regout $end
+$var wire 1 ; inst22|inst5~regout $end
+$var wire 1 < inst23|inst3~regout $end
+$var wire 1 = inst11|stratix_adder|add_sub_cell[0]~COUT $end
+$var wire 1 > inst11|stratix_adder|add_sub_cell[0]~COUTCOUT1_1 $end
+$var wire 1 ? inst22|inst3~regout $end
+$var wire 1 @ inst23|inst4~regout $end
+$var wire 1 A inst11|stratix_adder|add_sub_cell[1]~COUT $end
+$var wire 1 B inst11|stratix_adder|add_sub_cell[1]~COUTCOUT1_2 $end
+$var wire 1 C inst22|inst4~regout $end
+$var wire 1 D inst544|inst16|inst7 $end
+$var wire 1 E inst18|inst3~combout $end
+$var wire 1 F inst18|inst2~combout $end
+$var wire 1 G inst18|inst5~combout $end
+$var wire 1 H inst8|inst6 $end
+$var wire 1 I inst9|inst6 $end
+$var wire 1 J inst3|inst2|inst6~combout $end
+$var wire 1 K inst9|inst8~combout $end
+$var wire 1 L inst8|inst8~combout $end
+$var wire 1 M inst8|inst7~combout $end
+$var wire 1 N inst9|inst7~combout $end
+$var wire 1 O inst333|stratix_adder|add_sub_cell[5]~COUT $end
+$var wire 1 P inst333|stratix_adder|add_sub_cell[5]~COUTCOUT1_1 $end
+$var wire 1 Q inst333|stratix_adder|add_sub_cell[6]~COUT $end
+$var wire 1 R inst333|stratix_adder|add_sub_cell[6]~COUTCOUT1_2 $end
+$var wire 1 S inst18|inst~combout $end
+$var wire 1 T inst10|stratix_adder|add_sub_cell[1]~COUT $end
+$var wire 1 U inst10|stratix_adder|add_sub_cell[1]~COUTCOUT1_1 $end
+$var wire 1 V inst10|stratix_adder|add_sub_cell[2]~COUT $end
+$var wire 1 W inst10|stratix_adder|add_sub_cell[2]~COUTCOUT1_2 $end
+$var wire 1 X inst10|stratix_adder|add_sub_cell[3]~COUT $end
+$var wire 1 Y inst10|stratix_adder|add_sub_cell[3]~COUTCOUT1_3 $end
+$var wire 1 Z inst10|stratix_adder|add_sub_cell[4]~COUT $end
+$var wire 1 [ inst10|stratix_adder|add_sub_cell[4]~COUTCOUT1_4 $end
+$var wire 1 \ inst10|stratix_adder|add_sub_cell[5]~COUT $end
+$var wire 1 ] inst10|stratix_adder|add_sub_cell[6]~COUT $end
+$var wire 1 ^ inst10|stratix_adder|add_sub_cell[6]~COUTCOUT1_5 $end
+$var wire 1 _ inst16|inst6~regout $end
+$var wire 1 ` inst1488|stratix_adder|add_sub_cell[5]~COUT $end
+$var wire 1 a inst1488|stratix_adder|add_sub_cell[5]~COUTCOUT1_1 $end
+$var wire 1 b inst1488|stratix_adder|add_sub_cell[6]~COUT $end
+$var wire 1 c inst1488|stratix_adder|add_sub_cell[6]~COUTCOUT1_2 $end
+$var wire 1 d inst17|inst~regout $end
+$var wire 1 e inst16|inst~regout $end
+$var wire 1 f inst17|inst1~regout $end
+$var wire 1 g inst16|inst1~regout $end
+$var wire 1 h inst17|inst8~regout $end
+$var wire 1 i inst16|inst8~regout $end
+$var wire 1 j inst17|inst2~regout $end
+$var wire 1 k inst16|inst2~regout $end
+$var wire 1 l inst17|inst4~regout $end
+$var wire 1 m inst16|inst4~regout $end
+$var wire 1 n inst17|inst3~regout $end
+$var wire 1 o inst16|inst3~regout $end
+$var wire 1 p inst17|inst5~regout $end
+$var wire 1 q inst16|inst5~regout $end
+$var wire 1 r inst8|inst9~combout $end
+$var wire 1 s inst9|inst6~0_combout $end
+$var wire 1 t inst9|inst9~combout $end
+$var wire 1 u inst333|stratix_adder|add_sub_cell[7]~COUT $end
+$var wire 1 v inst333|stratix_adder|add_sub_cell[7]~COUTCOUT1_3 $end
+$var wire 1 w inst1488|stratix_adder|add_sub_cell[7]~COUT $end
+$var wire 1 x inst1488|stratix_adder|add_sub_cell[7]~COUTCOUT1_3 $end
+$var wire 1 y inst17|inst7~regout $end
+$var wire 1 z inst10|stratix_adder|add_sub_cell[7]~COUT $end
+$var wire 1 { inst10|stratix_adder|add_sub_cell[7]~COUTCOUT1_6 $end
+$var wire 1 | inst16|inst7~regout $end
+$var wire 1 } inst10|stratix_adder|result [8] $end
+$var wire 1 ~ inst10|stratix_adder|result [7] $end
+$var wire 1 !! inst10|stratix_adder|result [6] $end
+$var wire 1 "! inst10|stratix_adder|result [5] $end
+$var wire 1 #! inst10|stratix_adder|result [4] $end
+$var wire 1 $! inst10|stratix_adder|result [3] $end
+$var wire 1 %! inst10|stratix_adder|result [2] $end
+$var wire 1 &! inst10|stratix_adder|result [1] $end
+$var wire 1 '! inst10|stratix_adder|result [0] $end
+$var wire 1 (! A~combout [3] $end
+$var wire 1 )! A~combout [2] $end
+$var wire 1 *! A~combout [1] $end
+$var wire 1 +! A~combout [0] $end
+$var wire 1 ,! inst1488|stratix_adder|result [8] $end
+$var wire 1 -! inst1488|stratix_adder|result [7] $end
+$var wire 1 .! inst1488|stratix_adder|result [6] $end
+$var wire 1 /! inst1488|stratix_adder|result [5] $end
+$var wire 1 0! inst1488|stratix_adder|result [4] $end
+$var wire 1 1! inst1488|stratix_adder|result [3] $end
+$var wire 1 2! inst1488|stratix_adder|result [2] $end
+$var wire 1 3! inst1488|stratix_adder|result [1] $end
+$var wire 1 4! inst1488|stratix_adder|result [0] $end
+$var wire 1 5! inst333|stratix_adder|result [8] $end
+$var wire 1 6! inst333|stratix_adder|result [7] $end
+$var wire 1 7! inst333|stratix_adder|result [6] $end
+$var wire 1 8! inst333|stratix_adder|result [5] $end
+$var wire 1 9! inst333|stratix_adder|result [4] $end
+$var wire 1 :! inst333|stratix_adder|result [3] $end
+$var wire 1 ;! inst333|stratix_adder|result [2] $end
+$var wire 1 <! inst333|stratix_adder|result [1] $end
+$var wire 1 =! inst333|stratix_adder|result [0] $end
+$var wire 1 >! COSTIL~combout [8] $end
+$var wire 1 ?! COSTIL~combout [7] $end
+$var wire 1 @! COSTIL~combout [6] $end
+$var wire 1 A! COSTIL~combout [5] $end
+$var wire 1 B! COSTIL~combout [4] $end
+$var wire 1 C! COSTIL~combout [3] $end
+$var wire 1 D! COSTIL~combout [2] $end
+$var wire 1 E! COSTIL~combout [1] $end
+$var wire 1 F! COSTIL~combout [0] $end
+$var wire 1 G! B~combout [3] $end
+$var wire 1 H! B~combout [2] $end
+$var wire 1 I! B~combout [1] $end
+$var wire 1 J! B~combout [0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b101 !
+b1000 "
+b0 #
+0$
+0%
+0-
+0,
+0+
+0*
+0)
+0(
+0'
+0&
+0.
+0/
+10
+x1
+12
+13
+14
+05
+06
+07
+08
+09
+0:
+0;
+0<
+0=
+0>
+0?
+0@
+1A
+1B
+0C
+0D
+0E
+0F
+0G
+0H
+0I
+1J
+0K
+0L
+0M
+0N
+0O
+0P
+1Q
+1R
+0S
+0T
+0U
+1V
+1W
+0X
+0Y
+1Z
+1[
+0\
+1]
+1^
+0_
+0`
+0a
+1b
+1c
+0d
+0e
+0f
+0g
+0h
+0i
+0j
+0k
+0l
+0m
+0n
+0o
+0p
+0q
+0r
+0s
+0t
+0u
+0v
+0w
+0x
+0y
+0z
+0{
+0|
+0'!
+0&!
+z%!
+z$!
+z#!
+z"!
+z!!
+z~
+z}
+1+!
+0*!
+1)!
+0(!
+z4!
+z3!
+z2!
+z1!
+z0!
+0/!
+0.!
+0-!
+0,!
+z=!
+z<!
+z;!
+z:!
+z9!
+08!
+07!
+06!
+05!
+0F!
+0E!
+0D!
+zC!
+zB!
+zA!
+z@!
+z?!
+z>!
+0J!
+0I!
+0H!
+1G!
+$end
+#10000
+1$
+16
+1G
+#20000
+1%
+0$
+15
+06
+0G
+1i
+1+
+#30000
+0%
+05
+1j
+1:
+#40000
+1%
+15
+0i
+1k
+1;
+0+
+1,
+#50000
+0%
+05
+1l
+0j
+1<
+0:
+#60000
+1%
+15
+0k
+1m
+1?
+0;
+0,
+1-
+#70000
+0%
+05
+1n
+0l
+1:
+1&!
+#80000
+1%
+15
+0m
+1o
+1;
+1s
+1N
+1D
+1I
+0-
+1t
+17!
+18!
+1.
+15!
+1.!
+1/!
+1,!
+1)
+1*
+1'
+1&
+#90000
+0%
+05
+1y
+1p
+0n
+1f
+1h
+1@
+0<
+0:
+1'!
+0&!
+#1000000

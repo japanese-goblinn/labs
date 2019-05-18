@@ -1,0 +1,470 @@
+Timing Analyzer report for lab2
+Tue May 07 15:39:12 2019
+Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Timing Analyzer Summary
+  3. Parallel Compilation
+  4. Clocks
+  5. Fmax Summary
+  6. Setup Summary
+  7. Hold Summary
+  8. Recovery Summary
+  9. Removal Summary
+ 10. Minimum Pulse Width Summary
+ 11. Setup: 'inpuls'
+ 12. Hold: 'inpuls'
+ 13. Setup Transfers
+ 14. Hold Transfers
+ 15. Report TCCS
+ 16. Report RSKM
+ 17. Unconstrained Paths Summary
+ 18. Clock Status Summary
+ 19. Unconstrained Input Ports
+ 20. Unconstrained Output Ports
+ 21. Unconstrained Input Ports
+ 22. Unconstrained Output Ports
+ 23. Timing Analyzer Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2018  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details.
+
+
+
++-----------------------------------------------------------------------------+
+; Timing Analyzer Summary                                                     ;
++-----------------------+-----------------------------------------------------+
+; Quartus Prime Version ; Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
+; Timing Analyzer       ; Legacy Timing Analyzer                              ;
+; Revision Name         ; lab2                                                ;
+; Device Family         ; MAX V                                               ;
+; Device Name           ; 5M80ZM68C4                                          ;
+; Timing Models         ; Final                                               ;
+; Delay Model           ; Slow Model                                          ;
+; Rise/Fall Delays      ; Unavailable                                         ;
++-----------------------+-----------------------------------------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 2           ;
+; Maximum allowed            ; 2           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 1           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
++----------------------------+-------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Clocks                                                                                                                                                                             ;
++------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+------------+
+; Clock Name ; Type ; Period ; Frequency  ; Rise  ; Fall  ; Duty Cycle ; Divide by ; Multiply by ; Phase ; Offset ; Edge List ; Edge Shift ; Inverted ; Master ; Source ; Targets    ;
++------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+------------+
+; inpuls     ; Base ; 1.000  ; 1000.0 MHz ; 0.000 ; 0.500 ;            ;           ;             ;       ;        ;           ;            ;          ;        ;        ; { inpuls } ;
++------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+------------+
+
+
++-------------------------------------------------+
+; Fmax Summary                                    ;
++-----------+-----------------+------------+------+
+; Fmax      ; Restricted Fmax ; Clock Name ; Note ;
++-----------+-----------------+------------+------+
+; 49.93 MHz ; 49.93 MHz       ; inpuls     ;      ;
++-----------+-----------------+------------+------+
+This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
+
+
++---------------------------------+
+; Setup Summary                   ;
++--------+--------+---------------+
+; Clock  ; Slack  ; End Point TNS ;
++--------+--------+---------------+
+; inpuls ; -9.515 ; -101.636      ;
++--------+--------+---------------+
+
+
++--------------------------------+
+; Hold Summary                   ;
++--------+-------+---------------+
+; Clock  ; Slack ; End Point TNS ;
++--------+-------+---------------+
+; inpuls ; 2.503 ; 0.000         ;
++--------+-------+---------------+
+
+
+--------------------
+; Recovery Summary ;
+--------------------
+No paths to report.
+
+
+-------------------
+; Removal Summary ;
+-------------------
+No paths to report.
+
+
++---------------------------------+
+; Minimum Pulse Width Summary     ;
++--------+--------+---------------+
+; Clock  ; Slack  ; End Point TNS ;
++--------+--------+---------------+
+; inpuls ; -2.289 ; -2.289        ;
++--------+--------+---------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------+
+; Setup: 'inpuls'                                                                                                              ;
++--------+-----------------------+-----------------------+--------------+-------------+--------------+------------+------------+
+; Slack  ; From Node             ; To Node               ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++--------+-----------------------+-----------------------+--------------+-------------+--------------+------------+------------+
+; -9.515 ; trigger9:inst16|inst3 ; trigger9:inst17|inst7 ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 9.755      ;
+; -9.134 ; trigger9:inst16|inst3 ; trigger9:inst17|inst  ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 9.374      ;
+; -8.770 ; trigger9:inst16|inst5 ; trigger9:inst17|inst7 ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 9.010      ;
+; -8.506 ; trigger9:inst16|inst3 ; trigger9:inst17|inst1 ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 8.746      ;
+; -8.289 ; trigger9:inst16|inst5 ; trigger9:inst17|inst  ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 8.529      ;
+; -7.661 ; trigger9:inst16|inst5 ; trigger9:inst17|inst1 ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 7.901      ;
+; -7.615 ; trigger9:inst16|inst3 ; trigger9:inst17|inst8 ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 7.855      ;
+; -6.770 ; trigger9:inst16|inst5 ; trigger9:inst17|inst8 ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 7.010      ;
+; -5.856 ; trigger9:inst16|inst  ; trigger9:inst17|inst7 ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 6.096      ;
+; -5.731 ; trigger9:inst16|inst  ; trigger9:inst17|inst  ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 5.971      ;
+; -5.634 ; trigger9:inst16|inst1 ; trigger9:inst17|inst7 ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 5.874      ;
+; -5.509 ; trigger9:inst16|inst1 ; trigger9:inst17|inst  ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 5.749      ;
+; -5.384 ; trigger9:inst16|inst1 ; trigger9:inst17|inst1 ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 5.624      ;
+; -5.280 ; trigger9:inst17|inst8 ; trigger9:inst16|inst7 ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 5.520      ;
+; -5.280 ; trigger9:inst17|inst8 ; trigger9:inst16|inst6 ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 5.520      ;
+; -5.280 ; trigger9:inst17|inst8 ; trigger9:inst16|inst  ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 5.520      ;
+; -5.215 ; trigger9:inst17|inst1 ; trigger9:inst16|inst7 ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 5.455      ;
+; -5.215 ; trigger9:inst17|inst1 ; trigger9:inst16|inst6 ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 5.455      ;
+; -5.215 ; trigger9:inst17|inst1 ; trigger9:inst16|inst  ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 5.455      ;
+; -4.907 ; trigger9:inst17|inst3 ; trigger9:inst16|inst3 ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 5.147      ;
+; -4.869 ; trigger9:inst16|inst6 ; trigger9:inst17|inst7 ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 5.109      ;
+; -4.840 ; trigger9:inst16|inst  ; trigger9:inst17|inst1 ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 5.080      ;
+; -4.823 ; trigger9:inst17|inst  ; trigger9:inst16|inst7 ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 5.063      ;
+; -4.789 ; trigger9:inst17|inst8 ; trigger9:inst16|inst1 ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 5.029      ;
+; -4.698 ; trigger9:inst17|inst  ; trigger9:inst16|inst6 ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 4.938      ;
+; -4.636 ; trigger9:inst16|inst1 ; trigger9:inst17|inst8 ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 4.876      ;
+; -4.560 ; trigger9:inst17|inst7 ; trigger9:inst16|inst7 ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 4.800      ;
+; -4.555 ; trigger9:inst17|inst4 ; trigger9:inst16|inst7 ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 4.795      ;
+; -4.555 ; trigger9:inst17|inst4 ; trigger9:inst16|inst6 ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 4.795      ;
+; -4.555 ; trigger9:inst17|inst4 ; trigger9:inst16|inst  ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 4.795      ;
+; -4.283 ; trigger9:inst17|inst2 ; trigger9:inst16|inst7 ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 4.523      ;
+; -4.283 ; trigger9:inst17|inst2 ; trigger9:inst16|inst6 ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 4.523      ;
+; -4.283 ; trigger9:inst17|inst2 ; trigger9:inst16|inst  ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 4.523      ;
+; -4.265 ; trigger9:inst17|inst3 ; trigger9:inst16|inst7 ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 4.505      ;
+; -4.265 ; trigger9:inst17|inst3 ; trigger9:inst16|inst6 ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 4.505      ;
+; -4.265 ; trigger9:inst17|inst3 ; trigger9:inst16|inst  ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 4.505      ;
+; -4.238 ; trigger9:inst17|inst5 ; trigger9:inst16|inst5 ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 4.478      ;
+; -4.121 ; trigger9:inst16|inst6 ; trigger9:inst17|inst  ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 4.361      ;
+; -4.064 ; trigger9:inst17|inst4 ; trigger9:inst16|inst1 ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 4.304      ;
+; -4.041 ; trigger9:inst17|inst8 ; trigger9:inst16|inst8 ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 4.281      ;
+; -3.971 ; trigger9:inst17|inst1 ; trigger9:inst16|inst1 ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 4.211      ;
+; -3.950 ; trigger9:inst17|inst  ; trigger9:inst16|inst  ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 4.190      ;
+; -3.939 ; trigger9:inst17|inst4 ; trigger9:inst16|inst8 ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 4.179      ;
+; -3.926 ; trigger9:inst16|inst7 ; trigger9:inst17|inst7 ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 4.166      ;
+; -3.814 ; trigger9:inst17|inst4 ; trigger9:inst16|inst2 ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 4.054      ;
+; -3.812 ; trigger9:inst17|inst7 ; trigger9:inst16|inst6 ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 4.052      ;
+; -3.792 ; trigger9:inst17|inst2 ; trigger9:inst16|inst1 ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 4.032      ;
+; -3.774 ; trigger9:inst17|inst3 ; trigger9:inst16|inst1 ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 4.014      ;
+; -3.667 ; trigger9:inst17|inst2 ; trigger9:inst16|inst8 ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 3.907      ;
+; -3.649 ; trigger9:inst17|inst3 ; trigger9:inst16|inst8 ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 3.889      ;
+; -3.524 ; trigger9:inst17|inst3 ; trigger9:inst16|inst2 ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 3.764      ;
+; -3.521 ; trigger9:inst23|inst5 ; trigger9:inst22|inst4 ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 3.761      ;
+; -3.437 ; trigger9:inst23|inst3 ; trigger9:inst22|inst4 ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 3.677      ;
+; -3.399 ; trigger9:inst17|inst3 ; trigger9:inst16|inst4 ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 3.639      ;
+; -3.396 ; trigger9:inst23|inst5 ; trigger9:inst22|inst3 ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 3.636      ;
+; -3.066 ; trigger9:inst17|inst4 ; trigger9:inst16|inst4 ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 3.306      ;
+; -2.963 ; trigger9:inst16|inst3 ; trigger9:inst17|inst5 ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 3.203      ;
+; -2.776 ; trigger9:inst17|inst2 ; trigger9:inst16|inst2 ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 3.016      ;
+; -2.776 ; trigger9:inst22|inst4 ; trigger9:inst23|inst4 ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 3.016      ;
+; -2.716 ; trigger9:inst22|inst5 ; trigger9:inst23|inst3 ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 2.956      ;
+; -2.701 ; trigger9:inst22|inst3 ; trigger9:inst23|inst4 ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 2.941      ;
+; -2.689 ; trigger9:inst23|inst3 ; trigger9:inst22|inst3 ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 2.929      ;
+; -2.648 ; trigger9:inst23|inst5 ; trigger9:inst22|inst5 ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 2.888      ;
+; -2.258 ; trigger9:inst16|inst2 ; trigger9:inst17|inst4 ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 2.498      ;
+; -1.898 ; trigger9:inst22|inst5 ; trigger9:inst23|inst4 ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 2.138      ;
+; -1.886 ; trigger9:inst22|inst5 ; trigger9:inst23|inst5 ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 2.126      ;
+; -1.882 ; trigger9:inst22|inst3 ; trigger9:inst23|inst3 ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 2.122      ;
+; -1.837 ; trigger9:inst23|inst4 ; trigger9:inst22|inst4 ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 2.077      ;
+; -1.837 ; trigger9:inst16|inst8 ; trigger9:inst17|inst2 ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 2.077      ;
+; -1.837 ; trigger9:inst16|inst4 ; trigger9:inst17|inst3 ; inpuls       ; inpuls      ; 0.500        ; 0.000      ; 2.077      ;
++--------+-----------------------+-----------------------+--------------+-------------+--------------+------------+------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------+
+; Hold: 'inpuls'                                                                                                              ;
++-------+-----------------------+-----------------------+--------------+-------------+--------------+------------+------------+
+; Slack ; From Node             ; To Node               ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++-------+-----------------------+-----------------------+--------------+-------------+--------------+------------+------------+
+; 2.503 ; trigger9:inst23|inst4 ; trigger9:inst22|inst4 ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 2.077      ;
+; 2.503 ; trigger9:inst16|inst8 ; trigger9:inst17|inst2 ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 2.077      ;
+; 2.503 ; trigger9:inst16|inst4 ; trigger9:inst17|inst3 ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 2.077      ;
+; 2.548 ; trigger9:inst22|inst3 ; trigger9:inst23|inst3 ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 2.122      ;
+; 2.552 ; trigger9:inst22|inst5 ; trigger9:inst23|inst5 ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 2.126      ;
+; 2.564 ; trigger9:inst22|inst5 ; trigger9:inst23|inst4 ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 2.138      ;
+; 2.924 ; trigger9:inst16|inst2 ; trigger9:inst17|inst4 ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 2.498      ;
+; 3.314 ; trigger9:inst23|inst5 ; trigger9:inst22|inst5 ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 2.888      ;
+; 3.355 ; trigger9:inst23|inst3 ; trigger9:inst22|inst3 ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 2.929      ;
+; 3.367 ; trigger9:inst22|inst3 ; trigger9:inst23|inst4 ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 2.941      ;
+; 3.382 ; trigger9:inst22|inst5 ; trigger9:inst23|inst3 ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 2.956      ;
+; 3.442 ; trigger9:inst17|inst2 ; trigger9:inst16|inst2 ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 3.016      ;
+; 3.442 ; trigger9:inst22|inst4 ; trigger9:inst23|inst4 ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 3.016      ;
+; 3.629 ; trigger9:inst16|inst3 ; trigger9:inst17|inst5 ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 3.203      ;
+; 3.659 ; trigger9:inst17|inst7 ; trigger9:inst16|inst7 ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 3.233      ;
+; 3.732 ; trigger9:inst17|inst4 ; trigger9:inst16|inst4 ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 3.306      ;
+; 4.035 ; trigger9:inst23|inst5 ; trigger9:inst22|inst3 ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 3.609      ;
+; 4.038 ; trigger9:inst17|inst3 ; trigger9:inst16|inst4 ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 3.612      ;
+; 4.076 ; trigger9:inst23|inst3 ; trigger9:inst22|inst4 ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 3.650      ;
+; 4.148 ; trigger9:inst23|inst5 ; trigger9:inst22|inst4 ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 3.722      ;
+; 4.151 ; trigger9:inst17|inst3 ; trigger9:inst16|inst2 ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 3.725      ;
+; 4.264 ; trigger9:inst17|inst3 ; trigger9:inst16|inst8 ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 3.838      ;
+; 4.307 ; trigger9:inst17|inst2 ; trigger9:inst16|inst8 ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 3.881      ;
+; 4.377 ; trigger9:inst17|inst3 ; trigger9:inst16|inst1 ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 3.951      ;
+; 4.420 ; trigger9:inst17|inst2 ; trigger9:inst16|inst1 ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 3.994      ;
+; 4.453 ; trigger9:inst17|inst4 ; trigger9:inst16|inst2 ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 4.027      ;
+; 4.478 ; trigger9:inst17|inst7 ; trigger9:inst16|inst6 ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 4.052      ;
+; 4.566 ; trigger9:inst17|inst4 ; trigger9:inst16|inst8 ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 4.140      ;
+; 4.592 ; trigger9:inst16|inst7 ; trigger9:inst17|inst7 ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 4.166      ;
+; 4.616 ; trigger9:inst17|inst  ; trigger9:inst16|inst  ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 4.190      ;
+; 4.637 ; trigger9:inst17|inst1 ; trigger9:inst16|inst1 ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 4.211      ;
+; 4.679 ; trigger9:inst17|inst4 ; trigger9:inst16|inst1 ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 4.253      ;
+; 4.707 ; trigger9:inst17|inst8 ; trigger9:inst16|inst8 ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 4.281      ;
+; 4.787 ; trigger9:inst16|inst6 ; trigger9:inst17|inst  ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 4.361      ;
+; 4.880 ; trigger9:inst17|inst3 ; trigger9:inst16|inst7 ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 4.454      ;
+; 4.880 ; trigger9:inst17|inst3 ; trigger9:inst16|inst6 ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 4.454      ;
+; 4.880 ; trigger9:inst17|inst3 ; trigger9:inst16|inst  ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 4.454      ;
+; 4.904 ; trigger9:inst17|inst5 ; trigger9:inst16|inst5 ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 4.478      ;
+; 4.923 ; trigger9:inst17|inst2 ; trigger9:inst16|inst7 ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 4.497      ;
+; 4.923 ; trigger9:inst17|inst2 ; trigger9:inst16|inst6 ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 4.497      ;
+; 4.923 ; trigger9:inst17|inst2 ; trigger9:inst16|inst  ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 4.497      ;
+; 5.182 ; trigger9:inst17|inst4 ; trigger9:inst16|inst7 ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 4.756      ;
+; 5.182 ; trigger9:inst17|inst4 ; trigger9:inst16|inst6 ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 4.756      ;
+; 5.182 ; trigger9:inst17|inst4 ; trigger9:inst16|inst  ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 4.756      ;
+; 5.302 ; trigger9:inst16|inst1 ; trigger9:inst17|inst8 ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 4.876      ;
+; 5.337 ; trigger9:inst17|inst  ; trigger9:inst16|inst6 ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 4.911      ;
+; 5.428 ; trigger9:inst17|inst8 ; trigger9:inst16|inst1 ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 5.002      ;
+; 5.450 ; trigger9:inst17|inst  ; trigger9:inst16|inst7 ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 5.024      ;
+; 5.506 ; trigger9:inst16|inst  ; trigger9:inst17|inst1 ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 5.080      ;
+; 5.508 ; trigger9:inst16|inst6 ; trigger9:inst17|inst7 ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 5.082      ;
+; 5.573 ; trigger9:inst17|inst3 ; trigger9:inst16|inst3 ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 5.147      ;
+; 5.881 ; trigger9:inst17|inst1 ; trigger9:inst16|inst7 ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 5.455      ;
+; 5.881 ; trigger9:inst17|inst1 ; trigger9:inst16|inst6 ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 5.455      ;
+; 5.881 ; trigger9:inst17|inst1 ; trigger9:inst16|inst  ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 5.455      ;
+; 5.931 ; trigger9:inst17|inst8 ; trigger9:inst16|inst7 ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 5.505      ;
+; 5.931 ; trigger9:inst17|inst8 ; trigger9:inst16|inst6 ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 5.505      ;
+; 5.931 ; trigger9:inst17|inst8 ; trigger9:inst16|inst  ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 5.505      ;
+; 6.023 ; trigger9:inst16|inst1 ; trigger9:inst17|inst1 ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 5.597      ;
+; 6.136 ; trigger9:inst16|inst1 ; trigger9:inst17|inst  ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 5.710      ;
+; 6.155 ; trigger9:inst16|inst3 ; trigger9:inst17|inst7 ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 5.729      ;
+; 6.249 ; trigger9:inst16|inst1 ; trigger9:inst17|inst7 ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 5.823      ;
+; 6.255 ; trigger9:inst16|inst3 ; trigger9:inst17|inst8 ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 5.829      ;
+; 6.371 ; trigger9:inst16|inst  ; trigger9:inst17|inst  ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 5.945      ;
+; 6.484 ; trigger9:inst16|inst  ; trigger9:inst17|inst7 ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 6.058      ;
+; 6.521 ; trigger9:inst16|inst5 ; trigger9:inst17|inst7 ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 6.095      ;
+; 6.920 ; trigger9:inst16|inst3 ; trigger9:inst17|inst1 ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 6.494      ;
+; 7.146 ; trigger9:inst16|inst3 ; trigger9:inst17|inst  ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 6.720      ;
+; 7.359 ; trigger9:inst16|inst5 ; trigger9:inst17|inst1 ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 6.933      ;
+; 7.403 ; trigger9:inst16|inst5 ; trigger9:inst17|inst8 ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 6.977      ;
+; 7.672 ; trigger9:inst16|inst5 ; trigger9:inst17|inst  ; inpuls       ; inpuls      ; -0.500       ; 0.000      ; 7.246      ;
++-------+-----------------------+-----------------------+--------------+-------------+--------------+------------+------------+
+
+
++-------------------------------------------------------------------+
+; Setup Transfers                                                   ;
++------------+----------+----------+----------+----------+----------+
+; From Clock ; To Clock ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
++------------+----------+----------+----------+----------+----------+
+; inpuls     ; inpuls   ; 0        ; 71       ; 202      ; 0        ;
++------------+----------+----------+----------+----------+----------+
+Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
+
+
++-------------------------------------------------------------------+
+; Hold Transfers                                                    ;
++------------+----------+----------+----------+----------+----------+
+; From Clock ; To Clock ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
++------------+----------+----------+----------+----------+----------+
+; inpuls     ; inpuls   ; 0        ; 71       ; 202      ; 0        ;
++------------+----------+----------+----------+----------+----------+
+Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
+
+
+---------------
+; Report TCCS ;
+---------------
+No dedicated SERDES Transmitter circuitry present in device or used in design
+
+
+---------------
+; Report RSKM ;
+---------------
+No non-DPA dedicated SERDES Receiver circuitry present in device or used in design
+
+
++------------------------------------------------+
+; Unconstrained Paths Summary                    ;
++---------------------------------+-------+------+
+; Property                        ; Setup ; Hold ;
++---------------------------------+-------+------+
+; Illegal Clocks                  ; 0     ; 0    ;
+; Unconstrained Clocks            ; 0     ; 0    ;
+; Unconstrained Input Ports       ; 12    ; 12   ;
+; Unconstrained Input Port Paths  ; 67    ; 67   ;
+; Unconstrained Output Ports      ; 9     ; 9    ;
+; Unconstrained Output Port Paths ; 44    ; 44   ;
++---------------------------------+-------+------+
+
+
++--------------------------------------+
+; Clock Status Summary                 ;
++--------+--------+------+-------------+
+; Target ; Clock  ; Type ; Status      ;
++--------+--------+------+-------------+
+; inpuls ; inpuls ; Base ; Constrained ;
++--------+--------+------+-------------+
+
+
++---------------------------------------------------------------------------------------------------+
+; Unconstrained Input Ports                                                                         ;
++------------+--------------------------------------------------------------------------------------+
+; Input Port ; Comment                                                                              ;
++------------+--------------------------------------------------------------------------------------+
+; A[0]       ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; A[1]       ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; A[2]       ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; A[3]       ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; B[0]       ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; B[1]       ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; B[2]       ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; B[3]       ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; COSTIL[0]  ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; COSTIL[1]  ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; COSTIL[2]  ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; init       ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
++------------+--------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------+
+; Unconstrained Output Ports                                                                          ;
++-------------+---------------------------------------------------------------------------------------+
+; Output Port ; Comment                                                                               ;
++-------------+---------------------------------------------------------------------------------------+
+; Q[0]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; Q[1]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; Q[2]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; Q[3]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; Q[4]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; Q[5]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; Q[6]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; Q[7]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; R           ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
++-------------+---------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------+
+; Unconstrained Input Ports                                                                         ;
++------------+--------------------------------------------------------------------------------------+
+; Input Port ; Comment                                                                              ;
++------------+--------------------------------------------------------------------------------------+
+; A[0]       ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; A[1]       ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; A[2]       ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; A[3]       ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; B[0]       ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; B[1]       ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; B[2]       ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; B[3]       ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; COSTIL[0]  ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; COSTIL[1]  ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; COSTIL[2]  ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; init       ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
++------------+--------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------+
+; Unconstrained Output Ports                                                                          ;
++-------------+---------------------------------------------------------------------------------------+
+; Output Port ; Comment                                                                               ;
++-------------+---------------------------------------------------------------------------------------+
+; Q[0]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; Q[1]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; Q[2]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; Q[3]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; Q[4]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; Q[5]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; Q[6]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; Q[7]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; R           ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
++-------------+---------------------------------------------------------------------------------------+
+
+
++--------------------------+
+; Timing Analyzer Messages ;
++--------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Timing Analyzer
+    Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+    Info: Processing started: Tue May 07 15:39:10 2019
+Info: Command: quartus_sta lab2 -c lab2
+Info: qsta_default_script.tcl version: #1
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
+Info (334003): Started post-fitting delay annotation
+Info (334004): Delay annotation completed successfully
+Critical Warning (332012): Synopsys Design Constraints File file not found: 'lab2.sdc'. A Synopsys Design Constraints File is required by the Timing Analyzer to get proper timing constraints. Without it, the Compiler will not properly optimize the design.
+Info (332142): No user constrained base clocks found in the design. Calling "derive_clocks -period 1.0"
+Info (332105): Deriving Clocks
+    Info (332105): create_clock -period 1.000 -name inpuls inpuls
+Info: Found TIMING_ANALYZER_REPORT_SCRIPT_INCLUDE_DEFAULT_ANALYSIS = ON
+Info: Can't run Report Timing Closure Recommendations. The current device family is not supported.
+Critical Warning (332148): Timing requirements not met
+Info (332146): Worst-case setup slack is -9.515
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):    -9.515            -101.636 inpuls 
+Info (332146): Worst-case hold slack is 2.503
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):     2.503               0.000 inpuls 
+Info (332140): No Recovery paths to report
+Info (332140): No Removal paths to report
+Info (332146): Worst-case minimum pulse width slack is -2.289
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):    -2.289              -2.289 inpuls 
+Info (332001): The selected device family is not supported by the report_metastability command.
+Info (332102): Design is not fully constrained for setup requirements
+Info (332102): Design is not fully constrained for hold requirements
+Info: Quartus Prime Timing Analyzer was successful. 0 errors, 3 warnings
+    Info: Peak virtual memory: 4665 megabytes
+    Info: Processing ended: Tue May 07 15:39:12 2019
+    Info: Elapsed time: 00:00:02
+    Info: Total CPU time (on all processors): 00:00:01
+
+
