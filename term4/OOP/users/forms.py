@@ -20,10 +20,17 @@ class UserLoginForm(forms.Form):
     def clean(self):
         password = self.cleaned_data.get('password')
         username = self.cleaned_data.get('username')
+        if username and not password or not username and password:
+            raise ValidationError("Empty fields")
         if password and username:
-            user = authenticate(username=username, password=password)
-            if not user:
+            try:
+                user = CustomUser.objects.get(username=username)
+            except CustomUser.DoesNotExist:
                 raise ValidationError("This user is not exist, please register")
+            else:
+                user = authenticate(username=username, password=password)
+                if not user:
+                    raise ValidationError("Wrong password, please try again")
         return self.cleaned_data
 
 

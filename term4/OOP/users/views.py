@@ -3,10 +3,20 @@ from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.views.generic import ListView
 from .forms import UserRegistrationForm, UserLoginForm, UserUpdateForm, ProfileForm
-from .models import CustomUser
 from main.models import BookInstance, Sale
+from django.core.mail import send_mail
+from library_site import settings
+
+
+# TODO:
+def email(request):
+    subject = "Test"
+    message = "TEST"
+    email_from = settings.EMAIL_HOST_USER
+    rec_list = ['project.lib.team@gmail.com', 'cool45akol@gmail.com']
+    send_mail(subject, message, email_from, rec_list)
+    return redirect('home')
 
 
 def login(request):
