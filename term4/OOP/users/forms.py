@@ -49,6 +49,7 @@ class ProfileForm(forms.ModelForm):
             'name', 
             'last_name',
             'passport_id',
+            'adress',
             'fav_genres',
             'image'
             ]

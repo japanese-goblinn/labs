@@ -1,0 +1,11 @@
+{% autoescape off %}
+Hi {{ user.username }}
+
+Thank you for registering, you get a bonus $100 for this.
+
+Please click on the link to confirm your registration.
+http://{{ domain }}{% url 'activate' uidb64=uid token=token %}
+
+Best regards,
+ProjectLib Team
+{% endautoescape %}
