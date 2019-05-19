@@ -1,0 +1,15 @@
+{% extends 'main/base.html' %}
+{% block content %}
+    {% if sales %}
+        {% for sale in sales %}
+        <div class="card shadow bg-success mb-3" style="max-width: 20rem;">
+            <div class="card-body">
+                <p class="card-title">{{ sale.gained_money }}</p>
+                <p class="card-text">{{ sale.transaction_date }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p>No transactions yet</p>
+    {% endif %}
+{% endblock %}

@@ -33,3 +33,26 @@ body {
 .dropdown-toggle {
     color: white;
 }
+
+.shadow {
+   box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15)!important
+}
+
+.box {
+    margin-top: 40px;
+    height: auto;
+    overflow-y: hidden;
+    overflow-x: scroll;
+    white-space: nowrap;
+}
+
+.box::-webkit-scrollbar {
+    display: none;
+}
+
+.card-in-box {
+    margin-left: 1%;
+    display: inline-block;
+    height: 100%;
+    width: auto;
+}

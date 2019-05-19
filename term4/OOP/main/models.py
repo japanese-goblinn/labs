@@ -12,18 +12,6 @@ class Counter(models.Model):
     counts = models.IntegerField(default=0)
     
 
-class Sale(models.Model):
-    gained_money = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
-    transaction_date = models.DateTimeField()
-
-    def count_amount(self):
-        amount = self.objects.all()
-        return f'${sum(Decimal(sale.gained_money) for sale in amount)}'
-
-    def __str__(self):
-        return f'{self.transaction_date}'
-
-
 class Author(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)

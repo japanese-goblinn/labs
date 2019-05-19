@@ -14,7 +14,6 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarColor01">
               <ul class="navbar-nav mr-auto">
-
                 <li class="nav-item {% if request.path == '/all_books/' %} active {% endif %}">
                   <a class="nav-link" href="{% url 'all_books' %}">All Books</a>
                 </li>
@@ -26,13 +25,18 @@
                 <input name="search" class="form-control mr-sm-2" type="text" placeholder="Search">
                 <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
               </form>
+                {% if not user.is_superuser %}
+                    <button type="button" class="btn btn-success" onclick="location.href = '/sales/transactions/'">
+                    Transactions <span class="badge badge-light">{{ user.sale_set.all.count }}</span>
+                    </button>
+                {% endif %}
               <ul class="navbar-nav mr-right userpic">
                   {% if user.is_authenticated %}
                       <div class="dropdown">
                           <div class="c-avatar has-dropdown dropdown-toggle" id="dropdownMenuAvatar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                               <img class="rounded-circle account-img profile-image" src="{{ user.profile.image.url }}">
                           </div>
-                          <div class="dropdown-menu dropdown-menu-right drop-menu" aria-labelledby="dropdownMenuAvatar">
+                          <div class="dropdown-menu dropdown-menu-right drop-menu">
                               <h6 class="dropdown-header">{{ user.username }}</h6>
                               <div class="dropdown-divider"></div>
                               <a class="dropdown-item" href="{%  url 'profile_update' %}">Edit Profile</a>

@@ -4,26 +4,27 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, DetailView
-from .models import Book, BookInstance, Author, Genre, Sale, Counter
+from .models import Book, BookInstance, Author, Genre, Counter
+from dashboard.models import Sale
 
 
-def easter_egg(request):
-    if not Counter.objects.all():
-        counter = Counter()
-        counter.save()
-    else:
-        counter = Counter.objects.all()[0]
-        counter.counts += 1
-        counter.save()
-        if counter.counts > 50:
-            messages.success(request, 'Now you\'re a Master of the Click, you can be proud for yourself')
-            Counter.objects.all().delete()
-            return True
-    return False
+# def easter_egg(request):
+#     if not Counter.objects.all():
+#         counter = Counter()
+#         counter.save()
+#     else:
+#         counter = Counter.objects.all()[0]
+#         counter.counts += 1
+#         counter.save()
+#         if counter.counts > 50:
+#             messages.success(request, 'Now you\'re a Master of the Click, you can be proud for yourself')
+#             Counter.objects.all().delete()
+#             return True
+#     return False
 
 class BookListView(ListView):
     model = Book
-    paginate_by = 9
+    # paginate_by = 3
     context_object_name = 'books'
 
 
@@ -48,20 +49,26 @@ class AuthorListView(ListView):
 class AuthorDetailView(DetailView):
     model = Author
 
-    
+
 def home(request):
-    egg = easter_egg(request)
-    amount_of_books = Book.objects.count()
-    amount_of_copies = BookInstance.objects.count()
-    available_copies = BookInstance.objects.filter(status='av').count()
-    amount_of_authors = Author.objects.count()
+    books = Book.objects.all()
     return render(request, 'main/home.html', {
-        'books': amount_of_books,
-        'copies': amount_of_copies,
-        'av_copies': available_copies,
-        'authors': amount_of_authors,
-        'easter_egg': egg
+        'books': books
     })
+
+# def home(request):
+#     egg = easter_egg(request)
+#     amount_of_books = Book.objects.count()
+#     amount_of_copies = BookInstance.objects.count()
+#     available_copies = BookInstance.objects.filter(status='av').count()
+#     amount_of_authors = Author.objects.count()
+#     return render(request, 'main/home.html', {
+#         'books': amount_of_books,
+#         'copies': amount_of_copies,
+#         'av_copies': available_copies,
+#         'authors': amount_of_authors,
+#         'easter_egg': egg
+#     })
 
 
 def search(request):
@@ -75,13 +82,13 @@ def search(request):
 
 @login_required
 def add_book(request, pk, book_id):
-    currnet_book = Book.objects.get(id=book_id)
+    current_book = Book.objects.get(id=book_id)
     book_to_add = BookInstance.objects.get(id=pk)
-    price = currnet_book.price
+    price = current_book.price
     current_user = request.user
     if current_user.can_afford(price):
         current_user.balance = Decimal(current_user.balance) - Decimal(price)
-        this_sale = Sale(gained_money=price, transaction_date=datetime.now())
+        this_sale = Sale(gained_money=price, transaction_date=datetime.now(), who_bought=request.user)
         book_to_add.taken_by = request.user
         book_to_add.back_date = date.today() + timedelta(days=30)
         book_to_add.status = book_to_add.STATUS[2][0]

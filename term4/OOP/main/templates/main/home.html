@@ -1,15 +1,36 @@
 {% extends 'main/base.html' %}
 {% block content %}
-     <div>
-         {% if easter_egg %}
-             <h1>This site is made by @kirillgorbachyonok</h1>
-         {% endif %}
-     </div>
-    <h2>Library Content</h2>
-    <ul>
-        <li><strong>Books:</strong> {{ books }}</li>
-        <li><strong>Copies:</strong> {{ copies }}</li>
-        <li><strong>Available copies:</strong> {{ av_copies }}</li>
-        <li><strong>Authors:</strong> {{ authors }}</li>
-    </ul>
+{#     <div>#}
+{#         {% if easter_egg %}#}
+{#             <h1>This site is made by @kirillgorbachyonok</h1>#}
+{#         {% endif %}#}
+{#     </div>#}
+        {% if user.is_authenticated %}
+            {% if not user.is_superuser %}
+                <h2>Recommendations for you, {{ user.profile.name }}</h2>
+                <hr>
+                {% if books %}
+                    <div class="box">
+                        {% for book in books %}
+                            <div class="card card-in-box border-primary mb-3" style="max-width: 20rem;">
+                                <div class="card-header">
+                                    <a class='book-card-title' href="{% url 'book_detail' pk=book.pk %}">{{ book.name }}</a>
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-title"><strong>Author:</strong> {{ book.author }}</p>
+                                    <p class="card-text"><strong>Price:</strong> {{ book.get_price }}</p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p>Library is empty</p>
+                {% endif %}
+            <h2 style="margin-top: 30px">Recently taken</h2>
+            <hr>
+            {% endif %}
+            {% if user.is_superuser %}
+                {# TODO: somthing with user activites or dashboard #}
+            {% endif %}
+        {% endif %}
 {% endblock %}

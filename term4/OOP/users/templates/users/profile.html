@@ -12,19 +12,21 @@
         </div>
     </div>
     {% if not user.is_superuser %}
-    <div class="container row">
-        <div class="col-sm-5 float-left card text-white bg-success mb-3" style="margin-top: 30px;">
-              <div class="card-body">
-                <h4 class="card-title">Balance</h4>
-                <h6 class="card-text">$ {{ user.balance }}</h6>
+    <div class="row" style="margin-right: 10%;">
+        <div class="col-sm-6" style="margin-top: 30px;">
+            <div class="card shadow text-white bg-success mb-3">
+                <div class="card-body">
+                <h5 class="card-title">Balance</h5>
+                <h4 class="card-text" style="font-weight: 700">$ {{ user.balance }}</h4>
               </div>
+            </div>
         </div>
-        <div class="col-sm-1" style="margin-top: 30px;">
-        </div>
-        <div class="col-sm-5 float-right card text-white bg-info mb-3" style="margin-top: 30px;">
-            <div class="card-body">
-                <h4 class="card-title">Taken books amount</h4>
-                <h6 class="card-text">{{ books_count }}</h6>
+        <div class="col-sm-6" style="margin-top: 30px;">
+            <div class="card shadow text-white bg-info mb-3">
+                <div class="card-body">
+                <h5 class="card-title">Taken books amount</h5>
+                <h4 class="card-text" style="font-weight: 700">{{ books_count }}</h4>
+            </div>
             </div>
         </div>
     </div>

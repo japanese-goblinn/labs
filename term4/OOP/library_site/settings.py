@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'main.apps.MainConfig',
     'users.apps.UsersConfig',
     'api.apps.ApiConfig',
+    'dashboard.apps.DashboardConfig',
     'crispy_forms',
     'widget_tweaks'
 ]

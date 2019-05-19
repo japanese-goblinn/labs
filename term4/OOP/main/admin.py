@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Book, BookInstance, Author, Genre, Sale
+from .models import Book, BookInstance, Author, Genre
 
    
 class BookInline(admin.TabularInline):
@@ -33,8 +33,5 @@ class BookInstanceAdmin(admin.ModelAdmin):
 
 admin.site.register(Genre)
 
-@admin.register(Sale)
-class SaleAdmin(admin.ModelAdmin):
-    list_display = ['gained_money', 'transaction_date']
     
     
