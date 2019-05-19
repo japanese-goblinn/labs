@@ -1,49 +1,45 @@
 {% extends 'main/base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
-<div class="media">
-    <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
-    <div class="media-body">
-        <h2 class="account-heading">{{ user.username }}</h2>
-        <p class="text-secondary">{{ user.email }}</p>
-        <p class="text-secondary">{{ user.get_balance }}</p>
-    </div>
-</div>
-{% if user.is_superuser %}
-  <div class="card text-white bg-info mb-3" style="max-width: 20rem;">
-  <div class="card-body">
-    <h4 class="card-title">Library Balance</h4>
-    <p class="card-text">{{ sales }}</p>
-  </div>
-</div>
-{% endif %}
-<ul class="nav nav-tabs">
-  <li class="nav-item">
-    <a class="nav-link active" data-toggle="tab" href="#profile">Profile</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" data-toggle="tab" href="#mybooks">My Books</a>
-  </li>
-</ul>
-<div id="myTabContent" class="tab-content">
-  <div class="tab-pane fade active show" id="profile">
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ u_form|crispy }}
-        {{ p_form|crispy }}
-        <div class="form-group">
-            <button class="btn btn-outline-info" type="submit">Update</button>
+<div class="">
+    <div class="row">
+        <div class="col-sm-3 float-left">
+            <img class="rounded-circle profile-image-big" src="{{ user.profile.image.url }}">
         </div>
-    </form>
-  </div>
-  <div class="tab-pane fade" id="mybooks">
-    {% if user_books %}
-      {% for user_book in user_books %}
-          <p><a href={% url 'book_detail' pk=user_book.book.id %}>{{ user_book.book.name }}</a></p>
-      {% endfor %}
-    {% else %}
-      <p>List is empty</p>
+        <div class="col-sm-9 float-right">
+            <h2>{{ user.username }}</h2>
+            <p class="text-secondary">{{ user.email }}</p>
+        </div>
+    </div>
+    {% if not user.is_superuser %}
+    <div class="container row">
+        <div class="col-sm-5 float-left card text-white bg-success mb-3" style="margin-top: 30px;">
+              <div class="card-body">
+                <h4 class="card-title">Balance</h4>
+                <h6 class="card-text">$ {{ user.balance }}</h6>
+              </div>
+        </div>
+        <div class="col-sm-1" style="margin-top: 30px;">
+        </div>
+        <div class="col-sm-5 float-right card text-white bg-info mb-3" style="margin-top: 30px;">
+            <div class="card-body">
+                <h4 class="card-title">Taken books amount</h4>
+                <h6 class="card-text">{{ books_count }}</h6>
+            </div>
+        </div>
+    </div>
     {% endif %}
-  </div>
+    <div style="margin-top: 25px; margin-right: 11%;">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h2>Profile edit</h2>
+            <hr>
+            {{ u_form|crispy }}
+            {{ p_form|crispy }}
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit">Update</button>
+            </div>
+        </form>
+    </div>
 </div>
 {% endblock %}

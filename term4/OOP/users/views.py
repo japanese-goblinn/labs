@@ -80,10 +80,18 @@ def activate(request, uidb64, token):
         user.balance = Decimal('100')
         user.save()
         auth_login(request, user)
-        messages.success(request, f'Welcome to library, {user.username}')
+        messages.success(request, f'Welcome, {user.username}, check your balance c:')
         return redirect('profile_register')
     else:
         return HttpResponse('Activation link is invalid')
+
+
+@login_required
+def user_books(request):
+    user_books = BookInstance.objects.filter(taken_by=request.user)
+    return render(request, 'users/user_books.html', {
+        'user_books': user_books
+    })
 
 
 @login_required 
@@ -112,12 +120,11 @@ def profile_update(request):
             messages.success(request, 'Your account has been updated')
     else:
         u_form = UserUpdateForm(instance=request.user)
-        p_form = ProfileForm(instance=request.user.profile) 
-    this_user_books = BookInstance.objects.filter(taken_by=request.user)
-    sales = Sale.count_amount(Sale)
+        p_form = ProfileForm(instance=request.user.profile)
+        books_count = BookInstance.objects.filter(taken_by=request.user).count()
+        user_books_count = books_count if books_count else "Empty"
     return render(request, 'users/profile.html', {
         'u_form': u_form,
         'p_form': p_form,
-        'user_books': this_user_books,
-        'sales': sales
+        'books_count': user_books_count
         })

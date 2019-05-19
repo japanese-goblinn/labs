@@ -25,6 +25,11 @@ body {
     height: 45px;
 }
 
+.profile-image-big {
+    width: 200px;
+    height: 200px;
+}
+
 .dropdown-toggle {
     color: white;
 }

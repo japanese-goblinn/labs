@@ -39,7 +39,7 @@
                               {% if user.is_superuser %}
                                   <a class="dropdown-item" href="">Dashboard</a>
                               {% else %}
-                                  <a class="dropdown-item" href="">My Books</a>
+                                  <a class="dropdown-item" href="{% url 'user_books' %}">My Books</a>
                               {% endif %}
 
                               <div class="dropdown-divider"></div>
