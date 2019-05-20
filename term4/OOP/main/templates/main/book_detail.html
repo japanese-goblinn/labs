@@ -36,14 +36,52 @@
                         </div>
                         <div class='col-md-6'>
                             {% if copy.status == 'av' %}
-                                <a type="button" class="btn btn-primary float-right" href="{% url 'book_add' pk=copy.id book_id=book.id %}">
-                                    Add to Library
-                                </a>
+                                    <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#addModal">
+                                      Rent this copy
+                                    </button>
+                                    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                      <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                          <div class="modal-header">
+                                            <h5 class="modal-title" id="addModalLabel">Are you sure want to rent this book?</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                              <span aria-hidden="true">&times;</span>
+                                            </button>
+                                          </div>
+                                             <div class="modal-body">
+                                                <strong>That's will cost you {{ book.get_price }}</strong>
+                                             </div>
+                                          <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                              <a type="button" class="btn btn-primary float-right" href="{% url 'book_add' pk=copy.id book_id=book.id %}">
+                                                  Rent
+                                             </a>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
                             {% elif copy.status == 'add' %}
-                                <a type="button" class="btn btn btn-danger float-right" href="{% url 'book_remove' pk=copy.id book_id=book.id %}">
-                                    Remove from Library
-                                </a>
-                            {% else %}
+                                    <button type="button" class="btn btn-danger float-right" data-toggle="modal" data-target="#removeModal">
+                                      Remove from library
+                                    </button>
+                                    <div class="modal fade" id="removeModal" tabindex="-1" role="dialog" aria-labelledby="removeModalLabel" aria-hidden="true">
+                                      <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                          <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Are you sure want to bring this book back?</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                              <span aria-hidden="true">&times;</span>
+                                            </button>
+                                          </div>
+                                          <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                              <a type="button" class="btn btn-danger float-right" href="{% url 'book_remove' pk=copy.id book_id=book.id %}">
+                                                  Remove
+                                              </a>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
                             {% endif %}
                         </div>
                     </div>

@@ -45,9 +45,28 @@
                               {% else %}
                                   <a class="dropdown-item" href="{% url 'user_books' %}">My Books</a>
                               {% endif %}
-
                               <div class="dropdown-divider"></div>
-                              <a class="dropdown-item text-danger" href="{% url 'logout' %}">Logout</a>
+                               <a class="dropdown-item text-danger" data-toggle="modal" data-target="#logoutModal" href="#logoutModal">
+                                      Logout
+                               </a>
+                          </div>
+                      </div>
+                      <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                  <div class="modal-header">
+                                      <h5 class="modal-title" id="logoutModalLabel">Are you sure want to logout?</h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                      </button>
+                                  </div>
+                                  <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                      <a type="button" class="btn btn-danger float-right" href="{% url 'logout'%}">
+                                          Logout
+                                      </a>
+                                  </div>
+                              </div>
                           </div>
                       </div>
                   {% else %}
@@ -58,25 +77,8 @@
                         <a class="nav-link" href="{% url 'register' %}">Register</a>
                     </li>
                   {% endif %}
-
-{#                {% if user.is_authenticated %}#}
-{#                  <li class="nav-item">#}
-{#                      <a class="nav-link {% if request.path == '/user/profile/' %} active {% endif %}" href="{% url 'profile_update' %}">{{ user.username }}</a>#}
-{#                  </li>#}
-{#                  <li class="nav-item">#}
-{#                      <a class="nav-link" href="{% url 'logout' %}">Logout</a>#}
-{#                  </li>#}
-{#                {% else %}#}
-{#                  <li class="nav-item">#}
-{#                      <a class="nav-link" href="{% url 'login' %}">Login</a>#}
-{#                  </li>#}
-{#                  <li class="nav-item">#}
-{#                      <a class="nav-link" href="{% url 'register' %}">Register</a>#}
-{#                  </li>#}
-{#                {% endif %}#}
               </ul>
             </div>
-
         </nav>
         <div>
             {% if messages %}

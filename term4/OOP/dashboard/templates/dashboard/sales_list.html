@@ -2,10 +2,10 @@
 {% block content %}
     {% if sales %}
         {% for sale in sales %}
-        <div class="card shadow bg-success mb-3" style="max-width: 20rem;">
+        <div class="card shadow text-white bg-success mb-3" style="max-width: 20rem;">
             <div class="card-body">
-                <p class="card-title">{{ sale.gained_money }}</p>
-                <p class="card-text">{{ sale.transaction_date }}</p>
+                <h5 class="card-title" style="font-weight: 700">${{ sale.gained_money }}</h5>
+                <h6 class="card-text">{{ sale.transaction_date }}</h6>
             </div>
         </div>
         {% endfor %}
