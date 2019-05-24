@@ -9,7 +9,6 @@
             {% if not user.is_superuser %}
                 <h2>Recommendations for you, {{ user.profile.name }}</h2>
                 <hr>
-                {% if books %}
                     <div class="box">
                         {% for book in books %}
                             <div class="card card-in-box border-primary mb-3" style="max-width: 20rem;">
@@ -23,15 +22,12 @@
                             </div>
                         {% endfor %}
                     </div>
-                {% else %}
-                    <p>Library is empty</p>
-                {% endif %}
             <h2 style="margin-top: 30px">Recently taken</h2>
             <hr>
 
             {% endif %}
             {% if user.is_superuser %}
-                {# TODO: somthing with user activites or dashboard #}
+
             {% endif %}
         {% endif %}
 {% endblock %}

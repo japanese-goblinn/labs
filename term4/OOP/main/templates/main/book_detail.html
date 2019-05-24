@@ -8,7 +8,7 @@
         <p>{{ book.description }}</p>
         <p><strong>Amount of Pages:</strong> {{ book.pages }}</p>
         <p><strong>Geners:</strong> {{ book.get_genres_string }}</p>
-        <p><strong>Price:</strong> {{ book.get_price }}</p>
+        <p><strong>Price per month:</strong> {{ book.get_price }}</p>
         
         <h4>Copies</h4>
         {% if books %}
@@ -36,9 +36,24 @@
                         </div>
                         <div class='col-md-6'>
                             {% if copy.status == 'av' %}
-                                    <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#addModal">
-                                      Rent this copy
-                                    </button>
+                                    <div class="btn-group float-right">
+                                        <button type="button" class="btn btn-primary dropdown-toggle float-right"
+                                                data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false">
+                                            Rent this copy
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a data-toggle="modal" class="dropdown-item" data-target="#addModal" href="#addModal"
+                                               data-period="week {{ copy.id }}">For a week</a>
+                                            <a data-toggle="modal" class="dropdown-item" data-target="#addModal" href="#addModal"
+                                               data-period="2weeks {{ copy.id }}">For two weeks</a>
+                                            <a data-toggle="modal" class="dropdown-item" data-target="#addModal" href="#addModal"
+                                               data-period="month {{ copy.id }}">For a month</a>
+                                            <a data-toggle="modal" class="dropdown-item" data-target="#addModal" href="#addModal"
+                                               data-period="3months {{ copy.id }}">For three months</a>
+                                            <a data-toggle="modal" class="dropdown-item" data-target="#addModal" href="#addModal"
+                                               data-period="year {{ copy.id }}">For a year</a>
+                                        </div>
+                                    </div>
                                     <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                       <div class="modal-dialog" role="document">
                                         <div class="modal-content">
@@ -49,13 +64,13 @@
                                             </button>
                                           </div>
                                              <div class="modal-body">
-                                                <strong>That's will cost you {{ book.get_price }}</strong>
+                                                <strong>That's will cost you {{ book.price }}</strong>
                                              </div>
                                           <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                              <a type="button" class="btn btn-primary float-right" href="{% url 'book_add' pk=copy.id book_id=book.id %}">
+                                              <button type="button" id="rentButton" class="btn btn-primary text-white float-right">
                                                   Rent
-                                             </a>
+                                             </button>
                                           </div>
                                         </div>
                                       </div>
@@ -68,7 +83,7 @@
                                       <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                           <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Are you sure want to bring this book back?</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to bring this book back?</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                               <span aria-hidden="true">&times;</span>
                                             </button>
@@ -91,4 +106,36 @@
             <p>No copies of this book available</p>
         {% endif %}
     </div>
+    <script>
+        var price = 0;
+        var period = "";
+        var copy_id = 0;
+
+        $('#addModal').on('show.bs.modal', function (event) {
+            let button = $(event.relatedTarget);
+            var res_array = button.data('period').split(" ");
+            period = res_array[0];
+            copy_id = res_array[1];
+            price = {{ book.price }} * 1.0;
+            if (period == 'week') {
+                price /= 4;
+            }
+            else if (period == '2weeks') {
+                price /= 2;
+            }
+            else if (period == '3months') {
+                price *= 3;
+            }
+            else if (period == 'year') {
+                price *= 12;
+            }
+            price = price.toFixed(2);
+            $('.modal-body strong').text('That\'s will cost you $' + price);
+         });
+
+        $("#rentButton").click(function() {
+            let var_url = '/book_add/' + copy_id + "/"+ {{ book.id }} + "/" + price + "/" + period + "/";
+            location.href = var_url;
+        });
+    </script>
 {% endblock %}
