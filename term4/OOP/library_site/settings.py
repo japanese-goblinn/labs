@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'api.apps.ApiConfig',
     'dashboard.apps.DashboardConfig',
     'crispy_forms',
-    'widget_tweaks'
+    'widget_tweaks',
+    'rest_framework'
 ]
 
 

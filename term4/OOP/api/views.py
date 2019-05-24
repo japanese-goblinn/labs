@@ -1,8 +1,27 @@
 from django.shortcuts import render
 from django.core import serializers
 from main.models import Book
+from django.http import JsonResponse
+from users.models import CustomUser
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import authentication, permissions
 
-# Create your views here.
+
+class ChartData(APIView):
+    authentication_classes = []
+    permission_classes = []
+
+    def get(self, request, format=None):
+        u_count = CustomUser.objects.all().count()
+        labels = ['Users', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange']
+        default_items = [u_count, 213, 34, 34, 432, 32 ]
+        data = {
+            "labels": labels,
+            "default": default_items
+        }
+        return Response(data)
+
 
 class BookSerializer:
     def serialize(self, book, format_type):

@@ -72,10 +72,7 @@ def machine_learning(request):
         genres = [genre.name for genre in raw_genres]
         genre = train_model(genres)
         genre = Genre.objects.get(name=genre)
-        my_filter_qs = Q()
-        for name in raw_books:
-            my_filter_qs = my_filter_qs | ~Q(name=name)
-        books = genre.book_set.filter(my_filter_qs)
+        books = genre.book_set.filter(~Q(name__in=raw_books))
     else:
         genres = [genre.name for genre in request.user.profile.fav_genres.all()]
         genre = train_model(genres)
