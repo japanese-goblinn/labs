@@ -27,7 +27,7 @@ def easter_egg(request):
 
 class BookListView(ListView):
     model = Book
-    # paginate_by = 3
+    paginate_by = 3
     context_object_name = 'books'
 
 
@@ -88,9 +88,14 @@ def machine_learning(request):
 def home(request):
     # egg = easter_egg(request)
     books = machine_learning(request)
-    recently_taken = 
+    amount = BookInstance.objects.filter(taken_by=request.user).count()
+    if amount > 3:
+        recently_taken = BookInstance.objects.filter(taken_by=request.user).order_by("back_date")[:3]
+    else:
+        recently_taken = BookInstance.objects.filter(taken_by=request.user).order_by("back_date")
     return render(request, 'main/home.html', {
-        'books': books
+        'books': books,
+        'recently_taken': recently_taken
     })
 
 

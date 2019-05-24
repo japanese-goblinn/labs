@@ -26,12 +26,28 @@
                 {% else %}
                     <p>No recommendations for you :c</p>
                 {% endif %}
-            <h2 style="margin-top: 30px">Recently taken</h2>
+            <h2 style="margin-top: 30px">Rent period is about to expire</h2>
             <hr>
-
+                {% if recently_taken %}
+                    <div class="box">
+                        {% for r_book in recently_taken %}
+                            <div class="card card-in-box border-primary mb-3" style="max-width: 20rem;">
+                                <div class="card-header">
+                                    <a class='book-card-title' href="{% url 'book_detail' pk=r_book.book.pk %}">{{ r_book.book.name }}</a>
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-title"><strong>Author:</strong> {{ r_book.book.author }}</p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p>You're not taking anything in a while</p>
+                {% endif %}
             {% endif %}
             {% if user.is_superuser %}
-
+                <h2>Admin Dashboard</h2>
+                <hr>
             {% endif %}
         {% endif %}
 {% endblock %}

@@ -102,35 +102,28 @@
             {% endblock %}
           </div>
         </div>
-        {% comment %} {% block pagination %}
-          {% if is_paginated %}
-            <div class="pagination">
-              <span class="page-links">
-              {% if page_obj.has_previous %}
-                  <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
-              {% endif %}
-              <span class="page-current">
-                  Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-              </span>
-              {% if page_obj.has_next %}
-                  <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
-              {% endif %}
-          </span>
-            </div>
-          {% endif %}
-        {% endblock %} {% endcomment %}
+        <div class="container">
+            {% block pagination %}
+               {% if is_paginated %}
+                  {% if page_obj.has_previous %}
+                    <a class="btn btn-outline-primary mb-4" href="?page=1">First</a>
+                    <a class="btn btn-outline-primary mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                  {% endif %}
 
-{#        <script>#}
-{#        $('#addModal').on('show.bs.modal', function (event) {#}
-{#          var button = $(event.relatedTarget)#}
-{#          var recipient = button.data('whatever')#}
-{#            console.log('recipient', recipient)#}
-{#          var modal = $(this)#}
-{#          $('.modal-title').text('New message to ' + recipient)#}
-          {#modal.find('.modal-body input').val(recipient)#}
-{#        })#}
-        {#let price = {{ book.price }}#}
-        {#if {{  }}#}
-    {#</script>#}
+                  {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                      <a class="btn btn-primary mb-4" href="?page={{ num }}">{{ num }}</a>
+                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                      <a class="btn btn-outline-primary mb-4" href="?page={{ num }}">{{ num }}</a>
+                    {% endif %}
+                  {% endfor %}
+
+                  {% if page_obj.has_next %}
+                    <a class="btn btn-outline-primary mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+                    <a class="btn btn-outline-primary mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+                  {% endif %}
+                {% endif %}
+            {% endblock %}
+        </div>
     </body>
 </html>
