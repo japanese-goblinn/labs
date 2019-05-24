@@ -88,6 +88,7 @@ def machine_learning(request):
 def home(request):
     # egg = easter_egg(request)
     books = machine_learning(request)
+    recently_taken = 
     return render(request, 'main/home.html', {
         'books': books
     })
