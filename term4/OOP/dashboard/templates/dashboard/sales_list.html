@@ -5,7 +5,9 @@
         <div class="card shadow text-white bg-success mb-3" style="max-width: 20rem;">
             <div class="card-body">
                 <h5 class="card-title" style="font-weight: 700">${{ sale.gained_money }}</h5>
-                <h6 class="card-text">{{ sale.transaction_date }}</h6>
+                {% if user.is_superuser %}
+                    <h6 class="card-text">{{ sale.who_bought }}</h6>
+                {% endif %}
             </div>
         </div>
         {% endfor %}

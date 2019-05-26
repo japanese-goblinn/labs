@@ -120,6 +120,14 @@ def search(request):
         user.save()
         messages.success(request, 'NoW yOu RiCh')
         return redirect('profile_update')
+    search_thing = request.GET.get('search')
+    book_search = Book.objects.filter(name__icontains=search_thing)
+    author_search = Author.objects.filter(Q(last_name__icontains=search_thing) | Q(first_name__icontains=search_thing))
+    return render(request, 'main/search.html', {
+        'author_search': author_search,
+        'book_search': book_search
+    })
+
 
 
 @login_required

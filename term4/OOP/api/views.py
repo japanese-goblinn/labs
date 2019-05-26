@@ -74,6 +74,9 @@ def serialize(book, format_type):
     pass
 
 
+# class Iterator:
+
+
 def api_get(request, book, format_type):
     book = Book.objects.filter(name=book)
     if book:

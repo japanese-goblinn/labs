@@ -1,9 +1,6 @@
-import uuid
 import datetime
 from decimal import Decimal
 from django.db import models
-from django.conf import settings
-from django.utils import timezone
 from django.db.models import Q
 from users.models import CustomUser
 

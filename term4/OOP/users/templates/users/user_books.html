@@ -2,7 +2,15 @@
 {% block content %}
 {% if user_books %}
       {% for user_book in user_books %}
-          <p><a href={% url 'book_detail' pk=user_book.book.id %}>{{ user_book.book.name }}</a></p>
+          <div class="card shadow border-primary mb-3" style="max-width: 20rem; margin-top: 30px;">
+            <div class="card-header">
+                <a class='book-card-title' href="{% url 'book_detail' pk=user_book.book.pk %}">{{ user_book.book.name }}</a>
+            </div>
+            <div class="card-body">
+                <p class="card-title"><strong>Author:</strong> {{ user_book.book.author }}</p>
+                <p class="card-text"><strong>Geners:</strong> {{ user_book.book.get_genres_string }}</p>
+            </div>
+        </div>
       {% endfor %}
 {% else %}
       <p>List is empty</p>
