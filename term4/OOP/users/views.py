@@ -9,7 +9,6 @@ from django.contrib.auth.decorators import login_required
 from .forms import UserRegistrationForm, UserLoginForm, UserUpdateForm, ProfileForm
 from .models import CustomUser
 from main.models import BookInstance
-# from admin_dashboard.models import Sale
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from .tokens import account_activation_token

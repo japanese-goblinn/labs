@@ -5,8 +5,10 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, DetailView
 from .models import Book, BookInstance, Author, Genre, Counter
+from users.models import CustomUser
 from dashboard.models import Sale
 from sklearn.tree import DecisionTreeClassifier
+from sklearn import metrics
 from django.db.models import Q
 
 
@@ -57,7 +59,8 @@ def train_model(data):
     cls = DecisionTreeClassifier()
     features = [[1]] * len(data)
     cls.fit(features, data)
-    return cls.predict([[1]])[0]
+    predict = cls.predict([[1]])[0]
+    return predict
 
 
 def machine_learning(request):
@@ -83,17 +86,31 @@ def machine_learning(request):
 
 @login_required
 def home(request):
-    # egg = easter_egg(request)
-    books = machine_learning(request)
-    amount = BookInstance.objects.filter(taken_by=request.user).count()
-    if amount > 3:
-        recently_taken = BookInstance.objects.filter(taken_by=request.user).order_by("back_date")[:3]
+    if request.user.is_superuser:
+        total_sales_income = Sale.count_amount(Sale)
+        month_income = Sale.count_for(Sale, date.today().month)
+        users_amount = CustomUser.objects.filter(is_superuser=False).count()
+        books_amount = Book.objects.count()
+        copies_amount = BookInstance.objects.count()
+        return render(request, 'main/home.html', {
+            'total_income': total_sales_income,
+            'month_income': month_income,
+            'users': users_amount,
+            'books': books_amount,
+            'copies': copies_amount
+        })
     else:
-        recently_taken = BookInstance.objects.filter(taken_by=request.user).order_by("back_date")
-    return render(request, 'main/home.html', {
-        'books': books,
-        'recently_taken': recently_taken
-    })
+        # egg = easter_egg(request)
+        books = machine_learning(request)
+        amount = BookInstance.objects.filter(taken_by=request.user).count()
+        if amount > 3:
+            recently_taken = BookInstance.objects.filter(taken_by=request.user).order_by("back_date")[:3]
+        else:
+            recently_taken = BookInstance.objects.filter(taken_by=request.user).order_by("back_date")
+        return render(request, 'main/home.html', {
+            'books': books,
+            'recently_taken': recently_taken
+        })
 
 
 def search(request):
@@ -113,7 +130,7 @@ def add_book(request, pk, book_id, price, period):
     price = Decimal(price)
     if current_user.can_afford(price):
         current_user.balance = Decimal(current_user.balance) - price
-        this_sale = Sale(gained_money=price, transaction_date=datetime.now(), who_bought=current_user)
+        this_sale = Sale(gained_money=price, transaction_date=date.today().month, who_bought=current_user)
         book_to_add.taken_by = current_user
         if period == 'week':
             book_to_add.back_date = date.today() + timedelta(days=7)
