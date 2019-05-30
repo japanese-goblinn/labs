@@ -4,7 +4,7 @@
         {% for book in books %}
         <div class="card shadow border-primary mb-3" style="max-width: 20rem;">
             <div class="card-header">
-                <a class='book-card-title' href="{% url 'book_detail' pk=book.pk %}">{{ book.name }}</a>
+                <a class='book-card-title' href="{% if not user.is_superuser %}{% url 'book_detail' pk=book.pk %} {% else %} {% endif %}">{{ book.name }}</a>
             </div>
             <div class="card-body">
                 <p class="card-title"><strong>Author:</strong> {{ book.author }}</p>
