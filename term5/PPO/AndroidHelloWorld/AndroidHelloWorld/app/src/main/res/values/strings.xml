@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Hello World</string>
+    <string name="deviceID">Device ID: %1$s</string>
+    <string name="appVersion">Version: %1$d</string>
+</resources>
