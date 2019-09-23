@@ -15,6 +15,7 @@ import com.google.android.material.snackbar.Snackbar
 import android.Manifest.permission
 import android.annotation.TargetApi
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.core.content.PermissionChecker
 
 
@@ -34,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         checkPermission()
     }
 
-    @TargetApi(Build.VERSION_CODES.M)
+    @SuppressLint("NewApi")
     override fun onRequestPermissionsResult(requestCode: Int,
                                             permissions: Array<String>, grantResults: IntArray) {
         when (requestCode) {
@@ -78,11 +79,10 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-    @SuppressLint("MissingPermission")
+    @SuppressLint("MissingPermission", "NewApi")
     private fun showDeviceId() {
         val telephonyManager = getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
-        val deviceID = telephonyManager.deviceId
-        deviceIdTextView.text = getString(R.string.deviceId, deviceID)
+        deviceIdTextView.text = getString(R.string.deviceId, telephonyManager.imei)
     }
 
     private fun checkPermission() {
@@ -90,8 +90,8 @@ class MainActivity : AppCompatActivity() {
                 != PackageManager.PERMISSION_GRANTED) {
             showExplanationPopUp()
         } else {
-            Log.d("PERMISSION", "Already granted")
             showDeviceId()
+            Log.d("PERMISSION", "Already granted")
         }
     }
 
