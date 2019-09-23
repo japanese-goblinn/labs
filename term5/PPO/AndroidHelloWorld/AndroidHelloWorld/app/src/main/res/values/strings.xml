@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">Hello World</string>
-    <string name="deviceID">Device ID: %1$s</string>
-    <string name="appVersion">Version: %1$d</string>
+    <string name="deviceId">Device ID: %1$s</string>
+    <string name="deviceIdDefaultText">Device ID: No permission to show this ¯\\_(ツ)_/¯</string>
+    <string name="appVersion">Version: %1$s</string>
+    <string name="permissionAccepted">Yay, here\'s your device ID...</string>
+    <string name="acceptPermission">Some dummy explanation to ask for permission</string>
 </resources>
