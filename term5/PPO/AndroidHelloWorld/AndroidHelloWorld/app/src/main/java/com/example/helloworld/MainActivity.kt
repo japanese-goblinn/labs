@@ -36,11 +36,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     @SuppressLint("NewApi")
-    override fun onRequestPermissionsResult(requestCode: Int,
-                                            permissions: Array<String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
         when (requestCode) {
             RECORD_REQUEST_CODE -> {
-//                Log.d("SSSS", "${PermissionChecker.checkSelfPermission(this, permission.READ_PHONE_STATE)}")
                 if (grantResults.isNotEmpty() && grantResults[0]
                         == PackageManager.PERMISSION_GRANTED) {
                     Toast.makeText(
@@ -52,7 +54,9 @@ class MainActivity : AppCompatActivity() {
                     showDeviceId()
                     Log.d("PERMISSION", "Permission was granted")
                 } else {
-                    showExplanationPopUp()
+                    if (shouldShowRequestPermissionRationale(permission.READ_PHONE_STATE)) {
+                        showExplanationPopUp()
+                    }
                     Log.d("PERMISSION", "Has been denied by user")
                 }
             }
@@ -65,7 +69,7 @@ class MainActivity : AppCompatActivity() {
             getString(R.string.acceptPermission),
             Snackbar.LENGTH_INDEFINITE
         )
-        .setAction("OK, Let's see") {
+        .setAction(getString(R.string.acceptPermissionButtonText)) {
             requestPermission()
         }
         .show()
@@ -88,7 +92,7 @@ class MainActivity : AppCompatActivity() {
     private fun checkPermission() {
         if (ContextCompat.checkSelfPermission(this, permission.READ_PHONE_STATE)
                 != PackageManager.PERMISSION_GRANTED) {
-            showExplanationPopUp()
+            requestPermission()
         } else {
             showDeviceId()
             Log.d("PERMISSION", "Already granted")
