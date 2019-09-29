@@ -14,8 +14,9 @@
         android:gravity="center"
         android:text="@string/deviceIdDefaultText"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/versionTextView"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="@+id/versionTextView"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView

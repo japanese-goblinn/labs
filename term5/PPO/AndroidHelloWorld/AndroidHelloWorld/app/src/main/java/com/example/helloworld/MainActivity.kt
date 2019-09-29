@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
         versionTextView = findViewById(R.id.versionTextView)
         deviceIdTextView = findViewById(R.id.deviceIdTextView)
         versionTextView.text = getString(R.string.appVersion, BuildConfig.VERSION_NAME)
+        Log.d("SSSS", "${BuildConfig.VERSION_CODE}")
         checkPermission()
     }
 

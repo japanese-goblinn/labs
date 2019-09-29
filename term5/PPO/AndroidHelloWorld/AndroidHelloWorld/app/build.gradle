@@ -12,9 +12,9 @@ android {
     signingConfigs {
         release {
             storeFile file('/Users/saisuicied/Downloads/Android/keystore/key')
-            storePassword '10062000sKirill'
+            storePassword 'yourPassword'
             keyAlias = 'key0'
-            keyPassword '10062000sKirill'
+            keyPassword 'yourPassword'
         }
     }
     compileSdkVersion 29
@@ -23,13 +23,13 @@ android {
         applicationId "com.example.helloworld"
         minSdkVersion 19
         targetSdkVersion 23
-        versionCode 1
+        versionCode showCodeVersion()
         versionName showVersion()
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
-            signingConfig signingConfigs.release
+            signingConfig signingConfigs.release //используем штуку для подписи
         }
     }
 }
@@ -46,11 +46,23 @@ dependencies {
     implementation 'com.google.android.material:material:1.0.0'
 }
 
+def showCodeVersion() {
+    def versionNameValues = showVersion().split('\\.')
+    int major = versionNameValues[0] as Integer
+    int minor = versionNameValues[1] as Integer
+    if (versionNameValues.size() == 3) {
+        int patch = versionNameValues[2] as Integer
+        return major * 10000 + minor * 100 + patch
+    } else {
+        return major * 10000 + minor * 100
+    }
+}
+
 def showVersion() {
     def versionNameValues = "git describe --tags".execute().text.split('-')
     if (versionNameValues.size() == 3) {
         return "${versionNameValues[0]}.${versionNameValues[1]}"
     } else {
-        return "${versionNameValues[0].substring(0, versionNameValues[0].length() - 1)}"
+        return versionNameValues[0].trim()
     }
 }
