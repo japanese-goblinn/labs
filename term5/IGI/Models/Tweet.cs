@@ -8,20 +8,18 @@ namespace Twitter.Models
     public class Tweet
     {
         public int Id { get; set; }
+
+        [Required]
         public string Content { get; set; }
+        
+        [DataType(DataType.DateTime)]
         public DateTime Date { get; set; }
 
-        [NotMapped]
-        public User Author { get; set; }
-        
-        [NotMapped]
-        public HashSet<User> Likes { get; set; }
-        
-        [NotMapped]
-        public HashSet<User> Retweets { get; set; }
-        
-        [NotMapped]
-        public HashSet<Tag> Tags { get; set; }
-        
+        [Required]
+        public User User { get; set; }
+
+        //TODO:
+        //Add Methods to get Tags, Likes, Retweets
+
     }
 }

@@ -33,18 +33,10 @@ namespace Twitter
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
             
-            services.AddDbContext<TweetContext>(
-                options => options.UseSqlite(Configuration.GetConnectionString("TweetContext"))
+            services.AddDbContext<TwitterDBContext>(
+                options => options.UseSqlite(Configuration.GetConnectionString("TwitterContext"))
             );
             
-            services.AddDbContext<UserContext>(
-                options => options.UseSqlite(Configuration.GetConnectionString("UserContext"))
-            );
-            
-            services.AddDbContext<ReplyContext>(
-                options => options.UseSqlite(Configuration.GetConnectionString("ReplyContext"))
-            );
-
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 

@@ -18,39 +18,55 @@
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Twitter</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="d-flex flex-column bd-highlight mb-3">
+                <div class="p-2 bd-highlight">
+                     <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Twitter</a>
+                </div>
+                <div class="p-2 bd-highlight">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                </div>
+                <div class="p-2 bd-highlight">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                </div>
+                <div class="p-2 bd-highlight">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="">Messages</a>
+                </div>
+                <div class="p-2 bd-highlight">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="">Profile</a>
+                </div>
+                <button type="button" class="nav-link btn btn-primary mt-2" style="border-radius: 20px">
+                    Tweet
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
+            </div>
+        </div>
+        <div class="col-7" style="border: solid lightgray 1px">
+            <partial name="_CookieConsentPartial"/>
+                <main role="main" class="text-center">
+                    @RenderBody()
+                    </main>
+        </div>
+        <div class="col">
+            <div class="d-flex flex-column bd-highlight">
+                <div class="p-2 bd-highlight active-pink-4">
+                    <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+                    </div>
+                <div>
+                    <div class="p-2 bd-highlight ">
+                        &copy; 2019 - Twitter - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></div>
                 </div>
             </div>
-        </nav>
-    </header>
-    <div class="container">
-        <partial name="_CookieConsentPartial" />
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+         </div>
     </div>
+</div>
+    
+   
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2019 - Twitter - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
+    
 
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>

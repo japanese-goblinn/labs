@@ -11,9 +11,9 @@ namespace Twitter.Controllers
 {
     public class TweetsController : Controller
     {
-        private readonly TweetContext _context;
+        private readonly TwitterDBContext _context;
 
-        public TweetsController(TweetContext context)
+        public TweetsController(TwitterDBContext context)
         {
             _context = context;
         }
@@ -21,7 +21,7 @@ namespace Twitter.Controllers
         // GET: Tweets
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Tweet.ToListAsync());
+            return View(await _context.Tweets.ToListAsync());
         }
 
         // GET: Tweets/Details/5
@@ -32,7 +32,7 @@ namespace Twitter.Controllers
                 return NotFound();
             }
 
-            var tweet = await _context.Tweet
+            var tweet = await _context.Tweets
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (tweet == null)
             {
@@ -45,6 +45,7 @@ namespace Twitter.Controllers
         // GET: Tweets/Create
         public IActionResult Create()
         {
+            
             return View();
         }
 
@@ -72,7 +73,7 @@ namespace Twitter.Controllers
                 return NotFound();
             }
 
-            var tweet = await _context.Tweet.FindAsync(id);
+            var tweet = await _context.Tweets.FindAsync(id);
             if (tweet == null)
             {
                 return NotFound();
@@ -123,7 +124,7 @@ namespace Twitter.Controllers
                 return NotFound();
             }
 
-            var tweet = await _context.Tweet
+            var tweet = await _context.Tweets
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (tweet == null)
             {
@@ -138,15 +139,15 @@ namespace Twitter.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var tweet = await _context.Tweet.FindAsync(id);
-            _context.Tweet.Remove(tweet);
+            var tweet = await _context.Tweets.FindAsync(id);
+            _context.Tweets.Remove(tweet);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool TweetExists(int id)
         {
-            return _context.Tweet.Any(e => e.Id == id);
+            return _context.Tweets.Any(e => e.Id == id);
         }
     }
 }
