@@ -1,6 +1,6 @@
 @model Tweet
 
-<div class="blockquote">
+<div class="">
     <div class="d-flex bd-highlight pl-2">
         <div class="align-items-start bd-highlight" style="font-weight: bold">
             @Model.Author.Name
@@ -13,7 +13,7 @@
             *
         </div>
         <div class="ml-1 align-items-start bd-highlight" style="color: gray">
-            @Model.Date.Hour h
+            @Html.DisplayFor(t => t.Date)
         </div>
     </div>
     <div class="d-flex bd-hightlight text-left mt-2">

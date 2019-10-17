@@ -30,11 +30,13 @@ namespace Twitter.Models
                     var moder = new User
                     {
                         UserName = "moderator",
+                        Name = "CoolHacker",
                         Email = "moderator@twitter.com"
                     };
                     var admin = new User
                     {
                         UserName = "admin",
+                        Name = "PapaLinux",
                         Email = "admin@twitter.com"
                     };
                     var userResult = await context.CreateAsync(user, "Test_1234");

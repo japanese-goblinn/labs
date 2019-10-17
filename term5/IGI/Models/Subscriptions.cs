@@ -7,6 +7,6 @@ namespace Twitter.Models
 
         public User User { get; set; }
 
-        public User SubscribedOnUserId { get; set; }
+        public User SubscribedOnUser { get; set; }
     }
 }

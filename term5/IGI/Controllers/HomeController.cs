@@ -27,6 +27,7 @@ namespace Twitter.Controllers
             {
                 var userTweets = await _context.Tweets
                     .Include(t => t.Author)
+                    .OrderByDescending(t => t.Date)
                     .ToListAsync();
                 return View(userTweets);
             }
