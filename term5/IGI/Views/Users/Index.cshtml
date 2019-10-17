@@ -1,27 +1,27 @@
-﻿@model IEnumerable<User>
-
+@model IEnumerable<User>
 @{
-    ViewData["Title"] = "Users";
+    ViewBag.Title = "Список пользователей";
 }
-
-<div class="text-left mt-3">
-    <h3 class="display-6">@ViewData["Title"]</h3>
-</div>
-<hr/>
-<div>
+ 
+<a asp-action="Create">Добавить пользователя</a>
+ 
+<table class="table">
+    <tr><th>Email</th><th>Год</th><th></th></tr>
     @foreach (var user in Model)
     {
-        <div class="container"> 
-            <tr>
-                <td>
-                   @Html.DisplayFor(users => user.Name)
-                </td>
-                <td>
-                   @Html.DisplayFor(users => user.Username)
-                </td>
-            </tr>
-        </div>
-        
-    }   
-</div>
-
+        <tr>
+            <td>@user.Name</td>
+            <td>@user.UserName</td>
+             <td>@user.Email</td>
+            <td>
+                <form asp-action="Delete" asp-route-id="@user.Id" method="post">
+                    <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-id="@user.Id">Изменить</a>
+                    <a class="btn btn-sm btn-primary" asp-action="ChangePassword" asp-route-id="@user.Id">Сменить пароль</a>
+                    <button type="submit" class="btn btn-sm btn-danger">
+                        Удалить
+                    </button>
+                </form>
+            </td>
+        </tr>
+    }
+</table>

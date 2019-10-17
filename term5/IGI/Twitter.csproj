@@ -22,12 +22,16 @@
       <Compile Remove="Migrations\20190916174740_InitialCreate.Designer.cs" />
     </ItemGroup>
 
-
     <ItemGroup>
-      <Folder Include="Views\Users\" />
+      <None Remove="Twitter.db" />
     </ItemGroup>
 
     <ItemGroup>
-      <None Remove="Twitter.db" />
+      <_ContentIncludedByDefault Remove="Views\Users\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Tweets\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Tweets\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Tweets\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Tweets\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Tweets\Index.cshtml" />
     </ItemGroup>
 </Project>

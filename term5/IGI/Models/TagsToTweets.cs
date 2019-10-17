@@ -5,8 +5,8 @@ namespace Twitter.Models
     {
         public int Id { get; set; }
 
-        public int TagId { get; set; }
+        public Tag Tag { get; set; }
 
-        public int TweetId { get; set; }
+        public Tweet OnTweet { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity.EntityFrameworkCore
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -25,21 +26,41 @@
         <div class="col">
             <div class="d-flex flex-column bd-highlight mb-3">
                 <div class="p-2 bd-highlight">
-                     <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Twitter</a>
+                    <a class="ml-3 navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                        Twitter
+                    </a>
                 </div>
                 <div class="p-2 bd-highlight">
-                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">
+                        Home
+                    </a>
                 </div>
                 <div class="p-2 bd-highlight">
-                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Messages" asp-action="Index">
+                        Messages
+                    </a>
                 </div>
                 <div class="p-2 bd-highlight">
-                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="">Messages</a>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a class="nav-link dropdown-toggle" asp-area="" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            Profile
+                        </a>
+                        <div class="dropdown-menu">
+                            <div class="dropdown-header">
+                                Profile 
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" asp-controller="Profile" asp-action="Index">
+                                @@@User.Identity.Name
+                            </a>
+                            <form class="mt-1 dropdown-item" method="post" asp-controller="Account" asp-action="LogOff">
+                                <input class="form-control btn btn-danger" type="submit" value="Logout"/>
+                            </form>
+                        </div>
+                    }
                 </div>
-                <div class="p-2 bd-highlight">
-                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="">Profile</a>
-                </div>
-                <button type="button" class="nav-link btn btn-primary mt-2" style="border-radius: 20px">
+                <button onclick="location.href='@Url.Action("Tweet", "Home")'" type="button" class="nav-link btn btn-primary mt-2" style="border-radius: 20px">
                     Tweet
                 </button>
             </div>
@@ -63,10 +84,6 @@
          </div>
     </div>
 </div>
-    
-   
-
-    
 
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>

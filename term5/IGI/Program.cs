@@ -20,7 +20,7 @@ namespace Twitter
 
                 try
                 {
-                    var context = services.GetRequiredService<TwitterDBContext>();
+//                    var context = services.GetRequiredService<TwitterDBContext>();
                     SeedData.Initilize(services);
                 }
                 catch (Exception ex)

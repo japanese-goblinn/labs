@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -34,8 +35,12 @@ namespace Twitter
             });
             
             services.AddDbContext<TwitterDBContext>(
-                options => options.UseSqlite(Configuration.GetConnectionString("TwitterContext"))
+                options => options
+                    .UseSqlite(Configuration.GetConnectionString("TwitterContext"))
             );
+
+            services.AddIdentity<User, IdentityRole>()
+                .AddEntityFrameworkStores<TwitterDBContext>();
             
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
@@ -56,6 +61,7 @@ namespace Twitter
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseAuthentication();
             app.UseCookiePolicy();
 
             app.UseMvc(routes =>

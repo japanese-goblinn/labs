@@ -1,12 +1,12 @@
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace Twitter.Models
 {
-    public class User
-    {   
-        public int Id { get; set; }
+    public class User: IdentityUser
+    { 
         public string Name { get; set; }
-        public string Username { get; set; }
         
         public ICollection<Tweet> Tweets { get; set; }
 
@@ -14,7 +14,7 @@ namespace Twitter.Models
 
         public override string ToString()
         {
-            return Username;
+            return UserName;
         }
 
     }
