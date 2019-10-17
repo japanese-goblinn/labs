@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -20,6 +21,22 @@ namespace Twitter.Controllers
             _userManager = userManager;
             _context = context;
         }
+
+        public async Task<List<User>> Followers(User user)
+        {
+            return await _context.Subscriptions
+                .Where(x => x.SubscribedOnUser.Id == user.Id)
+                .Select(u => u.User)
+                .ToListAsync();
+        } 
+        
+        public async Task<List<User>> Following(User user)
+        {
+            return await _context.Subscriptions
+                .Where(x => x.User.Id == user.Id)
+                .Select(u => u.User)
+                .ToListAsync();
+        }
         
         public async Task<IActionResult> Index()
         {
@@ -32,22 +49,14 @@ namespace Twitter.Controllers
                     .Where(t => t.Author.Id == user.Id)
                     .OrderByDescending(t => t.Date)
                     .ToListAsync();
-                var amoutOfFollowers = await _context.Subscriptions
-                    .Select(u => u)
-                    .Where(x => x.SubscribedOnUser.Id == user.Id)
-                    .Select(u => u.User)
-                    .ToListAsync();
-                var amoutOfFollowing = await _context.Subscriptions
-                    .Select(u => u)
-                    .Where(x => x.User.Id == user.Id)
-                    .Select(u => u.User)
-                    .ToListAsync();
+                var followers = await Followers(user);
+                var following = await Following(user);
                 var viewModel = new ProfileViewModel
                 {
                     User = user,
                     UserTweets = userTweets,
-                    AmountOfFollowers = amoutOfFollowers.Count,
-                    AmountOfFollowing = amoutOfFollowing.Count
+                    AmountOfFollowers = followers.Count,
+                    AmountOfFollowing = following.Count
                 };
                 return View(viewModel);
             }

@@ -1,18 +1,10 @@
 @model IEnumerable<Message>
 
 @{
-    Layout = null;
+    ViewData["Title"] = "Messages";
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <title>title</title>
-</head>
-<body>
-<div>
-      
+<div class="text-left mt-3">
+    <h3 class="display-6">@ViewData["Title"]</h3>
 </div>
-</body>
-</html>
+<hr/>

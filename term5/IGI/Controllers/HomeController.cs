@@ -25,11 +25,21 @@ namespace Twitter.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                var userTweets = await _context.Tweets
-                    .Include(t => t.Author)
+                var currentUser = await _userManager
+                    .FindByNameAsync(User.Identity.Name);
+                var myTweets = _context.Tweets
+                    .Where(t => t.Author.Id == currentUser.Id)
+                    .Include(t => t.Author);
+                var feed = _context.Subscriptions
+                    .Where(x => x.User.Id == currentUser.Id)
+                    .Select(u => u.SubscribedOnUser)
+                    .SelectMany(t => t.Tweets)
+                    .Include(t => t.Author);
+                var feedConcat = await feed
+                    .Concat(myTweets)
                     .OrderByDescending(t => t.Date)
                     .ToListAsync();
-                return View(userTweets);
+                return View(feedConcat);
             }
             else
             {
