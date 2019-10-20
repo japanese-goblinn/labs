@@ -74,7 +74,6 @@
 /Users/saisuicied/Downloads/Twitter/obj/Debug/netcoreapp2.2/Razor/Views/Roles/Create.cshtml.g.cs
 /Users/saisuicied/Downloads/Twitter/obj/Debug/netcoreapp2.2/Razor/Views/Roles/Edit.cshtml.g.cs
 /Users/saisuicied/Downloads/Twitter/obj/Debug/netcoreapp2.2/Razor/Views/Roles/Index.cshtml.g.cs
-/Users/saisuicied/Downloads/Twitter/obj/Debug/netcoreapp2.2/Razor/Views/Roles/UserList.cshtml.g.cs
 /Users/saisuicied/Downloads/Twitter/obj/Debug/netcoreapp2.2/Razor/Views/Messages/Index.cshtml.g.cs
 /Users/saisuicied/Downloads/Twitter/obj/Debug/netcoreapp2.2/Razor/Views/Shared/Tweet.cshtml.g.cs
 /Users/saisuicied/Downloads/Twitter/obj/Debug/netcoreapp2.2/Razor/Views/Tweets/Index.cshtml.g.cs

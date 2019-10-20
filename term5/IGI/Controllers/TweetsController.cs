@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Twitter.Models;
+using Twitter.ViewModels;
 
 namespace Twitter.Controllers
 {
@@ -30,17 +31,21 @@ namespace Twitter.Controllers
             {
                 return NotFound();
             }
-            return View(tweet);
+            return View(new TweetViewModel
+            {
+                Id = tweet.Id,
+                Content = tweet.Content
+            });
         }
         
         [HttpPost]
-        public async Task<IActionResult> Edit(Tweet model)
+        public async Task<IActionResult> Edit(TweetViewModel model)
         {
             var tweet = await _context.Tweets
                     .Where(t => t.Id == model.Id)
                     .Include(t => t.Author)
                     .FirstAsync();
-            if (tweet != null)
+            if (tweet != null && model.Content != null)
             {
                 tweet.Content = model.Content;
                 _context.Tweets.Update(tweet);
@@ -49,7 +54,7 @@ namespace Twitter.Controllers
             }
             return View(model);
         }
-        
+            
         public async Task<IActionResult> Delete(int id)
         {
             var tweet = await _context.Tweets

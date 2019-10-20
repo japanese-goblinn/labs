@@ -60,9 +60,7 @@ namespace Twitter.Controllers
             }
             return RedirectToAction("Index");
         }
- 
-        public IActionResult UserList() => View(_userManager.Users.ToList());
- 
+        
         public async Task<IActionResult> Edit(string userId)
         {
             User user = await _userManager.FindByIdAsync(userId);
@@ -97,7 +95,7 @@ namespace Twitter.Controllers
                 await _userManager.AddToRolesAsync(user, addedRoles);
                 await _userManager.RemoveFromRolesAsync(user, removedRoles);
                 await _signInManager.RefreshSignInAsync(currentUser);
-                return RedirectToAction("UserList");
+                return RedirectToAction("Index", "Users");
             }
             return NotFound();
         }

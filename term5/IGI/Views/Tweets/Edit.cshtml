@@ -1,14 +1,13 @@
-@model Tweet
+@model Twitter.ViewModels.TweetViewModel
 
 @{
-    ViewBag.Title = "Delete tweet";
     Layout = "_Layout";
 }
 
 <form asp-action="Edit" asp-controller="Tweets">
     <div asp-validation-summary="All" class="text-danger"></div>
     <div class="form-group">
-        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="Id"/>
     </div>
     <div class="form-group">
         <label asp-for="Content" class="control-label">Content</label>

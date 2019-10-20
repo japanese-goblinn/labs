@@ -36,6 +36,9 @@
                         <a class="text-info text-center mt-2" asp-action="ChangePassword" asp-route-id="@user.Id">
                             Change password
                         </a>
+                        <a class="text-secondary text-center mt-2" asp-controller="Roles" asp-action="Edit" asp-route-userid="@user.Id">
+                            Access rights
+                        </a>
                         <a class="text-danger text-center mt-2" asp-action="Delete" asp-route-id="@user.Id">
                             Delete
                         </a>
