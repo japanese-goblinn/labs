@@ -1,3 +1,5 @@
+using System;
+
 namespace Twitter.Models
 {
     public class Message
@@ -9,5 +11,7 @@ namespace Twitter.Models
         public User SendedTo { get; set; }
         
         public User SendedBy { get; set; }
+        
+        public DateTime DateTime { get; set; }
     }
 } 
