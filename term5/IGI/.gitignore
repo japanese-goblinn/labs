@@ -2,3 +2,4 @@
 Migrations/
 Tweet.db
 .DS_Store
+*.db
