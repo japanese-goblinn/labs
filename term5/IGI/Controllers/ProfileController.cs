@@ -34,31 +34,29 @@ namespace Twitter.Controllers
         {
             return await _context.Subscriptions
                 .Where(x => x.User.Id == user.Id)
-                .Select(u => u.User)
+                .Select(u => u.SubscribedOnUser)
                 .ToListAsync();
         }
         
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string userName)
         {
             var user = await _userManager
-                .FindByNameAsync(User.Identity.Name);
+                .FindByNameAsync(userName);
             if (user != null)
             {
                 var userTweets = await _context.Tweets
-                    .Select(t => t)
                     .Where(t => t.Author.Id == user.Id)
                     .OrderByDescending(t => t.Date)
                     .ToListAsync();
                 var followers = await Followers(user);
                 var following = await Following(user);
-                var viewModel = new ProfileViewModel
+                return View(new ProfileViewModel
                 {
                     User = user,
                     UserTweets = userTweets,
-                    AmountOfFollowers = followers.Count,
-                    AmountOfFollowing = following.Count
-                };
-                return View(viewModel);
+                    Followers = followers,
+                    Following = following
+                });
             }
             else
             {

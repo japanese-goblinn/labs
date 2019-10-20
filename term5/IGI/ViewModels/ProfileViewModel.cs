@@ -10,8 +10,8 @@ namespace Twitter.ViewModels
         
         public ICollection<Tweet> UserTweets { get; set; }
 
-        public int AmountOfFollowing { get; set; }
+        public List<User> Following { get; set; }
         
-        public int AmountOfFollowers { get; set; }
+        public List<User> Followers { get; set; }
     }
 }

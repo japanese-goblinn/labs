@@ -1,4 +1,4 @@
-@model Twitter.ViewModels.MessagesViewModel
+@model IEnumerable<User>
 
 @{
     ViewData["Title"] = "Messages";
@@ -8,7 +8,12 @@
     <h3 class="display-6">@ViewData["Title"]</h3>
 </div>
 <hr/>
-@foreach (var user in @Model.ChatsWith)
-{
-    <a>@user.UserName</a>
-}
+<div style="overflow-y: scroll; height: 720px;">
+   @foreach (var chat in Model)
+   {
+       <div class="ml-2 text-left">
+           <a asp-action="ChatMessages" asp-route-id="@chat.Id">Chat with @@@chat.UserName</a> 
+       </div>
+       <hr/>
+   } 
+</div>

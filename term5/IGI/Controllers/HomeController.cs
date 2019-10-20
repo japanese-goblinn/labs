@@ -47,16 +47,18 @@ namespace Twitter.Controllers
             }
         }
 
-        public async Task<IActionResult> Tweet()
+        public async Task<IActionResult> Tweet(string content)
         {
-            var newTweet = new Tweet
+            if (content != null)
             {
-                Content = "New tweet!",
-                Author = await _userManager.FindByNameAsync(User.Identity.Name),
-                Date = DateTime.Now
-            };
-            await _context.Tweets.AddAsync(newTweet);
-            await _context.SaveChangesAsync();
+                await _context.Tweets.AddAsync(new Tweet
+                {
+                    Content = content,
+                    Author = await _userManager.FindByNameAsync(User.Identity.Name),
+                    Date = DateTime.Now
+                });
+                await _context.SaveChangesAsync();
+            }
             return RedirectToAction("Index");
         }
         

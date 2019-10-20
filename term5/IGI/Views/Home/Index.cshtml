@@ -8,9 +8,10 @@
     <h3 class="display-6">@ViewData["Title"]</h3>
 </div>
 <hr/>
-
-@foreach (var tweet in Model)
-{
-    await Html.RenderPartialAsync("Tweet", tweet);
-    <hr/>
-}
+<div style="overflow-y: scroll; height: 720px;">
+    @foreach (var tweet in Model)
+    {
+        await Html.RenderPartialAsync("Tweet", tweet);
+        <hr/>
+    }
+</div>

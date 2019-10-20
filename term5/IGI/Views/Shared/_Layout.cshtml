@@ -18,7 +18,7 @@
     </environment>
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
-<body>
+<body style="margin-bottom: 0px; overflow: hidden">
 
 
 <div class="container">
@@ -51,7 +51,8 @@
                                 @@@User.Identity.Name 
                             </div>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" asp-controller="Profile" asp-action="Index">
+                            <a class="dropdown-item" asp-controller="Profile" asp-action="Index"
+                               asp-route-userName="@User.Identity.Name">
                                 My Profile
                             </a>
                             @if (this.User.IsInRole("admin"))
@@ -78,13 +79,36 @@
                         </div>
                     }
                 </div>
-                <button onclick="location.href='@Url.Action("Tweet", "Home")'" type="button" class="nav-link btn btn-primary mt-2" style="border-radius: 20px">
+                <button data-toggle="modal" data-target="#modal" type="button" class="nav-link btn btn-primary mt-2" style="border-radius: 20px">
                     Tweet
                 </button>
+                <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">New tweet</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                      <div class="modal-body">
+                          <form id="tweet-form" method="post" asp-controller="Home" asp-action="Tweet" class="form-group">
+                              <input name="content" class="form-control" placeholder="What's happening?..."/>
+                              <div class="text-right">
+                                  <button onclick="document.getElementById('tweet-form').submit();" type="submit"
+                                          class="mt-4 btn btn-primary">
+                                      Tweet it!
+                                  </button>
+                              </div>
+                          </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
             </div>
         </div>
         
-        <div class="col-7" style="border: solid lightgray 1px">
+        <div class="col-7" style="border: solid lightgray 1px;">
             <partial name="_CookieConsentPartial"/>
                 <main role="main" class="text-center">
                     @RenderBody()
