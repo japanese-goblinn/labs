@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Twitter.Models;
 using Twitter.ViewModels;
 
@@ -12,12 +13,18 @@ namespace Twitter.Controllers
     [Authorize(Roles = "admin")]
     public class RolesController: Controller
     {
-        RoleManager<IdentityRole> _roleManager;
-        UserManager<User> _userManager;
-        public RolesController(RoleManager<IdentityRole> roleManager, UserManager<User> userManager)
+        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly UserManager<User> _userManager;
+        private readonly SignInManager<User> _signInManager;
+        private readonly TwitterDBContext _context;
+        
+        public RolesController(RoleManager<IdentityRole> roleManager,
+            UserManager<User> userManager, SignInManager<User> signInManager, TwitterDBContext context)
         {
             _roleManager = roleManager;
             _userManager = userManager;
+            _signInManager = signInManager;
+            _context = context;
         }
         public IActionResult Index() => View(_roleManager.Roles.ToList());
  
@@ -58,11 +65,9 @@ namespace Twitter.Controllers
  
         public async Task<IActionResult> Edit(string userId)
         {
-            // получаем пользователя
             User user = await _userManager.FindByIdAsync(userId);
             if(user!=null)
             {
-                // получем список ролей пользователя
                 var userRoles = await _userManager.GetRolesAsync(user);
                 var allRoles = _roleManager.Roles.ToList();
                 ChangeRoleViewModel model = new ChangeRoleViewModel
@@ -77,29 +82,23 @@ namespace Twitter.Controllers
  
             return NotFound();
         }
+        
         [HttpPost]
         public async Task<IActionResult> Edit(string userId, List<string> roles)
         {
-            // получаем пользователя
-            User user = await _userManager.FindByIdAsync(userId);
-            if(user!=null)
+            var currentUser = await _userManager.FindByNameAsync(User.Identity.Name);
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user != null)
             {
-                // получем список ролей пользователя
                 var userRoles = await _userManager.GetRolesAsync(user);
-                // получаем все роли
                 var allRoles = _roleManager.Roles.ToList();
-                // получаем список ролей, которые были добавлены
                 var addedRoles = roles.Except(userRoles);
-                // получаем роли, которые были удалены
                 var removedRoles = userRoles.Except(roles);
- 
                 await _userManager.AddToRolesAsync(user, addedRoles);
- 
                 await _userManager.RemoveFromRolesAsync(user, removedRoles);
- 
+                await _signInManager.RefreshSignInAsync(currentUser);
                 return RedirectToAction("UserList");
             }
- 
             return NotFound();
         }
     }

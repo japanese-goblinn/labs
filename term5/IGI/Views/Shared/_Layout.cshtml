@@ -48,14 +48,32 @@
                         </a>
                         <div class="dropdown-menu">
                             <div class="dropdown-header">
-                                Profile 
+                                @@@User.Identity.Name 
                             </div>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" asp-controller="Profile" asp-action="Index">
-                                @@@User.Identity.Name
+                                My Profile
                             </a>
-                            <form class="mt-1 dropdown-item" method="post" asp-controller="Account" asp-action="LogOff">
-                                <input class="form-control btn btn-danger" type="submit" value="Logout"/>
+                            @if (this.User.IsInRole("admin"))
+                            {
+                                <a class="dropdown-item" asp-controller="Users" asp-action="Index">
+                                    Manage users
+                                </a>
+                                <a class="dropdown-item" asp-controller="Roles" asp-action="Index">
+                                    Manage roles
+                                </a>
+                            }
+                            @if (this.User.IsInRole("moderator"))
+                            {
+                                <a class="dropdown-item" asp-controller="Tweets" asp-action="Index">
+                                    Manage tweets
+                                </a>
+                            } 
+                            <form id="logout_form" class="mt-1 dropdown-item form-group" method="post" asp-controller="Account" asp-action="LogOff">
+                                <input class="form-control btn btn-danger" type="hidden" value="Logout"/>
+                                <a class="text-danger" onclick="document.getElementById('logout_form').submit();">
+                                    Logout
+                                </a>
                             </form>
                         </div>
                     }
@@ -65,6 +83,7 @@
                 </button>
             </div>
         </div>
+        
         <div class="col-7" style="border: solid lightgray 1px">
             <partial name="_CookieConsentPartial"/>
                 <main role="main" class="text-center">

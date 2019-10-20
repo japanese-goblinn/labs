@@ -12,4 +12,5 @@
 @foreach (var tweet in Model)
 {
     await Html.RenderPartialAsync("Tweet", tweet);
+    <hr/>
 }

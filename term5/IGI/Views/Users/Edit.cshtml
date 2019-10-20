@@ -1,21 +1,29 @@
 @model Twitter.ViewModels.EditUserViewModel
 @{
-    ViewBag.Title = "Редактирование пользователя";
+    ViewData["Title"] = "User edit";
 }
+<div class="text-left mt-3">
+    <h3 class="display-6">@ViewData["Title"]</h3>
+</div>
+<hr/>
 <form asp-action="Edit" asp-controller="Users">
     <div asp-validation-summary="All" class="text-danger"></div>
     <div class="form-group">
         <input type="hidden" asp-for="Id" />
+    </div>
+    <div asp-validation-for="Name" class="form-group">
+        <label asp-for="Name" class="control-label">Name</label>
+        <input type="text" asp-for="Name" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="UserName" class="control-label">Username</label>
+        <input type="text" asp-for="UserName" class="form-control" />
     </div>
     <div class="form-group">
         <label asp-for="Email" class="control-label">Email</label>
         <input type="text" asp-for="Email" class="form-control" />
     </div>
     <div class="form-group">
-        <label asp-for="UserName" class="control-label">Username</label>
-        <input type="number" asp-for="UserName" class="form-control" />
-    </div>
-    <div class="form-group">
-        <input type="submit" value="Сохранить" class="btn btn-default" />
+        <input type="submit" value="Save" class="btn mt-1 btn-primary" />
     </div>
 </form>
