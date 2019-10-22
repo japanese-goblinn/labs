@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Twitter.Models
 {
@@ -12,6 +13,8 @@ namespace Twitter.Models
         
         public User SendedBy { get; set; }
         
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy, H:mm}", ApplyFormatInEditMode = true)]
         public DateTime DateTime { get; set; }
     }
 } 

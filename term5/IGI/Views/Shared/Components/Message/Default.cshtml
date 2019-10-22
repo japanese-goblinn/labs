@@ -1,0 +1,30 @@
+@model Message
+
+<div class="ml-2 text-left">
+    @if (Model.SendedBy.UserName == User.Identity.Name)
+    {
+        <div class="d-flex">
+            <div style="font-weight: bold">
+                Me
+            </div>
+            <div class="ml-1 text-muted">
+                * @Html.DisplayFor(_ => Model.DateTime)
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="d-flex">
+            <div style="font-weight: bold">
+                @Model.SendedBy.Name
+            </div>
+            <div class="ml-1 text-muted">
+                * @Html.DisplayFor(_ => Model.DateTime)
+            </div>
+        </div>
+    }
+    <div class="mt-1">
+        @Model.Text
+    </div>
+</div>
+<hr/>

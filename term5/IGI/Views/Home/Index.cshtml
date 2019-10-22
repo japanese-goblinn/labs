@@ -11,7 +11,7 @@
 <div style="overflow-y: scroll; height: 720px;">
     @foreach (var tweet in Model)
     {
-        await Html.RenderPartialAsync("Tweet", tweet);
+        @await Component.InvokeAsync("Tweet", new { id = tweet.Id })
         <hr/>
     }
 </div>

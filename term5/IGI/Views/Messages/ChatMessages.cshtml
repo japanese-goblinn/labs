@@ -20,34 +20,7 @@
 <div style="overflow-y: scroll; height: 610px;" id="scrollview">
     @foreach (var message in Model.Messages)
     {
-        <div class="ml-2 text-left">
-            @if (message.SendedBy.UserName == User.Identity.Name)
-            {
-                <div class="d-flex">
-                    <div style="font-weight: bold">
-                        Me
-                    </div>
-                    <div class="ml-1 text-muted">
-                        * @message.DateTime
-                    </div>
-                </div>
-            }
-            else
-            {
-                <div class="d-flex">
-                    <div style="font-weight: bold">
-                        @message.SendedBy.Name
-                    </div>
-                    <div class="ml-1 text-muted">
-                        * @message.DateTime
-                    </div>
-                </div>
-            }
-            <div class="mt-1">
-                @message.Text
-            </div>
-        </div>
-        <hr/>
+        @await Component.InvokeAsync("Message", new { id = message.Id })
     }  
 </div>
 <hr/>

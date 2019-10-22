@@ -31,7 +31,7 @@ namespace Twitter.Controllers
             {
                 return NotFound();
             }
-            return View(new TweetViewModel
+            return View(new EditTweetViewModel
             {
                 Id = tweet.Id,
                 Content = tweet.Content
@@ -39,7 +39,7 @@ namespace Twitter.Controllers
         }
         
         [HttpPost]
-        public async Task<IActionResult> Edit(TweetViewModel model)
+        public async Task<IActionResult> Edit(EditTweetViewModel model)
         {
             var tweet = await _context.Tweets
                     .Where(t => t.Id == model.Id)

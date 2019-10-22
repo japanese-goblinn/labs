@@ -34,7 +34,7 @@ namespace Twitter.Controllers
                 {
                     Email = model.Email,
                     Name = model.Name,
-                    UserName = model.Email
+                    UserName = model.UserName
                 };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
@@ -96,11 +96,10 @@ namespace Twitter.Controllers
             return View(model);
         }
         
-//        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Delete(string id)
         {
             var user = await _userManager.FindByIdAsync(id);
-            if (user != null)
+            if (user != null && user.UserName != User.Identity.Name)
             {
                 var result = await _userManager.DeleteAsync(user);
                 if (!result.Succeeded)

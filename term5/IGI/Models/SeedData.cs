@@ -16,11 +16,10 @@ namespace Twitter.Models
                 {
                     using (var roleContext = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>())
                     {
-                       await roleContext.CreateAsync(new IdentityRole("admin"));
-                       await roleContext.CreateAsync(new IdentityRole("user"));
-                       await roleContext.CreateAsync(new IdentityRole("moderator"));
+                        await roleContext.CreateAsync(new IdentityRole("admin"));
+                        await roleContext.CreateAsync(new IdentityRole("user"));
+                        await roleContext.CreateAsync(new IdentityRole("moderator"));
                     }
-                    
                     var user = new User
                     {
                         UserName = "japanese_goblin",
@@ -49,34 +48,7 @@ namespace Twitter.Models
                         await context.AddToRoleAsync(admin, "admin");
                     }
                 }
-                
             }
-            using (var context = new TwitterDBContext(serviceProvider
-                    .GetRequiredService<DbContextOptions<TwitterDBContext>>()))
-            {
-                if (!context.Tweets.Any())
-                {
-                    var tag = new Tag
-                    {
-                        Text = "Hot"
-                    };
-                    var tweet = new Tweet
-                    {
-                        Content = "Welcome to Twitter",
-                        Date = DateTime.Now,
-                        Author = context.Users.First(),
-                    };
-                    context.Tweets.AddRange(tweet);
-                    context.Tags.Add(tag);
-                    context.TagsToTweets.Add(new TagsToTweets
-                    {
-                        Tag = tag,
-                        OnTweet = tweet
-                    });
-                    context.SaveChanges();
-                }
-            }
-            
         }
     }
 }

@@ -47,6 +47,84 @@ namespace Twitter.Controllers
             }
         }
 
+        public async Task<IActionResult> Retweet(int id)
+        {
+            var tweet = await _context.Tweets
+                .FindAsync(id);
+            var user = await _userManager
+                .FindByNameAsync(User.Identity.Name);
+            if (tweet != null && user != null)
+            {
+                await _context.Retweets.AddAsync(new Retweets
+                {
+                    Tweet = tweet,
+                    RetweetedBy = user
+                });
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index", "Home");
+            }
+
+            return NotFound();
+        }
+
+        public async Task<IActionResult> Like(int id)
+        {
+            var tweet = await _context.Tweets
+                .FindAsync(id);
+            var user = await _userManager
+                .FindByNameAsync(User.Identity.Name);
+            if (tweet != null && user != null)
+            {
+                await _context.Likes.AddAsync(new Likes
+                {
+                    WhoLiked = user,
+                    LikedTweet = tweet
+                });
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index", "Home");
+            }
+
+            return NotFound();
+        }
+        
+        public async Task<IActionResult> DeleteRetweet(int id)
+        {
+            var tweet = await _context.Tweets
+                .FindAsync(id);
+            var user = await _userManager
+                .FindByNameAsync(User.Identity.Name);
+            if (tweet != null && user != null)
+            {
+                var retweet = _context.Retweets
+                    .First(r =>
+                        r.Tweet.Id == tweet.Id && r.RetweetedBy.Id == user.Id);
+                _context.Retweets.Remove(retweet);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index", "Home");
+            }
+
+            return NotFound();
+        }
+        
+        public async Task<IActionResult> DeleteLike(int id)
+        {
+            var tweet = await _context.Tweets
+                .FindAsync(id);
+            var user = await _userManager
+                .FindByNameAsync(User.Identity.Name);
+            if (tweet != null && user != null)
+            {
+                var like = _context.Likes
+                    .First(l => 
+                        l.LikedTweet.Id == tweet.Id && l.WhoLiked.Id == user.Id);
+                _context.Likes.Remove(like);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index", "Home");
+            }
+
+            return NotFound();
+        }
+
         public async Task<IActionResult> Tweet(string content)
         {
             if (content != null)
