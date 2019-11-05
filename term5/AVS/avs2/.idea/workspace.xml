@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+    <generated>
+      <config projectName="avs2" targetName="dynamic_mutex_queue" />
+      <config projectName="avs2" targetName="mutex_counter" />
+      <config projectName="avs2" targetName="fixed_size_atomic_queue" />
+      <config projectName="avs2" targetName="atomic_counter" />
+      <config projectName="avs2" targetName="fixed_size_mutex_queue" />
+    </generated>
+  </component>
+  <component name="CMakeSettings" AUTO_RELOAD="true">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" TOOLCHAIN_NAME="Default" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="71332bec-3089-4068-a7f4-74bb60efe2e0" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="ProjectId" id="1Rsr5NSfj8FqL83M7UQcjnujg50" />
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="CMakeSettings" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/task2" />
+      <recent name="$PROJECT_DIR$/task1" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="CMake Application.fixed_size_atomic_queue">
+    <configuration name="atomic_counter" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="avs2" TARGET_NAME="atomic_counter" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="avs2" RUN_TARGET_NAME="atomic_counter">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="dynamic_mutex_queue" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="avs2" TARGET_NAME="dynamic_mutex_queue" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="avs2" RUN_TARGET_NAME="dynamic_mutex_queue">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="fixed_size_atomic_queue" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="avs2" TARGET_NAME="fixed_size_atomic_queue" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="avs2" RUN_TARGET_NAME="fixed_size_atomic_queue">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="fixed_size_mutex_queue" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="avs2" TARGET_NAME="fixed_size_mutex_queue" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="avs2" RUN_TARGET_NAME="fixed_size_mutex_queue">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="mutex_counter" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="avs2" TARGET_NAME="mutex_counter" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="avs2" RUN_TARGET_NAME="mutex_counter">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="CMake Application.atomic_counter" />
+      <item itemvalue="CMake Application.dynamic_mutex_queue" />
+      <item itemvalue="CMake Application.fixed_size_atomic_queue" />
+      <item itemvalue="CMake Application.fixed_size_mutex_queue" />
+      <item itemvalue="CMake Application.mutex_counter" />
+    </list>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="71332bec-3089-4068-a7f4-74bb60efe2e0" name="Default Changelist" comment="" />
+      <created>1570466460948</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1570466460948</updated>
+      <workItem from="1570466462979" duration="18503000" />
+      <workItem from="1570524328737" duration="35000" />
+      <workItem from="1570526054355" duration="609000" />
+      <workItem from="1570530367778" duration="9084000" />
+      <workItem from="1570574468273" duration="5755000" />
+      <workItem from="1572462489133" duration="646000" />
+      <workItem from="1572463586760" duration="6124000" />
+      <workItem from="1572794830254" duration="187000" />
+      <workItem from="1572795190018" duration="411000" />
+      <workItem from="1572802532335" duration="1444000" />
+      <workItem from="1572805310991" duration="5138000" />
+      <workItem from="1572860384840" duration="32540000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+</project>
