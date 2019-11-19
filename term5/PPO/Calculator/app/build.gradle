@@ -21,6 +21,22 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    flavorDimensions "version"
+    productFlavors {
+        demo {
+            dimension "version"
+            applicationIdSuffix ".demo"
+            versionNameSuffix "-demo"
+        }
+        full {
+            dimension "version"
+        }
+    }
+    sourceSets {
+        demo {
+            res.srcDirs = ['src/demo/res/']
+        }
+    }
 }
 
 dependencies {
@@ -33,4 +49,5 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
     implementation files('libs/jdk.1.8/MathParser.org-mXparser-v.4.2.0-jdk.1.8.jar')
+    implementation 'androidx.fragment:fragment-ktx:1.1.0'
 }
