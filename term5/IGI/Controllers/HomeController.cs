@@ -93,17 +93,16 @@ namespace Twitter.Controllers
                 .FindAsync(id);
             var user = await _userManager
                 .FindByNameAsync(User.Identity.Name);
-            if (tweet != null && user != null)
+            if (tweet is null || user is null)
             {
-                var retweet = _context.Retweets
-                    .First(r =>
-                        r.Tweet.Id == tweet.Id && r.RetweetedBy.Id == user.Id);
-                _context.Retweets.Remove(retweet);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Index", "Home");
+                return NotFound();
             }
-
-            return NotFound();
+            var retweet = _context.Retweets
+                .First(r =>
+                    r.Tweet.Id == tweet.Id && r.RetweetedBy.Id == user.Id);
+            _context.Retweets.Remove(retweet);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index", "Home");
         }
         
         public async Task<IActionResult> DeleteLike(int id)

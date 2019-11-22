@@ -17,7 +17,7 @@
           "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "/Users/saisuicied/.nuget/NuGet/NuGet.Config"
+          "/Users/saisuicied/.config/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp2.2"
@@ -50,6 +50,10 @@
               "target": "Package",
               "version": "[2.2.0, )"
             },
+            "Microsoft.AspNetCore.SignalR": {
+              "target": "Package",
+              "version": "[1.1.0, )"
+            },
             "Microsoft.EntityFrameworkCore.SQLite": {
               "target": "Package",
               "version": "[2.2.6, )"
@@ -74,8 +78,7 @@
             "net48"
           ],
           "assetTargetFallback": true,
-          "warn": true,
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.0.100/RuntimeIdentifierGraph.json"
+          "warn": true
         }
       }
     }

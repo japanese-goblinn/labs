@@ -41,6 +41,8 @@ namespace Twitter
 
             services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<TwitterDBContext>();
+
+            services.AddSignalR();
             
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
@@ -63,6 +65,11 @@ namespace Twitter
             app.UseStaticFiles();
             app.UseAuthentication();
             app.UseCookiePolicy();
+
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<ChatHub>("/chat");
+            });
 
             app.UseMvc(routes =>
             {

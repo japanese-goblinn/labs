@@ -28,23 +28,30 @@ namespace Twitter.Controllers
         {
             var sendByUser = await _userManager.FindByNameAsync(sendByUsername);
             var sendToUser = await _userManager.FindByNameAsync(sendToUsername);
-            if (sendByUser != null && sendToUser != null && message != null)
+            if (sendByUser is null || sendToUser is null || message is null)
             {
-                var messageObj = new Message()
+                if (message is null && sendToUser != null)
                 {
-                    SendedBy = sendByUser,
-                    SendedTo = sendToUser,
-                    DateTime = DateTime.Now,
-                    Text = message
-                };
-                await _context.Messages.AddAsync(messageObj);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("ChatMessages", "Messages", new
-                {
-                    id = sendToUser.Id
-                });
+                    return RedirectToAction("ChatMessages", "Messages", new
+                    {
+                        id = sendToUser.Id
+                    });
+                }
+                return NotFound();
             }
-            return NotFound();
+            var messageObj = new Message()
+            {
+                SendedBy = sendByUser,
+                SendedTo = sendToUser,
+                DateTime = DateTime.Now,
+                Text = message
+            };
+            await _context.Messages.AddAsync(messageObj);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("ChatMessages", "Messages", new
+            {
+                id = sendToUser.Id
+            });
         }
 
         public async Task<IActionResult> ChatMessages(string id)
