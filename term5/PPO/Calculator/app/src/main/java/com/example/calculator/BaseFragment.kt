@@ -34,7 +34,7 @@ class BaseFragment: Fragment() {
     private lateinit var buttonDiv: Button
     private lateinit var changeModeButton: Button
 
-    var delegate: Calculatable? = null
+    private var delegate: Calculatable? = null
 
     private var isScientificMode = false
 
@@ -176,7 +176,7 @@ class BaseFragment: Fragment() {
             isScientificMode = false
             changeModeButton.setOnClickListener {
                 Toast.makeText(
-                    activity, "Nope, buy full version", Toast.LENGTH_LONG
+                    activity, "Kek, buy full version", Toast.LENGTH_LONG
                 )
                 .show()
             }

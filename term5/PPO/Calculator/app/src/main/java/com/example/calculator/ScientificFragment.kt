@@ -27,7 +27,7 @@ class ScientificFragment: Fragment() {
     private lateinit var buttonAbs: Button
     private lateinit var buttonSqrt: Button
 
-    var delegate: Calculatable? = null
+    private var delegate: Calculatable? = null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

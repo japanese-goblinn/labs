@@ -76,14 +76,18 @@ class MainActivity : AppCompatActivity(), Calculatable {
         expressions.clear()
         expressionTextView.text = ""
         resultTextView.text = ""
+        lastResult = ""
     }
 
     private fun implicitMultiplication(element: String) {
         val matchString = "1234567890pie)"
-        val compareString = "pie(sin(cos(tg(ctg(ln(log(log2(log10(abs(sqrt("
+        val compare = listOf(
+            "pi", "e", "sin(", "cos(", "tg(", "ctg(", "ln(",
+            "log(", "log2(", "log10(", "abs(", "sqrt(", "("
+        )
         val yetAnotherCompare = "pie"
         val yetYetAnotherCompare = "12345678pie"
-        if (expressions.last() in matchString && element in compareString ||
+        if (expressions.last() in matchString && element in compare ||
                 expressions.last() in yetAnotherCompare && element in yetYetAnotherCompare) {
             expressions.add("*")
             expressionTextView.append("*")
@@ -94,6 +98,11 @@ class MainActivity : AppCompatActivity(), Calculatable {
         when (val calculation = Calculator.calculate(expressionTextView.text.toString())) {
             "NaN" -> {
                 if (expressionTextView.text.toString() == "") {
+                    resultTextView.text = ""
+                    return
+                }
+                if (expressions.count() == 1) {
+                    lastResult = ""
                     resultTextView.text = ""
                     return
                 }
