@@ -43,10 +43,10 @@
     hubConnection.on("Send", function (userFromName, userFromUsername, userToUsername, message) {
         var sendText = '<div class="ml-2 text-left">';
         console.log(userFromName, userFromUsername, userToUsername);
-        if (userFromUsername == '@User.Identity.Name') {
+        if (userFromUsername === '@User.Identity.Name') {
             sendText += '<div class="d-flex"> <div style="font-weight: bold">Me</div> <div class="ml-1 text-muted">' +
              '* @String.Format("{0:dd.MM.yyyy, H:mm}", DateTime.Now)</div> </div>';
-        } else if ('@Model.ChatWith.UserName' == userFromUsername || '@User.Identity.Name' == userFromUsername) {
+        } else if ('@Model.ChatWith.UserName' === userFromUsername || '@User.Identity.Name' === userFromUsername) {
             sendText += '<div class="d-flex"> <div style="font-weight: bold">' + userFromName + 
             '</div> <div class="ml-1 text-muted">' + 
             '* @String.Format("{0:dd.MM.yyyy, H:mm}", DateTime.Now)</div> </div>';
@@ -72,6 +72,13 @@
 </script>
 
 <script>
+    document.getElementById("message").addEventListener("keyup", function(event) {
+      if (event.keyCode === 13) {
+        event.preventDefault();
+        document.getElementById("sendButton").click();
+      }
+    }); 
+
     $(document).ready(function() {
         $('#scrollView').animate({
             scrollTop: $('#scrollView').get(0).scrollHeight
