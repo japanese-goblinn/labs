@@ -40,15 +40,18 @@
                 .configureLogging(signalR.LogLevel.Information)
                 .build();
      
-    hubConnection.on("Send", function (userFromName, userFromUsername, message) {
+    hubConnection.on("Send", function (userFromName, userFromUsername, userToUsername, message) {
         var sendText = '<div class="ml-2 text-left">';
+        console.log(userFromName, userFromUsername, userToUsername);
         if (userFromUsername == '@User.Identity.Name') {
             sendText += '<div class="d-flex"> <div style="font-weight: bold">Me</div> <div class="ml-1 text-muted">' +
              '* @String.Format("{0:dd.MM.yyyy, H:mm}", DateTime.Now)</div> </div>';
-        } else {
+        } else if ('@Model.ChatWith.UserName' == userFromUsername || '@User.Identity.Name' == userFromUsername) {
             sendText += '<div class="d-flex"> <div style="font-weight: bold">' + userFromName + 
             '</div> <div class="ml-1 text-muted">' + 
             '* @String.Format("{0:dd.MM.yyyy, H:mm}", DateTime.Now)</div> </div>';
+        } else {
+            return
         }
         sendText += '<div class="mt-1">' + message +'</div>' + '</div>' + '<hr/>';
         $('#scrollView').append(sendText);

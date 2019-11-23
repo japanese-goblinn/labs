@@ -31,8 +31,10 @@ namespace Twitter
             };
             await _context.Messages.AddAsync(messageObj);
             await _context.SaveChangesAsync();
-            await Clients.Users(sendByUser.Id, sendToUser.Id)
-                .SendAsync("Send", sendByUser.Name, sendByUser.UserName, message);
+            await Clients
+                .Users(sendByUser.Id, sendToUser.Id)
+                .SendAsync("Send", sendByUser.Name, sendByUser.UserName,
+                    sendToUser.UserName, message);
         }
     }
 }
