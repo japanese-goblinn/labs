@@ -80,5 +80,4 @@
 /Users/saisuicied/Downloads/Twitter/obj/Debug/netcoreapp2.2/Razor/Views/Messages/ChatMessages.cshtml.g.cs
 /Users/saisuicied/Downloads/Twitter/obj/Debug/netcoreapp2.2/Razor/Views/Shared/Components/Tweet/Default.cshtml.g.cs
 /Users/saisuicied/Downloads/Twitter/obj/Debug/netcoreapp2.2/Razor/Views/Shared/Components/Message/Default.cshtml.g.cs
-/Users/saisuicied/Downloads/Twitter/bin/Debug/netcoreapp2.2/package-lock.json
-/Users/saisuicied/Downloads/Twitter/bin/Debug/netcoreapp2.2/package.json
+/Users/saisuicied/Downloads/Twitter/bin/Debug/netcoreapp2.2/libman.json

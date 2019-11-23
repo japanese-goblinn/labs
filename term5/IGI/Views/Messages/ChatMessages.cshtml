@@ -5,7 +5,6 @@
 }
 
 
-
 <div class="text-left ml-2 mt-3">
     <div class="d-flex justify-content-start" style="font-weight: bold; font-size: x-large">
         <a class="text-dark" asp-controller="Profile" asp-action="Index" asp-route-userName="@Model.ChatWith.UserName">
@@ -17,35 +16,62 @@
     </div>
 </div>
 <hr/>
-<div style="overflow-y: scroll; height: 610px;" id="scrollview">
+<div id="scrollView" style="overflow-y: scroll; height: 610px;">
     @foreach (var message in Model.Messages)
     {
         @await Component.InvokeAsync("Message", new { id = message.Id })
     }  
 </div>
 <hr/>
-<form method="post" asp-action="SendMessage" asp-route-sendToUsername="@Model.ChatWith"
-      asp-route-sendByUsername="@User.Identity.Name" class="mt-3 mb-4 form-group">
-    <div class="d-flex mt-1 ml-2 mr-2">
-        <div class="mr-2 flex-fill">
-            <input name="message" class="form-control" placeholder="New message..."/>
-        </div>
-        <div>
-            <input type="submit" value="Send" class="btn btn-primary"/>
-        </div>
+<div class="d-flex mt-3 mb-4 ml-2 mr-2">
+    <div class="mr-2 flex-fill">
+        <input id="message" name="message" class="form-control" placeholder="New message..."/>
     </div>
-</form>
-
+    <div>
+        <input id="sendButton" type="button" value="Send" class="btn btn-primary"/>
+    </div>
+</div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="~/js/signalr/dist/browser/signalr.js"></script>
+<script>
+    const hubConnection = new signalR.HubConnectionBuilder()
+                .withUrl("https://localhost:5001/chat")
+                .configureLogging(signalR.LogLevel.Information)
+                .build();
+     
+    hubConnection.on("Send", function (userFromName, userFromUsername, message) {
+        var sendText = '<div class="ml-2 text-left">';
+        if (userFromUsername == '@User.Identity.Name') {
+            sendText += '<div class="d-flex"> <div style="font-weight: bold">Me</div> <div class="ml-1 text-muted">' +
+             '* @String.Format("{0:dd.MM.yyyy, H:mm}", DateTime.Now)</div> </div>';
+        } else {
+            sendText += '<div class="d-flex"> <div style="font-weight: bold">' + userFromName + 
+            '</div> <div class="ml-1 text-muted">' + 
+            '* @String.Format("{0:dd.MM.yyyy, H:mm}", DateTime.Now)</div> </div>';
+        }
+        sendText += '<div class="mt-1">' + message +'</div>' + '</div>' + '<hr/>';
+        $('#scrollView').append(sendText);
+        $('#scrollView').animate({
+            scrollTop: $('#scrollView').get(0).scrollHeight
+        }, 10);
+    });
+    
+    document.getElementById("sendButton").addEventListener("click", function (e) {
+        let message = document.getElementById("message").value;
+        if (!message) { return }
+        let userFromId = '@User.Identity.Name';
+        let userToId = '@Model.ChatWith';
+        hubConnection.invoke("Send", userFromId, userToId, message);
+    });
+    
+    hubConnection.start();
+</script>
 
 <script>
-    
-    
-
     $(document).ready(function() {
-        $('#scrollview').animate({
-            scrollTop: $('#scrollview').get(0).scrollHeight
+        $('#scrollView').animate({
+            scrollTop: $('#scrollView').get(0).scrollHeight
         }, 500);
     });
 </script>

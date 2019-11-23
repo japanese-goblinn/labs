@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Remotion.Linq.Parsing.ExpressionVisitors.Transformation.PredefinedTransformations;
 using Twitter.Models;
 
 namespace Twitter.Components
@@ -15,9 +16,9 @@ namespace Twitter.Components
         
         public async Task<IViewComponentResult> InvokeAsync(int id)
         {
-            var tweet = await _context.Messages
+            var message = await _context.Messages
                 .FindAsync(id);
-            return View(tweet);
+            return View(message);
         }
     }
 }

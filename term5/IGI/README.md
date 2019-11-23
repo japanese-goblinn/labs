@@ -4,8 +4,6 @@
 
 * Microsoft.AspNetCore.SignalR
 
-* npm install @aspnet/signalr
-
 ## Краткое описание 
 
 Приложение аналог Twitter'a.
