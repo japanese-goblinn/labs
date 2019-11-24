@@ -7,7 +7,7 @@
 
 <div class="text-left ml-2 mt-3">
     <div class="d-flex justify-content-start" style="font-weight: bold; font-size: x-large">
-        <a class="text-dark" asp-controller="Profile" asp-action="Index" asp-route-userName="@Model.ChatWith.UserName">
+        <a id="header" class="text-dark" asp-controller="Profile" asp-action="Index" asp-route-userName="@Model.ChatWith.UserName">
             @Model.ChatWith.Name
         </a>
     </div>
@@ -35,7 +35,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="~/js/signalr/dist/browser/signalr.js"></script>
 <script>
-    const hubConnection = new signalR.HubConnectionBuilder()
+    let hubConnection = new signalR.HubConnectionBuilder()
                 .withUrl("https://localhost:5001/chat")
                 .configureLogging(signalR.LogLevel.Information)
                 .build();
@@ -60,29 +60,41 @@
         }, 10);
     });
     
+    hubConnection.on("IsOnline", function(userName, isUserOnline) {
+        console.log(userName, isUserOnline);
+        if (userName === '@Model.ChatWith.UserName' && isUserOnline) {
+            document.getElementById("header").innerText += " (online)";
+        } 
+        if (userName === '@Model.ChatWith.UserName' && !isUserOnline) {
+            document.getElementById("header").innerText = '@Model.ChatWith.Name';
+        }
+    });
+   
     document.getElementById("sendButton").addEventListener("click", function (e) {
-        let message = document.getElementById("message").value;
-        if (!message) { return }
-        let userFromId = '@User.Identity.Name';
-        let userToId = '@Model.ChatWith';
-        hubConnection.invoke("Send", userFromId, userToId, message);
+            let message = document.getElementById("message").value;
+            if (!message) { return }
+            let userFromId = '@User.Identity.Name';
+            let userToId = '@Model.ChatWith';
+            hubConnection.invoke("Send", userFromId, userToId, message);
     });
     
-    hubConnection.start();
+    hubConnection.start().then(() => {
+        hubConnection.invoke("IsOnline", '@Model.ChatWith.UserName');
+    });
 </script>
 
 <script>
-    document.getElementById("message").addEventListener("keyup", function(event) {
-      if (event.keyCode === 13) {
-        event.preventDefault();
-        document.getElementById("sendButton").click();
-      }
-    }); 
-
     $(document).ready(function() {
-        $('#scrollView').animate({
-            scrollTop: $('#scrollView').get(0).scrollHeight
-        }, 500);
-    });
+         $('#scrollView').animate({
+             scrollTop: $('#scrollView').get(0).scrollHeight
+         }, 500);
+     });
+    
+    document.getElementById("message").addEventListener("keyup", function(event) {
+         if (event.keyCode === 13) {
+            event.preventDefault();
+            document.getElementById("sendButton").click();
+         }
+    }); 
 </script>
 

@@ -19,8 +19,6 @@
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body style="margin-bottom: 0px; overflow: hidden">
-
-
 <div class="container">
     <div class="row">
         <div class="col">
@@ -72,7 +70,7 @@
                             } 
                             <form id="logout_form" class="mt-1 dropdown-item form-group" method="post" asp-controller="Account" asp-action="LogOff">
                                 <input class="form-control btn btn-danger" type="hidden" value="Logout"/>
-                                <a class="text-danger" onclick="document.getElementById('logout_form').submit();">
+                                <a id="logout_button" class="text-danger">
                                     Logout
                                 </a>
                             </form>
@@ -83,52 +81,51 @@
                     Tweet
                 </button>
                 <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">New tweet</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">New tweet</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="tweet-form" method="post" asp-controller="Home" asp-action="Tweet" class="form-group">
+                                    <input name="content" class="form-control" placeholder="What's happening?..."/>
+                                    <div class="text-right">
+                                        <button onclick="document.getElementById('tweet-form').submit();" type="submit"
+                                                class="mt-4 btn btn-primary">
+                                            Tweet it!
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
-                      <div class="modal-body">
-                          <form id="tweet-form" method="post" asp-controller="Home" asp-action="Tweet" class="form-group">
-                              <input name="content" class="form-control" placeholder="What's happening?..."/>
-                              <div class="text-right">
-                                  <button onclick="document.getElementById('tweet-form').submit();" type="submit"
-                                          class="mt-4 btn btn-primary">
-                                      Tweet it!
-                                  </button>
-                              </div>
-                          </form>
-                      </div>
                     </div>
-                  </div>
                 </div>
             </div>
         </div>
         
         <div class="col-7" style="border: solid lightgray 1px;">
             <partial name="_CookieConsentPartial"/>
-                <main role="main" class="text-center">
-                    @RenderBody()
-                    </main>
+            <main role="main" class="text-center">
+                @RenderBody()
+            </main>
         </div>
         <div class="col">
             <div class="d-flex flex-column bd-highlight">
                 <div class="p-2 bd-highlight active-pink-4">
                     <input class="form-control" type="text" placeholder="Search" aria-label="Search">
-                    </div>
+                </div>
                 <div>
                     <div class="p-2 bd-highlight ">
                         &copy; 2019 - Twitter - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></div>
                 </div>
             </div>
-         </div>
+        </div>
     </div>
 </div>
-
-    <environment include="Development">
+<environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
     </environment>
@@ -149,5 +146,26 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
 
     @RenderSection("Scripts", required: false)
+
+<script src="~/js/signalr/dist/browser/signalr.js"></script>
+<script>
+    let hubConnection = new signalR.HubConnectionBuilder()
+                                     .withUrl("https://localhost:5001/chat")
+                                     .configureLogging(signalR.LogLevel.Information)
+                                     .build(); 
+    hubConnection.start().then(() => {
+            hubConnection.invoke("MarkOnline", '@User.Identity.Name'); 
+    });  
+</script>
+
+<script>
+    document.getElementById("logout_button").addEventListener("click", function (e) {
+       console.log("BOOO");
+       hubConnection.invoke("MarkOffline", '@User.Identity.Name'); 
+       hubConnection.stop().then(() => {
+            document.getElementById('logout_form').submit();
+       });
+     });
+</script>
 </body>
 </html>
