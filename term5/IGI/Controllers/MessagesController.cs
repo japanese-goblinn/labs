@@ -25,8 +25,10 @@ namespace Twitter.Controllers
         
         public async Task<IActionResult> ChatMessages(string id)
         {
-            var user = await _userManager.FindByNameAsync(User.Identity.Name);
-            var userChattingWith = await _userManager.FindByIdAsync(id);
+            var user = await _userManager
+                .FindByNameAsync(User.Identity.Name);
+            var userChattingWith = await _userManager
+                .FindByIdAsync(id);
             if (user is null)
             {
                 return NotFound();
@@ -36,7 +38,7 @@ namespace Twitter.Controllers
                     m.SendedTo.Id == userChattingWith.Id && m.SendedBy.Id == user.Id ||
                     m.SendedTo.Id == user.Id && m.SendedBy.Id == userChattingWith.Id)
                 .OrderBy(m => m.DateTime)
-                .ToListAsync();
+                .ToListAsync() ?? new List<Message>();
             return View(new MessagesViewModel
             {
                 Messages = messages,

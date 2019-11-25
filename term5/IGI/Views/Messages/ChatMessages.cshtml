@@ -40,7 +40,7 @@
                 .configureLogging(signalR.LogLevel.Information)
                 .build();
      
-    hubConnection.on("Send", function (userFromName, userFromUsername, userToUsername, message) {
+    hubConnection.on("Send", (userFromName, userFromUsername, userToUsername, message) => {
         var sendText = '<div class="ml-2 text-left">';
         console.log(userFromName, userFromUsername, userToUsername);
         if (userFromUsername === '@User.Identity.Name') {
@@ -60,7 +60,7 @@
         }, 10);
     });
     
-    hubConnection.on("IsOnline", function(userName, isUserOnline) {
+    hubConnection.on("IsOnline", (userName, isUserOnline) => {
         console.log(userName, isUserOnline);
         if (userName === '@Model.ChatWith.UserName' && isUserOnline) {
             document.getElementById("header").innerText += " (online)";
@@ -70,12 +70,12 @@
         }
     });
    
-    document.getElementById("sendButton").addEventListener("click", function (e) {
-            let message = document.getElementById("message").value;
-            if (!message) { return }
-            let userFromId = '@User.Identity.Name';
-            let userToId = '@Model.ChatWith';
-            hubConnection.invoke("Send", userFromId, userToId, message);
+    document.getElementById("sendButton").addEventListener("click", (e) => {
+        let message = document.getElementById("message").value;
+        if (!message) { return }
+        let userFromId = '@User.Identity.Name';
+        let userToId = '@Model.ChatWith';
+        hubConnection.invoke("Send", userFromId, userToId, message);
     });
     
     hubConnection.start().then(() => {
@@ -90,7 +90,7 @@
          }, 500);
      });
     
-    document.getElementById("message").addEventListener("keyup", function(event) {
+    document.getElementById("message").addEventListener("keyup", (event) => {
          if (event.keyCode === 13) {
             event.preventDefault();
             document.getElementById("sendButton").click();

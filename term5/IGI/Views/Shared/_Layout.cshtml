@@ -105,7 +105,6 @@
                 </div>
             </div>
         </div>
-        
         <div class="col-7" style="border: solid lightgray 1px;">
             <partial name="_CookieConsentPartial"/>
             <main role="main" class="text-center">
@@ -125,6 +124,7 @@
         </div>
     </div>
 </div>
+
 <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
@@ -153,14 +153,14 @@
                                      .withUrl("https://localhost:5001/chat")
                                      .configureLogging(signalR.LogLevel.Information)
                                      .build(); 
+    
     hubConnection.start().then(() => {
-            hubConnection.invoke("MarkOnline", '@User.Identity.Name'); 
+       hubConnection.invoke("MarkOnline", '@User.Identity.Name'); 
     });  
 </script>
 
 <script>
-    document.getElementById("logout_button").addEventListener("click", function (e) {
-       console.log("BOOO");
+    document.getElementById("logout_button").addEventListener("click", (e) => {
        hubConnection.invoke("MarkOffline", '@User.Identity.Name'); 
        hubConnection.stop().then(() => {
             document.getElementById('logout_form').submit();

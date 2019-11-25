@@ -53,18 +53,17 @@ namespace Twitter.Controllers
                 .FindAsync(id);
             var user = await _userManager
                 .FindByNameAsync(User.Identity.Name);
-            if (tweet != null && user != null)
+            if (tweet is null || user is null)
             {
-                await _context.Retweets.AddAsync(new Retweets
-                {
-                    Tweet = tweet,
-                    RetweetedBy = user
-                });
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Index", "Home");
+                return NotFound();
             }
-
-            return NotFound();
+            await _context.Retweets.AddAsync(new Retweets
+            {
+                Tweet = tweet,
+                RetweetedBy = user
+            });
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index", "Home");
         }
 
         public async Task<IActionResult> Like(int id)
@@ -73,18 +72,18 @@ namespace Twitter.Controllers
                 .FindAsync(id);
             var user = await _userManager
                 .FindByNameAsync(User.Identity.Name);
-            if (tweet != null && user != null)
+            if (tweet is null || user is null)
             {
-                await _context.Likes.AddAsync(new Likes
-                {
-                    WhoLiked = user,
-                    LikedTweet = tweet
-                });
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Index", "Home");
+                return NotFound();
+                
             }
-
-            return NotFound();
+            await _context.Likes.AddAsync(new Likes
+            {
+                WhoLiked = user,
+                LikedTweet = tweet
+            });
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index", "Home");
         }
         
         public async Task<IActionResult> DeleteRetweet(int id)
@@ -111,17 +110,16 @@ namespace Twitter.Controllers
                 .FindAsync(id);
             var user = await _userManager
                 .FindByNameAsync(User.Identity.Name);
-            if (tweet != null && user != null)
+            if (tweet is null || user is null)
             {
-                var like = _context.Likes
-                    .First(l => 
-                        l.LikedTweet.Id == tweet.Id && l.WhoLiked.Id == user.Id);
-                _context.Likes.Remove(like);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Index", "Home");
+                return NotFound(); 
             }
-
-            return NotFound();
+            var like = _context.Likes
+                .First(l => 
+                    l.LikedTweet.Id == tweet.Id && l.WhoLiked.Id == user.Id);
+            _context.Likes.Remove(like);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index", "Home");
         }
 
         public async Task<IActionResult> Tweet(string content)

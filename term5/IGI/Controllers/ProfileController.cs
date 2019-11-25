@@ -22,6 +22,67 @@ namespace Twitter.Controllers
             _context = context;
         }
 
+        public async Task<IActionResult> Follow(string userName)
+        {
+            var currentUser = await _userManager
+                .FindByNameAsync(User.Identity.Name);
+            var user = await _userManager
+                .FindByNameAsync(userName);
+            if (currentUser is null || user is null)
+            {
+                return NotFound(); 
+            }
+            await _context.Subscriptions.AddAsync(new Subscriptions
+            {
+                User = currentUser,
+                SubscribedOnUser = user
+            });
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index", "Profile", new
+            {
+                userName = user.UserName
+            });
+        }
+
+        public async Task<IActionResult> Unfollow(string userName)
+        {
+            var currentUser = await _userManager
+                .FindByNameAsync(User.Identity.Name);
+            var user = await _userManager
+                .FindByNameAsync(userName);
+            if (currentUser is null || user is null)
+            {
+               return NotFound(); 
+            }
+            var subscription = await _context.Subscriptions
+                .FirstAsync(s => s.User == currentUser && s.SubscribedOnUser == user);
+            if (subscription is null)
+            {
+                return NotFound();
+            }
+            _context.Subscriptions.Remove(subscription);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index", "Profile", new
+            {
+                userName = user.UserName
+            });
+        }
+
+        public async Task<IActionResult> WriteMessage(string userName)
+        {
+            var user = await _userManager
+                .FindByNameAsync(userName);
+            if (user is null)
+            {
+                return NotFound();
+            }
+
+            return RedirectToAction("ChatMessages", "Messages", new
+            {
+                id = user.Id
+            });
+        }
+        
         public async Task<List<User>> Followers(User user)
         {
             return await _context.Subscriptions
@@ -40,28 +101,31 @@ namespace Twitter.Controllers
         
         public async Task<IActionResult> Index(string userName)
         {
+            var currentUser = await _userManager
+                .FindByNameAsync(User.Identity.Name);
             var user = await _userManager
                 .FindByNameAsync(userName);
-            if (user != null)
-            {
-                var userTweets = await _context.Tweets
-                    .Where(t => t.Author.Id == user.Id)
-                    .OrderByDescending(t => t.Date)
-                    .ToListAsync();
-                var followers = await Followers(user);
-                var following = await Following(user);
-                return View(new ProfileViewModel
-                {
-                    User = user,
-                    UserTweets = userTweets,
-                    Followers = followers,
-                    Following = following
-                });
-            }
-            else
+            if (user is null || currentUser is null)
             {
                 return NotFound();
             }
+            var isFollowing = await _context.Subscriptions
+                .Where(s => s.User == currentUser)
+                .AnyAsync(s => s.SubscribedOnUser == user);
+            var userTweets = await _context.Tweets
+                .Where(t => t.Author.Id == user.Id)
+                .OrderByDescending(t => t.Date)
+                .ToListAsync();
+            var followers = await Followers(user);
+            var following = await Following(user);
+            return View(new ProfileViewModel
+            {
+                User = user,
+                UserTweets = userTweets,
+                IsCurrentUserFollowing = isFollowing,
+                Followers = followers,
+                Following = following
+            });
         }
     }
 }

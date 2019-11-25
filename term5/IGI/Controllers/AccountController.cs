@@ -53,7 +53,6 @@ namespace Twitter.Controllers
                     }
                 }
             }
-
             return View(model);
         }
 
@@ -96,9 +95,9 @@ namespace Twitter.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> LogOff()
-        {
+        { 
             await _signInManager.SignOutAsync();
-           return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Home");
         }
     }
 }
