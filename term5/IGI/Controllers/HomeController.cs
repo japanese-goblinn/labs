@@ -57,7 +57,7 @@ namespace Twitter.Controllers
             {
                 return NotFound();
             }
-            await _context.Retweets.AddAsync(new Retweets
+            await _context.Retweets.AddAsync(new Retweet
             {
                 Tweet = tweet,
                 RetweetedBy = user
@@ -77,7 +77,7 @@ namespace Twitter.Controllers
                 return NotFound();
                 
             }
-            await _context.Likes.AddAsync(new Likes
+            await _context.Likes.AddAsync(new Like
             {
                 WhoLiked = user,
                 LikedTweet = tweet

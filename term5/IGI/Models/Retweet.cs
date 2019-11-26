@@ -1,7 +1,7 @@
 ﻿using System;
 namespace Twitter.Models
 {
-    public class Retweets
+    public class Retweet
     {
         public int Id { get; set; }
 

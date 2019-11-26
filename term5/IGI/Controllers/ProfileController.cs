@@ -98,6 +98,30 @@ namespace Twitter.Controllers
                 .Select(u => u.SubscribedOnUser)
                 .ToListAsync();
         }
+
+        public async Task<List<Retweet>> Retweets(User user)
+        {
+            return await _context.Retweets
+                .Where(r => r.RetweetedBy == user)
+                .Include(r => r.Tweet)
+                .ToListAsync();
+        }
+
+        public async Task<List<Like>> Likes(User user)
+        {
+            return await _context.Likes
+                .Where(l => l.WhoLiked == user)
+                .Include(l => l.LikedTweet)
+                .ToListAsync();
+        }
+
+        public async Task<List<Reply>> Replies(User user)
+        {
+            return await _context.Replies
+                .Where(r => r.User == user)
+                .Include(r => r.OnTweet)
+                .ToListAsync();
+        }
         
         public async Task<IActionResult> Index(string userName)
         {
@@ -118,13 +142,19 @@ namespace Twitter.Controllers
                 .ToListAsync();
             var followers = await Followers(user);
             var following = await Following(user);
+            var likes = await Likes(user);
+            var retweets = await Retweets(user);
+            var replies = await Replies(user);
             return View(new ProfileViewModel
             {
                 User = user,
                 UserTweets = userTweets,
                 IsCurrentUserFollowing = isFollowing,
                 Followers = followers,
-                Following = following
+                Following = following,
+                Likes = likes,
+                Retweets = retweets,
+                Replies = replies
             });
         }
     }

@@ -16,6 +16,6 @@ namespace Twitter.Models
 
         public Tweet OnTweet { get; set; }
 
-        //TODO: Add Methods to get Tags, Likes, Retweets
+        //TODO: Add Methods to get Tags, Like, Retweet
     }
 }
