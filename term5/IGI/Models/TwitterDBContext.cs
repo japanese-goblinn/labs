@@ -11,7 +11,7 @@ namespace Twitter.Models
 
         public DbSet<Retweet> Retweets { get; set; }
 
-        public DbSet<Subscriptions> Subscriptions { get; set; }
+        public DbSet<Subscription> Subscriptions { get; set; }
         
         public DbSet<Tag> Tags { get; set; }
 

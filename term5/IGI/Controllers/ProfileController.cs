@@ -32,7 +32,7 @@ namespace Twitter.Controllers
             {
                 return NotFound(); 
             }
-            await _context.Subscriptions.AddAsync(new Subscriptions
+            await _context.Subscriptions.AddAsync(new Subscription
             {
                 User = currentUser,
                 SubscribedOnUser = user
@@ -103,7 +103,7 @@ namespace Twitter.Controllers
         {
             return await _context.Retweets
                 .Where(r => r.RetweetedBy == user)
-                .Include(r => r.Tweet)
+                .Include(r => r.Tweet.Author)
                 .ToListAsync();
         }
 
@@ -111,7 +111,7 @@ namespace Twitter.Controllers
         {
             return await _context.Likes
                 .Where(l => l.WhoLiked == user)
-                .Include(l => l.LikedTweet)
+                .Include(l => l.LikedTweet.Author)
                 .ToListAsync();
         }
 
@@ -119,7 +119,7 @@ namespace Twitter.Controllers
         {
             return await _context.Replies
                 .Where(r => r.User == user)
-                .Include(r => r.OnTweet)
+                .Include(r => r.OnTweet.Author)
                 .ToListAsync();
         }
         

@@ -1,7 +1,7 @@
 ﻿using System;
 namespace Twitter.Models
 {
-    public class Subscriptions
+    public class Subscription
     {
         public int Id { get; set; }
 
