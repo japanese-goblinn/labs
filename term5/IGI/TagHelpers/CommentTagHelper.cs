@@ -37,9 +37,9 @@ namespace Twitter.TagHelpers
             }
             else
             {
-                output.Attributes.SetAttribute("style", "color: gray;");
+                output.Attributes.SetAttribute("style", "color: rgb(101, 119, 134)");
             }
-            output.Attributes.SetAttribute("href", $"Home/Comments/{TweetId}");
+            output.Attributes.SetAttribute("href", $"/Home/Comments/{TweetId}");
             output.Content.SetContent($"💬 {replies.Count}");
         }
     }

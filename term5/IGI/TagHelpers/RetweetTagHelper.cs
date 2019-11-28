@@ -43,7 +43,7 @@ namespace Twitter.TagHelpers
             }
             else
             {
-                output.Attributes.SetAttribute("style", "color: gray;");
+                output.Attributes.SetAttribute("style", "color: rgb(101, 119, 134);");
                 output.Attributes.SetAttribute("href", $"/Home/Retweet/{TweetId}");
             }
             output.Content.SetContent($"🔃 {retweets.Count}");

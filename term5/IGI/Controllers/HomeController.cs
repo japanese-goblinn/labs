@@ -47,6 +47,15 @@ namespace Twitter.Controllers
             }
         }
 
+        public async Task<IActionResult> Comments(int id)
+        {
+            var tweet = await _context.Tweets
+                .Where(t => t.Id == id)
+                .Include(t => t.Author)
+                .FirstAsync();
+            return View(tweet);
+        }
+
         public async Task<IActionResult> Retweet(int id)
         {
             var tweet = await _context.Tweets
@@ -75,7 +84,6 @@ namespace Twitter.Controllers
             if (tweet is null || user is null)
             {
                 return NotFound();
-                
             }
             await _context.Likes.AddAsync(new Like
             {

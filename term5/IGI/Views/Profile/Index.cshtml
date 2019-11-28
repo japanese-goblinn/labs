@@ -20,7 +20,7 @@
             @Model.User.Name
         </div>
         
-        <div class="d-flex justify-content-start bd-highlight" style="color: gray">
+        <div class="d-flex justify-content-start bd-highlight" style="color: rgb(101, 119, 134)">
             @@@Model.User.UserName
         </div>
         
@@ -30,7 +30,7 @@
                     @Model.Following.Count
                 </div>
                 <div class="ml-1">
-                    <a style="color: black" class="link" data-toggle="modal" data-target="#followingModal">
+                    <a data-toggle="modal" data-target="#followingModal">
                         Following
                     </a>
                     <div class="modal fade" id="followingModal" tabindex="-1" role="dialog" 
@@ -47,7 +47,7 @@
                                     {
                                         <div class="d-flex flex-column justify-content-center">
                                             <p>You aren’t following anyone yet :c</p>
-                                            <p style="color: darkgray">
+                                            <p style="color: rgb(101, 119, 134)">
                                                 When you do, they’ll be listed here and you’ll see their Tweets in your timeline.
                                             </p>
                                         </div>
@@ -56,7 +56,7 @@
                                     {
                                         <div class="d-flex flex-column justify-content-center">
                                             <p>This user isn’t following anyone yet</p>
-                                            <p style="color: darkgray">
+                                            <p style="color: rgb(101, 119, 134)">
                                                 When user do, they’ll be listed here.
                                             </p>
                                         </div>
@@ -72,7 +72,7 @@
                                                 </a>
                                             </div>
                                             <div>
-                                                <a class="ml-1 text-muted">
+                                                <a class="ml-1" style="color: rgb(101, 119, 134);">
                                                     @@@user.UserName
                                                 </a>
                                             </div>
@@ -90,7 +90,7 @@
                     @Model.Followers.Count
                 </div>
                 <div class="ml-1">
-                    <a data-toggle="modal" data-target="#followersModal" style="color: black">
+                    <a data-toggle="modal" data-target="#followersModal">
                         Followers
                     </a>
                     <div class="modal fade" id="followersModal" tabindex="-1" role="dialog" 
@@ -107,7 +107,7 @@
                                         {
                                             <div class="d-flex flex-column justify-content-center">
                                                 <p>You don’t have any followers yet :c</p>
-                                                <p style="color: darkgray">
+                                                <p style="color: rgb(101, 119, 134)">
                                                     When someone follows you, you’ll see them here
                                                 </p>
                                             </div>
@@ -116,7 +116,7 @@
                                         {
                                             <div class="d-flex flex-column justify-content-center">
                                                 <p>User don’t have any followers yet</p>
-                                                <p style="color: darkgray">
+                                                <p style="color: rgb(101, 119, 134)">
                                                     When someone follows this user, you’ll see them here
                                                 </p>
                                             </div>
@@ -132,7 +132,7 @@
                                                 </a>
                                             </div>
                                             <div>
-                                                <a class="ml-1 text-muted">
+                                                <a class="ml-1" style="color: rgb(101, 119, 134)">
                                                     @@@user.UserName
                                                 </a>
                                             </div>
