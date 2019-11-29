@@ -30,7 +30,7 @@
                     @Model.Following.Count
                 </div>
                 <div class="ml-1">
-                    <a data-toggle="modal" data-target="#followingModal">
+                    <a style="color: rgb(31, 31, 31);" href="" data-toggle="modal" data-target="#followingModal">
                         Following
                     </a>
                     <div class="modal fade" id="followingModal" tabindex="-1" role="dialog" 
@@ -68,7 +68,14 @@
                                             <div>
                                                 <a asp-controller="Profile" asp-action="Index" 
                                                    asp-route-userName="@user.UserName" class="text-dark">
-                                                    @user.Name
+                                                    @if (user.UserName == User.Identity.Name)
+                                                    {
+                                                        <text>Me</text>
+                                                    }
+                                                    else
+                                                    {
+                                                        @user.Name 
+                                                    }
                                                 </a>
                                             </div>
                                             <div>
@@ -90,7 +97,7 @@
                     @Model.Followers.Count
                 </div>
                 <div class="ml-1">
-                    <a data-toggle="modal" data-target="#followersModal">
+                    <a style="color: rgb(31, 31, 31);" href="" data-toggle="modal" data-target="#followersModal">
                         Followers
                     </a>
                     <div class="modal fade" id="followersModal" tabindex="-1" role="dialog" 
@@ -128,7 +135,14 @@
                                             <div>
                                                 <a asp-controller="Profile" asp-action="Index"
                                                    asp-route-userName="@user.UserName" class="text-dark">
-                                                    @user.Name
+                                                    @if (user.UserName == User.Identity.Name)
+                                                    {
+                                                        <text>Me</text>
+                                                    }
+                                                    else
+                                                    {
+                                                        @user.Name 
+                                                    }
                                                 </a>
                                             </div>
                                             <div>
@@ -151,20 +165,20 @@
     {
         <div>
             <a asp-action="WriteMessage" asp-route-userName="@Model.User.UserName"
-                    type="button" class="btn btn-outline-primary mt-1" style="border-radius: 20px">
+                    class="btn btn-outline-primary mt-1" style="border-radius: 20px">
                 Write message
             </a>
             @if (Model.IsCurrentUserFollowing)
             {
                 <a asp-action="Unfollow" asp-route-userName="@Model.User.UserName" 
-                   type="button" class="btn btn-danger mt-1" style="border-radius: 20px">
+                    class="btn btn-danger mt-1" style="border-radius: 20px">
                     Unfollow
                 </a>
             }
             else
             {
                 <a asp-action="Follow" asp-route-userName="@Model.User.UserName" 
-                   type="button" class="btn btn-outline-primary mt-1" style="border-radius: 20px">
+                   class="btn btn-outline-primary mt-1" style="border-radius: 20px">
                     Follow
                 </a>
             }
@@ -204,7 +218,7 @@
                 @if (Model.UserTweets.Count == 0)
                 {
                     <div class="d-flex flex-column justify-content-center">
-                        <p>No tweets yet :c</p>
+                        <p style="color: rgb(101, 119, 134)">No tweets yet :c</p>
                     </div>
                 }
                 else
@@ -223,7 +237,7 @@
                 @if (Model.Retweets.Count == 0)
                 {
                     <div class="d-flex flex-column justify-content-center">
-                        <p>No retweets yet :c</p>
+                        <p style="color: rgb(101, 119, 134)">No retweets yet :c</p>
                     </div>
                 }
                 else
@@ -242,14 +256,21 @@
                 @if (Model.Replies.Count == 0)
                 {
                     <div class="d-flex flex-column justify-content-center">
-                        <p>No replies yet :c</p>
+                        <p style="color: rgb(101, 119, 134)">No replies yet :c</p>
                     </div>
                 }
                 else
                 {
                     @foreach (var reply in Model.Replies)
                     {
-@*                     @await Component.InvokeAsync("Tweet", new {id = reply.OnTweet.Id}) *@
+                        <div class="flex-column">
+                            <div class="d-flex">
+                                @await Component.InvokeAsync("Reply", new {id = reply.Id})
+                            </div>
+                            <a class="ml-2 mt-3 d-flex justify-content-start text-left" asp-controller="Home" asp-action="Replies" asp-route-id="@reply.OnTweet.Id">
+                                View in thread
+                            </a>
+                        </div>
                         <hr/>
                     }
                 }
@@ -261,7 +282,7 @@
                 @if (Model.Likes.Count == 0)
                 {
                     <div class="d-flex flex-column justify-content-center">
-                        <p>No likes yet :c</p>
+                        <p style="color: rgb(101, 119, 134)">No likes yet :c</p>
                     </div>
                     
                 }

@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Twitter.Models;
+using Twitter.ViewModels;
 
 namespace Twitter.Controllers
 {
@@ -47,13 +48,68 @@ namespace Twitter.Controllers
             }
         }
 
-        public async Task<IActionResult> Comments(int id)
+        public async Task<IActionResult> Replies(int id)
         {
             var tweet = await _context.Tweets
                 .Where(t => t.Id == id)
                 .Include(t => t.Author)
                 .FirstAsync();
-            return View(tweet);
+            var user = await _userManager
+                .FindByNameAsync(User.Identity.Name);
+            if (tweet is null || user is null)
+            {
+                return NotFound();
+            }
+            var likers = await _context.Likes
+                .Where(l => l.LikedTweet.Id == id)
+                .Select(l => l.WhoLiked)
+                .ToListAsync();
+            var retweeters = await _context.Retweets
+                .Where(r => r.Tweet.Id == id)
+                .Select(r => r.RetweetedBy)
+                .ToListAsync();
+            var isUserLiked = await _context.Likes
+                .Where(l => l.LikedTweet == tweet)
+                .AnyAsync(t => t.WhoLiked == user);
+            var isUserRetweeted = await _context.Retweets
+                .Where(r => r.Tweet == tweet)
+                .AnyAsync(r => r.RetweetedBy == user);
+            var replies = await _context.Replies
+                .Where(r => r.OnTweet == tweet)
+                .Include(r => r.User)
+                .OrderByDescending(r => r.Date)
+                .ToListAsync();
+            return View(new RepliesViewModel
+            {
+                Tweet = tweet,
+                Replies = replies,
+                Likers = likers,
+                Retweeters = retweeters,
+                isCurrentUserLiked = isUserLiked,
+                isCurrentUserRetweeted = isUserRetweeted
+            });
+        }
+
+        public async Task<IActionResult> Reply(string content, int? tweetId)
+        {
+            if (content is null || tweetId is null)
+            {
+                return NotFound();
+            }
+            var tweet = await _context.Tweets
+                .FindAsync(tweetId);
+            await _context.Replies.AddAsync(new Reply
+            {
+                Content = content,
+                OnTweet = tweet,
+                User = await _userManager.FindByNameAsync(User.Identity.Name),
+                Date = DateTime.Now
+            });
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Replies", "Home", new
+            {
+                id = tweet.Id
+            });
         }
 
         public async Task<IActionResult> Retweet(int id)

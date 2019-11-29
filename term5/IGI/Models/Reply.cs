@@ -10,12 +10,11 @@ namespace Twitter.Models
         public string Content { get; set; }
 
         [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy, H:mm}", ApplyFormatInEditMode = true)]
         public DateTime Date { get; set; }
 
         public User User { get; set; }
 
         public Tweet OnTweet { get; set; }
-
-        //TODO: Add Methods to get Tags, Like, Retweet
     }
 }

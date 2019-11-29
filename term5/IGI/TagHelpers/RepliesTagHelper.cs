@@ -7,14 +7,14 @@ using Twitter.Models;
 
 namespace Twitter.TagHelpers
 {
-    public class CommentTagHelper: TagHelper
+    public class RepliesTagHelper: TagHelper
     {
         private readonly TwitterDBContext _context;
         private readonly UserManager<User> _userManager;
         
         public int TweetId { get; set; }
         
-        public CommentTagHelper(TwitterDBContext context, UserManager<User> userManager)
+        public RepliesTagHelper(TwitterDBContext context, UserManager<User> userManager)
         {
             _context = context;
             _userManager = userManager;
@@ -33,13 +33,13 @@ namespace Twitter.TagHelpers
 
             if (replies.Count != 0)
             {
-                output.Attributes.SetAttribute("style", "color: blue;");
+                output.Attributes.SetAttribute("style", "color: rgb(29, 161, 242);");
             }
             else
             {
                 output.Attributes.SetAttribute("style", "color: rgb(101, 119, 134)");
             }
-            output.Attributes.SetAttribute("href", $"/Home/Comments/{TweetId}");
+            output.Attributes.SetAttribute("href", $"/Home/Replies/{TweetId}");
             output.Content.SetContent($"💬 {replies.Count}");
         }
     }

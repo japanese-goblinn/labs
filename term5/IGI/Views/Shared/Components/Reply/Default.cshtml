@@ -1,15 +1,15 @@
-@model Tweet
+@model Reply
 
 <div class="flex-column">
     <div class="d-flex bd-highlight pl-2">
         <div class="align-items-start bd-highlight" style="font-weight: bold">
             <a asp-controller="Profile" asp-action="Index" 
-               asp-route-userName="@Model.Author.UserName" class="text-dark">
-                @Model.Author.Name
+               asp-route-userName="@Model.User.UserName" class="text-dark">
+                @Model.User.Name
             </a>
         </div>
         <div class="ml-1 align-items-start bd-highlight" style="color: rgb(101, 119, 134)">
-            @@@Model.Author.UserName
+            @@@Model.User.UserName
         </div>
         <div class="ml-1 align-items-start bd-highlight" style="color: rgb(101, 119, 134)">
             &#8226
@@ -18,19 +18,16 @@
             @Html.DisplayFor(t => t.Date)
         </div>
     </div>
+    <div class="pl-2 mt-1 mb-2 d-flex">
+        <div style="color: rgb(101, 119, 134)">
+            Replying to 
+        </div>
+        <a class="ml-1" asp-controller="Profile" asp-action="Index" asp-route-userName="@Model.OnTweet.Author.UserName">
+            @@@Model.OnTweet.Author.UserName
+        </a>
+    </div>
     <div class="d-flex justify-content-start text-left flex-column bd-hightlight mt-2 pl-2" 
          style="word-wrap: break-word">
         @Model.Content
-    </div>
-    <div class="d-flex bd-highlight mt-3 ml-2">
-        <div class="align-items-start bd-highlight">
-            <like tweet-id="@Model.Id" user-name="@User.Identity.Name"></like>
-        </div>
-        <div class="align-items-start bd-highlight ml-3">
-            <retweet tweet-id="@Model.Id" user-name="@User.Identity.Name"></retweet>
-        </div>
-        <div class="align-items-start bd-highlight ml-3">
-            <replies tweet-id="@Model.Id"></replies>
-        </div>
     </div>
 </div>
