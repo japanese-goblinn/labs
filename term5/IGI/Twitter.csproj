@@ -35,4 +35,8 @@
       <_ContentIncludedByDefault Remove="Views\Tweets\Edit.cshtml" />
       <_ContentIncludedByDefault Remove="Views\Tweets\Index.cshtml" />
     </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="wwwroot\images" />
+    </ItemGroup>
 </Project>

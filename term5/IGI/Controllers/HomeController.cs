@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -47,7 +48,7 @@ namespace Twitter.Controllers
                 return RedirectToAction("Login", "Account");
             }
         }
-
+        
         public async Task<IActionResult> Replies(int id)
         {
             var tweet = await _context.Tweets

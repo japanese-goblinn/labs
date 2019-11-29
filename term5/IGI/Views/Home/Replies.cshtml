@@ -9,18 +9,25 @@
 </div>
 <hr/>
 
-<div style="overflow-y: scroll; height: 720px;">
+<div style="overflow-y: scroll; height: 735px;">
     <div class="flex-column">
-        <div class="ml-1 d-flex justify-content-start" style="font-weight: bold; font-size: x-large;">
-            <a asp-controller="Profile" asp-action="Index" 
-               asp-route-userName="@Model.Tweet.Author.UserName" class="text-dark">
-                @Model.Tweet.Author.Name
-            </a>
+        <div class="d-flex">
+            <div class="d-flex ml-1 align-items-start mt-1">
+                <img height="50" width="50" class="rounded-circle" src="~/images/default.jpg" alt="default userpic"/>
+            </div>
+            <div class="ml-2 mt-1 flex-column">
+                <div class="ml-1 d-flex justify-content-start" style="font-weight: bold; font-size: large">
+                    <a asp-controller="Profile" asp-action="Index" 
+                       asp-route-userName="@Model.Tweet.Author.UserName" class="text-dark">
+                        @Model.Tweet.Author.Name
+                    </a>
+                </div>
+                <div class="ml-1 d-flex justify-content-start" style="color: rgb(101, 119, 134)">
+                    @@@Model.Tweet.Author.UserName
+                </div>
+            </div>
         </div>
-        <div class="ml-1 d-flex justify-content-start" style="color: rgb(101, 119, 134)">
-            @@@Model.Tweet.Author.UserName
-        </div>
-        <div class="ml-1 mt-2 flex-column justify-content-start text-left" style="word-wrap: break-word">
+        <div class="ml-1 mt-3 flex-column justify-content-start text-left" style="word-wrap: break-word">
             @Model.Tweet.Content
         </div> 
         <div class="d-flex ml-1 mt-3" style="color: rgb(101, 119, 134)">
