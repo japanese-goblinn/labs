@@ -263,14 +263,13 @@
                 {
                     @foreach (var reply in Model.Replies)
                     {
-                        <div class="flex-column">
-                            <div class="d-flex">
-                                @await Component.InvokeAsync("Reply", new {id = reply.Id})
-                            </div>
-                            <a class="ml-2 mt-3 d-flex justify-content-start text-left" asp-controller="Home" asp-action="Replies" asp-route-id="@reply.OnTweet.Id">
-                                View in thread
-                            </a>
-                        </div>
+                        @await Component.InvokeAsync("Reply", new {id = reply.Id})
+                         <div class="flex-column">
+                        
+                             <a class="ml-2 mt-3 d-flex justify-content-start text-left" asp-controller="Home" asp-action="Replies" asp-route-id="@reply.OnTweet.Id">
+                                 View in thread
+                             </a>
+                         </div>
                         <hr/>
                     }
                 }
