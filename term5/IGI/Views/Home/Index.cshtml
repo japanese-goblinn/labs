@@ -9,9 +9,9 @@
 </div>
 <hr/>
 <div style="overflow-y: scroll; height: 720px;">
-    @foreach (var tweet in Model)
-    {
-        @await Component.InvokeAsync("Tweet", new { id = tweet.Id })
-        <hr/>
-    }
+     @foreach (var tweet in Model)
+        {
+            @await Component.InvokeAsync("Tweet", new { id = tweet.Id })
+            <hr/>
+        }
 </div>
