@@ -111,7 +111,7 @@ namespace Twitter.Controllers
         }
 
         [Route("/api/replies/{id?}/{amount?}/{page?}")]
-        public async Task<JsonResult> Replies(int id, int amount, int page)
+        public async Task<JsonResult> RepliesJson(int id, int amount, int page)
         {
             var tweet = await _context.Tweets
                 .Where(t => t.Id == id)
@@ -208,7 +208,7 @@ namespace Twitter.Controllers
                 isCurrentUserRetweeted = isUserRetweeted
             });
         }
-
+        
         public async Task<IActionResult> Reply(string content, int? tweetId)
         {
             if (content is null || tweetId is null)

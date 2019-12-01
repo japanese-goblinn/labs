@@ -117,8 +117,17 @@
                     <input class="form-control" type="text" placeholder="Search" aria-label="Search">
                 </div>
                 <div>
-                    <div class="p-2 bd-highlight ">
-                        &copy; 2019 - Twitter - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></div>
+                    <div class="p-2 d-flex">
+                        <div class="d-flex">
+                            &copy; 2019 - Twitter -
+                        </div>
+                        <div class="d-flex ml-1">
+                            <select class="selectpicker" data-width="fit">
+                                <option data-content='<span class="flag-icon flag-icon-us"></span> English'>English</option>
+                                <option  data-content='<span class="flag-icon flag-icon-mx"></span> Español'>Русский</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
