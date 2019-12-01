@@ -10,9 +10,5 @@ namespace Twitter.ViewModels
         public bool isCurrentUserLiked { get; set; }
         
         public bool isCurrentUserRetweeted { get; set; }
-        
-        public List<User> Likers { get; set; } 
-        
-        public List<User> Retweeters { get; set; }
     }
 }
