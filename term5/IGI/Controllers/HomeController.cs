@@ -105,15 +105,9 @@ namespace Twitter.Controllers
             var isUserRetweeted = await _context.Retweets
                 .Where(r => r.Tweet == tweet)
                 .AnyAsync(r => r.RetweetedBy == user);
-            var replies = await _context.Replies
-                .Where(r => r.OnTweet == tweet)
-                .Include(r => r.User)
-                .OrderByDescending(r => r.Date)
-                .ToListAsync();
             return View(new RepliesViewModel
             {
                 Tweet = tweet,
-                Replies = replies,
                 Likers = likers,
                 Retweeters = retweeters,
                 isCurrentUserLiked = isUserLiked,

@@ -202,22 +202,16 @@
             </svg>
         </div>
     <hr/>
-    <div id="replies">
-        @if (Model.Replies.Count == 0)
-        {
-            <div class="d-flex flex-column justify-content-center">
-                <p style="color: rgb(101, 119, 134)">No replies yet :c</p>
-            </div>
-        }
-    </div>
+    <div id="replies"></div>
     </div>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
 <script>
-    var amount = 4;
-    var pageNum = 1;
-    
+    let amount = 4;
+    let pageNum = 1;
+        
     $(document).ready(() => {
         loadReplies()
     });
@@ -231,56 +225,66 @@
         $.ajax({
            url: `/home/json/@Model.Tweet.Id/${amount}/${pageNum}`,
            success: (response) => {
-               var data = JSON.parse(response);
-               for (let node in data) {
-                        if (data.hasOwnProperty(node)) {
-                            let date = new Date(data[node].Date);
-                            $("#replies").append(
-                                `<div class="flex-column">
-                                                      <div class="d-flex">
-                                                          <div class="d-flex ml-1 align-items-start mt-1">
-                                                              <img height="50" width="50" class="rounded-circle" src="/images/default.jpg" alt="default userpic"/>
-                                                          </div>
-                                                          <div class="flex-column ml-1 mt-1">
-                                                              <div class="d-flex bd-highlight pl-2">
-                                                                  <div class="align-items-start bd-highlight" style="font-weight: bold">
-                                                                      <a href="/Profile/?userName=${data[node].AuthorUsername}" class="text-dark">
-                                                                          ${data[node].AuthorName}
-                                                                      </a>
-                                                                  </div>
-                                                                  <div class="ml-1 align-items-start bd-highlight" style="color: rgb(101, 119, 134)">
-                                                                      @@${data[node].AuthorUsername}
-                                                                  </div>
-                                                                  <div class="ml-1 align-items-start bd-highlight" style="color: rgb(101, 119, 134)">
-                                                                      &#8226
-                                                                  </div>
-                                                                  <div class="ml-1 align-items-start bd-highlight" style="color: rgb(101, 119, 134)">
-                                                                      ${date}
-                                                                  </div>
-                                                              </div>
-                                                              <div class="pl-2 mt-0 mb-2 d-flex">
-                                                                  <div style="color: rgb(101, 119, 134)">
-                                                                      Replying to
-                                                                  </div>
-                                                                  <a class="ml-1" href="/Profile/?userName=${data[node].TweetAuthorUsername}">
-                                                                      @@${data[node].TweetAuthorUsername}
-                                                                  </a>
-                                                              </div>
-                                                          </div>
-                                                      </div>
-                                                      <div class="d-flex justify-content-start text-left flex-column mt-2 pl-2"
-                                                           style="word-wrap: break-word">
-                                                          ${data[node].Content}
-                                                      </div>
-                                                  </div>
-                                 <hr/>`
-                            )
-                        } 
-                    }
-               $("#replies").append(
-                   `<button id="loadMoreButton" class="btn btn-primary mb-4" onclick="loadMore()">Load More</button>`
-               )
-               pageNum++;
+               let data = JSON.parse(response);
+               if (Object.keys(data).length === 0 && pageNum === 1) {
+                   $("#replies").append(
+                       `<div class="d-flex flex-column justify-content-center">
+                            <p style="color: rgb(101, 119, 134)">No replies yet :c</p>
+                        </div>`
+                   )   
+               } else if (Object.keys(data).length !== 0) {
+                       for (let node in data) {
+                                                                  if (data.hasOwnProperty(node)) {
+                                                                      let dateString = moment(data[node].Date).format("DD.MM.Y, H:mm");
+                                                                      $("#replies").append(
+                                                                          `<div class="flex-column">
+                                                                                                <div class="d-flex">
+                                                                                                    <div class="d-flex ml-1 align-items-start mt-1">
+                                                                                                        <img height="50" width="50" class="rounded-circle" src="/images/default.jpg" alt="default userpic"/>
+                                                                                                    </div>
+                                                                                                    <div class="flex-column ml-1 mt-1">
+                                                                                                        <div class="d-flex bd-highlight pl-2">
+                                                                                                            <div class="align-items-start bd-highlight" style="font-weight: bold">
+                                                                                                                <a href="/Profile/?userName=${data[node].AuthorUsername}" class="text-dark">
+                                                                                                                    ${data[node].AuthorName}
+                                                                                                                </a>
+                                                                                                            </div>
+                                                                                                            <div class="ml-1 align-items-start bd-highlight" style="color: rgb(101, 119, 134)">
+                                                                                                                @@${data[node].AuthorUsername}
+                                                                                                            </div>
+                                                                                                            <div class="ml-1 align-items-start bd-highlight" style="color: rgb(101, 119, 134)">
+                                                                                                                &#8226
+                                                                                                            </div>
+                                                                                                            <div class="ml-1 align-items-start bd-highlight" style="color: rgb(101, 119, 134)">
+                                                                                                                ${dateString}
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        <div class="pl-2 mt-0 mb-2 d-flex">
+                                                                                                            <div style="color: rgb(101, 119, 134)">
+                                                                                                                Replying to
+                                                                                                            </div>
+                                                                                                            <a class="ml-1" href="/Profile/?userName=${data[node].TweetAuthorUsername}">
+                                                                                                                @@${data[node].TweetAuthorUsername}
+                                                                                                            </a>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="d-flex justify-content-start text-left flex-column mt-2 pl-2"
+                                                                                                     style="word-wrap: break-word">
+                                                                                                    ${data[node].Content}
+                                                                                                </div>
+                                                                                            </div>
+                                                                           <hr/>`
+                                                                      )
+                                                                  } 
+                                                              }
+                       $("#replies").append(
+                          `<button id="loadMoreButton" class="btn btn-primary mb-4" onclick="loadMore()">
+                             Load More
+                          </button>`
+                       )
+                       pageNum++;
+               }
             },
            failure: (response) => {
                alert("Something went wrong and idk what is it");

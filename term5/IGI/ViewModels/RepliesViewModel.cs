@@ -7,8 +7,6 @@ namespace Twitter.ViewModels
     {
         public Tweet Tweet { get; set; }
         
-        public List<Reply> Replies { get; set; }
-        
         public bool isCurrentUserLiked { get; set; }
         
         public bool isCurrentUserRetweeted { get; set; }

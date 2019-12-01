@@ -83,3 +83,4 @@
 /Users/saisuicied/Downloads/Twitter/bin/Debug/netcoreapp2.2/libman.json
 /Users/saisuicied/Downloads/Twitter/obj/Debug/netcoreapp2.2/Razor/Views/Shared/Components/Reply/Default.cshtml.g.cs
 /Users/saisuicied/Downloads/Twitter/obj/Debug/netcoreapp2.2/Razor/Views/Home/Replies.cshtml.g.cs
+/Users/saisuicied/Downloads/Twitter/bin/Debug/netcoreapp2.2/package-lock.json
