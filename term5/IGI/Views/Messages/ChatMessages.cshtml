@@ -1,4 +1,6 @@
+@using Microsoft.AspNetCore.Mvc.Localization
 @model Twitter.ViewModels.MessagesViewModel
+@inject IViewLocalizer Localizer
 
 @{
     Layout = "_Layout";
@@ -30,10 +32,10 @@
 <hr/>
 <div class="d-flex mt-3 mb-4 ml-2 mr-2">
     <div class="mr-2 flex-fill">
-        <input id="message" name="message" class="form-control" placeholder="New message..."/>
+        <input id="message" name="message" class="form-control" placeholder="@Localizer["NewMessage"]"/>
     </div>
     <div>
-        <input id="sendButton" type="button" value="Send" class="btn btn-primary"/>
+        <input id="sendButton" type="button" value="@Localizer["Send"]" class="btn btn-primary"/>
     </div>
 </div>
 
@@ -49,7 +51,7 @@
         var sendText = '<div class="ml-2 text-left">';
         console.log(userFromName, userFromUsername, userToUsername);
         if (userFromUsername === '@User.Identity.Name') {
-            sendText += '<div class="d-flex"> <div style="font-weight: bold">Me</div> <div class="ml-1" style="color: rgb(101, 119, 134)">' +
+            sendText += '<div class="d-flex"> <div style="font-weight: bold">@Localizer["Me"]</div> <div class="ml-1" style="color: rgb(101, 119, 134)">' +
              '&#8226 @String.Format("{0:dd.MM.yyyy, H:mm}", DateTime.Now)</div> </div>';
         } else if ('@Model.ChatWith.UserName' === userFromUsername || '@User.Identity.Name' === userFromUsername) {
             sendText += '<div class="d-flex"> <div style="font-weight: bold">' + userFromName + 

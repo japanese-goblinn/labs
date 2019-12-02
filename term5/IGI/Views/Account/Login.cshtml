@@ -1,7 +1,9 @@
+@using Microsoft.AspNetCore.Mvc.Localization
 @model Twitter.ViewModels.LoginViewModel
+@inject IViewLocalizer Localizer
 
 @{
-    ViewData["Title"] = "Sign In";
+    ViewData["Title"] = Localizer["SignIn"];
     Layout = null;
 }
  
@@ -24,7 +26,7 @@
 <body>
 <div class="ml-4 mt-4 bd-highlight">
     <a class="ml-3 navbar-brand" asp-area="" asp-controller="Account" asp-action="Register">
-        Twitter
+        @Localizer["Twitter"]
     </a>
 </div>
 <div class="mt-5 container-fluid">
@@ -39,13 +41,19 @@
                 </div>
                 
                 <div class="form-group text-left">
-                    <label asp-for="UserName"></label><br/>
+                    <label asp-for="UserName">
+                        @Localizer["Username"]
+                    </label>
+                    <br/>
                     <input class="form-control" asp-for="UserName"/>
                     <span style="color: rgb(233, 0, 65)" asp-validation-for="UserName"></span>
                 </div>
                 
                 <div class="form-group text-left">
-                    <label asp-for="Password"></label><br/>
+                    <label asp-for="Password">
+                        @Localizer["Password"]
+                    </label>
+                    <br/>
                     <input class="form-control" asp-for="Password"/>
                     <span style="color: rgb(233, 0, 65)" asp-validation-for="Password"></span>
                 </div>
@@ -53,17 +61,19 @@
                 <div class="form-group text-left">
                     <div class="form-check">
                         <input class="form-check-input" asp-for="RememberMe"/>
-                        <label class="form-check-label" asp-for="RememberMe"></label>
+                        <label class="form-check-label" asp-for="RememberMe">
+                            @Localizer["RememberMe"]
+                        </label>
                     </div>
                 </div>
                 
                 <div class="text-left d-flex flex-row bd-highlight">
                     <div>
-                        <input class="btn btn-primary" type="submit" value="@ViewData["Title"]"/>
+                        <input class="btn btn-primary" type="submit" value="@Localizer["SignInLoc"]"/>
                     </div>
                     <div class="ml-3 mt-2">
                         <a class="text-muted" asp-controller="Account" asp-action="Register">
-                            Or sign up
+                            @Localizer["SignUp"]
                         </a>
                     </div>
                 </div>

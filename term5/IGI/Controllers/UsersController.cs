@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Localization;
 using Twitter.Models;
 using Twitter.ViewModels;
 
@@ -13,10 +14,12 @@ namespace Twitter.Controllers
     public class UsersController: Controller
     {
         private readonly UserManager<User> _userManager;
- 
-        public UsersController(UserManager<User> userManager)
+        private readonly IStringLocalizer<UsersController> _localizer;
+
+        public UsersController(UserManager<User> userManager, IStringLocalizer<UsersController> localizer)
         {
             _userManager = userManager;
+            _localizer = localizer;
         }
  
         public async Task<IActionResult> Index() => View(await _userManager.Users.ToListAsync());
@@ -139,7 +142,7 @@ namespace Twitter.Controllers
                             .GetService(typeof(IPasswordHasher<User>)) as IPasswordHasher<User>;
                     if (model.NewPassword == null)
                     {
-                        ModelState.AddModelError(string.Empty, "Password can not be empty");
+                        ModelState.AddModelError(string.Empty, _localizer["EmptyPasswordError"]);
                         return View(model);
                     }
                     var result = await passwordValidator.ValidateAsync(_userManager, user, model.NewPassword);
@@ -159,7 +162,7 @@ namespace Twitter.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "User not founded");
+                    ModelState.AddModelError(string.Empty, _localizer["NotFoundError"]);
                 }
             }
             return View(model);

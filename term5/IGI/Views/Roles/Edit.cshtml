@@ -1,8 +1,10 @@
 @using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Mvc.Localization
 @model Twitter.ViewModels.ChangeRoleViewModel
+@inject IViewLocalizer Localizer
 
 <div class="text-left mt-3">
-    <h3 class="display-6">Change role for @@@Model.UserName</h3>
+    <h3 class="display-6">@Localizer["Change"] @@@Model.UserName</h3>
 </div>
 <hr/>
  
@@ -16,6 +18,6 @@
                       @(Model.UserRoles.Contains(role.Name) ? "checked=\"checked\"" : "") /> @role.Name<br />
            }
        </div>
-       <button type="submit" class="btn btn-primary">Save</button>
+       <button type="submit" class="btn btn-primary">@Localizer["Save"]</button>
    </form> 
 </div>

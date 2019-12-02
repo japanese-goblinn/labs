@@ -1,6 +1,9 @@
+@using Microsoft.AspNetCore.Mvc.Localization
 @model IEnumerable<User>
+@inject IViewLocalizer Localizer
+
 @{
-    ViewData["Title"] = "User's list";
+    ViewData["Title"] = Localizer["Users"];
 }
  
 
@@ -26,21 +29,21 @@
             <div class="col-3 dropdown">
                 <a class="nav-link dropdown-toggle" href="#" 
                    role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Action
+                    @Localizer["Action"]
                 </a>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                     <div class="d-flex flex-column">
                         <a class="text-primary text-center mt-2l" asp-action="Edit" asp-route-id="@user.Id">
-                            Edit
+                            @Localizer["Edit"]
                         </a>
                         <a class="text-info text-center mt-2" asp-action="ChangePassword" asp-route-id="@user.Id">
-                            Change password
+                            @Localizer["ChangePassword"]
                         </a>
                         <a class="text-secondary text-center mt-2" asp-controller="Roles" asp-action="Edit" asp-route-userid="@user.Id">
-                            Access rights
+                            @Localizer["Rights"]
                         </a>
                         <a class="text-danger text-center mt-2" asp-action="Delete" asp-route-id="@user.Id">
-                            Delete
+                            @Localizer["Delete"]
                         </a>
                     </div>
                 </div>
@@ -48,5 +51,5 @@
         </div>
         <hr/>
     }
-    <a class="btn btn-primary" asp-action="Create">Add User</a>
+    <a class="btn btn-primary" asp-action="Create">@Localizer["Add"]</a>
 </div>

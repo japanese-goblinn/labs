@@ -1,6 +1,9 @@
+@using Microsoft.AspNetCore.Mvc.Localization
 @model Twitter.ViewModels.EditUserViewModel
+@inject IViewLocalizer Localizer
+
 @{
-    ViewData["Title"] = "Edit user";
+    ViewData["Title"] = Localizer["Edit"];
 }
 <div class="text-left mt-3">
     <h3 class="display-6">@ViewData["Title"]</h3>
@@ -13,19 +16,19 @@
             <input type="hidden" asp-for="Id" />
         </div>
         <div asp-validation-for="Name" class="form-group">
-            <label asp-for="Name" class="control-label">Name</label>
+            <label asp-for="Name" class="control-label">@Localizer["Name"]</label>
             <input type="text" asp-for="Name" class="form-control" />
         </div>
         <div class="form-group">
-            <label asp-for="UserName" class="control-label">Username</label>
+            <label asp-for="UserName" class="control-label">@Localizer["Username"]</label>
             <input type="text" asp-for="UserName" class="form-control" />
         </div>
         <div class="form-group">
-            <label asp-for="Email" class="control-label">Email</label>
+            <label asp-for="Email" class="control-label">@Localizer["Email"]</label>
             <input type="text" asp-for="Email" class="form-control" />
         </div>
         <div class="form-group">
-            <input type="submit" value="Save" class="btn mt-1 btn-primary" />
+            <input type="submit" value="@Localizer["Save"]" class="btn mt-1 btn-primary" />
         </div>
     </form>
 </div>

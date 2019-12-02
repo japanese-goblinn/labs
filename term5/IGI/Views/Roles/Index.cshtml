@@ -1,7 +1,9 @@
+@using Microsoft.AspNetCore.Mvc.Localization
 @model IEnumerable<Microsoft.AspNetCore.Identity.IdentityRole>
- 
+@inject IViewLocalizer Localizer
+
 @{
-    ViewData["Title"] = "Role's list";
+    ViewData["Title"] = Localizer["Roles"];
 }
 
 <div class="text-left mt-3">
@@ -18,13 +20,13 @@
             <div class="col-3">
                 <form asp-action="Delete" asp-route-id="@role.Id" method="post">
                     <button type="submit" class="btn btn-danger">
-                        Delete
+                        @Localizer["Delete"]
                     </button>
                 </form>
             </div>
         </div>
         <hr/>
     }
-    <a class="btn btn-primary" asp-action="Create">Add</a>
-    <a class="btn btn-secondary" asp-controller="Users" asp-action="Index">User's list</a>
+    <a class="btn btn-primary" asp-action="Create">@Localizer["Add"]</a>
+    <a class="btn btn-secondary" asp-controller="Users" asp-action="Index">@Localizer["Users"]</a>
 </div>

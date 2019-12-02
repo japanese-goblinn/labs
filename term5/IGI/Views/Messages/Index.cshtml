@@ -1,7 +1,9 @@
+@using Microsoft.AspNetCore.Mvc.Localization
 @model IEnumerable<User>
+@inject IViewLocalizer Localizer
 
 @{
-    ViewData["Title"] = "Messages";
+    ViewData["Title"] = Localizer["Messages"];
 }
 
 <div class="text-left mt-3">
@@ -12,7 +14,9 @@
    @foreach (var chat in Model)
    {
        <div class="ml-2 text-left">
-           <a id="chatId_@chat.Id" asp-action="ChatMessages" asp-route-id="@chat.Id">✉️ Chat with @@@chat.UserName</a> 
+           <a id="chatId_@chat.Id" asp-action="ChatMessages" asp-route-id="@chat.Id">
+               ✉️ @Localizer["Chat"] @@@chat.UserName
+           </a> 
        </div>
        <hr/>
    } 

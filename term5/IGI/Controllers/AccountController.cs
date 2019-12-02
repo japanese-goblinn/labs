@@ -2,6 +2,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Localization;
 using Twitter.Models;
 using Twitter.ViewModels;
 
@@ -11,11 +12,17 @@ namespace Twitter.Controllers
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
+        private readonly IStringLocalizer<AccountController> _localizer;
 
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager)
+        public AccountController(
+            UserManager<User> userManager,
+            SignInManager<User> signInManager,
+            IStringLocalizer<AccountController> localizer
+        )
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _localizer = localizer;
         }
 
         public IActionResult Register()
@@ -29,7 +36,7 @@ namespace Twitter.Controllers
             var isUserAlreadyExist = _userManager.Users.Any(x => x.UserName == model.UserName);
             if (isUserAlreadyExist)
             {
-                ModelState.AddModelError("Username", "User with this username already exists");
+                ModelState.AddModelError("Username", _localizer["UserAlreadyExists"]);
             }
             if (ModelState.IsValid)
             {
@@ -85,7 +92,7 @@ namespace Twitter.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Not valid login or password");
+                    ModelState.AddModelError("", _localizer["LoginError"]);
                 }
             }
 

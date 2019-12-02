@@ -13,10 +13,6 @@ namespace Twitter.Models
 
         public DbSet<Subscription> Subscriptions { get; set; }
         
-        public DbSet<Tag> Tags { get; set; }
-
-        public DbSet<TagsToTweets> TagsToTweets { get; set; }
-
         public DbSet<Message> Messages { get; set; }
         
         public DbSet<Like> Likes { get; set; }

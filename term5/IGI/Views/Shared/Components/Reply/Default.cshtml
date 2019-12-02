@@ -1,4 +1,6 @@
+@using Microsoft.AspNetCore.Mvc.Localization
 @model Reply
+@inject IViewLocalizer Localizer
 
 <div class="flex-column">
     <div class="d-flex">
@@ -25,7 +27,7 @@
             </div>
             <div class="pl-2 mt-0 mb-2 d-flex">
                 <div style="color: rgb(101, 119, 134)">
-                    Replying to
+                    @Localizer["Reply"]
                 </div>
                 <a class="ml-1" asp-controller="Profile" asp-action="Index" asp-route-userName="@Model.OnTweet.Author.UserName">
                     @@@Model.OnTweet.Author.UserName

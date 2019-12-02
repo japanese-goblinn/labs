@@ -1,7 +1,9 @@
+@using Microsoft.AspNetCore.Mvc.Localization
 @model Twitter.ViewModels.ProfileViewModel
+@inject IViewLocalizer Localizer
 
 @{
-    ViewData["Title"] = "Profile";
+    ViewData["Title"] = Localizer["Profile"];
     Layout = "_Layout"; 
 }
 
@@ -9,7 +11,6 @@
     <h3 class="display-6">@ViewData["Title"]</h3>
 </div>
 <hr/>
-@* <div class="d-flex"> *@
 <div class="d-flex flex-grow-1">
     <div class="d-flex mt-1 ml-2 justify-content-start align-items-start">
         <img height="80" width="80" class="rounded-circle" src="/images/default.jpg" alt="default userpic"/>
@@ -20,7 +21,7 @@
                 <div class="d-flex">
                     <a asp-action="WriteMessage" asp-route-userName="@Model.User.UserName"
                        class="btn btn-outline-primary mt-1 mr-2" style="border-radius: 20px">
-                        Write message
+                        @Localizer["WriteMessage"]
                     </a>
                 </div>
                 <div class="d-flex">
@@ -28,14 +29,14 @@
                     {
                         <a asp-action="Unfollow" asp-route-userName="@Model.User.UserName"
                            class="btn btn-danger mt-1" style="border-radius: 20px">
-                            Unfollow
+                            @Localizer["Unfollow"]
                         </a>
                     }
                     else
                     {
                         <a asp-action="Follow" asp-route-userName="@Model.User.UserName"
                            class="btn btn-outline-primary mt-1" style="border-radius: 20px">
-                            Follow
+                            @Localizer["Follow"]
                         </a>
                     }
                 </div>
@@ -58,14 +59,14 @@
                 </div>
                 <div class="ml-1">
                     <a style="color: rgb(31, 31, 31);" href="" data-toggle="modal" data-target="#followingModal">
-                        Following
+                        @Localizer["Following"]
                     </a>
                     <div class="modal fade" id="followingModal" tabindex="-1" role="dialog" 
                          aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title">Following</h5>
+                                    <h5 class="modal-title">@Localizer["Following"]</h5>
                                 </div>
                                 <div class="modal-body">
                                     @if (Model.Following.Count == 0)
@@ -73,18 +74,18 @@
                                         @if (Model.User.UserName == User.Identity.Name)
                                         {
                                             <div class="d-flex flex-column justify-content-center">
-                                                <p>You aren’t following anyone yet :c</p>
+                                                <p>@Localizer["YouNotFollowing"]</p>
                                                 <p style="color: rgb(101, 119, 134)">
-                                                    When you do, they’ll be listed here and you’ll see their Tweets in your timeline.
+                                                    @Localizer["DoFollowingYou"]
                                                 </p>
                                             </div>
                                         }
                                         else
                                         {
                                             <div class="d-flex flex-column justify-content-center">
-                                                <p>This user isn’t following anyone yet</p>
+                                                <p>@Localizer["UserNotFollowing"]</p>
                                                 <p style="color: rgb(101, 119, 134)">
-                                                    When user do, they’ll be listed here.
+                                                    @Localizer["DoFollowingUser"]
                                                 </p>
                                             </div>
                                         }
@@ -97,7 +98,7 @@
                                                    asp-route-userName="@user.UserName" class="text-dark">
                                                     @if (user.UserName == User.Identity.Name)
                                                     {
-                                                        <text>Me</text>
+                                                        <text>@Localizer["Me"]</text>
                                                     }
                                                     else
                                                     {
@@ -125,14 +126,14 @@
                 </div>
                 <div class="ml-1">
                     <a style="color: rgb(31, 31, 31);" href="" data-toggle="modal" data-target="#followersModal">
-                        Followers
+                        @Localizer["Followers"]
                     </a>
                     <div class="modal fade" id="followersModal" tabindex="-1" role="dialog" 
                          aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title">Followers</h5>
+                                    <h5 class="modal-title">@Localizer["Followers"]</h5>
                                 </div>
                                 <div class="modal-body">
                                     @if (Model.Followers.Count == 0)
@@ -140,18 +141,18 @@
                                         @if (Model.User.UserName == User.Identity.Name)
                                         {
                                             <div class="d-flex flex-column justify-content-center">
-                                                <p>You don’t have any followers yet :c</p>
+                                                <p>@Localizer["YouNotFollowed"]</p>
                                                 <p style="color: rgb(101, 119, 134)">
-                                                    When someone follows you, you’ll see them here
+                                                    @Localizer["DoFollowedYou"]
                                                 </p>
                                             </div>
                                         }
                                         else
                                         {
                                             <div class="d-flex flex-column justify-content-center">
-                                                <p>User don’t have any followers yet</p>
+                                                <p>@Localizer["UserNotFollowed"]</p>
                                                 <p style="color: rgb(101, 119, 134)">
-                                                    When someone follows this user, you’ll see them here
+                                                    @Localizer["DoFollowedUser"]
                                                 </p>
                                             </div>
                                         }
@@ -164,7 +165,7 @@
                                                    asp-route-userName="@user.UserName" class="text-dark">
                                                     @if (user.UserName == User.Identity.Name)
                                                     {
-                                                        <text>Me</text>
+                                                        <text>@Localizer["Me"]</text>
                                                     }
                                                     else
                                                     {
@@ -188,32 +189,31 @@
             </div>
         </div>
     </div>
-@* </div> *@
 
 <ul class="ml-1 mt-3 nav nav-tabs" id="myTab" role="tablist">
     <li class="nav-item">
         <a class="nav-link active" id="tweets-tab" data-toggle="tab" href="#tweets" role="tab" aria-controls="home" 
            aria-selected="true">
-            Tweets
+            @Localizer["Tweets"]
         </a>
     </li>
     <li class="nav-item">
         <a class="nav-link" id="replies-tab" data-toggle="tab" href="#replies" role="tab" aria-controls="profile" 
            aria-selected="false">
-            Replies
+            @Localizer["Replies"]
         </a>
     </li>
     
     <li class="nav-item">
         <a class="nav-link" id="retweets-tab" data-toggle="tab" href="#retweets" role="tab" aria-controls="home" 
            aria-selected="false">
-            Retweets
+            @Localizer["Retweets"]
         </a>
     </li>
     <li class="nav-item">
         <a class="nav-link" id="likes-tab" data-toggle="tab" href="#likes" role="tab" aria-controls="contact" 
            aria-selected="false">
-            Likes
+            @Localizer["Likes"]
         </a>
     </li>
 </ul>
@@ -223,7 +223,7 @@
                 @if (Model.UserTweets.Count == 0)
                 {
                     <div class="d-flex flex-column justify-content-center">
-                        <p style="color: rgb(101, 119, 134)">No tweets yet :c</p>
+                        <p style="color: rgb(101, 119, 134)">@Localizer["NoTweets"]</p>
                     </div>
                 }
                 else
@@ -242,7 +242,7 @@
                 @if (Model.Retweets.Count == 0)
                 {
                     <div class="d-flex flex-column justify-content-center">
-                        <p style="color: rgb(101, 119, 134)">No retweets yet :c</p>
+                        <p style="color: rgb(101, 119, 134)">@Localizer["NoRetweets"]</p>
                     </div>
                 }
                 else
@@ -261,7 +261,7 @@
                 @if (Model.Replies.Count == 0)
                 {
                     <div class="d-flex flex-column justify-content-center">
-                        <p style="color: rgb(101, 119, 134)">No replies yet :c</p>
+                        <p style="color: rgb(101, 119, 134)">@Localizer["NoReplies"]</p>
                     </div>
                 }
                 else
@@ -272,7 +272,7 @@
                          <div class="flex-column">
                         
                              <a class="ml-2 mt-3 d-flex justify-content-start text-left" asp-controller="Home" asp-action="Replies" asp-route-id="@reply.OnTweet.Id">
-                                 View in thread
+                                 @Localizer["Thread"]
                              </a>
                          </div>
                         <hr/>
@@ -286,7 +286,7 @@
                 @if (Model.Likes.Count == 0)
                 {
                     <div class="d-flex flex-column justify-content-center">
-                        <p style="color: rgb(101, 119, 134)">No likes yet :c</p>
+                        <p style="color: rgb(101, 119, 134)">@Localizer["NoLikes"]</p>
                     </div>
                 }
                 else

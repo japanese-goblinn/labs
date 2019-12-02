@@ -35,6 +35,14 @@
         "runtime": {
           "Twitter.dll": {}
         },
+        "resources": {
+          "en/Twitter.resources.dll": {
+            "locale": "en"
+          },
+          "ru/Twitter.resources.dll": {
+            "locale": "ru"
+          }
+        },
         "compile": {
           "Twitter.dll": {}
         }

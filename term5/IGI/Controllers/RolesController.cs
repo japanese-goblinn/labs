@@ -17,8 +17,11 @@ namespace Twitter.Controllers
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
 
-        public RolesController(RoleManager<IdentityRole> roleManager,
-            UserManager<User> userManager, SignInManager<User> signInManager)
+        public RolesController(
+            RoleManager<IdentityRole> roleManager,
+            UserManager<User> userManager,
+            SignInManager<User> signInManager
+        )
         {
             _roleManager = roleManager;
             _userManager = userManager;
