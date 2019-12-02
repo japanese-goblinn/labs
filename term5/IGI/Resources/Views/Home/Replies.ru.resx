@@ -40,7 +40,7 @@
         <value>Пока еще ни один пользователь не лайкнул этот твит</value>
     </data>
     <data name="NoOneRetweeted" xml:space="preserve">
-        <value>Пока еще ни один не ретвитнул этот твит</value>
+        <value>Пока еще ни один пользователь не ретвитнул этот твит</value>
     </data>
     <data name="WhenTheyDo" xml:space="preserve">
         <value>Как только это произойдет, они будут отображаться здесь</value>

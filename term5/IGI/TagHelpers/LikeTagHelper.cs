@@ -13,7 +13,10 @@ namespace Twitter.TagHelpers
         private readonly UserManager<User> _userManager;
         
         public int TweetId { get; set; }
+        
         public string UserName { get; set; }
+        
+        public string RedirectUrl { get; set; }
         
         public LikeTagHelper(TwitterDBContext context, UserManager<User> userManager)
         {
@@ -38,12 +41,18 @@ namespace Twitter.TagHelpers
                 l.LikedTweet.Id == tweet.Id && l.WhoLiked.Id == user.Id))
             {
                 output.Attributes.SetAttribute("style", "color: rgb(224, 36, 94);");
-                output.Attributes.SetAttribute("href", $"/Home/DeleteLike/{TweetId}");
+                output.Attributes.SetAttribute(
+                    "href", 
+                    $"/Home/DeleteLike/{TweetId}/?redirectUrl={RedirectUrl}"
+                );
             }
             else
             {
                 output.Attributes.SetAttribute("style", "color: rgb(101, 119, 134);");
-                output.Attributes.SetAttribute("href", $"/Home/Like/{TweetId}");
+                output.Attributes.SetAttribute(
+                    "href", 
+                    $"/Home/Like/{TweetId}/?redirectUrl={RedirectUrl}"
+                );
             }
             output.Content.SetContent($"💟 {likes.Count}");
         }

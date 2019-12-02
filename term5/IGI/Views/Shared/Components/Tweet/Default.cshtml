@@ -28,10 +28,12 @@
         </div>
         <div class="d-flex bd-highlight mt-3 ml-2">
             <div class="align-items-start bd-highlight">
-                <like tweet-id="@Model.Id" user-name="@User.Identity.Name"></like>
+                <like tweet-id="@Model.Id" user-name="@User.Identity.Name" 
+                      redirect-url="@Context.Request.Path"></like>
             </div>
             <div class="align-items-start bd-highlight ml-3">
-                <retweet tweet-id="@Model.Id" user-name="@User.Identity.Name"></retweet>
+                <retweet tweet-id="@Model.Id" user-name="@User.Identity.Name" 
+                         redirect-url="@Context.Request.Path"></retweet>
             </div>
             <div class="align-items-start bd-highlight ml-3">
                 <replies tweet-id="@Model.Id"></replies>

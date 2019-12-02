@@ -16,6 +16,8 @@ namespace Twitter.TagHelpers
         
         public string UserName { get; set; }
         
+        public string RedirectUrl { get; set; }
+        
         public RetweetTagHelper(TwitterDBContext context, UserManager<User> userManager)
         {
             _context = context;
@@ -39,12 +41,18 @@ namespace Twitter.TagHelpers
                 r.Tweet.Id == tweet.Id && r.RetweetedBy.Id == user.Id))
             {
                 output.Attributes.SetAttribute("style", "color: rgb(23, 191, 99); font-weight: bolt;");
-                output.Attributes.SetAttribute("href", $"/Home/DeleteRetweet/{TweetId}");
+                output.Attributes.SetAttribute(
+                    "href", 
+                    $"/Home/DeleteRetweet/{TweetId}/?redirectUrl={RedirectUrl}"
+                );
             }
             else
             {
                 output.Attributes.SetAttribute("style", "color: rgb(101, 119, 134);");
-                output.Attributes.SetAttribute("href", $"/Home/Retweet/{TweetId}");
+                output.Attributes.SetAttribute(
+                    "href", 
+                    $"/Home/Retweet/{TweetId}/?redirectUrl={RedirectUrl}"
+                );
             }
             output.Content.SetContent($"🔃 {retweets.Count}");
         }
