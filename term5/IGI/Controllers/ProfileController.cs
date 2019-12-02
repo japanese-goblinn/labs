@@ -76,7 +76,6 @@ namespace Twitter.Controllers
             {
                 return NotFound();
             }
-
             return RedirectToAction("ChatMessages", "Messages", new
             {
                 id = user.Id

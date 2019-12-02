@@ -9,6 +9,7 @@ using Twitter.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Localization;
 using System.Globalization;
+using Microsoft.AspNetCore.Routing.Constraints;
 using Microsoft.Extensions.Options;
 
 namespace Twitter
@@ -93,9 +94,130 @@ namespace Twitter
 
             app.UseMvc(routes =>
             {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                routes.MapRoute(name: "Index", template: "/", new  
+                {
+                    controller = "Home", action = "Index"
+                });
+                routes.MapRoute(name: "Retweet", template: "Home/Retweet/{id}", new
+                {
+                    id = new IntRouteConstraint(), controller = "Home", action = "Retweet"
+                });
+                routes.MapRoute(name: "DeleteRetweet", template: "Home/DeleteRetweet/{id}", new
+                {
+                    id = new IntRouteConstraint(), controller = "Home", action = "DeleteRetweet"
+                });
+                routes.MapRoute(name: "Like", template: "Home/Like/{id}", new
+                {
+                    id = new IntRouteConstraint(), controller = "Home", action = "Like"
+                });
+                routes.MapRoute(name: "DeleteLike", template: "Home/DeleteLike/{id}", new
+                {
+                    id = new IntRouteConstraint(), controller = "Home", action = "DeleteLike"
+                });
+                routes.MapRoute(name: "Replies", template: "Home/Replies/{id}", new
+                {
+                    id = new IntRouteConstraint(), controller = "Home", action = "Replies"
+                });
+                routes.MapRoute(name: "Reply", template: "Home/Reply", new
+                {
+                    controller = "Home", action = "Reply"
+                });
+                routes.MapRoute(name: "Tweet", template: "Home/Tweet", new
+                {
+                    controller = "Home", action = "Tweet"
+                });
+                routes.MapRoute(name: "Privacy", template: "Home/Privacy", new
+                {
+                    controller = "Home", action = "Privacy"
+                });
+                routes.MapRoute(name: "Register", template: "Account/Register", new
+                {
+                    controller = "Account", action = "Register"
+                });
+                routes.MapRoute(name: "Login", template: "Account/Login", new
+                {
+                    controller = "Account", action = "Login"
+                });
+                routes.MapRoute(name: "Logout", template: "Account/LogOff", new
+                {
+                    controller = "Account", action = "LogOff"
+                });
+                routes.MapRoute(name: "ChangeLanguage", template: "Language/SetLanguage", new
+                {
+                    controller = "Language", action = "SetLanguage"
+                });
+                routes.MapRoute(name: "MessagesIndex", template: "Messages", new
+                {
+                    controller = "Messages", action = "Index"
+                });
+                routes.MapRoute(name: "Chat", template: "Messages/{id?}", new
+                {
+                    controller = "Messages", action = "ChatMessages"
+                });
+                routes.MapRoute(name: "ProfileIndex", template: "Profile/{userName?}", new
+                {
+                    controller = "Profile", action = "Index"
+                });
+                routes.MapRoute(name: "Follow", template: "Profile/Follow/{userName?}", new
+                {
+                    controller = "Profile", action = "Follow"
+                });
+                routes.MapRoute(name: "Unfollow", template: "Profile/Unfollow/{userName?}", new
+                {
+                    controller = "Profile", action = "Unfollow"
+                });
+                routes.MapRoute(name: "WriteMessage", template: "Profile/WriteMessage/{userName?}", new
+                {
+                    controller = "Profile", action = "WriteMessage"
+                });
+                routes.MapRoute(name: "UsersIndex", template: "Users", new
+                {
+                    controller = "Users", action = "Index"
+                });
+                routes.MapRoute(name: "CreateUser", template: "Users/Create", new
+                {
+                    controller = "Users", action = "Create"
+                });
+                routes.MapRoute(name: "EditUsers", template: "Users/Edit", new
+                {
+                    controller = "Users", action = "Edit"
+                });
+                routes.MapRoute(name: "DeleteUsers", template: "Users/Delete/{id?}", new
+                {
+                    controller = "Users", action = "Delete"
+                });
+                routes.MapRoute(name: "ChangeUsersPasswords", template: "Users/ChangePassword", new
+                {
+                    controller = "Users", action = "ChangePassword"
+                });
+                routes.MapRoute(name: "TweetsIndex", template: "Tweets", new
+                {
+                    controller = "Tweets", action = "Index"
+                });
+                routes.MapRoute(name: "EditTweet", template: "Tweets/Edit", new
+                {
+                    controller = "Tweets", action = "Edit"
+                });
+                routes.MapRoute(name: "DeleteTweet", template: "Tweets/Delete", new
+                {
+                    controller = "Tweets", action = "Delete"
+                });
+                routes.MapRoute(name: "RolesIndex", template: "Roles", new
+                {
+                    controller = "Roles", action = "Index"
+                });
+                routes.MapRoute(name: "CreateRole", template: "Roles/Create", new
+                {
+                    controller = "Roles", action = "Create"
+                });
+                routes.MapRoute(name: "DeleteRole", template: "Roles/Delete/{id?}", new
+                {
+                    controller = "Roles", action = "Delete"
+                });
+                routes.MapRoute(name: "EditRole", template: "Roles/Edit", new
+                {
+                    controller = "Roles", action = "Edit"
+                });
             });
         }
     }
