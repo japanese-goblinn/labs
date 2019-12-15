@@ -10,17 +10,20 @@
 
 
 class FixedQueue {
+
     int size;
-    int q_mask;
-    uint8_t* buffer;
-    alignas(64) std::atomic<int> REAR;
+    int mask;
+    alignas(64) std::atomic<int> FRONT;
+    alignas(64) std::atomic<uint8_t>* buffer;
 
 public:
-    alignas(64) std::atomic<int> FRONT;
+
+    alignas(64) std::atomic<int> REAR;
+
     FixedQueue(int size) {
         this->size = size;
-        q_mask = size - 1;
-        buffer = new uint8_t[size];
+        this->mask = size - 1;
+        buffer = new std::atomic<uint8_t>[size]();
         FRONT = 0;
         REAR = 0;
     }
@@ -31,20 +34,33 @@ public:
 
     void push(uint8_t val) {
         while (true) {
+
             auto rear = REAR.load();
+
             if (rear == FRONT + size) {
                 continue;
             }
-            if (REAR.compare_exchange_strong(rear, rear + 1)) {
-                buffer[rear & q_mask] = val;
-                return;
+
+            auto thread_val = buffer[rear & mask].load();
+
+            if (thread_val != 0) {
+                continue;
+            }
+
+            if (REAR.compare_exchange_weak(rear, rear + 1)) {
+                if (buffer[rear & mask].compare_exchange_weak(thread_val, val)) {
+                    return;
+                }
             }
         }
     }
 
     bool pop(uint8_t& val) {
+
         while (true) {
+
             auto front = FRONT.load();
+
             if (front == REAR) {
                 std::this_thread::sleep_for(std::chrono::milliseconds(1));
                 front = FRONT.load();
@@ -52,9 +68,18 @@ public:
                     return false;
                 }
             }
-            if (FRONT.compare_exchange_strong(front, front + 1)) {
-                val = buffer[front & q_mask];
-                return true;
+
+            auto thread_val = buffer[front & mask].load();
+
+            if (thread_val == 0) {
+                continue;
+            }
+
+            if (FRONT.compare_exchange_weak(front, front + 1)) {
+                if (buffer[front & mask].compare_exchange_weak(thread_val, 0)) {
+                    val = thread_val;
+                    return true;
+                }
             }
         }
     }
@@ -93,14 +118,14 @@ int main(int argc, const char * argv[]) {
             for (int i = 0; i < consumerNum; i++) {
                 consumerThreads.emplace_back([i, &q, &sums, &taskNum, &producerNum] {
                     auto start = std::chrono::high_resolution_clock::now();
-                    int local_sum = 0;
+                    std::atomic<int> local_sum = 0;
                     uint8_t q_e;
                     while (true) {
                         auto cond = q.pop(q_e);
                         if (cond) {
                             local_sum += q_e;
-                        } else if (!cond && q.FRONT == taskNum * producerNum) {
-                            sums[i]= local_sum;
+                        } else if (!cond && q.REAR == taskNum * producerNum) {
+                            sums[i] = local_sum;
                             auto stop = std::chrono::high_resolution_clock::now();
                             auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
                             printf("Consumer %d time is %f milliseconds\n", i + 1, (double)(duration.count()));

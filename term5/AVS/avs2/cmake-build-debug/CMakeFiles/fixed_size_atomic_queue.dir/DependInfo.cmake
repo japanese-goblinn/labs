@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/saisuicied/Downloads/avs2/task2/flixed_size_atomic_queue.cpp" "/Users/saisuicied/Downloads/avs2/cmake-build-debug/CMakeFiles/fixed_size_atomic_queue.dir/task2/flixed_size_atomic_queue.cpp.o"
+  "/Users/saisuicied/Downloads/avsgit/AVS-5-sem/avs2/task2/flixed_size_atomic_queue.cpp" "/Users/saisuicied/Downloads/avsgit/AVS-5-sem/avs2/cmake-build-debug/CMakeFiles/fixed_size_atomic_queue.dir/task2/flixed_size_atomic_queue.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")
 

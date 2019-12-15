@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/saisuicied/Downloads/avs2/task1/mutex_counter.cpp" "/Users/saisuicied/Downloads/avs2/cmake-build-debug/CMakeFiles/mutex_counter.dir/task1/mutex_counter.cpp.o"
+  "/Users/saisuicied/Downloads/avsgit/AVS-5-sem/avs2/task1/mutex_counter.cpp" "/Users/saisuicied/Downloads/avsgit/AVS-5-sem/avs2/cmake-build-debug/CMakeFiles/mutex_counter.dir/task1/mutex_counter.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")
 

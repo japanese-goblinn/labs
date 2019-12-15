@@ -1,4 +1,4 @@
-# Install script for directory: /Users/saisuicied/Downloads/avs2
+# Install script for directory: /Users/saisuicied/Downloads/avsgit/AVS-5-sem/avs2
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/saisuicied/Downloads/avs2/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/saisuicied/Downloads/avsgit/AVS-5-sem/avs2/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

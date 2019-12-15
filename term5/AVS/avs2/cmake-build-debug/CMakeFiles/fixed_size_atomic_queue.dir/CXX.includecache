@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/Users/saisuicied/Downloads/avs2/task2/flixed_size_atomic_queue.cpp
+/Users/saisuicied/Downloads/avsgit/AVS-5-sem/avs2/task2/flixed_size_atomic_queue.cpp
 iostream
 -
 vector

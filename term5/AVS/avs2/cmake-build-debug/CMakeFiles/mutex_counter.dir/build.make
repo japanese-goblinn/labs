@@ -34,19 +34,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = "/Users/saisuicied/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/192.6817.18/CLion.app/Contents/bin/cmake/mac/bin/cmake"
+CMAKE_COMMAND = "/Users/saisuicied/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/193.5233.144/CLion.app/Contents/bin/cmake/mac/bin/cmake"
 
 # The command to remove a file.
-RM = "/Users/saisuicied/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/192.6817.18/CLion.app/Contents/bin/cmake/mac/bin/cmake" -E remove -f
+RM = "/Users/saisuicied/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/193.5233.144/CLion.app/Contents/bin/cmake/mac/bin/cmake" -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/saisuicied/Downloads/avs2
+CMAKE_SOURCE_DIR = /Users/saisuicied/Downloads/avsgit/AVS-5-sem/avs2
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/saisuicied/Downloads/avs2/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/saisuicied/Downloads/avsgit/AVS-5-sem/avs2/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/mutex_counter.dir/depend.make
@@ -59,16 +59,16 @@ include CMakeFiles/mutex_counter.dir/flags.make
 
 CMakeFiles/mutex_counter.dir/task1/mutex_counter.cpp.o: CMakeFiles/mutex_counter.dir/flags.make
 CMakeFiles/mutex_counter.dir/task1/mutex_counter.cpp.o: ../task1/mutex_counter.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/saisuicied/Downloads/avs2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/mutex_counter.dir/task1/mutex_counter.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/mutex_counter.dir/task1/mutex_counter.cpp.o -c /Users/saisuicied/Downloads/avs2/task1/mutex_counter.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/saisuicied/Downloads/avsgit/AVS-5-sem/avs2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/mutex_counter.dir/task1/mutex_counter.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/mutex_counter.dir/task1/mutex_counter.cpp.o -c /Users/saisuicied/Downloads/avsgit/AVS-5-sem/avs2/task1/mutex_counter.cpp
 
 CMakeFiles/mutex_counter.dir/task1/mutex_counter.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/mutex_counter.dir/task1/mutex_counter.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/saisuicied/Downloads/avs2/task1/mutex_counter.cpp > CMakeFiles/mutex_counter.dir/task1/mutex_counter.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/saisuicied/Downloads/avsgit/AVS-5-sem/avs2/task1/mutex_counter.cpp > CMakeFiles/mutex_counter.dir/task1/mutex_counter.cpp.i
 
 CMakeFiles/mutex_counter.dir/task1/mutex_counter.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/mutex_counter.dir/task1/mutex_counter.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/saisuicied/Downloads/avs2/task1/mutex_counter.cpp -o CMakeFiles/mutex_counter.dir/task1/mutex_counter.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/saisuicied/Downloads/avsgit/AVS-5-sem/avs2/task1/mutex_counter.cpp -o CMakeFiles/mutex_counter.dir/task1/mutex_counter.cpp.s
 
 # Object files for target mutex_counter
 mutex_counter_OBJECTS = \
@@ -80,7 +80,7 @@ mutex_counter_EXTERNAL_OBJECTS =
 mutex_counter: CMakeFiles/mutex_counter.dir/task1/mutex_counter.cpp.o
 mutex_counter: CMakeFiles/mutex_counter.dir/build.make
 mutex_counter: CMakeFiles/mutex_counter.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/saisuicied/Downloads/avs2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable mutex_counter"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/saisuicied/Downloads/avsgit/AVS-5-sem/avs2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable mutex_counter"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/mutex_counter.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -93,6 +93,6 @@ CMakeFiles/mutex_counter.dir/clean:
 .PHONY : CMakeFiles/mutex_counter.dir/clean
 
 CMakeFiles/mutex_counter.dir/depend:
-	cd /Users/saisuicied/Downloads/avs2/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/saisuicied/Downloads/avs2 /Users/saisuicied/Downloads/avs2 /Users/saisuicied/Downloads/avs2/cmake-build-debug /Users/saisuicied/Downloads/avs2/cmake-build-debug /Users/saisuicied/Downloads/avs2/cmake-build-debug/CMakeFiles/mutex_counter.dir/DependInfo.cmake --color=$(COLOR)
+	cd /Users/saisuicied/Downloads/avsgit/AVS-5-sem/avs2/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/saisuicied/Downloads/avsgit/AVS-5-sem/avs2 /Users/saisuicied/Downloads/avsgit/AVS-5-sem/avs2 /Users/saisuicied/Downloads/avsgit/AVS-5-sem/avs2/cmake-build-debug /Users/saisuicied/Downloads/avsgit/AVS-5-sem/avs2/cmake-build-debug /Users/saisuicied/Downloads/avsgit/AVS-5-sem/avs2/cmake-build-debug/CMakeFiles/mutex_counter.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/mutex_counter.dir/depend
 
