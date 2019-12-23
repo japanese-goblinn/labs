@@ -2,8 +2,9 @@
 <resources>
     <color name="colorPrimary">#212121</color>
     <color name="colorStatusBar">#000000</color>
-    <color name="colorSecondary">#03DAC5</color>
+<!--    <color name="colorSecondary">#03DAC5</color>-->
     <color name="colorBackground">#121212</color>
     <color name="colorAccent">#BB86FC</color>
     <color name="colorTextPrimary">#FFFFFF</color>
+    <color name="colorElement">#424242</color>
 </resources>
