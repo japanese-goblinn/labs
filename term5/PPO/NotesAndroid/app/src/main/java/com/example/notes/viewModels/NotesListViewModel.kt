@@ -1,13 +1,15 @@
 package com.example.notes.viewModels
 
 import android.app.Application
+import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.*
 import com.example.notes.db.Database
 import com.example.notes.db.Repository
 import com.example.notes.models.Note
+import kotlinx.coroutines.launch
 
-class NotesViewModel(application: Application): AndroidViewModel(application) {
+class NotesListViewModel(application: Application): AndroidViewModel(application) {
 
     private val repository: Repository
 
@@ -15,9 +17,10 @@ class NotesViewModel(application: Application): AndroidViewModel(application) {
 
     init {
         val db = Database.get(application, viewModelScope)
-        Log.d("SSS", "DB CREATED")
-        repository = Repository(db.notesDao(), db.tagsDao())
+        repository = Repository(db.notesDao(), db.tagsDao(), db.notesTagsDao())
         notes = repository.notes
     }
+
+    fun delete(note: Note) = viewModelScope.launch { repository.delete(note) }
 
 }

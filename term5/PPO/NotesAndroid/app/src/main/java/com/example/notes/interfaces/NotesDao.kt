@@ -17,8 +17,11 @@ interface NotesDao {
     fun update(note: Note)
 
     @Delete
-    fun delete(note: Note)
+    suspend fun delete(note: Note)
 
     @Query("DELETE FROM notes")
     suspend fun deleteAll()
+
+    @Query("SELECT * FROM notes WHERE id = :id")
+    suspend fun findBy(id: Int): Note?
 }

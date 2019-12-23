@@ -6,6 +6,8 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
+apply plugin: 'androidx.navigation.safeargs'
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
@@ -25,6 +27,9 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
     }
 }
 
@@ -60,5 +65,8 @@ dependencies {
 
     api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$rootProject.coroutines"
 
+    implementation "com.google.android.material:material:$rootProject.materialVersion"
 
+    implementation "androidx.navigation:navigation-fragment-ktx:${rootProject.saveArgsVersion}"
+    implementation "androidx.navigation:navigation-ui-ktx:${rootProject.saveArgsVersion}"
 }

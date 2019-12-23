@@ -18,4 +18,7 @@ interface TagsDao {
 
     @Delete
     fun delete(tag: Tag)
+
+    @Query("DELETE FROM tags")
+    suspend fun deleteAll()
 }

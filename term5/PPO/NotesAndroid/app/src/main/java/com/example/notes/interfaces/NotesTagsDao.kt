@@ -14,4 +14,6 @@ interface NotesTagsDao {
     @Delete
     fun delete(noteTag: NoteTag)
 
+    @Query("DELETE FROM notes_tags")
+    suspend fun deleteAll()
 }

@@ -1,12 +1,13 @@
 package com.example.notes.models
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.ForeignKey
-import androidx.room.PrimaryKey
+import androidx.room.*
 
 @Entity(
     tableName = "notes_tags",
+    indices = [
+        Index("note_id"),
+        Index("tag_id")
+    ],
     foreignKeys = [
         ForeignKey(
             entity = Note::class,
