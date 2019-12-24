@@ -8,6 +8,7 @@ import com.example.notes.db.Database
 import com.example.notes.db.Repository
 import com.example.notes.models.Note
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class NotesListViewModel(application: Application): AndroidViewModel(application) {
 
@@ -22,5 +23,10 @@ class NotesListViewModel(application: Application): AndroidViewModel(application
     }
 
     fun delete(note: Note) = viewModelScope.launch { repository.delete(note) }
+
+    fun tagsFor(note: Note) = runBlocking {
+        return@runBlocking repository.tagsIdsFor(note)
+            .mapNotNull { repository.findTagBy(it)?.name }
+    }
 
 }

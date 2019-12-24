@@ -8,7 +8,7 @@ import com.example.notes.models.Note
 interface NotesDao {
 
     @Insert
-    suspend fun insert(note: Note)
+    suspend fun insert(note: Note): Long
 
     @Query("SELECT * FROM notes")
     fun getAll(): LiveData<List<Note>>

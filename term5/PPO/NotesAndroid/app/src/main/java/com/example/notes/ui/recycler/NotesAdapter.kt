@@ -9,10 +9,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.notes.R
 import com.example.notes.models.Note
+import com.example.notes.viewModels.NotesListViewModel
 import java.util.*
 
 class NotesAdapter(
-    context: Context
+    context: Context,
+    val viewModel: NotesListViewModel
 ): RecyclerView.Adapter<NotesAdapter.ViewHolder>() {
 
     var onItemClick: ((Note) -> Unit)? = null
@@ -24,6 +26,7 @@ class NotesAdapter(
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val title: TextView = itemView.findViewById(R.id.noteCellTitle)
         val content: TextView = itemView.findViewById(R.id.noteCellContent)
+        val tags: TextView = itemView.findViewById(R.id.noteCellTags)
 
         init {
             itemView.setOnClickListener {
@@ -32,7 +35,6 @@ class NotesAdapter(
             val deleteButton: ImageButton = itemView.findViewById(R.id.deleteNote)
             deleteButton.setOnClickListener {
                 onDeleteButtonClick?.invoke(notes[adapterPosition])
-//                notes.remove(notes[adapterPosition])
             }
         }
     }
@@ -50,7 +52,8 @@ class NotesAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val note = notes[position]
         holder.title.text = note.title
-        holder.content.text = note.content ?: note.lastUpdate.toString()
+        holder.content.text = note.content
+        holder.tags.text = viewModel.tagsFor(note).map { "#$it" }.joinToString(" ")
     }
 
     override fun getItemCount(): Int = notes.count()

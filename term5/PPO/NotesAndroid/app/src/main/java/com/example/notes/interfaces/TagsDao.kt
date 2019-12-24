@@ -8,10 +8,10 @@ import com.example.notes.models.Tag
 @Dao
 interface TagsDao {
     @Insert
-    suspend fun insert(tag: Tag)
+    suspend fun insert(tag: Tag): Long
 
     @Query("SELECT * FROM tags")
-    fun getAll(): LiveData<List<Tag>>
+    suspend fun getAll(): List<Tag>
 
     @Update
     fun update(tag: Tag)
@@ -21,4 +21,10 @@ interface TagsDao {
 
     @Query("DELETE FROM tags")
     suspend fun deleteAll()
+
+    @Query("SELECT * FROM tags WHERE id = :id")
+    suspend fun findBy(id: Int): Tag?
+
+    @Query("SELECT id FROM tags WHERE name = :name")
+    suspend fun findIdBy(name: String): Int
 }

@@ -43,7 +43,7 @@ class NotesListFragment: Fragment() {
 
         viewModel = ViewModelProviders.of(this).get(NotesListViewModel::class.java)
 
-        viewAdapter = NotesAdapter(requireContext())
+        viewAdapter = NotesAdapter(requireContext(), viewModel)
         notesList.adapter = viewAdapter
 
         val orientation = activity?.resources?.configuration?.orientation
@@ -67,7 +67,7 @@ class NotesListFragment: Fragment() {
         }
 
         viewModel.notes.observe(viewLifecycleOwner, Observer {
-            viewAdapter.setupNotes(it.reversed().toMutableList())
+            viewAdapter.setupNotes(it.toMutableList())
         })
 
         fab = rootView.findViewById(R.id.fab)

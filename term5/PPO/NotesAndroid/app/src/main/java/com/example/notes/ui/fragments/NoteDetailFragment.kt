@@ -18,6 +18,7 @@ import com.example.notes.models.Note
 import com.example.notes.viewModels.NoteDetailViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textfield.TextInputEditText
+import kotlinx.coroutines.runBlocking
 import java.util.*
 
 class NoteDetailFragment: Fragment() {
@@ -53,33 +54,40 @@ class NoteDetailFragment: Fragment() {
             viewModel.findBy(args.noteId)?.let { note = it }
             titleEditText.setText(note?.title)
             contentEditText.setText(note?.content)
+            tagsEditText.setText(viewModel.tagsFor(note!!).joinToString(" "))
         }
 
         fabSaveButton = rootView.findViewById(R.id.fabSave)
 
         fabSaveButton.setOnClickListener {
-            val title = titleEditText.text.toString()
-            val content: String?
-            if (contentEditText.text.isEmpty()) {
-                content = null
+            val currentDate = Date()
+            val title: String?
+            if (titleEditText.text?.isEmpty() == true) {
+                title = currentDate.toString()
             } else {
-                content = contentEditText.text.toString()
+                title = titleEditText.text.toString()
             }
+            val content = contentEditText.text.toString()
             if (note == null) {
                 val note = Note(
                     title = title,
                     content = content,
                     lastUpdate = Date()
                 )
-                viewModel.add(note)
+                viewModel.add(note, getUniqueTags())
             } else {
                 note?.lastUpdate = Date()
                 note?.title = title
                 note?.content = content
-                viewModel.update(note!!)
+                viewModel.update(note!!, getUniqueTags())
             }
             findNavController().navigate(R.id.action_noteDetailFragment_to_notesListFragment)
         }
     }
 
+    private fun getUniqueTags(): List<String> = tagsEditText.text
+        .toString()
+        .split(" ")
+        .filter { it != "" }
+        .distinct()
 }

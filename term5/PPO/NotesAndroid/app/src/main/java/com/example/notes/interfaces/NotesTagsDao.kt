@@ -16,4 +16,7 @@ interface NotesTagsDao {
 
     @Query("DELETE FROM notes_tags")
     suspend fun deleteAll()
+
+    @Query("SELECT tag_id FROM notes_tags WHERE note_id = :noteId")
+    suspend fun tagsIdsFor(noteId: Int): List<Int>
 }

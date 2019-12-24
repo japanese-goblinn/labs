@@ -34,7 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:backgroundTint="@color/colorTextPrimary"
-            android:hint="New note title"
+            android:hint="Note title"
             android:textColor="@color/colorTextPrimary"
             android:textColorHint="@color/colorTextPrimary"
             android:textSize="25sp" />
