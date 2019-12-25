@@ -1,6 +1,7 @@
 package com.example.notes.ui.fragments
 
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
@@ -19,6 +21,9 @@ import com.example.notes.viewModels.NoteDetailViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textfield.TextInputEditText
 import kotlinx.coroutines.runBlocking
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 class NoteDetailFragment: Fragment() {
@@ -32,6 +37,7 @@ class NoteDetailFragment: Fragment() {
     private lateinit var tagsEditText: TextInputEditText
     private lateinit var fabSaveButton: FloatingActionButton
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -42,6 +48,7 @@ class NoteDetailFragment: Fragment() {
         return rootView
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun setupLayoutFor(rootView: View) {
 
         viewModel = ViewModelProviders.of(this).get(NoteDetailViewModel::class.java)
@@ -54,16 +61,15 @@ class NoteDetailFragment: Fragment() {
             viewModel.findBy(args.noteId)?.let { note = it }
             titleEditText.setText(note?.title)
             contentEditText.setText(note?.content)
-            tagsEditText.setText(viewModel.tagsFor(note!!).joinToString(" "))
+            tagsEditText.setText(viewModel.tagsFor(note)?.joinToString(" "))
         }
 
         fabSaveButton = rootView.findViewById(R.id.fabSave)
 
         fabSaveButton.setOnClickListener {
-            val currentDate = Date()
             val title: String?
             if (titleEditText.text?.isEmpty() == true) {
-                title = currentDate.toString()
+                title = format(LocalDateTime.now())
             } else {
                 title = titleEditText.text.toString()
             }
@@ -79,10 +85,16 @@ class NoteDetailFragment: Fragment() {
                 note?.lastUpdate = Date()
                 note?.title = title
                 note?.content = content
-                viewModel.update(note!!, getUniqueTags())
+                viewModel.update(note, getUniqueTags())
             }
             findNavController().navigate(R.id.action_noteDetailFragment_to_notesListFragment)
         }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun format(date: LocalDateTime): String {
+        val formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm")
+        return date.format(formatter)
     }
 
     private fun getUniqueTags(): List<String> = tagsEditText.text

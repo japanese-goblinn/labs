@@ -26,5 +26,5 @@ interface TagsDao {
     suspend fun findBy(id: Int): Tag?
 
     @Query("SELECT id FROM tags WHERE name = :name")
-    suspend fun findIdBy(name: String): Int
+    suspend fun findIdBy(name: String): Int?
 }

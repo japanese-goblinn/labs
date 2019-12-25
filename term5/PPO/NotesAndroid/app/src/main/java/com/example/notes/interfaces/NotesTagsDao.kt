@@ -19,4 +19,7 @@ interface NotesTagsDao {
 
     @Query("SELECT tag_id FROM notes_tags WHERE note_id = :noteId")
     suspend fun tagsIdsFor(noteId: Int): List<Int>
+
+    @Query("SELECT note_id FROM notes_tags WHERE tag_id = :tagId")
+    suspend fun notesIdsFor(tagId: Int): List<Int>
 }

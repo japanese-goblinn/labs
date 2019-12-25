@@ -39,8 +39,12 @@ class NotesAdapter(
         }
     }
 
-    fun setupNotes(notes: MutableList<Note>) {
-        this.notes = notes
+    fun setupNotes(notes: List<Note>?) {
+        if (notes == null) {
+            this.notes.clear()
+        } else {
+            this.notes = notes.toMutableList()
+        }
         notifyDataSetChanged()
     }
 

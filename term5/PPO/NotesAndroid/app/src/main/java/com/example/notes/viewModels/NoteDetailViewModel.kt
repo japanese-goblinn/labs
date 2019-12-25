@@ -24,9 +24,11 @@ class NoteDetailViewModel(application: Application): AndroidViewModel(applicatio
         return@runBlocking repository.findBy(id)
     }
 
-    fun tagsFor(note: Note) = runBlocking {
-        return@runBlocking repository.tagsIdsFor(note)
-            .mapNotNull { repository.findTagBy(it)?.name }
+    fun tagsFor(note: Note?) = runBlocking {
+        note?.let {
+            return@runBlocking repository.tagsIdsFor(note)
+                .mapNotNull { repository.findTagBy(it)?.name }
+        }
     }
 
     fun add(note: Note, tags: List<String>) = runBlocking {
@@ -36,23 +38,25 @@ class NoteDetailViewModel(application: Application): AndroidViewModel(applicatio
         }
     }
 
-    fun update(note: Note, tags: List<String>) = runBlocking {
-        val noteId = repository.update(note)
-        if (tags.isNotEmpty()) {
-            updateTags(noteId, tags)
+    fun update(note: Note?, tags: List<String>) = runBlocking {
+        note?.let {
+            val noteId = repository.update(note)
+            if (tags.isNotEmpty()) {
+                updateTags(noteId, tags)
+            }
         }
     }
 
     private suspend fun updateTags(noteId: Int, tags: List<String>) {
         val newTags = tags.toSet()
-        val allTags = repository.allTags().toSet()
+        val allTags = repository.allTags().map { it.name }.toSet()
 
         val newTagsToAdd = newTags.minus(allTags)
         val newTagsToAddIDs = mutableListOf<Int>()
         for (tag in newTagsToAdd) {
             newTagsToAddIDs.add(
                 repository.add(
-                    Tag(name = tag.toString())
+                    Tag(name = tag)
                 )
             )
         }
@@ -66,7 +70,7 @@ class NoteDetailViewModel(application: Application): AndroidViewModel(applicatio
         val commonTagsToAddIDs = mutableListOf<Int>()
         for (tag in commonWithAllTags) {
             commonTagsToAddIDs.add(
-                repository.findTagId(tag.toString())
+                repository.findTagId(tag)!!
             )
         }
         for (tagId in commonTagsToAddIDs) {

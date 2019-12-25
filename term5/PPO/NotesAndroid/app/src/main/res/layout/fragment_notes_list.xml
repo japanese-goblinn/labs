@@ -12,27 +12,75 @@
         android:layout_height="match_parent"
         android:background="@color/colorBackground">
 
+        <View
+            android:id="@+id/divideNotes"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/colorElement"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sortingTextField" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/notesList"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:scrollbars="vertical"
+            android:layout_marginTop="5dp"
             android:scrollbarThumbVertical="@drawable/scrollbar"
+            android:scrollbars="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divideNotes"
             tools:itemCount="5"
             tools:listitem="@layout/note_list_cell" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:src="@drawable/ic_note_add_black_24dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp" />
+            android:layout_margin="16dp"
+            android:src="@drawable/ic_note_add_black_24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <ImageButton
+            android:id="@+id/sortButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:background="@null"
+            android:src="@drawable/ic_arrow_drop_down_24dp"
+            app:layout_constraintBottom_toBottomOf="@+id/sortingTextField"
+            app:layout_constraintStart_toEndOf="@+id/sortingTextField"
+            app:layout_constraintTop_toTopOf="@+id/sortingTextField" />
+
+        <TextView
+            android:id="@+id/sortingTextField"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="8dp"
+            android:text="Sorting"
+            android:textColor="@color/colorAccent"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <SearchView
+            android:id="@+id/searchBar"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:closeIcon="@drawable/ic_close_24dp"
+            android:queryHint="Search here"
+            android:searchHintIcon="@drawable/ic_search_24dp"
+            android:searchIcon="@drawable/ic_search_24dp"
+            app:layout_constraintBottom_toBottomOf="@+id/sortingTextField"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/sortButton"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
 

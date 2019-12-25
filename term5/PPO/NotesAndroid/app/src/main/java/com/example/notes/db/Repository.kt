@@ -14,6 +14,8 @@ class Repository(
 ) {
     val notes = notesDao.getAll()
 
+    suspend fun allTags(): List<Tag> = tagsDao.getAll()
+
     suspend fun add(note: Note): Int = notesDao.insert(note).toInt()
 
     suspend fun add(tag: Tag): Int = tagsDao.insert(tag).toInt()
@@ -24,18 +26,16 @@ class Repository(
 
     suspend fun findBy(id: Int): Note? = notesDao.findBy(id)
 
-    //
+    suspend fun findTagBy(id: Int): Tag? = tagsDao.findBy(id)
+
+    suspend fun findTagId(name: String): Int? = tagsDao.findIdBy(name)
+
+    suspend fun tagsIdsFor(note: Note): List<Int> = notesTagsDao.tagsIdsFor(note.id)
+
+    suspend fun notesIdsFor(tagId: Int): List<Int> = notesTagsDao.notesIdsFor(tagId)
+
     suspend fun update(note: Note): Int {
         delete(note)
         return add(note)
     }
-
-    suspend fun tagsIdsFor(note: Note): List<Int> = notesTagsDao.tagsIdsFor(note.id)
-
-    suspend fun findTagBy(id: Int): Tag? = tagsDao.findBy(id)
-
-    suspend fun findTagId(name: String) = tagsDao.findIdBy(name)
-
-    suspend fun allTags(): List<Tag> = tagsDao.getAll()
-
 }
