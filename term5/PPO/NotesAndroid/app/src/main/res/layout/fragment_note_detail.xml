@@ -37,7 +37,8 @@
             android:hint="Title"
             android:textColor="@color/colorTextPrimary"
             android:textColorHint="@color/colorTextPrimary"
-            android:textSize="25sp" />
+            android:textSize="25sp"
+            android:textStyle="bold" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -59,9 +60,10 @@
             android:layout_height="match_parent"
             android:backgroundTint="@color/colorTextPrimary"
             android:hint="Tags"
-            android:textColor="@color/colorTextPrimary"
+            android:textColor="@color/colorAccent"
             android:textColorHint="@color/colorTextPrimary"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            android:textStyle="bold" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <EditText

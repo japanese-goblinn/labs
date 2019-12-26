@@ -19,6 +19,7 @@
         android:text="Note"
         android:textColor="@color/colorTextPrimary"
         android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/deleteNote"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -64,6 +65,7 @@
         android:maxLines="1"
         android:text="#tag #note #tag #note #tag #note #tag #note #tag #note #tag #note"
         android:textColor="@color/colorAccent"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/deleteNote"
         app:layout_constraintStart_toStartOf="parent"

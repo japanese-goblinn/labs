@@ -81,7 +81,7 @@ abstract class Database: RoomDatabase() {
 
             val tagId = tagsDao.insert(Tag(name = "note"))
             val tagId2 = tagsDao.insert(Tag(name = "Cool"))
-            val note = notesDao.insert(Note(title = "A", content = null)).toInt()
+            val note = notesDao.insert(Note(title = "C", content = null)).toInt()
             notesTagsDao.insert(
                 NoteTag(
                     noteId = note,
