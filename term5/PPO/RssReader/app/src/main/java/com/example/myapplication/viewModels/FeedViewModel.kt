@@ -10,6 +10,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.myapplication.data.Post
+import com.example.myapplication.services.CacheService
 import com.example.myapplication.services.ParserService
 import kotlinx.coroutines.launch
 
@@ -37,10 +38,13 @@ class FeedViewModel(val app: Application): AndroidViewModel(app) {
                     Toast
                         .makeText(app, "This RSS link is not valid", Toast.LENGTH_LONG)
                         .show()
+                } else {
+                    CacheService.save(app, it.takeLast(10))
                 }
             }
         } else {
-            Log.d("SSS", "Cache use")
+            val cachePosts = CacheService.load(app)
+            posts.value = cachePosts
         }
     }
 
