@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.battleship.R
+import com.example.battleship.service.FirebaseService
 import com.google.android.material.textfield.TextInputEditText
 
 class SignUpFragment: Fragment() {
@@ -34,12 +35,8 @@ class SignUpFragment: Fragment() {
 
     private fun setupLayoutFor(view: View) {
 
-        val auth = (activity as MainActivity).auth
-
         backButton = view.findViewById(R.id.signUpBackButton)
-        backButton.setOnClickListener {
-            findNavController().popBackStack()
-        }
+        backButton.setOnClickListener { findNavController().popBackStack() }
 
         emailEditText = view.findViewById(R.id.emailSignUpTextInputEditText)
         passwordEditText = view.findViewById(R.id.passwordSignUpTextInputEditText)
@@ -52,7 +49,7 @@ class SignUpFragment: Fragment() {
             val password2 = repeatPasswordEditText.text.toString().trim()
 
             if (passwordsMatch(password1, password2)) {
-                auth.createUserWithEmailAndPassword(
+                FirebaseService.auth.createUserWithEmailAndPassword(
                     emailEditText.text.toString().trim(),
                     passwordEditText.text.toString().trim()
                 )

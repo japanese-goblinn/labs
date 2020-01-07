@@ -10,11 +10,15 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.battleship.R
+import com.example.battleship.service.FirebaseService
 
 class MainMenuFragment: Fragment() {
 
     private lateinit var signOutButton: Button
     private lateinit var emailTextView: TextView
+    private lateinit var createGameButton: Button
+    private lateinit var joinGameButton: Button
+    private lateinit var statisticsButton: Button
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,11 +30,8 @@ class MainMenuFragment: Fragment() {
         return rootView
     }
 
-    private fun setupLayoutFor(view: View) {
-
-        val auth = (activity as MainActivity).auth
-        val user = auth.currentUser!!
-
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         Toast
             .makeText(
                 requireContext(),
@@ -38,15 +39,39 @@ class MainMenuFragment: Fragment() {
                 Toast.LENGTH_LONG
             )
             .show()
+    }
+
+    private fun setupLayoutFor(view: View) {
 
         emailTextView = view.findViewById(R.id.emailTextView)
-        emailTextView.text = user.email.toString()
+        emailTextView.text = FirebaseService.auth.currentUser?.email.toString()
 
         signOutButton = view.findViewById(R.id.signOutButton)
         signOutButton.setOnClickListener {
-            auth.signOut()
+            FirebaseService.auth.signOut()
             val action = MainMenuFragmentDirections
                 .actionMainMenuFragmentToWelcomeFragment()
+            findNavController().navigate(action)
+        }
+
+        createGameButton = view.findViewById(R.id.createGameButton)
+        createGameButton.setOnClickListener {
+            val action = MainMenuFragmentDirections
+                .actionMainMenuFragmentToCreateGameFragment()
+            findNavController().navigate(action)
+        }
+
+        joinGameButton = view.findViewById(R.id.joinGameButton)
+        joinGameButton.setOnClickListener {
+            val action = MainMenuFragmentDirections
+                .actionMainMenuFragmentToJoinGameFragment()
+            findNavController().navigate(action)
+        }
+
+        statisticsButton = view.findViewById(R.id.statisticsButton)
+        statisticsButton.setOnClickListener {
+            val action = MainMenuFragmentDirections
+                .actionMainMenuFragmentToStatisticsFragment()
             findNavController().navigate(action)
         }
     }

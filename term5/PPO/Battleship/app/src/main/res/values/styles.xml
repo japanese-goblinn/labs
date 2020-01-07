@@ -13,6 +13,9 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-
+    <style name="dialog" parent="ThemeOverlay.MaterialComponents.Dialog.Alert">
+        <item name="android:background">@color/colorBackground</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
 
 </resources>

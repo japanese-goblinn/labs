@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.battleship.R
+import com.example.battleship.service.FirebaseService
 
 class SignInFragment: Fragment() {
 
@@ -31,18 +32,14 @@ class SignInFragment: Fragment() {
 
     private fun setupLayoutFor(view: View) {
 
-        val auth = (activity as MainActivity).auth
-
         backButton = view.findViewById(R.id.signInBackButton)
-        backButton.setOnClickListener {
-            findNavController().popBackStack()
-        }
+        backButton.setOnClickListener { findNavController().popBackStack() }
 
         emailEditText = view.findViewById(R.id.emailSignInTextInputEditText)
         passwordEditText = view.findViewById(R.id.passwordSignInTextInputEditText)
         signInButton = view.findViewById(R.id.signInButton)
         signInButton.setOnClickListener {
-            auth.signInWithEmailAndPassword(
+            FirebaseService.auth.signInWithEmailAndPassword(
                 emailEditText.text.toString().trim(),
                 passwordEditText.text.toString().trim()
             )

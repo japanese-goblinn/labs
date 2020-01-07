@@ -8,6 +8,7 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.battleship.R
+import com.example.battleship.service.FirebaseService
 
 class WelcomeFragment: Fragment() {
 
@@ -19,8 +20,7 @@ class WelcomeFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val auth = (activity as MainActivity).auth
-        auth.currentUser?.let {
+        FirebaseService.auth.currentUser?.let {
             val action = WelcomeFragmentDirections
                 .actionWelcomeFragmentToMainMenuFragment()
             findNavController().navigate(action)

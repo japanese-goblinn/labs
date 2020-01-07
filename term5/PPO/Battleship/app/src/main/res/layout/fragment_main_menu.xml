@@ -8,39 +8,39 @@
     android:background="@android:color/transparent">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/createGameButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="250dp"
+        android:layout_marginTop="140dp"
         android:layout_marginEnd="40dp"
-        android:text="Create Game"
         android:background="@color/colorAccent"
+        android:text="Create Game"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/joinGameButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/colorAccent"
         android:text="Join Game"
-        android:background="@color/colorAccent"
-        app:layout_constraintEnd_toEndOf="@+id/button"
-        app:layout_constraintStart_toStartOf="@+id/button"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintEnd_toEndOf="@+id/createGameButton"
+        app:layout_constraintStart_toStartOf="@+id/createGameButton"
+        app:layout_constraintTop_toBottomOf="@+id/createGameButton" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/statisticsButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Statistics"
+        android:layout_marginTop="15dp"
         android:background="@color/colorAccent"
-        app:layout_constraintEnd_toEndOf="@+id/button3"
-        app:layout_constraintStart_toStartOf="@+id/button3"
-        app:layout_constraintTop_toBottomOf="@+id/button3" />
+        android:text="Statistics"
+        app:layout_constraintEnd_toEndOf="@+id/joinGameButton"
+        app:layout_constraintStart_toStartOf="@+id/joinGameButton"
+        app:layout_constraintTop_toBottomOf="@+id/joinGameButton" />
 
     <Button
         android:id="@+id/signOutButton"
@@ -49,8 +49,8 @@
         android:layout_marginTop="20dp"
         android:background="@color/colorNegative"
         android:text="Sign Out"
-        app:layout_constraintEnd_toEndOf="@+id/button4"
-        app:layout_constraintTop_toBottomOf="@+id/button4" />
+        app:layout_constraintEnd_toEndOf="@+id/statisticsButton"
+        app:layout_constraintTop_toBottomOf="@+id/statisticsButton" />
 
     <TextView
         android:id="@+id/emailTextView"
@@ -62,6 +62,33 @@
         android:text="test@gmail.com"
         android:textColor="@color/colorSecondary"
         app:layout_constraintEnd_toStartOf="@+id/signOutButton"
-        app:layout_constraintStart_toStartOf="@+id/button4"
+        app:layout_constraintStart_toStartOf="@+id/statisticsButton"
         app:layout_constraintTop_toTopOf="@+id/signOutButton" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="Battleship"
+        android:textAlignment="center"
+        android:textColor="@color/colorAccent"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="New Year's Edition"
+        android:textColor="@color/colorNegative"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 </androidx.constraintlayout.widget.ConstraintLayout>

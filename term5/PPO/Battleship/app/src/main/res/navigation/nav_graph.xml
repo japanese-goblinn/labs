@@ -56,5 +56,42 @@
             app:launchSingleTop="true"
             app:popUpTo="@+id/nav_graph"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_mainMenuFragment_to_statisticsFragment"
+            app:destination="@id/statisticsFragment" />
+        <action
+            android:id="@+id/action_mainMenuFragment_to_joinGameFragment"
+            app:destination="@id/joinGameFragment" />
+        <action
+            android:id="@+id/action_mainMenuFragment_to_createGameFragment"
+            app:destination="@id/createGameFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/statisticsFragment"
+        android:name="com.example.battleship.ui.StatisticsFragment"
+        android:label="StatisticsFragment"
+        tools:layout="@layout/fragment_statistics"/>
+    <fragment
+        android:id="@+id/createGameFragment"
+        android:name="com.example.battleship.ui.CreateGameFragment"
+        android:label="CreateGameFragment"
+        tools:layout="@layout/fragment_create_game">
+        <action
+            android:id="@+id/action_createGameFragment_to_battlefieldFragment"
+            app:destination="@id/battlefieldFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/joinGameFragment"
+        android:name="com.example.battleship.ui.JoinGameFragment"
+        android:label="JoinGameFragment"
+        tools:layout="@layout/fragment_join_game">
+        <action
+            android:id="@+id/action_joinGameFragment_to_battlefieldFragment"
+            app:destination="@id/battlefieldFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/battlefieldFragment"
+        android:name="com.example.battleship.ui.BattlefieldFragment"
+        android:label="BattlefieldFragment"
+        tools:layout="@layout/fragment_battlefield"/>
 </navigation>

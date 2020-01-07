@@ -4,20 +4,17 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.example.battleship.R
-import com.google.firebase.auth.FirebaseAuth
 import com.jetradarmobile.snowfall.SnowfallView
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var view: SnowfallView
-    lateinit var auth: FirebaseAuth
+    lateinit var snowfallView: SnowfallView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        view = findViewById(R.id.snowfallView)
-        auth = FirebaseAuth.getInstance()
+        snowfallView = findViewById(R.id.snowfallView)
     }
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {
