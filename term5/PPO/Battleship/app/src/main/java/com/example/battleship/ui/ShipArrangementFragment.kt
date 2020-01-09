@@ -89,7 +89,6 @@ class ShipArrangementFragment: Fragment() {
             }
             CellType.WATER -> {
                 val ship = Ship(currentRank, currentDirection, i, j)
-                ships.add(ship)
                 battlefieldView.draw(ship) { willDraw ->
                     if (!willDraw) {
                         Toast.makeText(
@@ -98,6 +97,7 @@ class ShipArrangementFragment: Fragment() {
                             Toast.LENGTH_SHORT
                         ).show()
                     } else {
+                        ships.add(ship)
                         placingShips()
                     }
                 }
@@ -108,6 +108,7 @@ class ShipArrangementFragment: Fragment() {
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     @SuppressLint("ClickableViewAccessibility")
     private fun setupLayoutFor(view: View) {
+
         (activity as MainActivity).snowfallView.stopFalling()
 
         battlefieldView = view.findViewById(R.id.battlefieldView)
@@ -145,7 +146,6 @@ class ShipArrangementFragment: Fragment() {
 
         playersListener = object: ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                Log.d("SSS", dataSnapshot.childrenCount.toInt().toString())
                 if (dataSnapshot.childrenCount.toInt() == 2) {
                     continueProgressBar.visibility = View.GONE
                     continueGameButton.isEnabled = true

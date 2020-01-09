@@ -23,6 +23,7 @@ class BattlefieldView: View {
     private val destroyPaint = Paint()
 
     var cells = Array(COUNT) { Array(COUNT) { Cell() } }
+    var isEnemyView = false
 
     constructor(context: Context?) : super(context)
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
@@ -48,7 +49,7 @@ class BattlefieldView: View {
         shipPaint.color = ContextCompat.getColor(context, R.color.colorAccent)
         shipPaint.isAntiAlias = true
         shipPaint.style = Paint.Style.STROKE
-        shipPaint.strokeWidth = resources.displayMetrics.density * 3
+        shipPaint.strokeWidth = resources.displayMetrics.density * 4
 
         hitPaint.color = ContextCompat.getColor(context, R.color.colorNegative)
         hitPaint.isAntiAlias = true
@@ -352,7 +353,9 @@ class BattlefieldView: View {
             for (cell in cellRow) {
                 when (cell.type) {
                     CellType.SHIP -> {
-                        canvas.drawRect(cell.rect, shipPaint)
+                        if (!isEnemyView) {
+                            canvas.drawRect(cell.rect, shipPaint)
+                        }
                     }
                     CellType.MISS -> {
                         canvas.drawRect(cell.rect, missPaint)

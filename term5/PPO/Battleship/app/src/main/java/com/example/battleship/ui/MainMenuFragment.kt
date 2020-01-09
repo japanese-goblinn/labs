@@ -20,8 +20,6 @@ class MainMenuFragment: Fragment() {
     private lateinit var joinGameButton: Button
     private lateinit var statisticsButton: Button
 
-    private lateinit var canvasTestButton: Button
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -34,6 +32,7 @@ class MainMenuFragment: Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        (activity as MainActivity).snowfallView.restartFalling()
         Toast
             .makeText(
                 requireContext(),
