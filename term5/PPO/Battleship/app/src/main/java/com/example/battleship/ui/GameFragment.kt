@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.battleship.BattlefieldView
+import com.example.battleship.views.BattlefieldView
 import com.example.battleship.R
 import com.example.battleship.models.CellType
 import com.example.battleship.models.Hit
@@ -18,8 +18,6 @@ import com.example.battleship.service.FirebaseService
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
-import kotlinx.android.synthetic.main.fragment_game.*
-import kotlinx.android.synthetic.main.fragment_ship_arrangement.*
 
 class GameFragment: Fragment() {
 

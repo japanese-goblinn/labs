@@ -39,6 +39,17 @@ class SignInFragment: Fragment() {
         passwordEditText = view.findViewById(R.id.passwordSignInTextInputEditText)
         signInButton = view.findViewById(R.id.signInButton)
         signInButton.setOnClickListener {
+
+            if (emailEditText.text.isNullOrEmpty()) {
+                emailEditText.error = "Can not be empty"
+                return@setOnClickListener
+            }
+
+            if (passwordEditText.text.isNullOrEmpty()) {
+                passwordEditText.error = "Can not be empty"
+                return@setOnClickListener
+            }
+
             FirebaseService.auth.signInWithEmailAndPassword(
                 emailEditText.text.toString().trim(),
                 passwordEditText.text.toString().trim()

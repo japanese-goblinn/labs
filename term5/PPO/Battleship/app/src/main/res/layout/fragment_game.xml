@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@android:color/transparent">
 
-    <com.example.battleship.BattlefieldView
+    <com.example.battleship.views.BattlefieldView
         android:id="@+id/enemyBattlefieldView"
         android:layout_width="320dp"
         android:layout_height="320dp"
@@ -16,7 +16,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.example.battleship.BattlefieldView
+    <com.example.battleship.views.BattlefieldView
         android:id="@+id/myBattlefieldView"
         android:layout_width="320dp"
         android:layout_height="320dp"

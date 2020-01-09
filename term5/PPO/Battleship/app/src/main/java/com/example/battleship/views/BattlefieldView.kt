@@ -1,4 +1,4 @@
-package com.example.battleship
+package com.example.battleship.views
 
 import android.content.Context
 import android.graphics.Canvas
@@ -7,6 +7,7 @@ import android.graphics.Rect
 import android.util.AttributeSet
 import android.view.View
 import androidx.core.content.ContextCompat
+import com.example.battleship.R
 import com.example.battleship.models.Cell
 import com.example.battleship.models.CellType
 import com.example.battleship.models.Direction
@@ -41,27 +42,37 @@ class BattlefieldView: View {
 
     private fun init() {
 
-        paint.color = ContextCompat.getColor(context, R.color.colorSecondary)
+        paint.color = ContextCompat.getColor(context,
+            R.color.colorSecondary
+        )
         paint.isAntiAlias = true
         paint.style = Paint.Style.STROKE
         paint.strokeWidth = resources.displayMetrics.density * 2
 
-        shipPaint.color = ContextCompat.getColor(context, R.color.colorAccent)
+        shipPaint.color = ContextCompat.getColor(context,
+            R.color.colorAccent
+        )
         shipPaint.isAntiAlias = true
         shipPaint.style = Paint.Style.STROKE
         shipPaint.strokeWidth = resources.displayMetrics.density * 4
 
-        hitPaint.color = ContextCompat.getColor(context, R.color.colorNegative)
+        hitPaint.color = ContextCompat.getColor(context,
+            R.color.colorNegative
+        )
         hitPaint.isAntiAlias = true
         hitPaint.style = Paint.Style.STROKE
         hitPaint.strokeWidth = resources.displayMetrics.density * 4
 
-        destroyPaint.color = ContextCompat.getColor(context, R.color.colorNegative)
+        destroyPaint.color = ContextCompat.getColor(context,
+            R.color.colorNegative
+        )
         destroyPaint.isAntiAlias = true
         destroyPaint.style = Paint.Style.FILL_AND_STROKE
         destroyPaint.strokeWidth = resources.displayMetrics.density
 
-        missPaint.color = ContextCompat.getColor(context, R.color.colorSecondary)
+        missPaint.color = ContextCompat.getColor(context,
+            R.color.colorSecondary
+        )
         missPaint.isAntiAlias = true
         missPaint.style = Paint.Style.FILL_AND_STROKE
         missPaint.strokeWidth = resources.displayMetrics.density

@@ -32,7 +32,7 @@ class MainMenuFragment: Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        (activity as MainActivity).snowfallView.restartFalling()
+//        (activity as MainActivity).snowfallView.restartFalling()
         Toast
             .makeText(
                 requireContext(),

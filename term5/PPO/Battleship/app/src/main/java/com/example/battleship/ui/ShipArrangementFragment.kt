@@ -14,7 +14,7 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.battleship.BattlefieldView
+import com.example.battleship.views.BattlefieldView
 import com.example.battleship.R
 import com.example.battleship.models.CellType
 import com.example.battleship.models.Direction

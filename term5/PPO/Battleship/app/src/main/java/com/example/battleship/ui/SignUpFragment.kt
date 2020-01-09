@@ -45,6 +45,16 @@ class SignUpFragment: Fragment() {
         signUpButton = view.findViewById(R.id.signUpButton)
         signUpButton.setOnClickListener {
 
+            if (emailEditText.text.isNullOrEmpty()) {
+                emailEditText.error = "Can not be empty"
+                return@setOnClickListener
+            }
+
+            if (repeatPasswordEditText.text.isNullOrEmpty()) {
+                repeatPasswordEditText.error = "Can not be empty"
+                return@setOnClickListener
+            }
+
             val password1 = passwordEditText.text.toString().trim()
             val password2 = repeatPasswordEditText.text.toString().trim()
 
