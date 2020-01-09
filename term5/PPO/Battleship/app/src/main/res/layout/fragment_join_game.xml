@@ -39,7 +39,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="120dp"
         app:layout_constraintEnd_toEndOf="@+id/textView5"
-        android:textColorHint="@color/colorTextPrimary"
         app:layout_constraintStart_toStartOf="@+id/textView5"
         app:layout_constraintTop_toBottomOf="@+id/textView5">
 
@@ -47,17 +46,16 @@
             android:id="@+id/gameCodeTextInputEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorTextPrimary"
             android:hint="Game code"
-            android:textColor="@color/colorTextPrimary" />
+            />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/joinButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:background="@color/colorAccent"
+        android:backgroundTint="@color/colorAccent"
         android:text="Join"
         app:layout_constraintEnd_toEndOf="@+id/textInputLayout6"
         app:layout_constraintStart_toStartOf="@+id/textInputLayout6"

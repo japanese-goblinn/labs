@@ -24,6 +24,7 @@ class JoinGameFragment: Fragment() {
     private lateinit var dialog: androidx.appcompat.app.AlertDialog
 
     private var gameStartListener: ValueEventListener? = null
+    private var playersListener: ValueEventListener? = null
     private var isNavigationDismiss = false
 
     override fun onCreateView(
@@ -40,9 +41,14 @@ class JoinGameFragment: Fragment() {
         super.onDestroyView()
         gameStartListener?.let {
             FirebaseService
-                .gamesRef
-                .child( gameCodeEditText.text.toString().toUpperCase())
+                .currentGameRef
                 .child("started")
+                .removeEventListener(it)
+        }
+        playersListener?.let {
+            FirebaseService
+                .currentGameRef
+                .child("players")
                 .removeEventListener(it)
         }
     }
@@ -52,6 +58,7 @@ class JoinGameFragment: Fragment() {
         backButton.setOnClickListener { findNavController().popBackStack() }
 
         gameCodeEditText = view.findViewById(R.id.gameCodeTextInputEditText)
+
         joinButton = view.findViewById(R.id.joinButton)
         joinButton.setOnClickListener {
             FirebaseService.joinGame(
@@ -67,21 +74,41 @@ class JoinGameFragment: Fragment() {
                     dialog = builder.create()
                     dialog.setOnDismissListener {
                         if (!isNavigationDismiss) {
-                            FirebaseService.leaveGame(
-                                gameCodeEditText.text.toString().toUpperCase(),
-                                FirebaseService.auth.currentUser
-                            )
+                            FirebaseService.leaveGame(FirebaseService.auth.currentUser)
                         }
                     }
                     dialog.show()
+
+                    playersListener = object: ValueEventListener {
+                        override fun onDataChange(dataSnapshot: DataSnapshot) {
+                            if (dataSnapshot.childrenCount.toInt() == 2) {
+                                for (player in dataSnapshot.children) {
+                                    val value = player.key.toString()
+                                    if (value != FirebaseService.auth.currentUser!!.uid) {
+                                        FirebaseService.enemyUid = value
+                                    }
+                                }
+                            }
+                        }
+
+                        override fun onCancelled(databaseError: DatabaseError) {
+                            Log.w("SSS", "PLAYER LISTENER CANCELED", databaseError.toException())
+                        }
+                    }
+
+                    FirebaseService
+                        .gamesRef
+                        .child(gameCodeEditText.text.toString().toUpperCase())
+                        .child("players")
+                        .addValueEventListener(playersListener!!)
+
                     gameStartListener = object: ValueEventListener {
                         override fun onDataChange(dataSnapshot: DataSnapshot) {
                             if (dataSnapshot.value == true) {
                                 isNavigationDismiss = true
                                 dialog.dismiss()
-                                (activity as MainActivity).snowfallView.stopFalling()
                                 val action = JoinGameFragmentDirections
-                                    .actionJoinGameFragmentToBattlefieldFragment()
+                                    .actionJoinGameFragmentToShipArrangementFragment()
                                 if (findNavController().currentDestination?.id == R.id.joinGameFragment) {
                                     findNavController().navigate(action)
                                 }
@@ -95,9 +122,10 @@ class JoinGameFragment: Fragment() {
 
                     FirebaseService
                         .gamesRef
-                        .child( gameCodeEditText.text.toString().toUpperCase())
+                        .child(gameCodeEditText.text.toString().toUpperCase())
                         .child("started")
                         .addValueEventListener(gameStartListener!!)
+
                 } else {
                     Toast
                         .makeText(

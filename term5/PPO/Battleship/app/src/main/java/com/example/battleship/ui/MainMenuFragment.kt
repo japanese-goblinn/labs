@@ -20,6 +20,8 @@ class MainMenuFragment: Fragment() {
     private lateinit var joinGameButton: Button
     private lateinit var statisticsButton: Button
 
+    private lateinit var canvasTestButton: Button
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

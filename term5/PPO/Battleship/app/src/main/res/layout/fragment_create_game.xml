@@ -58,8 +58,8 @@
         app:layout_constraintStart_toStartOf="@+id/textView4"
         app:layout_constraintTop_toBottomOf="@+id/gameCodeTextView" />
 
-    <Button
-        android:id="@+id/startGameButton"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/continueGameButton"
         style="@style/Widget.AppCompat.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -79,8 +79,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="1dp"
-        app:layout_constraintBottom_toBottomOf="@+id/startGameButton"
-        app:layout_constraintEnd_toEndOf="@+id/startGameButton"
-        app:layout_constraintStart_toStartOf="@+id/startGameButton"
-        app:layout_constraintTop_toTopOf="@+id/startGameButton" />
+        app:layout_constraintBottom_toBottomOf="@+id/continueGameButton"
+        app:layout_constraintEnd_toEndOf="@+id/continueGameButton"
+        app:layout_constraintStart_toStartOf="@+id/continueGameButton"
+        app:layout_constraintTop_toTopOf="@+id/continueGameButton" />
 </androidx.constraintlayout.widget.ConstraintLayout>

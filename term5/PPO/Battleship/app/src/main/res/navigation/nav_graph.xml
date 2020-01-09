@@ -77,8 +77,11 @@
         android:label="CreateGameFragment"
         tools:layout="@layout/fragment_create_game">
         <action
-            android:id="@+id/action_createGameFragment_to_battlefieldFragment"
-            app:destination="@id/battlefieldFragment" />
+            android:id="@+id/action_createGameFragment_to_shipArrangementFragment"
+            app:destination="@id/shipArrangementFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/nav_graph"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/joinGameFragment"
@@ -86,12 +89,27 @@
         android:label="JoinGameFragment"
         tools:layout="@layout/fragment_join_game">
         <action
-            android:id="@+id/action_joinGameFragment_to_battlefieldFragment"
-            app:destination="@id/battlefieldFragment" />
+            android:id="@+id/action_joinGameFragment_to_shipArrangementFragment"
+            app:destination="@id/shipArrangementFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/nav_graph"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
-        android:id="@+id/battlefieldFragment"
-        android:name="com.example.battleship.ui.BattlefieldFragment"
-        android:label="BattlefieldFragment"
-        tools:layout="@layout/fragment_battlefield"/>
+        android:id="@+id/shipArrangementFragment"
+        android:name="com.example.battleship.ui.ShipArrangementFragment"
+        android:label="ShipArrangementFragment"
+        tools:layout="@layout/fragment_ship_arrangement">
+        <action
+            android:id="@+id/action_shipArrangementFragment_to_gameFragment"
+            app:destination="@id/gameFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/nav_graph"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameFragment"
+        android:name="com.example.battleship.ui.GameFragment"
+        android:label="GameFragment"
+        tools:layout="@layout/fragment_game"/>
 </navigation>

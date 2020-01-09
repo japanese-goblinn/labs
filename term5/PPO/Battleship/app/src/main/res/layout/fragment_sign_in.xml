@@ -26,7 +26,6 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="40dp"
-        android:textColorHint="@color/colorTextPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signInBackButton">
@@ -36,9 +35,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
-            android:backgroundTint="@color/colorTextPrimary"
-            android:hint="Email"
-            android:textColor="@color/colorTextPrimary" />
+            android:hint="Email" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -47,7 +44,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:textColorHint="@color/colorTextPrimary"
         app:layout_constraintEnd_toEndOf="@+id/textInputLayout4"
         app:layout_constraintStart_toStartOf="@+id/textInputLayout4"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout4">
@@ -56,18 +52,16 @@
             android:id="@+id/passwordSignInTextInputEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorTextPrimary"
             android:hint="Password"
-            android:password="true"
-            android:textColor="@color/colorTextPrimary" />
+            android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/signInButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:background="@color/colorAccent"
+        android:backgroundTint="@color/colorAccent"
         android:text="Sign In"
         app:layout_constraintEnd_toEndOf="@+id/textInputLayout5"
         app:layout_constraintStart_toStartOf="@+id/textInputLayout5"

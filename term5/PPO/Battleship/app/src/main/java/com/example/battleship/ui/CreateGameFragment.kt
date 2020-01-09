@@ -37,8 +37,7 @@ class CreateGameFragment: Fragment() {
         super.onDestroyView()
         playersListener?.let {
             FirebaseService
-                .gamesRef
-                .child(gameCodeTextView.text.toString())
+                .currentGameRef
                 .child("players")
                 .removeEventListener(it)
         }
@@ -57,17 +56,15 @@ class CreateGameFragment: Fragment() {
 
         backButton = view.findViewById(R.id.createGameBackButton)
         backButton.setOnClickListener {
-            FirebaseService
-                .removeGameWith(gameCodeTextView.text.toString())
+            FirebaseService.removeGame()
             findNavController().popBackStack()
         }
 
-        startGameButton = view.findViewById(R.id.startGameButton)
+        startGameButton = view.findViewById(R.id.continueGameButton)
         startGameButton.setOnClickListener {
-            FirebaseService.changeGame(gameCodeTextView.text.toString(), true)
-            (activity as MainActivity).snowfallView.stopFalling()
+            FirebaseService.changeGame(true)
             val action = CreateGameFragmentDirections
-                .actionCreateGameFragmentToBattlefieldFragment()
+                .actionCreateGameFragmentToShipArrangementFragment()
             findNavController().navigate(action)
         }
 
@@ -79,6 +76,12 @@ class CreateGameFragment: Fragment() {
         playersListener = object: ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 if (dataSnapshot.childrenCount.toInt() == 2) {
+                    for (player in dataSnapshot.children) {
+                        val value = player.key.toString()
+                        if (value != FirebaseService.auth.currentUser!!.uid) {
+                            FirebaseService.enemyUid = value
+                        }
+                    }
                     progressBar.visibility = View.GONE
                     startGameButton.isEnabled = true
                     startGameButton.setBackgroundColor(resources.getColor(R.color.colorAccent))
@@ -98,8 +101,7 @@ class CreateGameFragment: Fragment() {
         }
 
         FirebaseService
-            .gamesRef
-            .child(gameCodeTextView.text.toString())
+            .currentGameRef
             .child("players")
             .addValueEventListener(playersListener!!)
     }
