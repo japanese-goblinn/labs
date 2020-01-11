@@ -23,20 +23,14 @@ class CacheService {
                 return serializer.adapter(type)
             }
 
-        private fun encode(
-            adapter: JsonAdapter<List<Post>>,
-            data: List<Post>
-        ) = adapter.toJson(data)
+        private fun encode(data: List<Post>) = adapter.toJson(data)
 
-        private fun decode(
-            adapter: JsonAdapter<List<Post>>,
-            data: String
-        ) = adapter.fromJson(data)
+        private fun decode(data: String) = adapter.fromJson(data)
 
         fun save(context: Context, data: List<Post>) {
             val sharedPreferences = context
                     .getSharedPreferences(CONTEXT_NAME, Context.MODE_PRIVATE)
-            val jsonData = encode(adapter, data)
+            val jsonData = encode(data)
             val editor = sharedPreferences.edit()
             editor.putString(ARTICLES_CACHE ,jsonData)
             editor.apply()
@@ -46,9 +40,7 @@ class CacheService {
             val sharedPreferences = context
                 .getSharedPreferences(CONTEXT_NAME, Context.MODE_PRIVATE)
             val jsonData = sharedPreferences.getString(ARTICLES_CACHE, null)
-            return jsonData?.let {
-                decode(adapter, it)
-            } ?: listOf()
+            return jsonData?.let { decode(it) } ?: listOf()
         }
     }
 }
