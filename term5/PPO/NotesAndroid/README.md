@@ -1,6 +1,6 @@
 # Notes
 
-# Features
+## Features
 
 * App is using `Material components` for better UI look (what? good looking UI in Android, impossible...)
 
@@ -21,10 +21,10 @@
 * App is using `Room` as DB solution
 
 
-# Screenshots
+## Screenshots
 
 ![](./media/interface.png)
 
-# Usage
+## Usage
 
 ![](./media/usage.gif)
