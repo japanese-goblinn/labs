@@ -8,6 +8,8 @@
 
 * Sign In/Up forms with all checks
 
+* Statistics of how good (and bad) are you at destroying enemies fleet (Total hits/misses/wins/losses)
+
 ## Usage
 
 ### Host gameplay
