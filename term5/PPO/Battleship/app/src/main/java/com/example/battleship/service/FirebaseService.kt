@@ -14,7 +14,6 @@ import java.lang.Exception
 
 class FirebaseService {
     companion object {
-
         var gameCode = ""
         var enemyUid = ""
 
