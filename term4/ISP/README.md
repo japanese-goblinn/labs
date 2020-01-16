@@ -16,5 +16,5 @@ Rools are simple:
 
 ## Usage
 
-![](/Users/saisuicied/Downloads/card_game/usage.gif)
+![](usage.gif)
 
