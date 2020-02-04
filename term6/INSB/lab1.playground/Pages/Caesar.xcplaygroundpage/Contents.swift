@@ -1,7 +1,7 @@
 import Foundation
 
 extension Character {
-    var getShift: Int {
+    var shift: Int {
         if self.isUppercase {
             return Int(UnicodeScalar("A").value)
         } else {
@@ -10,45 +10,44 @@ extension Character {
     }
 }
 
-func readFromFile() -> String? {
-    guard let fileURL = Bundle.main.url(forResource: "сaesar", withExtension: "txt")
+func readFromFile() -> [String]? {
+    guard let fileURL = Bundle.main.url(forResource: "сaesar", withExtension: "txt"),
+          let string = try? String(contentsOf: fileURL, encoding: .ascii)
         else { return nil }
-    return try? String(contentsOf: fileURL, encoding: .ascii)
+    return string.components(separatedBy: .newlines)
 }
 
 let power = 26
 
 func encode(this string: String, with key: Int) -> String {
-        
-    let encodeShift = { (char: Character) -> Character in
+    let encodeShift = { (char: Character) -> String in
         let charValue = Int(char.asciiValue!)
-        let shift = char.getShift
+        let shift = char.shift
         var preResult = (charValue + key - shift) % power
         if preResult < 0 { preResult += power }
-        return Character(UnicodeScalar(preResult + shift)!)
+        return String(UnicodeScalar(preResult + shift)!)
     }
-    
-    return String(string.filter({ $0.isLetter }).map(encodeShift))
+    return string.filter({ $0.isLetter }).map(encodeShift).reduce("", +)
 }
 
 func decode(this string: String, with key: Int) -> String {
-    
-    let decodeShift = { (char: Character) -> Character in
+    let decodeShift = { (char: Character) -> String in
         let charValue = Int(char.asciiValue!)
-        let shift = char.getShift
+        let shift = char.shift
         var preResult = (charValue - key + power - shift) % power
         if preResult < 0 { preResult += power }
-        return Character(UnicodeScalar(preResult + shift)!)
+        return String(UnicodeScalar(preResult + shift)!)
     }
-    
-    return String(string.filter({ $0.isLetter }).map(decodeShift))
+    return string.filter({ $0.isLetter }).map(decodeShift).reduce("", +)
 }
 
-guard let encodeString = readFromFile() else { fatalError("FILE READ ERROR") }
+guard let inputData = readFromFile(), let key = Int(inputData[0]) else { fatalError("FILE READ ERROR") }
+let encodeString = inputData[1]
+print("STRING TO ENCODE: ", encodeString)
+print("KEY: ", key)
 
-let key = -1
 let encodedString = encode(this: encodeString, with: key)
-print(encodedString)
-print(decode(this: encodedString, with: key))
+print("ENCODED: ", encodedString)
+print("DECODED: ", decode(this: encodedString, with: key))
 
 //: [Next](@next)

@@ -2,12 +2,6 @@
 
 import Foundation
 
-func readFromFile() -> String? {
-    guard let fileURL = Bundle.main.url(forResource: "vigenre", withExtension: "txt")
-        else { return nil }
-    return try? String(contentsOf: fileURL, encoding: .ascii)
-}
-
 extension Character {
     var shift: Int {
         if self.isUppercase {
@@ -26,6 +20,12 @@ extension String {
         resultKey += key[key.startIndex..<key.index(key.startIndex, offsetBy: stopIndex)]
         return resultKey
     }
+}
+
+func readFromFile() -> [String]? {
+    guard let fileURL = Bundle.main.url(forResource: "vigenre", withExtension: "txt")
+        else { return nil }
+    return (try? String(contentsOf: fileURL, encoding: .ascii))?.components(separatedBy: .newlines)
 }
 
 let encodeShift = { (char: Character, key: Int) -> Character in
@@ -81,17 +81,19 @@ func encode(this string: String, using key: String) -> String {
 
 func decode(this string: String, using key: String) -> String {
     return zip(string, string.encode(using: key))
-        .map { (encodeChar: Character, keyChar: Character) -> String in
+        .map { (decodeChar: Character, keyChar: Character) -> String in
             let index = Int(keyChar.asciiValue!) - keyChar.shift
-            return String(decodeShift(encodeChar, index))
+            return String(decodeShift(decodeChar, index))
         }
         .reduce("", +)
 }
 
-guard let encodeString = readFromFile()?.filter({ $0.isLetter }) else { fatalError("FILE READ ERROR") }
-let key = "LEMON"
+guard let inputData = readFromFile() else { fatalError("FILE READ ERROR") }
+let key = inputData[0]
+let encodeString = inputData[1].filter { $0.isLetter }
+print("STRING TO ENCODE: ", encodeString)
+print("KEY: ", key)
 
-print(encodeString)
 let encodedString = encode(this: encodeString, using: key)
 print("ENCODED: ", encodedString)
 print("DECODED: ", decode(this: encodedString, using: key))
