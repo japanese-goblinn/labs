@@ -49,5 +49,3 @@ print("KEY: ", key)
 let encodedString = encode(this: encodeString, with: key)
 print("ENCODED: ", encodedString)
 print("DECODED: ", decode(this: encodedString, with: key))
-
-//: [Next](@next)
