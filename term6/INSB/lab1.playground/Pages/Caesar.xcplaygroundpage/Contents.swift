@@ -16,13 +16,9 @@ extension UnicodeScalar {
     
     var alphabet: Alphabet {
         switch self {
-        case UnicodeScalar("a")...UnicodeScalar("z"):
+        case UnicodeScalar("a")...UnicodeScalar("z"), UnicodeScalar("A")...UnicodeScalar("Z"):
             return .english
-        case UnicodeScalar("A")...UnicodeScalar("Z"):
-            return .english
-        case UnicodeScalar("а")...UnicodeScalar("я"):
-            return .cyrillic
-        case UnicodeScalar("А")...UnicodeScalar("Я"):
+        case UnicodeScalar("а")...UnicodeScalar("я"), UnicodeScalar("А")...UnicodeScalar("Я"):
             return .cyrillic
         default:
             fatalError("WRONG SYMBOL")
