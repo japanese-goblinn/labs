@@ -73,7 +73,11 @@ func encode(this string: String, with key: Int) -> String {
             UnicodeScalar(result < 0 ? result + power : result)
         )
     }
-    return string.filter({ $0.isLetter }).unicodeScalars.compactMap(encodeShift).reduce("", +)
+    return string
+        .filter { $0.isLetter }
+        .unicodeScalars
+        .compactMap(encodeShift)
+        .reduce("", +)
 }
 
 func decode(this string: String, with key: Int) -> String {
@@ -86,7 +90,11 @@ func decode(this string: String, with key: Int) -> String {
             UnicodeScalar(result < 0 ? result + power : result)
         )
     }
-    return string.filter({ $0.isLetter }).unicodeScalars.compactMap(decodeShift).reduce("", +)
+    return string
+        .filter { $0.isLetter }
+        .unicodeScalars
+        .compactMap(decodeShift)
+        .reduce("", +)
 }
 
 guard let inputData = readFromFile(), let key = Int(inputData[0]) else { fatalError("FILE READ ERROR") }
