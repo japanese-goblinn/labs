@@ -14,9 +14,8 @@ extension String {
     func encode(using key: Self) -> String {
         let repeatAmount = self.count / key.count
         let stopIndex = self.count % key.count
-        var resultKey = (0..<repeatAmount).reduce(into: "") { res, _ in res += key }
-        resultKey += key[key.startIndex..<key.index(key.startIndex, offsetBy: stopIndex)]
-        return resultKey
+        let resultKey = (0..<repeatAmount).reduce(into: "") { res, _ in res += key }
+        return resultKey + key.prefix(stopIndex)
     }
 }
 

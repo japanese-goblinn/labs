@@ -1,44 +1,92 @@
 import Foundation
 
-extension Character {
-    var shift: Int {
-        if self.isUppercase {
-            return Int(UnicodeScalar("A").value)
-        } else {
-            return Int(UnicodeScalar("a").value)
-        }
-    }
-}
-
 func readFromFile() -> [String]? {
     guard let fileURL = Bundle.main.url(forResource: "сaesar", withExtension: "txt"),
-          let string = try? String(contentsOf: fileURL, encoding: .ascii)
+        let string = try? String(contentsOf: fileURL, encoding: .utf8)
         else { return nil }
     return string.components(separatedBy: .newlines)
 }
 
-let power = 26
+enum Alphabet {
+    case english
+    case cyrillic
+}
+
+extension UnicodeScalar {
+    
+    var alphabet: Alphabet {
+        switch self {
+        case UnicodeScalar("a")...UnicodeScalar("z"):
+            return .english
+        case UnicodeScalar("A")...UnicodeScalar("Z"):
+            return .english
+        case UnicodeScalar("а")...UnicodeScalar("я"):
+            return .cyrillic
+        case UnicodeScalar("А")...UnicodeScalar("Я"):
+            return .cyrillic
+        default:
+            fatalError("WRONG SYMBOL")
+        }
+    }
+
+    func caesarCastValue(for alphabet: Alphabet) -> Int {
+        switch alphabet {
+        case .english:
+            if Character(self).isUppercase {
+                return Int(UnicodeScalar("A").value)
+            } else {
+                return Int(UnicodeScalar("a").value)
+            }
+        case .cyrillic:
+            if Character(self).isUppercase {
+                return Int(UnicodeScalar("А").value)
+            } else {
+                return Int(UnicodeScalar("а").value)
+            }
+        }
+    }
+    
+    func power(for alphabet: Alphabet) -> Int {
+        switch alphabet {
+        case .english:
+            return 26
+        case .cyrillic:
+            return 32
+        }
+    }
+}
+
+extension String {
+    init?(_ value: UnicodeScalar?) {
+        guard let unwrappedValue = value else { return nil }
+        self = String(unwrappedValue)
+    }
+}
 
 func encode(this string: String, with key: Int) -> String {
-    let encodeShift = { (char: Character) -> String in
-        let charValue = Int(char.asciiValue!)
-        let shift = char.shift
-        var preResult = (charValue + key - shift) % power
-        if preResult < 0 { preResult += power }
-        return String(UnicodeScalar(preResult + shift)!)
+    let encodeShift: (UnicodeScalar) -> String? = {
+        let alphabet = $0.alphabet
+        let castValue = $0.caesarCastValue(for: alphabet)
+        let power = $0.power(for: alphabet)
+        let result = (Int($0.value) + key - castValue) % power + castValue
+        return String(
+            UnicodeScalar(result < 0 ? result + power : result)
+        )
     }
-    return string.filter({ $0.isLetter }).map(encodeShift).reduce("", +)
+    return string.filter({ $0.isLetter }).unicodeScalars.compactMap(encodeShift).reduce("", +)
 }
 
 func decode(this string: String, with key: Int) -> String {
-    let decodeShift = { (char: Character) -> String in
-        let charValue = Int(char.asciiValue!)
-        let shift = char.shift
-        var preResult = (charValue - key + power - shift) % power
-        if preResult < 0 { preResult += power }
-        return String(UnicodeScalar(preResult + shift)!)
+    let decodeShift: (UnicodeScalar) -> String? = {
+        let alphabet = $0.alphabet
+        let castValue = $0.caesarCastValue(for: alphabet)
+        let power = $0.power(for: alphabet)
+        let result = (Int($0.value) - key + power - castValue) % power + castValue
+        return String(
+            UnicodeScalar(result < 0 ? result + power : result)
+        )
     }
-    return string.filter({ $0.isLetter }).map(decodeShift).reduce("", +)
+    return string.filter({ $0.isLetter }).unicodeScalars.compactMap(decodeShift).reduce("", +)
 }
 
 guard let inputData = readFromFile(), let key = Int(inputData[0]) else { fatalError("FILE READ ERROR") }
@@ -49,3 +97,5 @@ print("KEY: ", key)
 let encodedString = encode(this: encodeString, with: key)
 print("ENCODED: ", encodedString)
 print("DECODED: ", decode(this: encodedString, with: key))
+
+
