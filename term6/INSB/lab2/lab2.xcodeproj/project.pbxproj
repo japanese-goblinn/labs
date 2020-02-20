@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		CE5B68C123F4657D00E58DCE /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5B68C023F4657D00E58DCE /* main.swift */; };
+		CE5B68C823F46E7200E58DCE /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5B68C723F46E7200E58DCE /* Client.swift */; };
+		CE5B68CA23F493B900E58DCE /* DES.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5B68C923F493B900E58DCE /* DES.swift */; };
+		CE5B68CC23F5542B00E58DCE /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5B68CB23F5542B00E58DCE /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +28,9 @@
 /* Begin PBXFileReference section */
 		CE5B68BD23F4657D00E58DCE /* lab2 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = lab2; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE5B68C023F4657D00E58DCE /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		CE5B68C723F46E7200E58DCE /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
+		CE5B68C923F493B900E58DCE /* DES.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DES.swift; sourceTree = "<group>"; };
+		CE5B68CB23F5542B00E58DCE /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +64,9 @@
 			isa = PBXGroup;
 			children = (
 				CE5B68C023F4657D00E58DCE /* main.swift */,
+				CE5B68C723F46E7200E58DCE /* Client.swift */,
+				CE5B68C923F493B900E58DCE /* DES.swift */,
+				CE5B68CB23F5542B00E58DCE /* Extensions.swift */,
 			);
 			path = lab2;
 			sourceTree = "<group>";
@@ -120,7 +129,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE5B68CA23F493B900E58DCE /* DES.swift in Sources */,
+				CE5B68C823F46E7200E58DCE /* Client.swift in Sources */,
 				CE5B68C123F4657D00E58DCE /* main.swift in Sources */,
+				CE5B68CC23F5542B00E58DCE /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
