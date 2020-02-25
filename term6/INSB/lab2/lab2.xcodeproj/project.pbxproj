@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE408570240506F6003AF66E /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE40856F240506F6003AF66E /* Helpers.swift */; };
+		CE40857224050738003AF66E /* AuthenticationServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE40857124050738003AF66E /* AuthenticationServer.swift */; };
+		CE40857424050781003AF66E /* TicketGrantServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE40857324050781003AF66E /* TicketGrantServer.swift */; };
+		CE408576240507B0003AF66E /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE408575240507B0003AF66E /* Server.swift */; };
 		CE5B68C123F4657D00E58DCE /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5B68C023F4657D00E58DCE /* main.swift */; };
 		CE5B68C823F46E7200E58DCE /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5B68C723F46E7200E58DCE /* Client.swift */; };
 		CE5B68CA23F493B900E58DCE /* DES.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5B68C923F493B900E58DCE /* DES.swift */; };
@@ -26,6 +30,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		CE40856F240506F6003AF66E /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		CE40857124050738003AF66E /* AuthenticationServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationServer.swift; sourceTree = "<group>"; };
+		CE40857324050781003AF66E /* TicketGrantServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketGrantServer.swift; sourceTree = "<group>"; };
+		CE408575240507B0003AF66E /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
 		CE5B68BD23F4657D00E58DCE /* lab2 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = lab2; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE5B68C023F4657D00E58DCE /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		CE5B68C723F46E7200E58DCE /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
@@ -44,6 +52,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CE40856D24050638003AF66E /* Encode */ = {
+			isa = PBXGroup;
+			children = (
+				CE5B68C923F493B900E58DCE /* DES.swift */,
+				CE5B68CB23F5542B00E58DCE /* Extensions.swift */,
+			);
+			path = Encode;
+			sourceTree = "<group>";
+		};
+		CE40856E24050652003AF66E /* Kerberos */ = {
+			isa = PBXGroup;
+			children = (
+				CE5B68C723F46E7200E58DCE /* Client.swift */,
+				CE40857124050738003AF66E /* AuthenticationServer.swift */,
+				CE40857324050781003AF66E /* TicketGrantServer.swift */,
+				CE408575240507B0003AF66E /* Server.swift */,
+				CE40856F240506F6003AF66E /* Helpers.swift */,
+			);
+			name = Kerberos;
+			sourceTree = "<group>";
+		};
 		CE5B68B423F4657D00E58DCE = {
 			isa = PBXGroup;
 			children = (
@@ -63,10 +92,9 @@
 		CE5B68BF23F4657D00E58DCE /* lab2 */ = {
 			isa = PBXGroup;
 			children = (
+				CE40856D24050638003AF66E /* Encode */,
+				CE40856E24050652003AF66E /* Kerberos */,
 				CE5B68C023F4657D00E58DCE /* main.swift */,
-				CE5B68C723F46E7200E58DCE /* Client.swift */,
-				CE5B68C923F493B900E58DCE /* DES.swift */,
-				CE5B68CB23F5542B00E58DCE /* Extensions.swift */,
 			);
 			path = lab2;
 			sourceTree = "<group>";
@@ -131,7 +159,11 @@
 			files = (
 				CE5B68CA23F493B900E58DCE /* DES.swift in Sources */,
 				CE5B68C823F46E7200E58DCE /* Client.swift in Sources */,
+				CE40857224050738003AF66E /* AuthenticationServer.swift in Sources */,
 				CE5B68C123F4657D00E58DCE /* main.swift in Sources */,
+				CE408570240506F6003AF66E /* Helpers.swift in Sources */,
+				CE40857424050781003AF66E /* TicketGrantServer.swift in Sources */,
+				CE408576240507B0003AF66E /* Server.swift in Sources */,
 				CE5B68CC23F5542B00E58DCE /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

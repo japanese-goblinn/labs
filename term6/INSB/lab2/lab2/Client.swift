@@ -8,6 +8,7 @@
 
 import Foundation
 
-struct Client {
+struct Client{
     let id: UUID
+    let key: String
 }
