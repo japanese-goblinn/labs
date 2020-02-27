@@ -9,7 +9,7 @@
 import Foundation
 
 // 1
-let client = Client(id: UUID(), key: "client_secret-key")
+let client = Client(id: UUID(), key: "client-secret-key")
 var server = Server(id: UUID(), key: "server-secret-key")
 var ticketServer = TicketGrantServer(id: UUID(), key: "ticket-granting-server-secret-key")
 
