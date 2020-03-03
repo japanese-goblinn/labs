@@ -1,1 +1,2 @@
-# OptimizationMethods project
+# OptimizationMethods
+
