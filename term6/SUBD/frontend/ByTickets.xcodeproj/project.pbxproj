@@ -7,14 +7,40 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE12B9EF242B5C9C0013346C /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE12B9EE242B5C9C0013346C /* Networking.swift */; };
+		CE12B9F3242BB5DC0013346C /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE12B9F2242BB5DC0013346C /* SignInView.swift */; };
+		CE12B9F5242BB63D0013346C /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE12B9F4242BB63D0013346C /* SignUpView.swift */; };
+		CE12B9F7242BB7180013346C /* RequestError+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE12B9F6242BB7180013346C /* RequestError+Extension.swift */; };
+		CE12B9FD242CDCB30013346C /* User+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE12B9FC242CDCB30013346C /* User+Extension.swift */; };
+		CE12B9FF242CDFAD0013346C /* JSONDecoder+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE12B9FE242CDFAD0013346C /* JSONDecoder+Extension.swift */; };
+		CE12BA01242CEDF50013346C /* String+Extenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE12BA00242CEDF50013346C /* String+Extenstion.swift */; };
+		CE12BA05242CF2830013346C /* UsersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE12BA04242CF2830013346C /* UsersView.swift */; };
+		CE12BA07242D02A10013346C /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE12BA06242D02A10013346C /* View+Extension.swift */; };
+		CE12BA09242D22870013346C /* ViewControllerWrapper+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE12BA08242D22870013346C /* ViewControllerWrapper+Extension.swift */; };
+		CE12BA0C242D27010013346C /* UsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE12BA0A242D27010013346C /* UsersViewController.swift */; };
+		CE12BA0D242D27010013346C /* UsersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE12BA0B242D27010013346C /* UsersViewController.xib */; };
 		CE2B9C85241ED5BA00354EE3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2B9C84241ED5BA00354EE3 /* AppDelegate.swift */; };
 		CE2B9C87241ED5BA00354EE3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2B9C86241ED5BA00354EE3 /* ContentView.swift */; };
 		CE2B9C89241ED5BE00354EE3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE2B9C88241ED5BE00354EE3 /* Assets.xcassets */; };
 		CE2B9C8C241ED5BE00354EE3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE2B9C8B241ED5BE00354EE3 /* Preview Assets.xcassets */; };
 		CE2B9C8F241ED5BE00354EE3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE2B9C8D241ED5BE00354EE3 /* Main.storyboard */; };
+		CE2B9C9B241F7F6400354EE3 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2B9C9A241F7F6400354EE3 /* Database.swift */; };
+		CE67F0D9242FA8620002BC86 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE67F0D8242FA8620002BC86 /* Date+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CE12B9EE242B5C9C0013346C /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
+		CE12B9F2242BB5DC0013346C /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		CE12B9F4242BB63D0013346C /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		CE12B9F6242BB7180013346C /* RequestError+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RequestError+Extension.swift"; sourceTree = "<group>"; };
+		CE12B9FC242CDCB30013346C /* User+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Extension.swift"; sourceTree = "<group>"; };
+		CE12B9FE242CDFAD0013346C /* JSONDecoder+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+Extension.swift"; sourceTree = "<group>"; };
+		CE12BA00242CEDF50013346C /* String+Extenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extenstion.swift"; sourceTree = "<group>"; };
+		CE12BA04242CF2830013346C /* UsersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersView.swift; sourceTree = "<group>"; };
+		CE12BA06242D02A10013346C /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
+		CE12BA08242D22870013346C /* ViewControllerWrapper+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewControllerWrapper+Extension.swift"; sourceTree = "<group>"; };
+		CE12BA0A242D27010013346C /* UsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewController.swift; sourceTree = "<group>"; };
+		CE12BA0B242D27010013346C /* UsersViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UsersViewController.xib; sourceTree = "<group>"; };
 		CE2B9C81241ED5BA00354EE3 /* ByTickets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ByTickets.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE2B9C84241ED5BA00354EE3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE2B9C86241ED5BA00354EE3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -23,6 +49,8 @@
 		CE2B9C8E241ED5BE00354EE3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CE2B9C90241ED5BE00354EE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE2B9C91241ED5BE00354EE3 /* ByTickets.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ByTickets.entitlements; sourceTree = "<group>"; };
+		CE2B9C9A241F7F6400354EE3 /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
+		CE67F0D8242FA8620002BC86 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +64,49 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CE12B9F0242BB3010013346C /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				CE2B9C9A241F7F6400354EE3 /* Database.swift */,
+				CE12B9EE242B5C9C0013346C /* Networking.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		CE12B9F1242BB5B80013346C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CE12BA06242D02A10013346C /* View+Extension.swift */,
+				CE2B9C86241ED5BA00354EE3 /* ContentView.swift */,
+				CE12B9F2242BB5DC0013346C /* SignInView.swift */,
+				CE12B9F4242BB63D0013346C /* SignUpView.swift */,
+				CE12BA04242CF2830013346C /* UsersView.swift */,
+				CE12BA08242D22870013346C /* ViewControllerWrapper+Extension.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		CE12B9FB242CDCA20013346C /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				CE12B9FC242CDCB30013346C /* User+Extension.swift */,
+				CE12B9F6242BB7180013346C /* RequestError+Extension.swift */,
+				CE12B9FE242CDFAD0013346C /* JSONDecoder+Extension.swift */,
+				CE12BA00242CEDF50013346C /* String+Extenstion.swift */,
+				CE67F0D8242FA8620002BC86 /* Date+Extension.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		CE12BA0E242D35460013346C /* UsersViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CE12BA0A242D27010013346C /* UsersViewController.swift */,
+				CE12BA0B242D27010013346C /* UsersViewController.xib */,
+			);
+			path = UsersViewController;
+			sourceTree = "<group>";
+		};
 		CE2B9C78241ED5BA00354EE3 = {
 			isa = PBXGroup;
 			children = (
@@ -55,12 +126,15 @@
 		CE2B9C83241ED5BA00354EE3 /* ByTickets */ = {
 			isa = PBXGroup;
 			children = (
-				CE2B9C84241ED5BA00354EE3 /* AppDelegate.swift */,
-				CE2B9C86241ED5BA00354EE3 /* ContentView.swift */,
+				CE12B9FB242CDCA20013346C /* Core */,
+				CE12B9F0242BB3010013346C /* Services */,
+				CE12B9F1242BB5B80013346C /* Views */,
+				CE12BA0E242D35460013346C /* UsersViewController */,
 				CE2B9C88241ED5BE00354EE3 /* Assets.xcassets */,
 				CE2B9C8D241ED5BE00354EE3 /* Main.storyboard */,
 				CE2B9C90241ED5BE00354EE3 /* Info.plist */,
 				CE2B9C91241ED5BE00354EE3 /* ByTickets.entitlements */,
+				CE2B9C84241ED5BA00354EE3 /* AppDelegate.swift */,
 				CE2B9C8A241ED5BE00354EE3 /* Preview Content */,
 			);
 			path = ByTickets;
@@ -90,6 +164,8 @@
 			dependencies = (
 			);
 			name = ByTickets;
+			packageProductDependencies = (
+			);
 			productName = ByTickets;
 			productReference = CE2B9C81241ED5BA00354EE3 /* ByTickets.app */;
 			productType = "com.apple.product-type.application";
@@ -118,6 +194,8 @@
 				Base,
 			);
 			mainGroup = CE2B9C78241ED5BA00354EE3;
+			packageReferences = (
+			);
 			productRefGroup = CE2B9C82241ED5BA00354EE3 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -133,6 +211,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE2B9C8F241ED5BE00354EE3 /* Main.storyboard in Resources */,
+				CE12BA0D242D27010013346C /* UsersViewController.xib in Resources */,
 				CE2B9C8C241ED5BE00354EE3 /* Preview Assets.xcassets in Resources */,
 				CE2B9C89241ED5BE00354EE3 /* Assets.xcassets in Resources */,
 			);
@@ -145,8 +224,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE12B9F7242BB7180013346C /* RequestError+Extension.swift in Sources */,
+				CE2B9C9B241F7F6400354EE3 /* Database.swift in Sources */,
+				CE12B9FD242CDCB30013346C /* User+Extension.swift in Sources */,
+				CE12BA0C242D27010013346C /* UsersViewController.swift in Sources */,
+				CE12BA07242D02A10013346C /* View+Extension.swift in Sources */,
+				CE67F0D9242FA8620002BC86 /* Date+Extension.swift in Sources */,
+				CE12BA09242D22870013346C /* ViewControllerWrapper+Extension.swift in Sources */,
+				CE12BA01242CEDF50013346C /* String+Extenstion.swift in Sources */,
 				CE2B9C87241ED5BA00354EE3 /* ContentView.swift in Sources */,
 				CE2B9C85241ED5BA00354EE3 /* AppDelegate.swift in Sources */,
+				CE12B9FF242CDFAD0013346C /* JSONDecoder+Extension.swift in Sources */,
+				CE12B9EF242B5C9C0013346C /* Networking.swift in Sources */,
+				CE12B9F5242BB63D0013346C /* SignUpView.swift in Sources */,
+				CE12BA05242CF2830013346C /* UsersView.swift in Sources */,
+				CE12B9F3242BB5DC0013346C /* SignInView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
