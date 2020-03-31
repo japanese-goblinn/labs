@@ -12,13 +12,14 @@ import SwiftUI
 extension View  {
     func openInNewWindow(_ title: String) {
         let window = NSWindow(
-            contentRect: NSRect(x: 0, y: 0, width: 960, height: 500),
+            contentRect: NSRect(x: 0, y: 0, width: 1010, height: 600),
             styleMask: [.titled, .resizable],
             backing: .buffered,
             defer: false)
         window.contentView = NSHostingView(rootView: self)
         window.center()
         window.title = title
+        (NSApplication.shared.delegate as! AppDelegate).window.close()
         window.makeKeyAndOrderFront(nil)
     }
 }

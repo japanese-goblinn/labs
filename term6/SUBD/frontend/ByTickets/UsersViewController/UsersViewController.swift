@@ -12,7 +12,6 @@ class UsersViewController: NSViewController {
     
     @IBOutlet private weak var tableView: NSTableView!
     @IBOutlet private weak var saveChangesButton: NSButton!
-    @IBOutlet private weak var refreshButton: NSButton!
     @IBOutlet private weak var searchField: NSSearchField!
     
     private let defaultTextColor: NSColor = .controlTextColor
@@ -21,6 +20,9 @@ class UsersViewController: NSViewController {
     private let insertedCellColor: NSColor = .systemGreen
     
     private var isUserExist: Bool { users.indices.contains(tableView.selectedRow) }
+    private var isDBUser: Bool {
+        users.indices.contains(tableView.selectedRow) && !users[tableView.selectedRow].username.isEmpty
+    }
     
     private var users = [User]()
     
@@ -28,10 +30,8 @@ class UsersViewController: NSViewController {
         willSet {
             if newValue.isEmpty {
                 saveChangesButton.isHidden = true
-                refreshButton.isHidden = true
             } else {
                 saveChangesButton.isHidden = false
-                refreshButton.isHidden = false
             }
         }
     }
@@ -40,14 +40,111 @@ class UsersViewController: NSViewController {
         updateDataSource()
     }
     
-    
     @IBAction func addUser(_ sender: Any) {
-        guard let lastId = users.last?.id else { return }
+        guard let lastId = users.isEmpty ? 0 : users.last?.id else { return }
         tableView.beginUpdates()
         diffUsers[tableView.numberOfRows] = .insert
         users += [.defaultUser(with: lastId + 1)]
         tableView.insertRows(at: IndexSet(integer: tableView.numberOfRows), withAnimation: .slideUp)
         tableView.endUpdates()
+    }
+    
+    
+    @IBAction func banFor30SecondsClicked(_ sender: Any) {
+        guard isDBUser else { return }
+        let id = users[tableView.selectedRow].id
+        Database.execute(
+            "UPDATE ban SET is_blocked='yes', duration='30 sec' WHERE user_id=\(id)"
+        ) { res in
+            switch res {
+            case .success(_):
+                Database.execute(
+                    "CREATE EVENT IF NOT EXISTS block_event_\(id) ON SCHEDULE AT CURRENT_TIMESTAMP + INTERVAL 30 SECOND DO UPDATE ban SET is_blocked='no' WHERE user_id=\(id);"
+                ) { r in print(r) }
+            case .failure(let error):
+                self.showAlert(title: "BAN ERROR", content: error.reason, buttonText: "OK", style: .critical)
+            }
+        }
+    }
+    
+    @IBAction func banFor60SecondsClicked(_ sender: Any) {
+        guard isDBUser else { return }
+        let id = users[tableView.selectedRow].id
+        Database.execute(
+            "UPDATE ban SET is_blocked='yes', duration='60 sec' WHERE user_id=\(id)"
+        ) { res in
+            switch res {
+            case .success(_):
+                Database.execute(
+                    "CREATE EVENT IF NOT EXISTS block_event_\(id) ON SCHEDULE AT CURRENT_TIMESTAMP + INTERVAL 60 SECOND DO UPDATE ban SET is_blocked='no' WHERE user_id=\(id);"
+                ) { r in print(r) }
+            case .failure(let error):
+                Database.execute(
+                    "INSERT INTO ban (user_id, is_blocked, duration) VALUES ('\(id)', 'yes', '60 sec')"
+                ) { r in
+                    switch r {
+                    case .success(_):
+                        Database.execute(
+                            "CREATE EVENT IF NOT EXISTS block_event_\(id) ON SCHEDULE AT CURRENT_TIMESTAMP + INTERVAL 60 SECOND DO UPDATE ban SET is_blocked='no' WHERE user_id=\(id);"
+                        ) { r in print(r) }
+                    case .failure(let error):
+                        self.showAlert(title: "BLOCK ERROR", content: error.reason, buttonText: "OK", style: .critical)
+                    }
+                }
+            }
+        }
+    }
+    
+    @IBAction func banFor5MinutesClicked(_ sender: Any) {
+        guard isDBUser else { return }
+        let id = users[tableView.selectedRow].id
+        Database.execute(
+            "UPDATE ban SET is_blocked='yes', duration='5 minutes' WHERE user_id=\(id)"
+        ) { res in
+            switch res {
+            case .success(_):
+                Database.execute(
+                    "CREATE EVENT IF NOT EXISTS block_event_\(id) ON SCHEDULE AT CURRENT_TIMESTAMP + INTERVAL 5 MINUTE DO UPDATE ban SET is_blocked='no' WHERE user_id=\(id);"
+                ) { r in print(r) }
+            case .failure(let error):
+                Database.execute(
+                    "INSERT INTO ban (user_id, is_blocked, duration) VALUES ('\(id)', 'yes', '5 minute')"
+                ) { r in
+                    switch r {
+                    case .success(_):
+                        Database.execute(
+                            "CREATE EVENT IF NOT EXISTS block_event_\(id) ON SCHEDULE AT CURRENT_TIMESTAMP + INTERVAL 5 MINUTE DO UPDATE ban SET is_blocked='no' WHERE user_id=\(id);"
+                        ) { r in print(r) }
+                    case .failure(let error):
+                        self.showAlert(title: "BLOCK ERROR", content: error.reason, buttonText: "OK", style: .critical)
+                    }
+                }
+            }
+        }
+    }
+    
+    @IBAction func banForeverClicked(_ sender: Any) {
+        guard isDBUser else { return }
+        let id = users[tableView.selectedRow].id
+        Database.execute(
+            "UPDATE ban SET is_blocked='yes', duration='forever' WHERE user_id=\(id)"
+        ) { res in
+            switch res {
+            case .success(_):
+                break
+            case .failure(let error):
+                Database.execute(
+                    "INSERT INTO ban (user_id, is_blocked, duration) VALUES ('\(id)', 'yes', 'forever')"
+                ) { r in
+                    switch r {
+                    case .success(_):
+                        break
+                    case .failure(let error):
+                        self.showAlert(title: "BLOCK ERROR", content: error.reason, buttonText: "OK", style: .critical)
+                    }
+                }
+            }
+        }
     }
     
     @IBAction func editItemClicked(_ sender: Any) {
@@ -84,8 +181,8 @@ class UsersViewController: NSViewController {
                         switch result {
                         case .failure(let error):
                             self?.showAlert(title: "DB ERROR", content: error.reason, buttonText: "OK", style: .critical)
-                        case .success(_):
-                            break
+                        case .success(let message):
+                            print(#function, message)
                         }
                     }
                 } else {
@@ -93,12 +190,27 @@ class UsersViewController: NSViewController {
                         errors += ["ROW \(i + 1): NOT VALID DATA"]
                         continue
                     }
-                    dump(user) //
+                    Database.update(user) { [weak self] result in
+                        switch result {
+                        case .failure(let error):
+                            self?.showAlert(title: "DB UPDATE ERROR", content: error.reason, buttonText: "OK", style: .critical)
+                        case .success(let message):
+                            print(#function, message)
+                        }
+                    }
                 }
             case .delete:
-                if users[i].username != "" {
-                    dump(users[i]) //
-                }
+                break
+//                if users[i].username != "" {
+//                    Database.delete(users[i]) { [weak self] result in
+//                        switch result {
+//                        case .failure(let error):
+//                            self?.showAlert(title: "DB DELETE ERROR", content: error.reason, buttonText: "OK", style: .critical)
+//                        case .success(let message):
+//                            print(#function, message)
+//                        }
+//                    }
+//                }
             }
         }
         if !errors.isEmpty {
@@ -127,7 +239,7 @@ class UsersViewController: NSViewController {
         var username = ""
         var email = ""
         var role: User.Role = .user
-//        var status: Status
+        var status: User.Banned = .no
         var lastLogin = Date()
         var passwordHashValue = 0
         for col in 0 ..< tableView.numberOfColumns {
@@ -161,10 +273,10 @@ class UsersViewController: NSViewController {
                 if col == 6 {
                     guard let localRole = User.Role(rawValue: button.selectedItem?.title ?? "") else { return nil}
                     role = localRole
+                } else if col == 7 {
+                    guard let localStatus = User.Banned(rawValue: button.selectedItem?.title ?? "") else { return nil}
+                    status = localStatus
                 }
-//                } else if col == 7 {
-//
-//                }
             }
         }
         return User(
@@ -174,6 +286,7 @@ class UsersViewController: NSViewController {
             username: username,
             email: email,
             role: role,
+            banned: status,
             phone: nil,
             contryCode: nil,
             lastLogin: lastLogin,
@@ -322,8 +435,8 @@ extension UsersViewController: NSTableViewDelegate {
         } else if tableColumn == tableView.tableColumns[7] {
             let result = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: CellIdentifiers.status), owner: self) as! NSPopUpButton
             result.removeAllItems()
-            result.addItems(withTitles: ["banned", "regular"] )
-            result.selectItem(withTitle: "regular")
+            result.addItems(withTitles: User.Banned.allCases.map { $0.rawValue } )
+            result.selectItem(withTitle: user.banned?.rawValue ?? "no")
             result.isEnabled = false
             return result
         } else if tableColumn == tableView.tableColumns[8] {
@@ -354,5 +467,3 @@ extension UsersViewController {
         static let passwordHash = "passwordHashCellId"
     }
 }
-
-

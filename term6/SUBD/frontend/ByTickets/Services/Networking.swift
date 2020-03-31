@@ -10,11 +10,11 @@ import Foundation
 
 class Networking {
     
-    private static let baseURLString = "http://localhost:8080/api/"
+    private static let baseURLString = "http://localhost:8000/api/"
     
-    static func createRequest(
+    static func createRequest<T: Codable>(
         to path: String...,
-        query: String = "",
+        body: T,
         httpMethod: String = "POST"
     ) -> URLRequest? {
         let urlString = baseURLString + path.joined(separator: "/")
@@ -23,7 +23,7 @@ class Networking {
         request.httpMethod = httpMethod
         if httpMethod == "POST" {
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-            let httpBody = try! JSONEncoder().encode(query)
+            let httpBody = try! JSONEncoder().encode(body)
             request.httpBody = httpBody
         }
         return request

@@ -67,8 +67,8 @@
 		CE12B9F0242BB3010013346C /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				CE2B9C9A241F7F6400354EE3 /* Database.swift */,
 				CE12B9EE242B5C9C0013346C /* Networking.swift */,
+				CE2B9C9A241F7F6400354EE3 /* Database.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";

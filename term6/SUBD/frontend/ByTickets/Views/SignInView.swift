@@ -14,6 +14,8 @@ struct SignInView: View {
     @State private var password = ""
     @State private var showingAlert = false
     
+    @State private var message = ""
+    
     var body: some View {
         VStack(alignment: .leading) {
             Text("Welcome back")
@@ -25,29 +27,39 @@ struct SignInView: View {
                 TextField("Username", text: $username)
                 SecureField("Password", text: $password)
                 Button(action: {
-                    Database.fetchUsers { result in
-                        proceed(result)
-                        self.showingAlert = true
+                    Database.authenticate(username: self.username, password: self.password) { res in
+                        switch res {
+                        case .failure(let error):
+                            self.message = error.reason
+                            self.showingAlert = true
+                        case .success(let isOK):
+                            if isOK {
+                                UsersView()
+                                    .openInNewWindow("Users")
+                            } else {
+                                self.message = "Wrong password or username"
+                                self.showingAlert = true
+                            }
+                        }
                     }
                 }) {
                     Text("Sign In")
                 }
                 .disabled(username.isEmpty || password.isEmpty)
                 .alert(isPresented: $showingAlert) {
-                    Alert(title: Text("Important message"),
-                          message: Text("Wear sunscreen"),
+                    Alert(title: Text("Error"),
+                          message: Text(message),
                           dismissButton: .default(Text("OK")))
                 }
             }
             .padding()
-            
-            Button(action: {
-                (NSApplication.shared.delegate as! AppDelegate).window.close()
-                UsersView()
-                    .openInNewWindow("Users")
-            }) {
-                Text("Test")
-            }
+//
+//            Button(action: {
+//                UsersView()
+//                    .openInNewWindow("Users")
+//            }) {
+//                Text("Test")
+//            }
         }
         .padding()
     }

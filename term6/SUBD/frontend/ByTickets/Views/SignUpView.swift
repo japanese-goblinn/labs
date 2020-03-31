@@ -18,6 +18,9 @@ struct SignUpView: View {
     @State private var repeatPassword = ""
     @State private var selectedRole = 0
     
+    @State private var showingAlert = false
+    @State private var message = ""
+    
     private var isValid: Bool {
         firstname.isNotEmpty && lastname.isNotEmpty && username.isNotEmpty && email.isNotEmpty && password.isNotEmpty && repeatPassword.isNotEmpty && repeatPassword == password
     }
@@ -44,11 +47,41 @@ struct SignUpView: View {
                 SecureField("Repeat password", text: $repeatPassword)
                 
                 Button(action: {
-                    Text("sdfs")
+                    let newUser = User(
+                        id: 0,
+                        firstname: self.firstname,
+                        lastname: self.lastname,
+                        username: self.username,
+                        email: self.email,
+                        role: User.Role.init(rawValue: self.roles[self.selectedRole])!,
+                        banned: .no,
+                        phone: nil,
+                        contryCode: nil,
+                        lastLogin: Date(),
+                        cardID: nil,
+                        passwordHashValue: self.password.hashValue
+                    )
+                    Database.insert(newUser) { res in
+                        switch res {
+                        case .failure(let error):
+                            self.message = error.reason
+                            self.showingAlert = true
+                        case .success(_):
+                            Database.execute("INSERT INTO login (`when`, status, username) VALUES (NOW(), 'ok', '\(self.username)')") { _ in }
+                            UsersView()
+                                .openInNewWindow("Users")
+                        }
+                    }
                 }) {
                     Text("Sign Up")
                 }
                 .disabled(!isValid)
+                .alert(isPresented: $showingAlert) {
+                    Alert(title: Text("Error"),
+                          message: Text(message),
+                          dismissButton: .default(Text("OK")))
+                    
+                }
             }
             .padding()
         }

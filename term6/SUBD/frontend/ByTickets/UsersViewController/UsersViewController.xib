@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="16096" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16096"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="UsersViewController" customModule="ByTickets" customModuleProvider="target">
             <connections>
-                <outlet property="refreshButton" destination="nC3-7H-0Gp" id="YRE-Gu-8Vp"/>
                 <outlet property="saveChangesButton" destination="8bt-50-NXw" id="8Z5-Ar-Qn7"/>
                 <outlet property="searchField" destination="HO2-hK-Slm" id="Vhr-YS-fbq"/>
                 <outlet property="tableView" destination="06Z-mr-in1" id="o4X-ld-70E"/>
@@ -17,17 +16,17 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="Hz6-mo-xeY">
-            <rect key="frame" x="0.0" y="0.0" width="963" height="476"/>
+            <rect key="frame" x="0.0" y="0.0" width="1012" height="478"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ygD-hr-taf">
-                    <rect key="frame" x="0.0" y="40" width="963" height="436"/>
+                    <rect key="frame" x="0.0" y="40" width="1012" height="438"/>
                     <clipView key="contentView" drawsBackground="NO" id="n43-Dg-hbq">
-                        <rect key="frame" x="0.0" y="0.0" width="963" height="436"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1012" height="438"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="none" alternatingRowBackgroundColors="YES" columnReordering="NO" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="Nof-8T-rzl" viewBased="YES" id="06Z-mr-in1">
-                                <rect key="frame" x="0.0" y="0.0" width="963" height="411"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1012" height="413"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <size key="intercellSpacing" width="3" height="2"/>
                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -36,7 +35,6 @@
                                 <tableColumns>
                                     <tableColumn width="40" minWidth="40" maxWidth="1000" id="Kxz-fS-DYE">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="id">
-                                            <font key="font" metaFont="label" size="11"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                         </tableHeaderCell>
@@ -69,7 +67,6 @@
                                     </tableColumn>
                                     <tableColumn width="148" minWidth="10" maxWidth="3.4028234663852886e+38" id="I62-OA-Or5">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="last_login">
-                                            <font key="font" metaFont="label" size="11"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </tableHeaderCell>
@@ -102,7 +99,6 @@
                                     </tableColumn>
                                     <tableColumn width="109" minWidth="40" maxWidth="1000" id="ntZ-Ef-cY3">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="firstname">
-                                            <font key="font" metaFont="label" size="11"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                         </tableHeaderCell>
@@ -135,7 +131,6 @@
                                     </tableColumn>
                                     <tableColumn width="107" minWidth="10" maxWidth="3.4028234663852886e+38" id="OQT-zL-TzG">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="lastname">
-                                            <font key="font" metaFont="label" size="11"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </tableHeaderCell>
@@ -168,7 +163,6 @@
                                     </tableColumn>
                                     <tableColumn width="106" minWidth="10" maxWidth="3.4028234663852886e+38" id="Cl0-EI-sZK">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="username">
-                                            <font key="font" metaFont="label" size="11"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </tableHeaderCell>
@@ -201,7 +195,6 @@
                                     </tableColumn>
                                     <tableColumn width="125" minWidth="10" maxWidth="3.4028234663852886e+38" id="Xrh-kw-wHu">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="email">
-                                            <font key="font" metaFont="label" size="11"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </tableHeaderCell>
@@ -234,7 +227,6 @@
                                     </tableColumn>
                                     <tableColumn width="76" minWidth="10" maxWidth="3.4028234663852886e+38" id="75q-22-MKX">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="role">
-                                            <font key="font" metaFont="label" size="11"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </tableHeaderCell>
@@ -263,8 +255,7 @@
                                         </prototypeCellViews>
                                     </tableColumn>
                                     <tableColumn width="96" minWidth="10" maxWidth="3.4028234663852886e+38" id="slD-O0-T8e">
-                                        <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="status">
-                                            <font key="font" metaFont="label" size="11"/>
+                                        <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="baned">
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </tableHeaderCell>
@@ -292,9 +283,8 @@
                                             </popUpButton>
                                         </prototypeCellViews>
                                     </tableColumn>
-                                    <tableColumn identifier="passwordHashCellId" width="128" minWidth="10" maxWidth="3.4028234663852886e+38" id="ToT-hk-xx1">
+                                    <tableColumn identifier="passwordHashCellId" width="178" minWidth="10" maxWidth="3.4028234663852886e+38" id="ToT-hk-xx1">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="password_hash">
-                                            <font key="font" metaFont="label" size="11"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </tableHeaderCell>
@@ -306,11 +296,11 @@
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         <prototypeCellViews>
                                             <tableCellView identifier="passwordHashCellId" id="8Zw-ZU-Ugo">
-                                                <rect key="frame" x="832" y="1" width="128" height="17"/>
+                                                <rect key="frame" x="832" y="1" width="178" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zSK-f2-rYE">
-                                                        <rect key="frame" x="0.0" y="0.0" width="128" height="17"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="178" height="17"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="U5S-Y8-YtL">
                                                             <font key="font" metaFont="system"/>
@@ -342,20 +332,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                     <tableHeaderView key="headerView" id="Nof-8T-rzl">
-                        <rect key="frame" x="0.0" y="0.0" width="963" height="25"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1012" height="25"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </tableHeaderView>
                 </scrollView>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gZs-D4-EeI">
-                    <rect key="frame" x="18" y="10" width="82" height="20"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" title="Signed In as:" id="VJk-lO-ijZ">
-                        <font key="font" usesAppearanceFont="YES"/>
-                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
                 <stackView distribution="fillEqually" orientation="horizontal" alignment="baseline" spacing="12" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E3T-E2-v9Q">
-                    <rect key="frame" x="691" y="10" width="252" height="20"/>
+                    <rect key="frame" x="740" y="10" width="252" height="20"/>
                     <subviews>
                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8bt-50-NXw">
                             <rect key="frame" x="0.0" y="-1" width="76" height="21"/>
@@ -400,7 +382,7 @@
                     </customSpacing>
                 </stackView>
                 <searchField wantsLayer="YES" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HO2-hK-Slm">
-                    <rect key="frame" x="193" y="10" width="229" height="20"/>
+                    <rect key="frame" x="20" y="10" width="351" height="20"/>
                     <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" id="c8n-8k-XlW">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -409,23 +391,20 @@
                 </searchField>
             </subviews>
             <constraints>
+                <constraint firstItem="HO2-hK-Slm" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" id="80I-ec-cvJ"/>
                 <constraint firstAttribute="bottom" secondItem="ygD-hr-taf" secondAttribute="bottom" constant="40" id="Abe-oa-kol"/>
                 <constraint firstAttribute="bottom" secondItem="HO2-hK-Slm" secondAttribute="bottom" constant="10" id="Kcu-zj-rsu"/>
-                <constraint firstItem="gZs-D4-EeI" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" id="MUj-oT-LqR"/>
                 <constraint firstItem="ygD-hr-taf" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="N6R-XJ-XgF"/>
                 <constraint firstAttribute="trailing" secondItem="ygD-hr-taf" secondAttribute="trailing" id="SUX-nu-lAi"/>
                 <constraint firstItem="ygD-hr-taf" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="UVD-53-wEr"/>
                 <constraint firstItem="HO2-hK-Slm" firstAttribute="top" secondItem="ygD-hr-taf" secondAttribute="bottom" constant="10" id="ejJ-ae-eth"/>
-                <constraint firstItem="HO2-hK-Slm" firstAttribute="leading" secondItem="gZs-D4-EeI" secondAttribute="trailing" constant="95" id="h1V-Pi-39w"/>
                 <constraint firstAttribute="bottom" secondItem="E3T-E2-v9Q" secondAttribute="bottom" constant="10" id="ii4-8D-0Ry"/>
-                <constraint firstAttribute="bottom" secondItem="gZs-D4-EeI" secondAttribute="bottom" constant="10" id="kPs-W8-yxJ"/>
-                <constraint firstAttribute="trailing" secondItem="HO2-hK-Slm" secondAttribute="trailing" constant="541" id="lVe-HR-19P"/>
-                <constraint firstItem="gZs-D4-EeI" firstAttribute="top" secondItem="ygD-hr-taf" secondAttribute="bottom" constant="10" id="mRM-WE-Gog"/>
-                <constraint firstItem="E3T-E2-v9Q" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gZs-D4-EeI" secondAttribute="trailing" constant="471" id="qJF-Us-cfX"/>
+                <constraint firstAttribute="trailing" secondItem="HO2-hK-Slm" secondAttribute="trailing" constant="641" id="lVe-HR-19P"/>
+                <constraint firstItem="E3T-E2-v9Q" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="HO2-hK-Slm" secondAttribute="trailing" constant="269" id="qJF-Us-cfX"/>
                 <constraint firstAttribute="trailing" secondItem="E3T-E2-v9Q" secondAttribute="trailing" constant="20" id="rw5-uL-vuZ"/>
                 <constraint firstItem="E3T-E2-v9Q" firstAttribute="top" secondItem="ygD-hr-taf" secondAttribute="bottom" constant="10" id="ssH-07-Na3"/>
             </constraints>
-            <point key="canvasLocation" x="213.5" y="222"/>
+            <point key="canvasLocation" x="238" y="221"/>
         </customView>
         <menu id="DLn-6q-EnC">
             <items>
@@ -442,8 +421,39 @@
                         <action selector="deleteItemClicked:" target="-2" id="vwD-v8-0k7"/>
                     </connections>
                 </menuItem>
+                <menuItem title="Ban" id="bOM-IO-7OI">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Ban" id="8Hh-AQ-aLu">
+                        <items>
+                            <menuItem title="30 Seconds" id="LWg-yS-ygM">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="banFor30SecondsClicked:" target="-2" id="Izl-fw-qRY"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="60 Seconds" id="CiY-ed-5YQ">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="banFor60SecondsClicked:" target="-2" id="Xkt-N7-QUP"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="5 Minutes" id="T9u-iO-yNP">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="banFor5MinutesClicked:" target="-2" id="9ep-p8-i3r"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Forever" id="Q8c-3h-fzg">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="banForeverClicked:" target="-2" id="pZX-UE-tUm"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
             </items>
-            <point key="canvasLocation" x="235" y="551"/>
+            <point key="canvasLocation" x="235" y="561"/>
         </menu>
     </objects>
     <resources>

@@ -15,6 +15,7 @@ struct User {
     let username: String
     let email: String
     let role: Role
+    let banned: Banned?
     let phone: Int?
     let contryCode: Int?
     let lastLogin: Date
@@ -31,6 +32,7 @@ extension User: Codable {
         case username
         case email
         case phone
+        case banned = "is_blocked"
         case contryCode = "contry_code"
         case lastLogin = "last_login"
         case cardID = "default_card_id"
@@ -45,10 +47,15 @@ extension User {
         case manager
         case user
     }
+    
+    enum Banned: String, Codable, CaseIterable {
+        case yes
+        case no
+    }
 }
 
 extension User {
     static func defaultUser(with id: Int) -> Self {
-        .init(id: id, firstname: "", lastname: "", username: "", email: "", role: .user, phone: nil, contryCode: nil, lastLogin: Date(), cardID: nil, passwordHashValue: 0)
+        .init(id: id, firstname: "", lastname: "", username: "", email: "", role: .user, banned:  .no, phone: nil, contryCode: nil, lastLogin: Date(), cardID: nil, passwordHashValue: 0)
     }
 }

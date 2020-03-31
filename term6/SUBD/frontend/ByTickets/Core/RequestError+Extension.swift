@@ -15,4 +15,7 @@ extension RequestError: ExpressibleByStringLiteral {
         self.reason = value
     }
 }
+
+extension RequestError: ExpressibleByStringInterpolation {}
+
 extension RequestError: Decodable {}
