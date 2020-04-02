@@ -1,2 +1,5 @@
 venv/
 .vscode
+.mypy_cache
+tasks/.DS_Store
+tasks/tasks.xcodeproj/
