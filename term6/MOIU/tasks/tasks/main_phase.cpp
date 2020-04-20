@@ -12,6 +12,7 @@
 #include <set>
 #include <iterator>
 #include <cmath>
+#include <iomanip>
 
 typedef std::vector<double> vector;
 typedef std::vector<std::vector<double>> matrix;
@@ -49,9 +50,9 @@ void inputFor(vector &vector) {
 }
 
 vector columnFrom(matrix const &m, int index) {
-    vector column;
-    for (auto &row: m)
-        column.emplace_back(row.at(index));
+    vector column(m.size());
+    for (auto i = 0; i < m.size(); ++i)
+        column.at(i) = m.at(i).at(index);
     return column;
 }
 
@@ -84,23 +85,23 @@ vector mul(vector const &v, double value) {
 }
 
 vector mul(matrix const &m, vector const &v) {
-    vector result;
+    vector result(m.size());
     for (auto i = 0; i < m.size(); ++i) {
         double row_result = 0;
         for (auto j = 0; j < v.size(); ++j)
             row_result += m.at(i).at(j) * v.at(j);
-        result.emplace_back(row_result);
+        result.at(i) = row_result;
     }
     return result;
 }
 
 vector mul(vector const &v, matrix const &m) {
-    vector result;
+    vector result(m.at(0).size());
     for (auto i = 0; i < m.at(0).size(); ++i) {
         double col_result = 0;
         for (auto j = 0; j < v.size(); ++j)
             col_result += v.at(j) * m.at(j).at(i);
-        result.emplace_back(col_result);
+        result.at(i) = col_result;
     }
     return result;
 }
@@ -131,7 +132,7 @@ matrix inverseMatrixOf(matrix const &m) {
             for (auto j = 0; j < size; ++j) {
                 if (j == i)
                     continue;
-                if (aug_matrix.at(j).at(i) != 0 && aug_matrix.at(i).at(j) != 0) {
+                if (aug_matrix.at(j).at(i) != 0) {
                     aug_matrix.at(j).swap(aug_matrix.at(i));
                     break;
                 }
@@ -140,7 +141,6 @@ matrix inverseMatrixOf(matrix const &m) {
         }
         if (std::all_of(all.begin(), all.end(), [](bool it) { return it; } ))
              break;
-        all.clear();
     }
     for (auto i = 0; i < size; ++i) {
         auto d_el = aug_matrix.at(i).at(i);
@@ -153,9 +153,9 @@ matrix inverseMatrixOf(matrix const &m) {
         }
         mulInPlace(aug_matrix.at(i), 1 / d_el);
     }
-    matrix inversed;
+    matrix inversed(size);
     for (auto i = 0; i < size; ++i)
-        inversed.emplace_back(vector(aug_matrix.at(i).begin() + size, aug_matrix.at(i).end()));
+        inversed.at(i) = vector(aug_matrix.at(i).begin() + size, aug_matrix.at(i).end());
     return inversed;
 }
 
@@ -178,74 +178,71 @@ matrix shermanMorrison(matrix const &a_b, vector const &d, unsigned long s) {
     return inversed;
 }
 
-void fillInIndexes(vector &j, vector &j_b, vector &j_n) {
-    j_n.clear();
-    auto j_b_cp = j_b;
-    std::sort(j_b_cp.begin(), j_b_cp.end());
-    std::generate(j.begin(), j.end(), [i = 0]() mutable { return i++; });
-    std::set_difference(j.begin(), j.end(), j_b_cp.begin(), j_b_cp.end(), std::inserter(j_n, j_n.begin()));
-}
-
 void mainPhase(int m, int n, matrix &a, vector &b, vector &c, vector &x, vector &j_b) {
     for (auto &e: j_b) --e;
-    vector j(n), j_n;
     matrix a_b_inv;
-    vector z;
-    unsigned long s = 0;
-    for (auto i = 0; ; ++i) {
-        fillInIndexes(j, j_b, j_n);
-        auto a_b = basisMatrixFor(a, j_b);
-        if (i == 0)
-            a_b_inv = inverseMatrixOf(a_b);
-        else
-            a_b_inv = shermanMorrison(a_b_inv, z, s);
-        vector c_b;
-        for (auto &basis_index: j_b)
-            c_b.emplace_back(c.at(basis_index));
+    auto a_b = basisMatrixFor(a, j_b);
+    a_b_inv = inverseMatrixOf(a_b);
+    vector c_b(m);
+    while (true) {
+        for (auto i = 0; i < m; ++i)
+            c_b.at(i) = c.at(j_b.at(i));
         auto u = mul(c_b, a_b_inv);
-        auto delta = sub(mul(u, a), c);
-        std::vector<bool> check;
-        for (auto i = 0; i < delta.size(); ++i) {
-            if (std::find(j_n.begin(), j_n.end(), i) != j_n.end()) {
-                if (delta.at(i) >= 0)
-                    check.emplace_back(true);
-                else
-                    check.emplace_back(false);
+        auto j_0 = INT_MIN;
+        auto delta_j0 = 0.0;
+        for (int i = 0; i < n; ++i) {
+            if (std::find(j_b.begin(), j_b.end(), i) != j_b.end())
+                continue;
+            auto colum_res = 0.0;
+            for (int j = 0; j < m; ++j)
+                colum_res += u.at(j) * a.at(j).at(i);
+            colum_res -= c.at(i);
+            if (colum_res < delta_j0) {
+                delta_j0 = colum_res;
+                j_0 = i;
             }
         }
-        if (std::all_of(check.begin(), check.end(), [](auto e) { return e; })) {
+        if (j_0 == INT_MIN) {
             endlPrint("Bounded");
             outputFor(x);
             return;
         }
-        check.clear();
-        auto j0 = std::min_element(delta.begin(), delta.end()) - delta.begin();
-        auto a_j0 = columnFrom(a, (int)j0);
-        z = mul(a_b_inv, a_j0);
+        auto a_j0 = columnFrom(a, j_0);
+        auto z = mul(a_b_inv, a_j0);
         if (std::all_of(z.begin(), z.end(), [](auto e) { return e <= 0; })) {
             endlPrint("Unbounded");
             return;
         }
-        vector teta;
+        auto teta_0 = std::numeric_limits<double>::infinity();
+        auto s = -1;
         for (auto j = 0; j < m; ++j) {
-            if (z.at(j) > 0)
-                teta.emplace_back(x.at(j_b.at(j)) / z.at(j));
-            else
-                teta.emplace_back(std::numeric_limits<double>::infinity());
+            if (z.at(j) <= 0)
+                continue;
+            auto teta_j = x.at(j_b.at(j)) / z.at(j);
+            if (teta_j < teta_0) {
+                teta_0 = teta_j;
+                s = j;
+            }
         }
-        s = std::min_element(teta.begin(), teta.end()) - teta.begin();
-        auto t0 = teta.at(s);
-        for (auto i = 0; i < m; ++i)
-            x.at(j_b.at(i)) -= t0 * z.at(i);
-        for (auto const &j_n_i: j_n)
-            x.at(j_n_i) = 0;
-        x.at(j0) = t0;
-        j_b.at(s) = j0;
+        for (auto i = 0; i < n; ++i) {
+            auto j_b_index = std::find(j_b.begin(), j_b.end(), i);
+            if (j_b_index == j_b.end()) {
+                x.at(i) = 0;
+                continue;
+            }
+            auto j = j_b_index - j_b.begin();
+            x.at(i) -= teta_0 * z.at(j);
+        }
+        x.at(j_0) = teta_0;
+        j_b.at(s) = j_0;
+        a_b_inv = shermanMorrison(a_b_inv, z, s);
     }
 }
 
 int main(int argc, const char * argv[]) {
     int n, m;
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(NULL);
     std::cin >> m >> n;
     matrix a(m, vector(n));
     vector b(m);
