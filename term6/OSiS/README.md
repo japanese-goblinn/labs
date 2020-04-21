@@ -1,1 +1,15 @@
-# OSaN
+# OSaE
+
+Operating systems and environments labs.
+
+## Labs
+
+* `lab1 var 3`
+
+* `lab2 var 1`
+
+* `lab 3 var 3`
+
+* `lab 4 var 11`
+
+* `lab5`
