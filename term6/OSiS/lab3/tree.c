@@ -1,3 +1,6 @@
+// Вариант 3
+// Создать двоичное дерево хранящее числа.
+
 #include "stdafx.h"
 #include <stdlib.h>
 #include <math.h>
