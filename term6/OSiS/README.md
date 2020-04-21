@@ -13,3 +13,5 @@ Operating systems and environments labs.
 * `lab 4 var 11`
 
 * `lab5`
+
+* `lab 6`
