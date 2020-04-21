@@ -6,10 +6,10 @@
 import os
 
 def main(file_type, result_file):
-    for file in os.listdir("."):
-        if file.endswith(file_type):
-            with open(result_file + ".txt", "a+") as f:
-                f.write(file.split(".")[0])
+    with open(result_file + ".txt", "a+") as f:
+        for file in os.listdir("."):
+            if file.endswith(file_type):
+                    f.write(file.split(".")[0])
 
 if __name__ == "__main__":
     file_type, result_file = input().split()
