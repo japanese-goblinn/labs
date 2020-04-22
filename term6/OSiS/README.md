@@ -8,10 +8,12 @@ Operating systems and environments labs.
 
 * `lab2 var 1`
 
-* `lab 3 var 3`
+* `lab3 var 3`
 
-* `lab 4 var 11`
+* `lab4 var 11`
 
 * `lab5`
 
-* `lab 6`
+* `lab6`
+
+* `lab7`
