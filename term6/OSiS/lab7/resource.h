@@ -1,6 +1,6 @@
 //{{NO_DEPENDENCIES}}
 // Microsoft Visual C++ generated include file.
-// Used by l2.rc
+// Used by lab7.rc
 //
 
 #define IDS_APP_TITLE			103

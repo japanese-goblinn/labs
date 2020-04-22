@@ -1,6 +1,6 @@
 //{{NO_DEPENDENCIES}}
 // Microsoft Visual C++ generated include file.
-// Used by Lab5.Toolbar.rc
+// Used by toolbar.rc
 //
 
 #define IDS_APP_TITLE			103
