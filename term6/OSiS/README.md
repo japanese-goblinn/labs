@@ -21,3 +21,5 @@ Operating systems and environments labs.
 * `lab8`
 
 * `lab9`
+
+* `lab10`
