@@ -143,11 +143,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message)
     {
-	case WM_CREATE:
-		InitializeCriticalSection(&cs);
-		initThreads();
-		SetTimer(hWnd, TIMER_ID, TIMER_INTERVAL, NULL);
-		break;
+    case WM_CREATE:
+        InitializeCriticalSection(&cs);
+        initThreads();
+        SetTimer(hWnd, TIMER_ID, TIMER_INTERVAL, NULL);
+        break;
     case WM_COMMAND:
         {
             int wmId = LOWORD(wParam);
@@ -169,18 +169,18 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         {
             PAINTSTRUCT ps;
             HDC hdc = BeginPaint(hWnd, &ps);
-			drawTrain(hdc);
+            drawTrain(hdc);
             EndPaint(hWnd, &ps);
         }
         break;
-	case WM_TIMER:
-		InvalidateRect(hWnd, NULL, TRUE);
-		break;
+    case WM_TIMER:
+        InvalidateRect(hWnd, NULL, TRUE);
+        break;
     case WM_DESTROY:
-		CloseHandle(thread1);
-		CloseHandle(thread2);
-		CloseHandle(thread3);
-		DeleteCriticalSection(&cs);
+        CloseHandle(thread1);
+        CloseHandle(thread2);
+        CloseHandle(thread3);
+        DeleteCriticalSection(&cs);
         PostQuitMessage(0);
         break;
     default:
@@ -210,73 +210,73 @@ INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 }
 
 void drawTrain(HDC hdc) {
-	HBRUSH redBrush = CreateSolidBrush(RGB(255, 0, 0));
-	HBRUSH yellowBrush = CreateSolidBrush(RGB(255, 255, 0));
-	HBRUSH skyBlueBrush = CreateSolidBrush(RGB(126, 192, 238));
-	line(hdc, 0, 300, 1600, 300);
-	line(hdc, margin + 380, 200, margin + 410, 200);
-	line(hdc, margin + 380, 200, margin + 390, 210);
-	line(hdc, margin + 400, 210, margin + 410, 200);
-	line(hdc, margin + 100, 270, margin + 120, 270);
-	line(hdc, margin + 300, 270, margin + 320, 270);
-	line(hdc, margin + 200, 270, margin + 220, 270);
-	
-	SelectObject(hdc, redBrush);
+    HBRUSH redBrush = CreateSolidBrush(RGB(255, 0, 0));
+    HBRUSH yellowBrush = CreateSolidBrush(RGB(255, 255, 0));
+    HBRUSH skyBlueBrush = CreateSolidBrush(RGB(126, 192, 238));
+    line(hdc, 0, 300, 1600, 300);
+    line(hdc, margin + 380, 200, margin + 410, 200);
+    line(hdc, margin + 380, 200, margin + 390, 210);
+    line(hdc, margin + 400, 210, margin + 410, 200);
+    line(hdc, margin + 100, 270, margin + 120, 270);
+    line(hdc, margin + 300, 270, margin + 320, 270);
+    line(hdc, margin + 200, 270, margin + 220, 270);
+    
+    SelectObject(hdc, redBrush);
 
-	Rectangle(hdc, margin + 20, 230, margin + 100, 280);
-	Rectangle(hdc, margin + 120, 230, margin + 200, 280);
-	Rectangle(hdc, margin + 220, 230, margin + 300, 280);
-	SelectObject(hdc, yellowBrush);
-	RoundRect(hdc, margin + 320, 200, margin + 365, 280, 30, 20);
-	SelectObject(hdc, skyBlueBrush);
-	RoundRect(hdc, margin + 320, 230, margin + 420, 280, 30, 20);
-	Rectangle(hdc, margin + 390, 230, margin + 400, 210);
-	Rectangle(hdc, margin + 390, 230, margin + 400, 210);
-	Rectangle(hdc, margin + 390, 230, margin + 400, 210);
-	Rectangle(hdc, margin + 390, 230, margin + 400, 210);
-	SelectObject(hdc, yellowBrush);
-	circle(hdc, margin + 30, 290, 10);
-	circle(hdc, margin + 90, 290, 10);
-	circle(hdc, margin + 130, 290, 10);
-	circle(hdc, margin + 190, 290, 10);
-	circle(hdc, margin + 230, 290, 10);
-	circle(hdc, margin + 230, 290, 10);
-	circle(hdc, margin + 230, 290, 10);
-	circle(hdc, margin + 230, 290, 10);
-	circle(hdc, margin + 290, 290, 10);
-	circle(hdc, margin + 345, 278, 22);
-	circle(hdc, margin + 377, 288, 12);
-	circle(hdc, margin + 400, 288, 12);
+    Rectangle(hdc, margin + 20, 230, margin + 100, 280);
+    Rectangle(hdc, margin + 120, 230, margin + 200, 280);
+    Rectangle(hdc, margin + 220, 230, margin + 300, 280);
+    SelectObject(hdc, yellowBrush);
+    RoundRect(hdc, margin + 320, 200, margin + 365, 280, 30, 20);
+    SelectObject(hdc, skyBlueBrush);
+    RoundRect(hdc, margin + 320, 230, margin + 420, 280, 30, 20);
+    Rectangle(hdc, margin + 390, 230, margin + 400, 210);
+    Rectangle(hdc, margin + 390, 230, margin + 400, 210);
+    Rectangle(hdc, margin + 390, 230, margin + 400, 210);
+    Rectangle(hdc, margin + 390, 230, margin + 400, 210);
+    SelectObject(hdc, yellowBrush);
+    circle(hdc, margin + 30, 290, 10);
+    circle(hdc, margin + 90, 290, 10);
+    circle(hdc, margin + 130, 290, 10);
+    circle(hdc, margin + 190, 290, 10);
+    circle(hdc, margin + 230, 290, 10);
+    circle(hdc, margin + 230, 290, 10);
+    circle(hdc, margin + 230, 290, 10);
+    circle(hdc, margin + 230, 290, 10);
+    circle(hdc, margin + 290, 290, 10);
+    circle(hdc, margin + 345, 278, 22);
+    circle(hdc, margin + 377, 288, 12);
+    circle(hdc, margin + 400, 288, 12);
 }
 
 void line(HDC hdc, int x1, int y1, int x2, int y2) {
-	MoveToEx(hdc, x1, y1, nullptr);
-	LineTo(hdc, x2, y2);
+    MoveToEx(hdc, x1, y1, nullptr);
+    LineTo(hdc, x2, y2);
 }
 
 void circle(HDC hdc, int x, int y, int r) {
-	Ellipse(hdc, x - r, y - r, x + r, y + r);
+    Ellipse(hdc, x - r, y - r, x + r, y + r);
 }
 
 void initThreads() {
-	thread1 = CreateThread(NULL, 0, &threadProc, NULL, 0, NULL);
-	thread2 = CreateThread(NULL, 0, &threadProc, NULL, 0, NULL);
-	thread3 = CreateThread(NULL, 0, &threadProc, NULL, 0, NULL);
+    thread1 = CreateThread(NULL, 0, &threadProc, NULL, 0, NULL);
+    thread2 = CreateThread(NULL, 0, &threadProc, NULL, 0, NULL);
+    thread3 = CreateThread(NULL, 0, &threadProc, NULL, 0, NULL);
 }
 
 void startThreads() {
-	ResumeThread(thread1);
-	ResumeThread(thread2);
-	ResumeThread(thread3);
+    ResumeThread(thread1);
+    ResumeThread(thread2);
+    ResumeThread(thread3);
 }
 
 DWORD WINAPI threadProc(CONST LPVOID lpParam) {
-	while (true) {
-		EnterCriticalSection(&cs);
-		margin += 2;
-		Sleep(100);
-		LeaveCriticalSection(&cs);
-	}
+    while (true) {
+        EnterCriticalSection(&cs);
+        margin += 2;
+        Sleep(100);
+        LeaveCriticalSection(&cs);
+    }
 
-	return 0;
+    return 0;
 }
