@@ -45,6 +45,8 @@ SOURCE_CODE_FOLDER_NAME = "comments"
 
 OUTPUT_COLOR = "\033[36m"
 
+ERROR_COLOR = "\033[31m"
+
 OUTPUT_RESET = "\033[0m"
 
 
@@ -53,7 +55,7 @@ async def unarchive_zip(password):
         with zipfile.ZipFile("source_code.zip") as f:
             f.extractall(pwd=password.encode())
     except:
-        print("⛔️ Wrong license key.")
+        print(f"\n⛔️ {ERROR_COLOR}Wrong license key.{OUTPUT_RESET}")
         if any(file == SOURCE_CODE_FOLDER_NAME for file in os.listdir("./")):
             shutil.rmtree(SOURCE_CODE_FOLDER_NAME)
         exit(9)
@@ -63,14 +65,14 @@ def main():
     print(LICENSE_DESCRIPTION)
     is_accepted = input("Accept agreement (YES/NO): ")
     if "NO" in is_accepted:
-        print("⛔️ Agreement is not accepted.")
+        print(f"\n⛔️ {ERROR_COLOR}Agreement is not accepted.{OUTPUT_RESET}")
         exit(9)
     is_source_code_finded = False
     for file in os.listdir("./"):
         if file == ARCHIVE_NAME:
             is_source_code_finded = True
     if not is_source_code_finded:
-        print("⛔️ No source code find to install")
+        print(f"\n⛔️ {ERROR_COLOR}No source code find to install{OUTPUT_RESET}")
         exit(9)
     license_key = input("Please, enter yout license key: ")
     asyncio.run(unarchive_zip(license_key))
