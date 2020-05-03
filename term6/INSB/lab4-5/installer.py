@@ -43,6 +43,10 @@ ARCHIVE_NAME = "source_code.zip"
 
 SOURCE_CODE_FOLDER_NAME = "comments"
 
+OUTPUT_COLOR = "\033[36m"
+
+OUTPUT_RESET = "\033[0m"
+
 
 async def unarchive_zip(password):
     try:
@@ -70,15 +74,14 @@ def main():
         exit(9)
     license_key = input("Please, enter yout license key: ")
     asyncio.run(unarchive_zip(license_key))
-    print("Installing...")
-    venv_subpr = subprocess.Popen(["python3", "-m", "venv", "venv"])
-    venv_subpr.wait()
-    # s = subprocess.Popen([".", "./venv/bin/activate"])
-    # s.wait()
-    # dj_install_subpr = subprocess.Popen(["venv/bin/pip3", "install", "django"])
-    # dj_install_subpr.wait()
-    # subprocess.Popen([f"venv/bin/python ./{SOURCE_CODE_FOLDER_NAME}/manage.py runserver"], shell=True)
-    print("Successfully installed 🎉")
+    print(f"\n{OUTPUT_COLOR}Installing...{OUTPUT_RESET}")
+    venv_subprocess = subprocess.Popen(["python3 -m venv venv"], shell=True)
+    venv_subprocess.wait()
+    django_install_subprocess = subprocess.Popen(["venv/bin/pip3 install django"], shell=True)
+    django_install_subprocess.wait()
+    subprocess.Popen([f"venv/bin/python3 ./{SOURCE_CODE_FOLDER_NAME}/manage.py runserver"], shell=True)
+    print(f"\n🎉 {OUTPUT_COLOR}Successfully installed{OUTPUT_RESET}")
+    print(f"\n🏃‍ {OUTPUT_COLOR}Running server...{OUTPUT_RESET}")
 
         
 if __name__ == "__main__":
