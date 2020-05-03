@@ -1,0 +1,8 @@
+
+sudo python3 sniff_attack.py
+
+sudo tcpdump port 5000
+sudo python3 syn_flood_attack.py
+
+0.0.0.0
+5000
