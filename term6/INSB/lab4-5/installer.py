@@ -74,8 +74,8 @@ def main():
     if not is_source_code_finded:
         print(f"\n⛔️ {ERROR_COLOR}No source code find to install{OUTPUT_RESET}")
         exit(9)
-    license_key = input("Please, enter yout license key: ")
-    asyncio.run(unarchive_zip(license_key))
+    password = input("Please, enter your install password: ")
+    asyncio.run(unarchive_zip(password=password))
     print(f"\n{OUTPUT_COLOR}Installing...{OUTPUT_RESET}")
     venv_subprocess = subprocess.Popen(["python3 -m venv venv"], shell=True)
     venv_subprocess.wait()
