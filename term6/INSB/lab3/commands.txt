@@ -1,8 +1,7 @@
-
 sudo python3 sniff_attack.py
+curl www.google.com // to check 
 
-sudo tcpdump port 5000
+sudo tcpdump port 5000 // watch incoming tcp packets on port (SYN flood)
 sudo python3 syn_flood_attack.py
-
-0.0.0.0
-5000
+IP: 0.0.0.0
+PORT: 5000

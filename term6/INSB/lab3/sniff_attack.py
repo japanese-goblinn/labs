@@ -5,7 +5,7 @@ from colorama import init, Fore
 init()
 
 GREEN = Fore.GREEN
-RED   = Fore.RED
+RED = Fore.RED
 RESET = Fore.RESET
 
 
