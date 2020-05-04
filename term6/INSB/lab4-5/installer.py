@@ -41,7 +41,7 @@ a. No trademark or patent rights held by Affirmer are waived, abandoned, surrend
 
 ARCHIVE_NAME = "source_code.zip"
 
-SOURCE_CODE_FOLDER_NAME = "comments"
+SOURCE_CODE_FOLDER_NAME = "app"
 
 OUTPUT_COLOR = "\033[36m"
 
@@ -79,7 +79,7 @@ def main():
     print(f"\n{OUTPUT_COLOR}Installing...{OUTPUT_RESET}")
     venv_subprocess = subprocess.Popen(["python3 -m venv venv"], shell=True)
     venv_subprocess.wait()
-    django_install_subprocess = subprocess.Popen(["venv/bin/pip3 install django"], shell=True)
+    django_install_subprocess = subprocess.Popen([f"venv/bin/pip3 install -r './{SOURCE_CODE_FOLDER_NAME}/requirements.txt'"], shell=True)
     django_install_subprocess.wait()
     subprocess.Popen([f"venv/bin/python3 ./{SOURCE_CODE_FOLDER_NAME}/manage.py runserver"], shell=True)
     print(f"\n🎉 {OUTPUT_COLOR}Successfully installed{OUTPUT_RESET}")
