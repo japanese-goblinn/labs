@@ -12,7 +12,7 @@ import SwiftUI
 extension View  {
     func openInNewWindow(_ title: String) {
         let window = NSWindow(
-            contentRect: NSRect(x: 0, y: 0, width: 1010, height: 600),
+            contentRect: NSRect(x: 0, y: 0, width: 1100, height: 600),
             styleMask: [.titled, .resizable],
             backing: .buffered,
             defer: false)
