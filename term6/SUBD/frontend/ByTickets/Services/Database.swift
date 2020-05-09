@@ -166,10 +166,9 @@ class Database {
                 do {
                     let procedureResult = try JSONDecoder().decode([ProcedureResult].self, from: data)
                     execute(
-                        "INSERT INTO user (username, email, last_login, password_hash, firstname_id, lastname_id, role) VALUES ('\(user.username)', '\(user.email)', NOW(), '\(user.passwordHashValue)', '\(procedureResult.first!.firstnameID)', '\(procedureResult.first!.lastnameID)', '\(user.role.rawValue)')"
+                        "INSERT INTO user (username, email, password_hash, firstname_id, lastname_id, role) VALUES ('\(user.username)', '\(user.email)', '\(user.passwordHashValue)', '\(procedureResult.first!.firstnameID)', '\(procedureResult.first!.lastnameID)', '\(user.role.rawValue)')"
                     ) {
                         handler($0)
-//                        execute("UPDATE ban SET is_blocked='yes', duration='30 sec' WHERE user_id=\(user.id)", handler: <#T##(Result<String, RequestError>) -> Void#>)
                     }
                 } catch {
                     handler(.failure("\(error.localizedDescription)"))
