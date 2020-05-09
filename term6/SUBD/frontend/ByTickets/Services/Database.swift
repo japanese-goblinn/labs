@@ -111,16 +111,6 @@ class Database {
         ) { handler($0) }
     }
     
-    struct ProcedureRequest<T: Codable>: Codable {
-        let procedureName: String
-        let params: [T]
-    }
-    
-    struct ProcedureResult: Codable {
-        let firstnameID: Int
-        let lastnameID: Int
-    }
-    
     static func insert(_ user: User, handler: @escaping (Result<String, RequestError>) -> Void) {
         let r = ProcedureRequest(
             procedureName: "firstnameAndLastnameID", params: [user.firstname, user.lastname]
