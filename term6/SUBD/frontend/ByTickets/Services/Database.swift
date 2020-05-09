@@ -37,9 +37,9 @@ class Database {
         }
     }
     
-    private static func executeSelect(
+    private static func executeSelect<T: Codable>(
         _ query: String,
-        handler: @escaping (Result<[User], RequestError>) -> Void
+        handler: @escaping (Result<[T], RequestError>) -> Void
     ) {
         guard let request = Networking.createRequest(to: "query", body: query) else {
             handler(.failure("BAD URL"))
@@ -50,31 +50,7 @@ class Database {
             case .success(let data):
                 print(String(decoding: data, as: UTF8.self))
                 do {
-                     let users = try JSONDecoder.timestampValidDecoder.decode([User].self, from: data)
-                     handler(.success(users))
-                } catch {
-                    print(error.localizedDescription)
-                }
-            case .failure(let error):
-                handler(.failure(error))
-            }
-        }
-    }
-    
-    private static func executeBanSelect(
-        _ query: String,
-        handler: @escaping (Result<[Ban], RequestError>) -> Void
-    ) {
-        guard let request = Networking.createRequest(to: "query", body: query) else {
-            handler(.failure("BAD URL"))
-            return
-        }
-        Networking.request(request) { result in
-            switch result {
-            case .success(let data):
-                print(String(decoding: data, as: UTF8.self))
-                do {
-                     let users = try JSONDecoder().decode([Ban].self, from: data)
+                     let users = try JSONDecoder.timestampValidDecoder.decode([T].self, from: data)
                      handler(.success(users))
                 } catch {
                     print(error.localizedDescription)
@@ -98,7 +74,7 @@ class Database {
         handler: @escaping (Result<Bool, RequestError>) -> Void
     ) {
         executeSelect("SELECT u.*, l.lastname, f.firstname, b.is_blocked FROM user AS u JOIN lastname as l ON u.lastname_id = l.id JOIN firstname as f ON u.firstname_id = f.id LEFT JOIN ban as b ON u.id = b.user_id WHERE username='\(username)' AND password_hash='\(password.hashValue)'"
-        ) { res in
+        ) { (res: Result<[User], RequestError>) -> Void in
             switch res {
             case .failure(let error):
                 handler(.failure(error))
@@ -109,7 +85,9 @@ class Database {
                     execute("INSERT INTO login (`when`, status, username) VALUES (NOW(), 'error', '\(username)')") { _ in }
                     return
                 }
-                executeBanSelect("SELECT * FROM ban WHERE user_id=\(user.id)") { res in
+                executeSelect(
+                    "SELECT * FROM ban WHERE user_id=\(user.id)"
+                ) { (res: Result<[Ban], RequestError>) -> Void in
                     switch res {
                     case .success(let bans):
                         if bans.isEmpty {
@@ -137,9 +115,7 @@ class Database {
     static func fetchUsers(handler: @escaping (Result<[User], RequestError>) -> Void) {
         executeSelect(
             "SELECT u.*, l.lastname, f.firstname, b.is_blocked FROM user AS u JOIN lastname as l ON u.lastname_id = l.id JOIN firstname as f ON u.firstname_id = f.id LEFT JOIN ban as b ON u.id = b.user_id"
-        ) {
-            handler($0)
-        }
+        ) { handler($0) }
     }
     
     struct ProcedureRequest<T: Codable>: Codable {
@@ -167,9 +143,7 @@ class Database {
                     let procedureResult = try JSONDecoder().decode([ProcedureResult].self, from: data)
                     execute(
                         "INSERT INTO user (username, email, password_hash, firstname_id, lastname_id, role) VALUES ('\(user.username)', '\(user.email)', '\(user.passwordHashValue)', '\(procedureResult.first!.firstnameID)', '\(procedureResult.first!.lastnameID)', '\(user.role.rawValue)')"
-                    ) {
-                        handler($0)
-                    }
+                    ) { handler($0) }
                 } catch {
                     handler(.failure("\(error.localizedDescription)"))
                 }
@@ -212,8 +186,6 @@ class Database {
     static func search(_ searchParams: String, handler: @escaping (Result<[User], RequestError>) -> Void) {
         executeSelect(
             "SELECT u.*, l.lastname, f.firstname, b.is_blocked FROM user AS u JOIN lastname as l ON u.lastname_id = l.id JOIN firstname as f ON u.firstname_id = f.id LEFT JOIN ban as b ON u.id = b.user_id WHERE " + searchParams
-        ) {
-            handler($0)
-        }
+        ) { handler($0) }
     }
 }
