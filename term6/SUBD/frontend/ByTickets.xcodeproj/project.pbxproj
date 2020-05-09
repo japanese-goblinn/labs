@@ -26,6 +26,8 @@
 		CE2B9C8F241ED5BE00354EE3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE2B9C8D241ED5BE00354EE3 /* Main.storyboard */; };
 		CE2B9C9B241F7F6400354EE3 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2B9C9A241F7F6400354EE3 /* Database.swift */; };
 		CE67F0D9242FA8620002BC86 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE67F0D8242FA8620002BC86 /* Date+Extension.swift */; };
+		CE8B8C032466F2B700432B4B /* Ban+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8B8C022466F2B700432B4B /* Ban+Extension.swift */; };
+		CE9E2FFB24670ACA00E8F863 /* Procedure.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9E2FFA24670ACA00E8F863 /* Procedure.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +53,8 @@
 		CE2B9C91241ED5BE00354EE3 /* ByTickets.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ByTickets.entitlements; sourceTree = "<group>"; };
 		CE2B9C9A241F7F6400354EE3 /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		CE67F0D8242FA8620002BC86 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		CE8B8C022466F2B700432B4B /* Ban+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ban+Extension.swift"; sourceTree = "<group>"; };
+		CE9E2FFA24670ACA00E8F863 /* Procedure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Procedure.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +94,8 @@
 			isa = PBXGroup;
 			children = (
 				CE12B9FC242CDCB30013346C /* User+Extension.swift */,
+				CE8B8C022466F2B700432B4B /* Ban+Extension.swift */,
+				CE9E2FFA24670ACA00E8F863 /* Procedure.swift */,
 				CE12B9F6242BB7180013346C /* RequestError+Extension.swift */,
 				CE12B9FE242CDFAD0013346C /* JSONDecoder+Extension.swift */,
 				CE12BA00242CEDF50013346C /* String+Extenstion.swift */,
@@ -229,11 +235,13 @@
 				CE12B9FD242CDCB30013346C /* User+Extension.swift in Sources */,
 				CE12BA0C242D27010013346C /* UsersViewController.swift in Sources */,
 				CE12BA07242D02A10013346C /* View+Extension.swift in Sources */,
+				CE8B8C032466F2B700432B4B /* Ban+Extension.swift in Sources */,
 				CE67F0D9242FA8620002BC86 /* Date+Extension.swift in Sources */,
 				CE12BA09242D22870013346C /* ViewControllerWrapper+Extension.swift in Sources */,
 				CE12BA01242CEDF50013346C /* String+Extenstion.swift in Sources */,
 				CE2B9C87241ED5BA00354EE3 /* ContentView.swift in Sources */,
 				CE2B9C85241ED5BA00354EE3 /* AppDelegate.swift in Sources */,
+				CE9E2FFB24670ACA00E8F863 /* Procedure.swift in Sources */,
 				CE12B9FF242CDFAD0013346C /* JSONDecoder+Extension.swift in Sources */,
 				CE12B9EF242B5C9C0013346C /* Networking.swift in Sources */,
 				CE12B9F5242BB63D0013346C /* SignUpView.swift in Sources */,

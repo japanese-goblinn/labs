@@ -8,15 +8,6 @@
 
 import SwiftUI
 
-func proceed<T>(_ value: Result<T, RequestError>) {
-    switch value {
-    case .success(let value):
-        print(value)
-    case .failure(let error):
-        print(error.reason)
-    }
-}
-
 struct ContentView: View {
     var body: some View {
         TabView {
