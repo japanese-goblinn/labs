@@ -28,11 +28,7 @@ class UsersViewController: NSViewController {
     
     private var diffUsers = [Int: Operation]() {
         willSet {
-            if newValue.isEmpty {
-                saveChangesButton.isHidden = true
-            } else {
-                saveChangesButton.isHidden = false
-            }
+            saveChangesButton.isHidden = newValue.isEmpty
         }
     }
     
