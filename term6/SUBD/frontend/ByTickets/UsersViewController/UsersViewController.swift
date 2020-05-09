@@ -241,6 +241,7 @@ class UsersViewController: NSViewController {
         var role: User.Role = .user
         var status: User.Banned = .no
         var lastLogin = Date()
+        var registration = Date()
         var passwordHashValue = 0
         for col in 0 ..< tableView.numberOfColumns {
             guard let view = tableView.view(atColumn: col, row: index, makeIfNecessary: true) else { continue }
@@ -267,6 +268,9 @@ class UsersViewController: NSViewController {
                 }  else if col == 8 {
                     guard let hash = Int(field.stringValue) else { return nil }
                     passwordHashValue = hash
+                } else if col == 9 {
+                    guard let date = field.stringValue.date else { return nil }
+                    registration = date
                 }
             } else {
                 let button = view.viewWithTag(0) as! NSPopUpButton
@@ -290,6 +294,7 @@ class UsersViewController: NSViewController {
             phone: nil,
             contryCode: nil,
             lastLogin: lastLogin,
+            registration: registration,
             cardID: nil,
             passwordHashValue: passwordHashValue
         )
@@ -369,7 +374,7 @@ extension UsersViewController: NSSearchFieldDelegate {
                 self.diffUsers.removeAll()
                 self.tableView.reloadData()
             case .failure(let error):
-                self.showAlert(title: "DB ERORR", content: error.reason, buttonText: "OK", style: .critical)
+                self.showAlert(title: "DB ERROR", content: error.reason, buttonText: "OK", style: .critical)
             }
         }
     }
@@ -442,6 +447,9 @@ extension UsersViewController: NSTableViewDelegate {
         } else if tableColumn == tableView.tableColumns[8] {
             text = "\(user.passwordHashValue)"
             cellIdentifier = CellIdentifiers.passwordHash
+        } else if tableColumn == tableView.tableColumns[9] {
+            text = "\(user.registration)"
+            cellIdentifier = CellIdentifiers.registration
         } else {
             return nil
         }
@@ -464,6 +472,7 @@ extension UsersViewController {
         static let role = "roleCellId"
         static let status = "statusCellId"
         static let lastLogin = "lastLoginCellId"
+        static let registration = "registrationCellId"
         static let passwordHash = "passwordHashCellId"
     }
 }

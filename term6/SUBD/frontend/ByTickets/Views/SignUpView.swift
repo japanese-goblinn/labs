@@ -58,6 +58,7 @@ struct SignUpView: View {
                         phone: nil,
                         contryCode: nil,
                         lastLogin: Date(),
+                        registration: Date(),
                         cardID: nil,
                         passwordHashValue: self.password.hashValue
                     )

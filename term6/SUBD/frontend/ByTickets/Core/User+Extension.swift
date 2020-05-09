@@ -19,6 +19,7 @@ struct User {
     let phone: Int?
     let contryCode: Int?
     let lastLogin: Date
+    let registration: Date
     let cardID: Int?
     let passwordHashValue: Int
 }
@@ -35,6 +36,7 @@ extension User: Codable {
         case banned = "is_blocked"
         case contryCode = "contry_code"
         case lastLogin = "last_login"
+        case registration
         case cardID = "default_card_id"
         case passwordHashValue = "password_hash"
     }
@@ -56,6 +58,19 @@ extension User {
 
 extension User {
     static func defaultUser(with id: Int) -> Self {
-        .init(id: id, firstname: "", lastname: "", username: "", email: "", role: .user, banned:  .no, phone: nil, contryCode: nil, lastLogin: Date(), cardID: nil, passwordHashValue: 0)
+        return .init(
+            id: id,
+            firstname: "",
+            lastname: "",
+            username: "",
+            email: "",
+            role: .user,
+            banned:  .no,
+            phone: nil,
+            contryCode: nil,
+            lastLogin: Date(),
+            registration: Date(),
+            cardID: nil,
+            passwordHashValue: 0)
     }
 }
