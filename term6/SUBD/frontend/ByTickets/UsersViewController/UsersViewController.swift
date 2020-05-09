@@ -50,14 +50,14 @@ class UsersViewController: NSViewController {
         let username = users[tableView.selectedRow].username
         Database.execute(
             "UPDATE ban SET is_blocked='yes', duration='30 sec' WHERE blocked_username='\(username)'"
-        ) { res in
+        ) { [weak self] res in
             switch res {
             case .success(_):
                 Database.execute(
                     "CREATE EVENT IF NOT EXISTS block_event_\(username) ON SCHEDULE AT CURRENT_TIMESTAMP + INTERVAL 30 SECOND DO UPDATE ban SET is_blocked='no' WHERE blocked_username='\(username)';"
-                ) { r in print(r) }
+                )
             case .failure(let error):
-                self.showAlert(title: "BAN ERROR", content: error.reason, buttonText: "OK", style: .critical)
+                self?.showAlert(title: "BAN ERROR", content: error.reason, buttonText: "OK", style: .critical)
             }
         }
     }
@@ -67,14 +67,14 @@ class UsersViewController: NSViewController {
         let username = users[tableView.selectedRow].username
         Database.execute(
             "UPDATE ban SET is_blocked='yes', duration='60 sec' WHERE blocked_username='\(username)'"
-        ) { res in
+        ) { [weak self] res in
             switch res {
             case .success(_):
                 Database.execute(
                     "CREATE EVENT IF NOT EXISTS block_event_\(username) ON SCHEDULE AT CURRENT_TIMESTAMP + INTERVAL 60 SECOND DO UPDATE ban SET is_blocked='no' WHERE blocked_username='\(username)';"
-                ) { r in print(r) }
+                )
             case .failure(let error):
-                self.showAlert(title: "BAN ERROR", content: error.reason, buttonText: "OK", style: .critical)
+                self?.showAlert(title: "BAN ERROR", content: error.reason, buttonText: "OK", style: .critical)
             }
         }
     }
@@ -84,14 +84,14 @@ class UsersViewController: NSViewController {
         let username = users[tableView.selectedRow].username
         Database.execute(
             "UPDATE ban SET is_blocked='yes', duration='5 minutes' WHERE blocked_username='\(username)'"
-        ) { res in
+        ) { [weak self] res in
             switch res {
             case .success(_):
                 Database.execute(
                     "CREATE EVENT IF NOT EXISTS block_event_\(username) ON SCHEDULE AT CURRENT_TIMESTAMP + INTERVAL 5 MINUTE DO UPDATE ban SET is_blocked='no' WHERE blocked_username='\(username)';"
-                ) { r in print(r) }
+                )
             case .failure(let error):
-                self.showAlert(title: "BAN ERROR", content: error.reason, buttonText: "OK", style: .critical)
+                self?.showAlert(title: "BAN ERROR", content: error.reason, buttonText: "OK", style: .critical)
             }
         }
     }
