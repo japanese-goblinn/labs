@@ -61,13 +61,6 @@ class Database {
         }
     }
     
-    struct Ban: Codable {
-        let id: Int
-        let user_id: Int
-        let is_blocked: String
-        let duration: String
-    }
-    
     static func authenticate(
         username: String,
         password: String,
@@ -95,7 +88,7 @@ class Database {
                              execute("INSERT INTO login (`when`, status, username) VALUES (NOW(), 'ok', '\(username)')") { _ in }
                         } else {
                             let ban = bans.first!
-                            if ban.is_blocked.contains("yes") {
+                            if ban.isBlocked.contains("yes") {
                                 handler(.failure("YOU ARE BANNED FOR \(bans.first!.duration)"))
                                 execute("INSERT INTO login (`when`, status, username) VALUES (NOW(), 'error', '\(username)')") { _ in }
                             } else {
