@@ -45,17 +45,16 @@ class UsersViewController: NSViewController {
         tableView.endUpdates()
     }
     
-    
     @IBAction func banFor30SecondsClicked(_ sender: Any) {
         guard isDBUser else { return }
-        let id = users[tableView.selectedRow].id
+        let username = users[tableView.selectedRow].username
         Database.execute(
-            "UPDATE ban SET is_blocked='yes', duration='30 sec' WHERE user_id=\(id)"
+            "UPDATE ban SET is_blocked='yes', duration='30 sec' WHERE blocked_username='\(username)'"
         ) { res in
             switch res {
             case .success(_):
                 Database.execute(
-                    "CREATE EVENT IF NOT EXISTS block_event_\(id) ON SCHEDULE AT CURRENT_TIMESTAMP + INTERVAL 30 SECOND DO UPDATE ban SET is_blocked='no' WHERE user_id=\(id);"
+                    "CREATE EVENT IF NOT EXISTS block_event_\(username) ON SCHEDULE AT CURRENT_TIMESTAMP + INTERVAL 30 SECOND DO UPDATE ban SET is_blocked='no' WHERE blocked_username='\(username)';"
                 ) { r in print(r) }
             case .failure(let error):
                 self.showAlert(title: "BAN ERROR", content: error.reason, buttonText: "OK", style: .critical)
@@ -65,82 +64,44 @@ class UsersViewController: NSViewController {
     
     @IBAction func banFor60SecondsClicked(_ sender: Any) {
         guard isDBUser else { return }
-        let id = users[tableView.selectedRow].id
+        let username = users[tableView.selectedRow].username
         Database.execute(
-            "UPDATE ban SET is_blocked='yes', duration='60 sec' WHERE user_id=\(id)"
+            "UPDATE ban SET is_blocked='yes', duration='60 sec' WHERE blocked_username='\(username)'"
         ) { res in
             switch res {
             case .success(_):
                 Database.execute(
-                    "CREATE EVENT IF NOT EXISTS block_event_\(id) ON SCHEDULE AT CURRENT_TIMESTAMP + INTERVAL 60 SECOND DO UPDATE ban SET is_blocked='no' WHERE user_id=\(id);"
+                    "CREATE EVENT IF NOT EXISTS block_event_\(username) ON SCHEDULE AT CURRENT_TIMESTAMP + INTERVAL 60 SECOND DO UPDATE ban SET is_blocked='no' WHERE blocked_username='\(username)';"
                 ) { r in print(r) }
             case .failure(let error):
-                Database.execute(
-                    "INSERT INTO ban (user_id, is_blocked, duration) VALUES ('\(id)', 'yes', '60 sec')"
-                ) { r in
-                    switch r {
-                    case .success(_):
-                        Database.execute(
-                            "CREATE EVENT IF NOT EXISTS block_event_\(id) ON SCHEDULE AT CURRENT_TIMESTAMP + INTERVAL 60 SECOND DO UPDATE ban SET is_blocked='no' WHERE user_id=\(id);"
-                        ) { r in print(r) }
-                    case .failure(let error):
-                        self.showAlert(title: "BLOCK ERROR", content: error.reason, buttonText: "OK", style: .critical)
-                    }
-                }
+                self.showAlert(title: "BAN ERROR", content: error.reason, buttonText: "OK", style: .critical)
             }
         }
     }
     
     @IBAction func banFor5MinutesClicked(_ sender: Any) {
         guard isDBUser else { return }
-        let id = users[tableView.selectedRow].id
+        let username = users[tableView.selectedRow].username
         Database.execute(
-            "UPDATE ban SET is_blocked='yes', duration='5 minutes' WHERE user_id=\(id)"
+            "UPDATE ban SET is_blocked='yes', duration='5 minutes' WHERE blocked_username='\(username)'"
         ) { res in
             switch res {
             case .success(_):
                 Database.execute(
-                    "CREATE EVENT IF NOT EXISTS block_event_\(id) ON SCHEDULE AT CURRENT_TIMESTAMP + INTERVAL 5 MINUTE DO UPDATE ban SET is_blocked='no' WHERE user_id=\(id);"
+                    "CREATE EVENT IF NOT EXISTS block_event_\(username) ON SCHEDULE AT CURRENT_TIMESTAMP + INTERVAL 5 MINUTE DO UPDATE ban SET is_blocked='no' WHERE blocked_username='\(username)';"
                 ) { r in print(r) }
             case .failure(let error):
-                Database.execute(
-                    "INSERT INTO ban (user_id, is_blocked, duration) VALUES ('\(id)', 'yes', '5 minute')"
-                ) { r in
-                    switch r {
-                    case .success(_):
-                        Database.execute(
-                            "CREATE EVENT IF NOT EXISTS block_event_\(id) ON SCHEDULE AT CURRENT_TIMESTAMP + INTERVAL 5 MINUTE DO UPDATE ban SET is_blocked='no' WHERE user_id=\(id);"
-                        ) { r in print(r) }
-                    case .failure(let error):
-                        self.showAlert(title: "BLOCK ERROR", content: error.reason, buttonText: "OK", style: .critical)
-                    }
-                }
+                self.showAlert(title: "BAN ERROR", content: error.reason, buttonText: "OK", style: .critical)
             }
         }
     }
     
     @IBAction func banForeverClicked(_ sender: Any) {
         guard isDBUser else { return }
-        let id = users[tableView.selectedRow].id
+        let username = users[tableView.selectedRow].username
         Database.execute(
-            "UPDATE ban SET is_blocked='yes', duration='forever' WHERE user_id=\(id)"
-        ) { res in
-            switch res {
-            case .success(_):
-                break
-            case .failure(let error):
-                Database.execute(
-                    "INSERT INTO ban (user_id, is_blocked, duration) VALUES ('\(id)', 'yes', 'forever')"
-                ) { r in
-                    switch r {
-                    case .success(_):
-                        break
-                    case .failure(let error):
-                        self.showAlert(title: "BLOCK ERROR", content: error.reason, buttonText: "OK", style: .critical)
-                    }
-                }
-            }
-        }
+            "UPDATE ban SET is_blocked='yes', duration='forever' WHERE blocked_username='\(username)'"
+        )
     }
     
     @IBAction func editItemClicked(_ sender: Any) {

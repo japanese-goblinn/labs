@@ -144,7 +144,7 @@ class Database {
                         switch $0 {
                         case .success(_):
                             execute(
-                                "INSERT INTO ban (username, is_blocked) VALUES ('\(user.username)', '\(user.banned?.rawValue ?? "no")')"
+                                "INSERT INTO ban (blocked_username, is_blocked) VALUES ('\(user.username)', '\(user.banned?.rawValue ?? "no")')"
                             )
                         case .failure(_):
                             break
