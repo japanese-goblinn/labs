@@ -157,17 +157,16 @@ class UsersViewController: NSViewController {
                     }
                 }
             case .delete:
-                break
-//                if users[i].username != "" {
-//                    Database.delete(users[i]) { [weak self] result in
-//                        switch result {
-//                        case .failure(let error):
-//                            self?.showAlert(title: "DB DELETE ERROR", content: error.reason, buttonText: "OK", style: .critical)
-//                        case .success(let message):
-//                            print(#function, message)
-//                        }
-//                    }
-//                }
+                if users[i].username != "" {
+                    Database.delete(users[i]) { [weak self] result in
+                        switch result {
+                        case .failure(let error):
+                            self?.showAlert(title: "DB DELETE ERROR", content: error.reason, buttonText: "OK", style: .critical)
+                        case .success(let message):
+                            print(#function, message)
+                        }
+                    }
+                }
             }
         }
         if !errors.isEmpty {

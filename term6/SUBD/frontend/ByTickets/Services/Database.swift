@@ -188,7 +188,12 @@ class Database {
         }
     }
     
-    //    static func delete(_ user: User, handler: @escaping (Result<String, RequestError>) -> Void) {}
+    static func delete(
+        _ user: User,
+        handler: @escaping (Result<String, RequestError>
+    ) -> Void) {
+        execute("DELETE FROM user WHERE username='\(user.username)'") { handler($0) }
+    }
 }
 
 extension Database {
