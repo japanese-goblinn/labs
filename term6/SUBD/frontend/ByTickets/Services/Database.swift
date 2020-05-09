@@ -111,6 +111,16 @@ class Database {
         ) { handler($0) }
     }
     
+    static func logAuthentication(username: String, password: Int, status: AuthenticationStatus) {
+        execute(
+            "INSERT INTO login (`when`, status, username, password_hash) VALUES (NOW(), '\(status)', '\(username)', '\(password)')"
+        )
+    }
+    
+    static func search(_ searchParams: String, handler: @escaping (Result<[User], RequestError>) -> Void) {
+        fetchUsers("WHERE \(searchParams)") { handler($0) }
+    }
+    
     static func insert(_ user: User, handler: @escaping (Result<String, RequestError>) -> Void) {
         let r = ProcedureRequest(
             procedureName: "firstnameAndLastnameID", params: [user.firstname, user.lastname]
@@ -164,11 +174,12 @@ class Database {
         }
     }
     
-//    static func delete(_ user: User, handler: @escaping (Result<String, RequestError>) -> Void) {}
-    
-    static func search(_ searchParams: String, handler: @escaping (Result<[User], RequestError>) -> Void) {
-        executeSelect(
-            "SELECT u.*, l.lastname, f.firstname, b.is_blocked FROM user AS u JOIN lastname as l ON u.lastname_id = l.id JOIN firstname as f ON u.firstname_id = f.id LEFT JOIN ban as b ON u.id = b.user_id WHERE " + searchParams
-        ) { handler($0) }
+    //    static func delete(_ user: User, handler: @escaping (Result<String, RequestError>) -> Void) {}
+}
+
+extension Database {
+    enum AuthenticationStatus: String {
+        case ok
+        case error
     }
 }

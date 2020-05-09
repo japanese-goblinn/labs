@@ -68,7 +68,7 @@ struct SignUpView: View {
                             self.message = error.reason
                             self.showingAlert = true
                         case .success(_):
-                            Database.execute("INSERT INTO login (`when`, status, username) VALUES (NOW(), 'ok', '\(self.username)')") { _ in }
+                            Database.logAuthentication(username: self.username, password: self.password.hashValue, status: .ok)
                             UsersView()
                                 .openInNewWindow("Users")
                         }
