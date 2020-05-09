@@ -12,7 +12,7 @@ class Database {
     
     static func execute(
         _ query: String,
-        handler: @escaping (Result<String, RequestError>) -> Void
+        handler: @escaping (Result<String, RequestError>) -> Void = { print("\(#function): \($0)") }
     ) {
         guard let request = Networking.createRequest(to: "query", body: query) else {
             handler(.failure("BAD URL"))
@@ -66,48 +66,52 @@ class Database {
         password: String,
         handler: @escaping (Result<Bool, RequestError>) -> Void
     ) {
-        executeSelect("SELECT u.*, l.lastname, f.firstname, b.is_blocked FROM user AS u JOIN lastname as l ON u.lastname_id = l.id JOIN firstname as f ON u.firstname_id = f.id LEFT JOIN ban as b ON u.id = b.user_id WHERE username='\(username)' AND password_hash='\(password.hashValue)'"
+        fetchUsers(
+            "WHERE username='\(username)' AND password_hash='\(password.hashValue)'"
         ) { (res: Result<[User], RequestError>) -> Void in
             switch res {
             case .failure(let error):
                 handler(.failure(error))
-                execute("INSERT INTO login (`when`, status, username) VALUES (NOW(), 'error', '\(username)')") { _ in }
+                logAuthentication(username: username, password: password.hashValue, status: .error)
             case .success(let users):
                 guard let user = users.first else {
                     handler(.failure("WRONG USERNAME OR PASSWORD"))
-                    execute("INSERT INTO login (`when`, status, username) VALUES (NOW(), 'error', '\(username)')") { _ in }
+                    logAuthentication(username: username, password: password.hashValue, status: .error)
                     return
                 }
                 executeSelect(
-                    "SELECT * FROM ban WHERE user_id=\(user.id)"
+                    "SELECT * FROM ban WHERE blocked_username='\(user.username)'"
                 ) { (res: Result<[Ban], RequestError>) -> Void in
                     switch res {
                     case .success(let bans):
                         if bans.isEmpty {
                             handler(.success(true))
-                             execute("INSERT INTO login (`when`, status, username) VALUES (NOW(), 'ok', '\(username)')") { _ in }
+                            logAuthentication(username: username, password: password.hashValue, status: .ok)
                         } else {
                             let ban = bans.first!
                             if ban.isBlocked.contains("yes") {
                                 handler(.failure("YOU ARE BANNED FOR \(bans.first!.duration)"))
-                                execute("INSERT INTO login (`when`, status, username) VALUES (NOW(), 'error', '\(username)')") { _ in }
+                                logAuthentication(username: username, password: password.hashValue, status: .error)
                             } else {
                                 handler(.success(true))
-                                execute("INSERT INTO login (`when`, status, username) VALUES (NOW(), 'ok', '\(username)')") { _ in }
+                                logAuthentication(username: username, password: password.hashValue, status: .ok)
                             }
                         }
                     case .failure(let err):
                         handler(.failure(err))
-                        execute("INSERT INTO login (`when`, status, username) VALUES (NOW(), 'error', '\(username)')") { _ in }
+                        logAuthentication(username: username, password: password.hashValue, status: .error)
                     }
                 }
             }
         }
     }
-    
-    static func fetchUsers(handler: @escaping (Result<[User], RequestError>) -> Void) {
+        
+    static func fetchUsers(
+        _ appending: String = "",
+        handler: @escaping (Result<[User], RequestError>) -> Void
+    ) {
         executeSelect(
-            "SELECT u.*, l.lastname, f.firstname, b.is_blocked FROM user AS u JOIN lastname as l ON u.lastname_id = l.id JOIN firstname as f ON u.firstname_id = f.id LEFT JOIN ban as b ON u.id = b.user_id"
+            "SELECT u.*, l.lastname, f.firstname, b.is_blocked FROM user AS u JOIN lastname as l ON u.lastname_id = l.id JOIN firstname as f ON u.firstname_id = f.id LEFT JOIN ban as b ON u.username = b.blocked_username " + appending
         ) { handler($0) }
     }
     
@@ -136,7 +140,17 @@ class Database {
                     let procedureResult = try JSONDecoder().decode([ProcedureResult].self, from: data)
                     execute(
                         "INSERT INTO user (username, email, password_hash, firstname_id, lastname_id, role) VALUES ('\(user.username)', '\(user.email)', '\(user.passwordHashValue)', '\(procedureResult.first!.firstnameID)', '\(procedureResult.first!.lastnameID)', '\(user.role.rawValue)')"
-                    ) { handler($0) }
+                    ) {
+                        switch $0 {
+                        case .success(_):
+                            execute(
+                                "INSERT INTO ban (username, is_blocked) VALUES ('\(user.username)', '\(user.banned?.rawValue ?? "no")')"
+                            )
+                        case .failure(_):
+                            break
+                        }
+                        handler($0)
+                    }
                 } catch {
                     handler(.failure("\(error.localizedDescription)"))
                 }
@@ -161,10 +175,10 @@ class Database {
                     let procedureResult = try JSONDecoder().decode([ProcedureResult].self, from: data)
                     execute(
                         "UPDATE user SET username='\(user.username)', email='\(user.email)', last_login='\(user.lastLogin.string)', password_hash='\(user.passwordHashValue)', role='\(user.role.rawValue)', firstname_id='\(procedureResult.first!.firstnameID)', lastname_id='\(procedureResult.first!.lastnameID)' WHERE id=\(user.id)"
-                    ) {
-                        handler($0)
-                    }
-                    execute("UPDATE ban SET is_blocked='no'WHERE user_id=\(user.id)") { _ in }
+                    ) { handler($0) }
+                    execute(
+                        "UPDATE ban SET is_blocked='\(user.banned?.rawValue ?? "no")', duration='forever' WHERE username='\(user.username)'"
+                    )
                 } catch {
                     handler(.failure("\(error.localizedDescription)"))
                 }

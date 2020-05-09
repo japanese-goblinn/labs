@@ -10,7 +10,7 @@ import Foundation
 
 struct Ban {
     let id: Int
-    let userID: Int
+    let username: String
     let isBlocked: String
     let duration: String
 }
@@ -18,7 +18,7 @@ struct Ban {
 extension Ban: Codable {
     enum CodingKeys: String, CodingKey {
         case id
-        case userID = "user_id"
+        case username = "blocked_username"
         case isBlocked = "is_blocked"
         case duration
     }
