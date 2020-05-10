@@ -64,7 +64,7 @@ class Database {
     static func authenticate(
         username: String,
         password: String,
-        handler: @escaping (Result<Bool, RequestError>) -> Void
+        handler: @escaping (Result<User, RequestError>) -> Void
     ) {
         fetchUsers(
             "WHERE username='\(username)' AND password_hash='\(password.hashValue)'"
@@ -85,7 +85,7 @@ class Database {
                     switch res {
                     case .success(let bans):
                         if bans.isEmpty {
-                            handler(.success(true))
+                            handler(.success(user))
                             logAuthentication(username: username, password: password.hashValue, status: .ok)
                         } else {
                             let ban = bans.first!
@@ -93,7 +93,7 @@ class Database {
                                 handler(.failure("YOU ARE BANNED FOR \(bans.first!.duration)"))
                                 logAuthentication(username: username, password: password.hashValue, status: .error)
                             } else {
-                                handler(.success(true))
+                                handler(.success(user))
                                 logAuthentication(username: username, password: password.hashValue, status: .ok)
                             }
                         }

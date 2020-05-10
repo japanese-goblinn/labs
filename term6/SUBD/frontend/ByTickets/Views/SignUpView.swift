@@ -87,7 +87,11 @@ struct SignUpView: View {
                             self.message = error.reason
                             self.showingAlert = true
                         case .success(_):
-                            Database.logAuthentication(username: self.username, password: self.password.hashValue, status: .ok)
+                            Database.logAuthentication(
+                                username: self.username,
+                                password: self.password.hashValue,
+                                status: .ok
+                            )
                             UsersView()
                                 .openInNewWindow("Users")
                         }

@@ -32,14 +32,9 @@ struct SignInView: View {
                         case .failure(let error):
                             self.message = error.reason
                             self.showingAlert = true
-                        case .success(let isOK):
-                            if isOK {
-                                UsersView()
-                                    .openInNewWindow("Users")
-                            } else {
-                                self.message = "Wrong password or username"
-                                self.showingAlert = true
-                            }
+                        case .success(let user):
+                            UsersView()
+                                .openInNewWindow("Users")
                         }
                     }
                 }) {
