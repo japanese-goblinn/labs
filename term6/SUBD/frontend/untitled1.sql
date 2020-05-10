@@ -1,4 +1,25 @@
 
+-- CALL add_default_card("kek", "PRIOR", 1111111111, "2021-05-01");
+-- CALL buy_ticket("kek", "Belarus", "Joker", "2020-05-20 14:00:00");
+-- CALL amount_of_tickets("lol");
+-- CALL see_transactions("kek");
+-- CALL see_sales("kek");
+-- CALL see_available_tickets();
+-- CALL see_not_available_tickets();
+-- CALL find_tickets_by_date("2020-05-20 16:00:00");
+-- CALL find_tickets_by_movie("Bladerunner");
+-- CALL find_tickets_by_cinema("Belarus");
+-- CALL filter_tickets_by_movie("Joker");
+-- CALL filter_tickets_by_cinema("Belarus");
+-- CALL filter_tickets_by_date("2020-05-20 14:00:00");
+
+-- CALL cancel_order('kek', '4');
+-- CALL edit_movie('lol', 2, "Bladerunner 2049", '18+', 'блокбастер', '2017', '3');
+
+
+
+-- Процедуры
+
 -- Возможность привязывать банковскую карту по-умолчанию (все пользователи);
 
 USE `byTickets`;
@@ -458,31 +479,74 @@ DELIMITER ;
 
 -- Возможность отмены заказов пользователей (администратор);
 
+CREATE DEFINER=`root`@`%` PROCEDURE `cancel_order`(
+    IN username_arg VARCHAR(32),
+    IN sale_id_arg INT UNSIGNED
+)
+exit_label: BEGIN
+    DECLARE error VARCHAR(65);
+    DECLARE transaction_id_var INT UNSIGNED;
+    DECLARE user_id_var MEDIUMINT UNSIGNED;
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
+    
+    SELECT id INTO user_id_var FROM user WHERE username=username_arg AND role='admin';
+    IF user_id_var IS NULL THEN
+        SET error = "NO USER WITH THIS USERNAME OR NO RIGHTS TO ACCESS";
+        SELECT error;
+        LEAVE exit_label;
+    END IF;
+    
+    IF NOT EXISTS(SELECT * FROM sale WHERE id=sale_id_arg) THEN
+        SET error = "NO SALE WITH THIS ID";
+        SELECT error;
+        LEAVE exit_label;
+    END IF;
+    
+    START TRANSACTION;
+    UPDATE store SET sale_id=NULL WHERE sale_id=sale_id_arg;
+    SELECT transaction_id INTO transaction_id_var FROM sale WHERE id=sale_id_arg;
+    DELETE FROM sale WHERE id=sale_id_arg;
+    DELETE FROM transaction WHERE id=transaction_id_var;
+    COMMIT;
+END
 
 
 -- Возможность редактирования различной информации о фильмах, ценах на билеты и т.п (администратор);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+CREATE DEFINER=`root`@`%` PROCEDURE `edit_movie`(
+    IN username_arg VARCHAR(32),
+    IN movie_id_arg INT UNSIGNED,
+    IN name_arg VARCHAR(128),
+    IN movie_pg_arg ENUM('0+', '6+', '12+', '16+', '18+'),
+    IN genre_arg ENUM('драма', 'комедия', 'триллер', 'детектив', 'блокбастер', 'мультфильм'),
+    IN year_arg SMALLINT UNSIGNED,
+    IN duration_arg SMALLINT UNSIGNED
+)
+exit_label: BEGIN
+    DECLARE error VARCHAR(65);
+    DECLARE user_id_var MEDIUMINT UNSIGNED;
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
+    
+    SELECT id INTO user_id_var FROM user WHERE username=username_arg AND role='admin';
+    IF user_id_var IS NULL THEN
+        SET error = "NO USER WITH THIS USERNAME OR NO RIGHTS TO ACCESS";
+        SELECT error;
+        LEAVE exit_label;
+    END IF;
+    
+    IF NOT EXISTS(SELECT * FROM movie WHERE id=movie_id_arg) THEN
+        SET error = "NO MOVIE WITH THIS ID";
+        SELECT error;
+        LEAVE exit_label;
+    END IF;
+    
+    START TRANSACTION;
+    UPDATE movie SET 
+        name = name_arg,
+        movie_pg = movie_pg_arg,
+        genre = genre_arg,
+        year = year_arg,
+        duration = duration_arg
+    WHERE id=movie_id_arg;
+    COMMIT;
+END
