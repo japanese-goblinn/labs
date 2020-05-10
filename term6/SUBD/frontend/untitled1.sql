@@ -7,36 +7,36 @@ DROP procedure IF EXISTS `add_default_card`;
 DELIMITER $$
 USE `byTickets`$$
 CREATE DEFINER=`root`@`%` PROCEDURE `add_default_card`(
-	IN username_arg VARCHAR(32),
+    IN username_arg VARCHAR(32),
     IN bankname_arg VARCHAR(64),
     IN card_number_arg BIGINT UNSIGNED,
     IN valid_date_arg DATE
 )
 exit_label: BEGIN
-	DECLARE error VARCHAR(65);
-	DECLARE card_id MEDIUMINT UNSIGNED;
+    DECLARE error VARCHAR(65);
+    DECLARE card_id MEDIUMINT UNSIGNED;
     DECLARE d_bank_id SMALLINT UNSIGNED;
-	DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
     
     IF valid_date_arg <= CURRENT_DATE() THEN
-		SET error = "Card date is not valid";
+        SET error = "Card date is not valid";
         SELECT error;
         LEAVE exit_label;
     END IF;
     START TRANSACTION;
     SELECT default_card_id INTO card_id FROM user WHERE username=username_arg;
     IF card_id IS NULL THEN
-		SELECT id INTO d_bank_id FROM bank WHERE name=bankname_arg;
+        SELECT id INTO d_bank_id FROM bank WHERE name=bankname_arg;
         IF d_bank_id IS NULL THEN
-			INSERT INTO bank SET name=bankname_arg;
-			SELECT id INTO d_bank_id FROM bank WHERE name=bankname_arg;
+            INSERT INTO bank SET name=bankname_arg;
+            SELECT id INTO d_bank_id FROM bank WHERE name=bankname_arg;
         END IF;
         IF NOT EXISTS(SELECT * FROM card WHERE number=card_number_arg AND bank_id=d_bank_id) THEN
-			INSERT INTO card SET 
-				number=card_number_arg,
-				valid_date=valid_date_arg,
-				bank_id=d_bank_id;
-		END IF;
+            INSERT INTO card SET 
+                number=card_number_arg,
+                valid_date=valid_date_arg,
+                bank_id=d_bank_id;
+        END IF;
         SELECT id INTO card_id FROM card WHERE number=card_number_arg AND bank_id=d_bank_id;
     END IF;
     UPDATE user SET default_card_id=card_id;
@@ -69,15 +69,15 @@ DROP procedure IF EXISTS `buy_ticket`;
 DELIMITER $$
 USE `byTickets`$$
 CREATE DEFINER=`root`@`%` PROCEDURE `buy_ticket`(
-	IN username_arg VARCHAR(32),
-	IN cinema_name_arg VARCHAR(32),
+    IN username_arg VARCHAR(32),
+    IN cinema_name_arg VARCHAR(32),
     IN movie_name_arg VARCHAR(128),
     IN when_arg TIMESTAMP
 )
 exit_label: BEGIN
-	DECLARE error VARCHAR(65);
+    DECLARE error VARCHAR(65);
     DECLARE var_card_id MEDIUMINT UNSIGNED;
-	DECLARE var_cinema_id TINYINT UNSIGNED;
+    DECLARE var_cinema_id TINYINT UNSIGNED;
     DECLARE var_movie_id INT UNSIGNED;
     DECLARE var_store_id INT UNSIGNED;
     DECLARE ticket_id_var INT UNSIGNED;
@@ -85,50 +85,50 @@ exit_label: BEGIN
     DECLARE transaction_id_var INT UNSIGNED;
     DECLARE user_id_var MEDIUMINT UNSIGNED;
     DECLARE sale_id_var INT UNSIGNED;
-	DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
     
     IF when_arg <= CURRENT_TIMESTAMP() THEN
-		SET error = "ORDER DATE IS WRONG";
+        SET error = "ORDER DATE IS WRONG";
         SELECT error;
         LEAVE exit_label;
     END IF;
     
     SELECT id INTO user_id_var FROM user WHERE username=username_arg;
     IF user_id_var IS NULL THEN
-		SET error = "NO USER WITH THIS USERNAME";
+        SET error = "NO USER WITH THIS USERNAME";
         SELECT error;
         LEAVE exit_label;
     END IF;
     
     SELECT default_card_id INTO var_card_id FROM user WHERE username=username_arg;
     IF var_card_id IS NULL THEN
-		SET error = "NO CARD ASSIGNED TO ACCOUNT";
+        SET error = "NO CARD ASSIGNED TO ACCOUNT";
         SELECT error;
         LEAVE exit_label;
     END IF;
-	
+    
     SELECT id INTO var_cinema_id FROM cinema WHERE name=cinema_name_arg;
     IF var_cinema_id IS NULL THEN
-		SET error = "CINEMA WITH THIS NAME NOT FOUNDED";
+        SET error = "CINEMA WITH THIS NAME NOT FOUNDED";
         SELECT error;
         LEAVE exit_label;
     END IF;
     
     SELECT id INTO var_movie_id FROM movie WHERE name=movie_name_arg;
     IF var_movie_id IS NULL THEN
-		SET error = "MOVIE WITH THIS NAME NOT FOUNDED";
+        SET error = "MOVIE WITH THIS NAME NOT FOUNDED";
         SELECT error;
         LEAVE exit_label;
     END IF;
     
     SELECT 
-		id, ticket_id, price
-	INTO 
-		var_store_id, ticket_id_var, ticket_price_var  
-	FROM store WHERE 
-		movie_id=var_movie_id AND cinema_id=var_cinema_id AND start=when_arg LIMIT 1;
-	IF var_store_id IS NULL THEN
-		SET error = "NO TICKETS ON THIS DATE";
+        id, ticket_id, price
+    INTO 
+        var_store_id, ticket_id_var, ticket_price_var  
+    FROM store WHERE 
+        movie_id=var_movie_id AND cinema_id=var_cinema_id AND start=when_arg LIMIT 1;
+    IF var_store_id IS NULL THEN
+        SET error = "NO TICKETS ON THIS DATE";
         SELECT error;
         LEAVE exit_label;
     END IF;
@@ -153,16 +153,16 @@ DROP procedure IF EXISTS `amount_of_tickets`;
 DELIMITER $$
 USE `byTickets`$$
 CREATE DEFINER=`root`@`%` PROCEDURE `amount_of_tickets`(
-	IN username_arg VARCHAR(32)
+    IN username_arg VARCHAR(32)
 )
 exit_label: BEGIN
-	DECLARE error VARCHAR(65);
+    DECLARE error VARCHAR(65);
     DECLARE amount INT UNSIGNED;
-	DECLARE user_id_var MEDIUMINT UNSIGNED;
+    DECLARE user_id_var MEDIUMINT UNSIGNED;
     
     SELECT id INTO user_id_var FROM user WHERE username=username_arg AND (role='headmaster' OR role='manager');
     IF user_id_var IS NULL THEN
-		SET error = "NO USER WITH THIS USERNAME OR NO RIGHTS TO ACCESS";
+        SET error = "NO USER WITH THIS USERNAME OR NO RIGHTS TO ACCESS";
         SELECT error;
         LEAVE exit_label;
     END IF;
@@ -182,25 +182,25 @@ DROP procedure IF EXISTS `see_transactions`;
 DELIMITER $$
 USE `byTickets`$$
 CREATE DEFINER=`root`@`%` PROCEDURE `see_transactions`(
-	IN username_arg VARCHAR(32)
+    IN username_arg VARCHAR(32)
 )
 exit_label: BEGIN
-	DECLARE error VARCHAR(65);
-	DECLARE user_id_var MEDIUMINT UNSIGNED;
+    DECLARE error VARCHAR(65);
+    DECLARE user_id_var MEDIUMINT UNSIGNED;
     
     SELECT id INTO user_id_var FROM user WHERE username=username_arg AND role='headmaster';
     IF user_id_var IS NULL THEN
-		SET error = "NO USER WITH THIS USERNAME OR NO RIGHTS TO ACCESS";
+        SET error = "NO USER WITH THIS USERNAME OR NO RIGHTS TO ACCESS";
         SELECT error;
         LEAVE exit_label;
     END IF;
     
     SELECT 
-		t.id, t.order_sum money_transfered,
-		c.number card_number, c.valid_date card_valid_until_date,
-		b.name bank_name
-	FROM transaction t 
-		JOIN card c ON t.card_id = c.id
+        t.id, t.order_sum money_transfered,
+        c.number card_number, c.valid_date card_valid_until_date,
+        b.name bank_name
+    FROM transaction t 
+        JOIN card c ON t.card_id = c.id
         JOIN bank b ON c.bank_id = b.id; 
 END$$
 
@@ -215,29 +215,29 @@ DROP procedure IF EXISTS `see_sales`;
 DELIMITER $$
 USE `byTickets`$$
 CREATE DEFINER=`root`@`%` PROCEDURE `see_sales`(
-	IN username_arg VARCHAR(32)
+    IN username_arg VARCHAR(32)
 )
 exit_label: BEGIN
-	DECLARE error VARCHAR(65);
-	DECLARE user_id_var MEDIUMINT UNSIGNED;
+    DECLARE error VARCHAR(65);
+    DECLARE user_id_var MEDIUMINT UNSIGNED;
     
     SELECT id INTO user_id_var FROM user WHERE username=username_arg AND role='headmaster';
     IF user_id_var IS NULL THEN
-		SET error = "NO USER WITH THIS USERNAME OR NO RIGHTS TO ACCESS";
+        SET error = "NO USER WITH THIS USERNAME OR NO RIGHTS TO ACCESS";
         SELECT error;
         LEAVE exit_label;
     END IF;
      
     SELECT 
-		s.id, s.sale_date date,
-		t.order_sum money_transfered, 
+        s.id, s.sale_date date,
+        t.order_sum money_transfered, 
         u.username to_user,
         c.number card_number, c.valid_date card_valid_until_date, 
         b.name bank_name
-	FROM sale s
-		JOIN transaction t ON s.transaction_id = t.id
+    FROM sale s
+        JOIN transaction t ON s.transaction_id = t.id
         JOIN user u ON s.user_id = u.id
-		JOIN card c ON t.card_id = c.id
+        JOIN card c ON t.card_id = c.id
         JOIN bank b ON c.bank_id = b.id; 
 END$$
 
@@ -253,17 +253,17 @@ DELIMITER $$
 USE `byTickets`$$
 CREATE DEFINER=`root`@`%` PROCEDURE `see_available_tickets`()
 BEGIN
-	SELECT 
-		s.id, s.price ticket_price, s.start session_start_time,
+    SELECT 
+        s.id, s.price ticket_price, s.start session_start_time,
         c.name cinema,
         m.name movie,
         t.hall, t.row, t.seat
-	FROM store s
-		JOIN cinema c ON s.cinema_id = c.id
+    FROM store s
+        JOIN cinema c ON s.cinema_id = c.id
         JOIN movie m ON s.movie_id = m.id
         JOIN ticket t ON s.ticket_id = t.id
-	WHERE
-		s.sale_id IS NULL; 
+    WHERE
+        s.sale_id IS NULL; 
 END$$
 
 DELIMITER ;
@@ -278,17 +278,17 @@ DELIMITER $$
 USE `byTickets`$$
 CREATE DEFINER=`root`@`%` PROCEDURE `see_not_available_tickets`()
 BEGIN
-	SELECT 
-		s.id, s.price ticket_price, s.start session_start_time,
+    SELECT 
+        s.id, s.price ticket_price, s.start session_start_time,
         c.name cinema,
         m.name movie,
         t.hall, t.row, t.seat
-	FROM store s
-		JOIN cinema c ON s.cinema_id = c.id
+    FROM store s
+        JOIN cinema c ON s.cinema_id = c.id
         JOIN movie m ON s.movie_id = m.id
         JOIN ticket t ON s.ticket_id = t.id
-	WHERE
-		s.sale_id IS NOT NULL; 
+    WHERE
+        s.sale_id IS NOT NULL; 
 END$$
 
 DELIMITER ;
@@ -302,20 +302,20 @@ DROP procedure IF EXISTS `find_tickets_by_date`;
 DELIMITER $$
 USE `byTickets`$$
 CREATE DEFINER=`root`@`%` PROCEDURE `find_tickets_by_date`(
-	IN date TIMESTAMP
+    IN date TIMESTAMP
 )
 BEGIN
-	SELECT 
-		s.id, s.price ticket_price, s.start session_start_time,
+    SELECT 
+        s.id, s.price ticket_price, s.start session_start_time,
         c.name cinema,
         m.name movie,
         t.hall, t.row, t.seat
-	FROM store s
-		JOIN cinema c ON s.cinema_id = c.id
+    FROM store s
+        JOIN cinema c ON s.cinema_id = c.id
         JOIN movie m ON s.movie_id = m.id
         JOIN ticket t ON s.ticket_id = t.id 
-	WHERE
-		s.start=date;
+    WHERE
+        s.start=date;
 END$$
 
 DELIMITER ;
@@ -329,20 +329,20 @@ DROP procedure IF EXISTS `find_tickets_by_movie`;
 DELIMITER $$
 USE `byTickets`$$
 CREATE PROCEDURE `find_tickets_by_movie` (
-	IN movie_arg VARCHAR(128)
+    IN movie_arg VARCHAR(128)
 )
 BEGIN
-	SELECT 
-		s.id, s.price ticket_price, s.start session_start_time,
+    SELECT 
+        s.id, s.price ticket_price, s.start session_start_time,
         c.name cinema,
         m.name movie,
         t.hall, t.row, t.seat
-	FROM store s
-		JOIN cinema c ON s.cinema_id = c.id
+    FROM store s
+        JOIN cinema c ON s.cinema_id = c.id
         JOIN movie m ON s.movie_id = m.id
         JOIN ticket t ON s.ticket_id = t.id 
-	WHERE
-		m.name=movie_arg;
+    WHERE
+        m.name=movie_arg;
 END$$
 
 DELIMITER ;
@@ -350,17 +350,117 @@ DELIMITER ;
 
 -- Поиск билетов по определённому кинотеатру (все пользователи);
 
+USE `byTickets`;
+DROP procedure IF EXISTS `find_tickets_by_cinema`;
+
+DELIMITER $$
+USE `byTickets`$$
+CREATE PROCEDURE `find_tickets_by_cinema` (
+    IN cinema_name_arg VARCHAR(32)
+)
+BEGIN
+    SELECT 
+        s.id, s.price ticket_price, s.start session_start_time,
+        c.name cinema,
+        m.name movie,
+        t.hall, t.row, t.seat
+    FROM store s
+        JOIN cinema c ON s.cinema_id = c.id
+        JOIN movie m ON s.movie_id = m.id
+        JOIN ticket t ON s.ticket_id = t.id 
+    WHERE
+        c.name=cinema_name_arg;
+END$$
+
+DELIMITER ;
 
 
-Фильтрация билетов по кинотеатру (все пользователи);
+-- Фильтрация билетов по кинотеатру (все пользователи);
 
-Фильтрация билетов по времени сеанса (все пользователи);
+USE `byTickets`;
+DROP procedure IF EXISTS `filter_tickets_by_cinema`;
 
-Фильтрация билетов по фильму (все пользователи);
+DELIMITER $$
+USE `byTickets`$$
+CREATE PROCEDURE `filter_tickets_by_cinema` (
+    IN cinema_name_arg VARCHAR(32)
+)
+BEGIN
+    SELECT 
+        c.name cinema,
+        s.price ticket_price, s.start session_start_time,
+        m.name movie,
+        t.hall, t.row, t.seat
+    FROM store s
+        JOIN cinema c ON s.cinema_id = c.id
+        JOIN movie m ON s.movie_id = m.id
+        JOIN ticket t ON s.ticket_id = t.id 
+    WHERE
+        c.name=cinema_name_arg;
+END$$
 
-Возможность отмены заказов пользователей (администратор);
+DELIMITER ;
 
-Возможность редактирования различной информации о фильмах, ценах на билеты и т.п (администратор);
+
+-- Фильтрация билетов по времени сеанса (все пользователи);
+
+USE `byTickets`;
+DROP procedure IF EXISTS `filter_tickets_by_date`;
+
+DELIMITER $$
+USE `byTickets`$$
+CREATE DEFINER=`root`@`%` PROCEDURE `filter_tickets_by_date`(
+    IN date TIMESTAMP
+)
+BEGIN
+    SELECT 
+        s.start session_start_time, s.price ticket_price,
+        c.name cinema,
+        m.name movie,
+        t.hall, t.row, t.seat
+    FROM store s
+        JOIN cinema c ON s.cinema_id = c.id
+        JOIN movie m ON s.movie_id = m.id
+        JOIN ticket t ON s.ticket_id = t.id 
+    WHERE
+        s.start=date;
+END$$
+
+DELIMITER ;
+
+
+-- Фильтрация билетов по фильму (все пользователи);
+
+USE `byTickets`;
+DROP procedure IF EXISTS `filter_tickets_by_movie`;
+
+DELIMITER $$
+USE `byTickets`$$
+CREATE DEFINER=`root`@`%` PROCEDURE `filter_tickets_by_movie`(
+    IN movie_arg VARCHAR(128)
+)
+BEGIN
+    SELECT 
+        m.name movie,
+        s.price ticket_price, s.start session_start_time,
+        c.name cinema,
+        t.hall, t.row, t.seat
+    FROM store s
+        JOIN cinema c ON s.cinema_id = c.id
+        JOIN movie m ON s.movie_id = m.id
+        JOIN ticket t ON s.ticket_id = t.id 
+    WHERE
+        m.name=movie_arg;
+END$$
+
+DELIMITER ;
+
+
+-- Возможность отмены заказов пользователей (администратор);
+
+
+
+-- Возможность редактирования различной информации о фильмах, ценах на билеты и т.п (администратор);
 
 
 
