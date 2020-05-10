@@ -8,6 +8,24 @@
 
 import SwiftUI
 
+struct CardInputView: View {
+    
+    @State private var number = ""
+    @State private var bank = ""
+    @State private var date = ""
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text("Credit card")
+            HStack {
+                TextField("Number", text: $number)
+                TextField("Bank", text: $bank)
+                TextField("Valid until (y-m-d)", text: $number)
+            }
+        }
+    }
+}
+
 struct SignUpView: View {
     
     @State private var firstname = ""
@@ -43,6 +61,7 @@ struct SignUpView: View {
                 }
                 TextField("Username", text: $username)
                 TextField("Email", text: $email)
+                CardInputView()
                 SecureField("Password", text: $password)
                 SecureField("Repeat password", text: $repeatPassword)
                 
