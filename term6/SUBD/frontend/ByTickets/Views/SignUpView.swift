@@ -87,13 +87,19 @@ struct SignUpView: View {
                             self.message = error.reason
                             self.showingAlert = true
                         case .success(_):
-                            Database.logAuthentication(
+                            Database.authenticate(
                                 username: self.username,
-                                password: self.password.hashValue,
-                                status: .ok
-                            )
-                            UsersView()
-                                .openInNewWindow("Users")
+                                password: self.password
+                            ) { res in
+                                switch res {
+                                case .failure(let error):
+                                    self.message = error.reason
+                                    self.showingAlert = true
+                                case .success(let user):
+                                    UsersView(user: user)
+                                        .openInNewWindow("Users")
+                                }
+                            }
                         }
                     }
                 }) {

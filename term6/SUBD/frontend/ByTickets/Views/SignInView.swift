@@ -33,7 +33,7 @@ struct SignInView: View {
                             self.message = error.reason
                             self.showingAlert = true
                         case .success(let user):
-                            UsersView()
+                            UsersView(user: user)
                                 .openInNewWindow("Users")
                         }
                     }
