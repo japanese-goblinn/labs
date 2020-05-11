@@ -1,11 +1,10 @@
 
+-- ALL USERS
+
 -- CALL add_default_card("kek", "PRIOR", 1111111111, "2021-05-01");
--- CALL buy_ticket("kek", "Belarus", "Joker", "2020-05-20 14:00:00");
--- CALL amount_of_tickets("lol");
--- CALL see_transactions("kek");
--- CALL see_sales("kek");
+-- CALL buy_ticket("lol", '3');
 -- CALL see_available_tickets();
--- CALL see_not_available_tickets();
+-- CALL see_my_tickets("lol");
 -- CALL find_tickets_by_date("2020-05-20 16:00:00");
 -- CALL find_tickets_by_movie("Bladerunner");
 -- CALL find_tickets_by_cinema("Belarus");
@@ -13,9 +12,23 @@
 -- CALL filter_tickets_by_cinema("Belarus");
 -- CALL filter_tickets_by_date("2020-05-20 14:00:00");
 
+
+-- HEADMASTER
+
+-- CALL amount_of_tickets("lol");
+-- CALL see_transactions("kek");
+-- CALL see_sales("kek");
+
+
+-- MANAGER
+
+-- CALL amount_of_tickets("lol");
+
+
+-- ADMIN
+
 -- CALL cancel_order('kek', '4');
 -- CALL edit_movie('lol', 2, "Bladerunner 2049", '18+', 'блокбастер', '2017', '3');
-
 
 
 -- Процедуры
@@ -44,6 +57,7 @@ exit_label: BEGIN
         SELECT error;
         LEAVE exit_label;
     END IF;
+
     START TRANSACTION;
     SELECT default_card_id INTO card_id FROM user WHERE username=username_arg;
     IF card_id IS NULL THEN
@@ -91,28 +105,19 @@ DELIMITER $$
 USE `byTickets`$$
 CREATE DEFINER=`root`@`%` PROCEDURE `buy_ticket`(
     IN username_arg VARCHAR(32),
-    IN cinema_name_arg VARCHAR(32),
-    IN movie_name_arg VARCHAR(128),
-    IN when_arg TIMESTAMP
+    IN store_id_arg INT UNSIGNED
 )
 exit_label: BEGIN
     DECLARE error VARCHAR(65);
-    DECLARE var_card_id MEDIUMINT UNSIGNED;
-    DECLARE var_cinema_id TINYINT UNSIGNED;
-    DECLARE var_movie_id INT UNSIGNED;
-    DECLARE var_store_id INT UNSIGNED;
+    DECLARE user_id_var MEDIUMINT UNSIGNED;
+    DECLARE card_id_var MEDIUMINT UNSIGNED;
+    DECLARE cinema_id_var TINYINT UNSIGNED;
+    DECLARE movie_id_var INT UNSIGNED;
     DECLARE ticket_id_var INT UNSIGNED;
     DECLARE ticket_price_var INT UNSIGNED;
     DECLARE transaction_id_var INT UNSIGNED;
-    DECLARE user_id_var MEDIUMINT UNSIGNED;
     DECLARE sale_id_var INT UNSIGNED;
     DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
-    
-    IF when_arg <= CURRENT_TIMESTAMP() THEN
-        SET error = "ORDER DATE IS WRONG";
-        SELECT error;
-        LEAVE exit_label;
-    END IF;
     
     SELECT id INTO user_id_var FROM user WHERE username=username_arg;
     IF user_id_var IS NULL THEN
@@ -121,45 +126,38 @@ exit_label: BEGIN
         LEAVE exit_label;
     END IF;
     
-    SELECT default_card_id INTO var_card_id FROM user WHERE username=username_arg;
-    IF var_card_id IS NULL THEN
+    SELECT default_card_id INTO card_id_var FROM user WHERE username=username_arg;
+    IF card_id_var IS NULL THEN
         SET error = "NO CARD ASSIGNED TO ACCOUNT";
         SELECT error;
         LEAVE exit_label;
     END IF;
     
-    SELECT id INTO var_cinema_id FROM cinema WHERE name=cinema_name_arg;
-    IF var_cinema_id IS NULL THEN
-        SET error = "CINEMA WITH THIS NAME NOT FOUNDED";
-        SELECT error;
-        LEAVE exit_label;
-    END IF;
-    
-    SELECT id INTO var_movie_id FROM movie WHERE name=movie_name_arg;
-    IF var_movie_id IS NULL THEN
-        SET error = "MOVIE WITH THIS NAME NOT FOUNDED";
+    SELECT sale_id INTO sale_id_var FROM store WHERE id=store_id_arg;
+    IF sale_id_var IS NOT NULL THEN
+        SET error = "TICKET ALREADY BOUGHT";
         SELECT error;
         LEAVE exit_label;
     END IF;
     
     SELECT 
-        id, ticket_id, price
+        cinema_id, movie_id, ticket_id, price
     INTO 
-        var_store_id, ticket_id_var, ticket_price_var  
-    FROM store WHERE 
-        movie_id=var_movie_id AND cinema_id=var_cinema_id AND start=when_arg LIMIT 1;
-    IF var_store_id IS NULL THEN
-        SET error = "NO TICKETS ON THIS DATE";
+        cinema_id_var, movie_id_var, ticket_id_var, ticket_price_var  
+    FROM store WHERE id=store_id_arg;
+    IF cinema_id_var IS NULL THEN
+        SET error = "WRONG TICKET NUMBER";
         SELECT error;
         LEAVE exit_label;
     END IF;
     
     START TRANSACTION;
-    INSERT INTO transaction SET order_sum=ticket_price_var, card_id=var_card_id;
-    SELECT id INTO transaction_id_var FROM transaction WHERE order_sum=ticket_price_var AND card_id=var_card_id LIMIT 1;
+    INSERT INTO transaction SET order_sum=ticket_price_var, card_id=card_id_var;
+    SELECT id INTO transaction_id_var FROM transaction 
+        WHERE order_sum=ticket_price_var AND card_id=card_id_var ORDER BY id LIMIT 1;
     INSERT INTO sale SET sale_date=NOW(), transaction_id=transaction_id_var, user_id=user_id_var;
     SELECT id INTO sale_id_var FROM sale WHERE transaction_id=transaction_id_var AND user_id=user_id_var LIMIT 1;
-    UPDATE store SET sale_id=sale_id_var WHERE id=var_store_id;
+    UPDATE store SET sale_id=sale_id_var WHERE id=store_id_arg;
     COMMIT;
 END$$
 
@@ -286,19 +284,30 @@ BEGIN
     WHERE
         s.sale_id IS NULL; 
 END$$
-
 DELIMITER ;
 
 
 -- Возможность просмотра купленных билетов (все пользователи);
 
 USE `byTickets`;
-DROP procedure IF EXISTS `see_not_available_tickets`;
+DROP procedure IF EXISTS `see_my_tickets`;
 
 DELIMITER $$
 USE `byTickets`$$
-CREATE DEFINER=`root`@`%` PROCEDURE `see_not_available_tickets`()
-BEGIN
+CREATE DEFINER=`root`@`%` PROCEDURE `see_my_tickets`(
+    IN username_arg VARCHAR(32)
+)
+exit_label: BEGIN
+    DECLARE error VARCHAR(65);
+    DECLARE user_id_var MEDIUMINT UNSIGNED;
+    
+    SELECT id INTO user_id_var FROM user WHERE username=username_arg;
+    IF user_id_var IS NULL THEN
+        SET error = "NO USER WITH THIS USERNAME";
+        SELECT error;
+        LEAVE exit_label;
+    END IF;
+    
     SELECT 
         s.id, s.price ticket_price, s.start session_start_time,
         c.name cinema,
@@ -308,8 +317,9 @@ BEGIN
         JOIN cinema c ON s.cinema_id = c.id
         JOIN movie m ON s.movie_id = m.id
         JOIN ticket t ON s.ticket_id = t.id
+        JOIN sale sa ON s.sale_id = sa.id
     WHERE
-        s.sale_id IS NOT NULL; 
+        s.sale_id IS NOT NULL AND sa.user_id=user_id_var;
 END$$
 
 DELIMITER ;
@@ -511,7 +521,7 @@ exit_label: BEGIN
 END
 
 
--- Возможность редактирования различной информации о фильмах, ценах на билеты и т.п (администратор);
+-- Возможность редактирования различной информации о фильмах (администратор);
 
 CREATE DEFINER=`root`@`%` PROCEDURE `edit_movie`(
     IN username_arg VARCHAR(32),
