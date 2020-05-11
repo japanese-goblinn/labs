@@ -346,7 +346,7 @@ BEGIN
         JOIN movie m ON s.movie_id = m.id
         JOIN ticket t ON s.ticket_id = t.id 
     WHERE
-        s.start=date;
+        s.start=date AND s.sale_id IS NULL;
 END$$
 
 DELIMITER ;
@@ -373,7 +373,7 @@ BEGIN
         JOIN movie m ON s.movie_id = m.id
         JOIN ticket t ON s.ticket_id = t.id 
     WHERE
-        m.name=movie_arg;
+        m.name=movie_arg AND s.sale_id IS NULL;
 END$$
 
 DELIMITER ;
@@ -400,7 +400,7 @@ BEGIN
         JOIN movie m ON s.movie_id = m.id
         JOIN ticket t ON s.ticket_id = t.id 
     WHERE
-        c.name=cinema_name_arg;
+        c.name=cinema_name_arg AND s.sale_id IS NULL;
 END$$
 
 DELIMITER ;
@@ -413,7 +413,7 @@ DROP procedure IF EXISTS `filter_tickets_by_cinema`;
 
 DELIMITER $$
 USE `byTickets`$$
-CREATE PROCEDURE `filter_tickets_by_cinema` (
+CREATE DEFINER=`root`@`%` PROCEDURE `filter_tickets_by_cinema`(
     IN cinema_name_arg VARCHAR(32)
 )
 BEGIN
@@ -427,7 +427,7 @@ BEGIN
         JOIN movie m ON s.movie_id = m.id
         JOIN ticket t ON s.ticket_id = t.id 
     WHERE
-        c.name=cinema_name_arg;
+        c.name=cinema_name_arg AND s.sale_id IS NULL;
 END$$
 
 DELIMITER ;
@@ -454,7 +454,7 @@ BEGIN
         JOIN movie m ON s.movie_id = m.id
         JOIN ticket t ON s.ticket_id = t.id 
     WHERE
-        s.start=date;
+        s.start=date AND s.sale_id IS NULL;
 END$$
 
 DELIMITER ;
@@ -481,7 +481,7 @@ BEGIN
         JOIN movie m ON s.movie_id = m.id
         JOIN ticket t ON s.ticket_id = t.id 
     WHERE
-        m.name=movie_arg;
+        m.name=movie_arg AND s.sale_id IS NULL;
 END$$
 
 DELIMITER ;
