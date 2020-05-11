@@ -14,6 +14,8 @@ class UsersViewController: NSViewController {
     @IBOutlet private weak var saveChangesButton: NSButton!
     @IBOutlet private weak var searchField: NSSearchField!
     
+    var user: User = .defaultUser(with: 0)
+    
     private let defaultTextColor: NSColor = .controlTextColor
     private let changedCellColor: NSColor = .systemYellow
     private let deletedCellColor: NSColor = .systemRed
@@ -432,3 +434,5 @@ extension UsersViewController {
         static let passwordHash = "passwordHashCellId"
     }
 }
+
+extension UsersViewController: Userable {}

@@ -9,10 +9,14 @@
 import Cocoa
 
 class AdminViewController: NSViewController {
-
+    
+    var user: User = .defaultUser(with: 0)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
     }
     
 }
+
+extension AdminViewController: Userable {}

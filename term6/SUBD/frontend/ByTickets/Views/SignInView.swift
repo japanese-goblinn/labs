@@ -62,7 +62,7 @@ struct SignInView: View {
             .padding()
 
             Button(action: {
-                ViewControllerWrapper<UsersViewController>()
+                ViewControllerWrapper<UsersViewController>(user: .defaultUser(with: 0))
                     .openInNewWindow("Users")
             }) {
                 Text("Show all users")

@@ -17,31 +17,31 @@ struct ChooserView: View {
         case .user:
             return AnyView(
                 VStack {
-                    ViewControllerWrapper<SharedViewController>()
+                    ViewControllerWrapper<SharedViewController>(user: user)
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             )
         case .admin:
             return AnyView(
                 VStack {
-                    ViewControllerWrapper<AdminViewController>()
-                    ViewControllerWrapper<SharedViewController>()
+                    ViewControllerWrapper<AdminViewController>(user: user)
+                    ViewControllerWrapper<SharedViewController>(user: user)
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             )
         case .headmaster:
             return AnyView(
                 VStack {
-                    ViewControllerWrapper<HeadmasterViewController>()
-                    ViewControllerWrapper<SharedViewController>()
+                    ViewControllerWrapper<HeadmasterViewController>(user: user)
+                    ViewControllerWrapper<SharedViewController>(user: user)
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             )
         case .manager:
             return AnyView(
                 VStack {
-                    ViewControllerWrapper<ManagerViewController>()
-                    ViewControllerWrapper<SharedViewController>()
+                    ViewControllerWrapper<ManagerViewController>(user: user)
+                    ViewControllerWrapper<SharedViewController>(user: user)
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             )

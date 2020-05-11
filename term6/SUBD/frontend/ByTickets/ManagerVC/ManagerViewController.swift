@@ -9,10 +9,14 @@
 import Cocoa
 
 class ManagerViewController: NSViewController {
-
+    
+    var user: User = .defaultUser(with: 0)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
     }
     
 }
+
+extension ManagerViewController: Userable {}

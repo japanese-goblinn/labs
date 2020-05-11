@@ -9,8 +9,19 @@
 import Foundation
 import SwiftUI
 
-struct ViewControllerWrapper<Controller: NSViewController>: NSViewControllerRepresentable {
-    func makeNSViewController(context: RepresentableContext) -> Controller { Controller() }
+protocol Userable: AnyObject {
+    var user: User { get set }
+}
+
+struct ViewControllerWrapper<Controller: NSViewController & Userable>: NSViewControllerRepresentable {
+    
+    let user: User
+    
+    func makeNSViewController(context: RepresentableContext) -> Controller {
+        let controller = Controller()
+        controller.user = user
+        return controller
+    }
     func updateNSViewController(_ nsViewController: NSViewControllerType, context: RepresentableContext) {}
 }
 
