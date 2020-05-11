@@ -36,7 +36,7 @@ struct SignInView: View {
                             switch user.role {
                             case .user:
                                 ChooserView(user: user)
-                                    .openInNewWindow("'\(user.username)'")
+                                    .openInNewWindow("User '\(user.username)'")
                             case .admin:
                                 ChooserView(user: user)
                                     .openInNewWindow("Admin '\(user.username)'")

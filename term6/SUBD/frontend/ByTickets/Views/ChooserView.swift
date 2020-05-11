@@ -16,23 +16,34 @@ struct ChooserView: View {
         switch user.role {
         case .user:
             return AnyView(
-                ViewControllerWrapper<SharedViewController>()
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                VStack {
+                    ViewControllerWrapper<SharedViewController>()
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
             )
         case .admin:
             return AnyView(
-                ViewControllerWrapper<AdminViewController>()
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                VStack {
+                    ViewControllerWrapper<AdminViewController>()
+                    ViewControllerWrapper<SharedViewController>()
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
             )
         case .headmaster:
             return AnyView(
-                ViewControllerWrapper<HeadmasterViewController>()
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                VStack {
+                    ViewControllerWrapper<HeadmasterViewController>()
+                    ViewControllerWrapper<SharedViewController>()
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
             )
         case .manager:
             return AnyView(
-                ViewControllerWrapper<ManagerViewController>()
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                VStack {
+                    ViewControllerWrapper<ManagerViewController>()
+                    ViewControllerWrapper<SharedViewController>()
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
             )
         }
     }
