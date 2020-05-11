@@ -48,13 +48,13 @@ struct SignInView: View {
                 }
             }
             .padding()
-//
-//            Button(action: {
-//                UsersView()
-//                    .openInNewWindow("Users")
-//            }) {
-//                Text("Test")
-//            }
+
+            Button(action: {
+                ViewControllerWrapper<UsersViewController>()
+                    .openInNewWindow("Users")
+            }) {
+                Text("Show all users")
+            }
         }
         .padding()
     }
