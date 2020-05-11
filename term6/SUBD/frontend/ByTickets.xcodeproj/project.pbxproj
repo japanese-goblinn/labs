@@ -14,7 +14,7 @@
 		CE12B9FD242CDCB30013346C /* User+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE12B9FC242CDCB30013346C /* User+Extension.swift */; };
 		CE12B9FF242CDFAD0013346C /* JSONDecoder+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE12B9FE242CDFAD0013346C /* JSONDecoder+Extension.swift */; };
 		CE12BA01242CEDF50013346C /* String+Extenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE12BA00242CEDF50013346C /* String+Extenstion.swift */; };
-		CE12BA05242CF2830013346C /* UsersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE12BA04242CF2830013346C /* UsersView.swift */; };
+		CE12BA05242CF2830013346C /* ChooserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE12BA04242CF2830013346C /* ChooserView.swift */; };
 		CE12BA07242D02A10013346C /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE12BA06242D02A10013346C /* View+Extension.swift */; };
 		CE12BA09242D22870013346C /* ViewControllerWrapper+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE12BA08242D22870013346C /* ViewControllerWrapper+Extension.swift */; };
 		CE12BA0C242D27010013346C /* UsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE12BA0A242D27010013346C /* UsersViewController.swift */; };
@@ -28,6 +28,14 @@
 		CE67F0D9242FA8620002BC86 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE67F0D8242FA8620002BC86 /* Date+Extension.swift */; };
 		CE8B8C032466F2B700432B4B /* Ban+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8B8C022466F2B700432B4B /* Ban+Extension.swift */; };
 		CE9E2FFB24670ACA00E8F863 /* Procedure.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9E2FFA24670ACA00E8F863 /* Procedure.swift */; };
+		CE9E2FFE2468D84000E8F863 /* SharedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9E2FFC2468D84000E8F863 /* SharedViewController.swift */; };
+		CE9E2FFF2468D84000E8F863 /* SharedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9E2FFD2468D84000E8F863 /* SharedViewController.xib */; };
+		CE9E30022468DA9000E8F863 /* HeadmasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9E30002468DA9000E8F863 /* HeadmasterViewController.swift */; };
+		CE9E30032468DA9000E8F863 /* HeadmasterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9E30012468DA9000E8F863 /* HeadmasterViewController.xib */; };
+		CE9E30062468DAA100E8F863 /* AdminViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9E30042468DAA100E8F863 /* AdminViewController.swift */; };
+		CE9E30072468DAA100E8F863 /* AdminViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9E30052468DAA100E8F863 /* AdminViewController.xib */; };
+		CE9E300A2468DAB400E8F863 /* ManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9E30082468DAB400E8F863 /* ManagerViewController.swift */; };
+		CE9E300B2468DAB400E8F863 /* ManagerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9E30092468DAB400E8F863 /* ManagerViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,7 +46,7 @@
 		CE12B9FC242CDCB30013346C /* User+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Extension.swift"; sourceTree = "<group>"; };
 		CE12B9FE242CDFAD0013346C /* JSONDecoder+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+Extension.swift"; sourceTree = "<group>"; };
 		CE12BA00242CEDF50013346C /* String+Extenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extenstion.swift"; sourceTree = "<group>"; };
-		CE12BA04242CF2830013346C /* UsersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersView.swift; sourceTree = "<group>"; };
+		CE12BA04242CF2830013346C /* ChooserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooserView.swift; sourceTree = "<group>"; };
 		CE12BA06242D02A10013346C /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
 		CE12BA08242D22870013346C /* ViewControllerWrapper+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewControllerWrapper+Extension.swift"; sourceTree = "<group>"; };
 		CE12BA0A242D27010013346C /* UsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewController.swift; sourceTree = "<group>"; };
@@ -55,6 +63,14 @@
 		CE67F0D8242FA8620002BC86 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		CE8B8C022466F2B700432B4B /* Ban+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ban+Extension.swift"; sourceTree = "<group>"; };
 		CE9E2FFA24670ACA00E8F863 /* Procedure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Procedure.swift; sourceTree = "<group>"; };
+		CE9E2FFC2468D84000E8F863 /* SharedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedViewController.swift; sourceTree = "<group>"; };
+		CE9E2FFD2468D84000E8F863 /* SharedViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SharedViewController.xib; sourceTree = "<group>"; };
+		CE9E30002468DA9000E8F863 /* HeadmasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadmasterViewController.swift; sourceTree = "<group>"; };
+		CE9E30012468DA9000E8F863 /* HeadmasterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeadmasterViewController.xib; sourceTree = "<group>"; };
+		CE9E30042468DAA100E8F863 /* AdminViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminViewController.swift; sourceTree = "<group>"; };
+		CE9E30052468DAA100E8F863 /* AdminViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdminViewController.xib; sourceTree = "<group>"; };
+		CE9E30082468DAB400E8F863 /* ManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerViewController.swift; sourceTree = "<group>"; };
+		CE9E30092468DAB400E8F863 /* ManagerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ManagerViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,7 +100,7 @@
 				CE2B9C86241ED5BA00354EE3 /* ContentView.swift */,
 				CE12B9F2242BB5DC0013346C /* SignInView.swift */,
 				CE12B9F4242BB63D0013346C /* SignUpView.swift */,
-				CE12BA04242CF2830013346C /* UsersView.swift */,
+				CE12BA04242CF2830013346C /* ChooserView.swift */,
 				CE12BA08242D22870013346C /* ViewControllerWrapper+Extension.swift */,
 			);
 			path = Views;
@@ -136,6 +152,10 @@
 				CE12B9F0242BB3010013346C /* Services */,
 				CE12B9F1242BB5B80013346C /* Views */,
 				CE12BA0E242D35460013346C /* UsersViewController */,
+				CE9E300C2468DB5000E8F863 /* SharedVC */,
+				CE9E300F2468DB6C00E8F863 /* AdminVC */,
+				CE9E300E2468DB6200E8F863 /* HeadmasterVC */,
+				CE9E30112468DB8800E8F863 /* ManagerVC */,
 				CE2B9C88241ED5BE00354EE3 /* Assets.xcassets */,
 				CE2B9C8D241ED5BE00354EE3 /* Main.storyboard */,
 				CE2B9C90241ED5BE00354EE3 /* Info.plist */,
@@ -152,6 +172,42 @@
 				CE2B9C8B241ED5BE00354EE3 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		CE9E300C2468DB5000E8F863 /* SharedVC */ = {
+			isa = PBXGroup;
+			children = (
+				CE9E2FFC2468D84000E8F863 /* SharedViewController.swift */,
+				CE9E2FFD2468D84000E8F863 /* SharedViewController.xib */,
+			);
+			path = SharedVC;
+			sourceTree = "<group>";
+		};
+		CE9E300E2468DB6200E8F863 /* HeadmasterVC */ = {
+			isa = PBXGroup;
+			children = (
+				CE9E30002468DA9000E8F863 /* HeadmasterViewController.swift */,
+				CE9E30012468DA9000E8F863 /* HeadmasterViewController.xib */,
+			);
+			path = HeadmasterVC;
+			sourceTree = "<group>";
+		};
+		CE9E300F2468DB6C00E8F863 /* AdminVC */ = {
+			isa = PBXGroup;
+			children = (
+				CE9E30042468DAA100E8F863 /* AdminViewController.swift */,
+				CE9E30052468DAA100E8F863 /* AdminViewController.xib */,
+			);
+			path = AdminVC;
+			sourceTree = "<group>";
+		};
+		CE9E30112468DB8800E8F863 /* ManagerVC */ = {
+			isa = PBXGroup;
+			children = (
+				CE9E30082468DAB400E8F863 /* ManagerViewController.swift */,
+				CE9E30092468DAB400E8F863 /* ManagerViewController.xib */,
+			);
+			path = ManagerVC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -216,8 +272,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE9E30032468DA9000E8F863 /* HeadmasterViewController.xib in Resources */,
+				CE9E2FFF2468D84000E8F863 /* SharedViewController.xib in Resources */,
 				CE2B9C8F241ED5BE00354EE3 /* Main.storyboard in Resources */,
 				CE12BA0D242D27010013346C /* UsersViewController.xib in Resources */,
+				CE9E300B2468DAB400E8F863 /* ManagerViewController.xib in Resources */,
+				CE9E30072468DAA100E8F863 /* AdminViewController.xib in Resources */,
 				CE2B9C8C241ED5BE00354EE3 /* Preview Assets.xcassets in Resources */,
 				CE2B9C89241ED5BE00354EE3 /* Assets.xcassets in Resources */,
 			);
@@ -236,16 +296,20 @@
 				CE12BA0C242D27010013346C /* UsersViewController.swift in Sources */,
 				CE12BA07242D02A10013346C /* View+Extension.swift in Sources */,
 				CE8B8C032466F2B700432B4B /* Ban+Extension.swift in Sources */,
+				CE9E300A2468DAB400E8F863 /* ManagerViewController.swift in Sources */,
 				CE67F0D9242FA8620002BC86 /* Date+Extension.swift in Sources */,
+				CE9E2FFE2468D84000E8F863 /* SharedViewController.swift in Sources */,
+				CE9E30062468DAA100E8F863 /* AdminViewController.swift in Sources */,
 				CE12BA09242D22870013346C /* ViewControllerWrapper+Extension.swift in Sources */,
 				CE12BA01242CEDF50013346C /* String+Extenstion.swift in Sources */,
 				CE2B9C87241ED5BA00354EE3 /* ContentView.swift in Sources */,
 				CE2B9C85241ED5BA00354EE3 /* AppDelegate.swift in Sources */,
 				CE9E2FFB24670ACA00E8F863 /* Procedure.swift in Sources */,
+				CE9E30022468DA9000E8F863 /* HeadmasterViewController.swift in Sources */,
 				CE12B9FF242CDFAD0013346C /* JSONDecoder+Extension.swift in Sources */,
 				CE12B9EF242B5C9C0013346C /* Networking.swift in Sources */,
 				CE12B9F5242BB63D0013346C /* SignUpView.swift in Sources */,
-				CE12BA05242CF2830013346C /* UsersView.swift in Sources */,
+				CE12BA05242CF2830013346C /* ChooserView.swift in Sources */,
 				CE12B9F3242BB5DC0013346C /* SignInView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

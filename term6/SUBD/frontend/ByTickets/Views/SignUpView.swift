@@ -98,8 +98,20 @@ struct SignUpView: View {
                                     self.message = error.reason
                                     self.showingAlert = true
                                 case .success(let user):
-                                    UsersView(user: user)
-                                        .openInNewWindow("Users")
+                                    switch user.role {
+                                    case .user:
+                                        ChooserView(user: user)
+                                            .openInNewWindow("'\(user.username)'")
+                                    case .admin:
+                                        ChooserView(user: user)
+                                            .openInNewWindow("Admin '\(user.username)'")
+                                    case .headmaster:
+                                        ChooserView(user: user)
+                                            .openInNewWindow("Headmaster '\(user.username)'")
+                                    case .manager:
+                                        ChooserView(user: user)
+                                            .openInNewWindow("Manager '\(user.username)'")
+                                    }
                                 }
                             }
                         }
