@@ -23,6 +23,8 @@ struct CardInputView: View {
                 TextField("Valid until (y-m-d)", text: $number)
             }
         }
+        .padding(.top)
+        .padding(.bottom)
     }
 }
 
