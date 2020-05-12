@@ -240,7 +240,7 @@ exit_label: BEGIN
     DECLARE error VARCHAR(65);
     DECLARE user_id_var MEDIUMINT UNSIGNED;
     
-    SELECT id INTO user_id_var FROM user WHERE username=username_arg AND role='headmaster';
+    SELECT id INTO user_id_var FROM user WHERE username=username_arg AND (role='headmaster' OR role='admin');
     IF user_id_var IS NULL THEN
         SET error = "NO USER WITH THIS USERNAME OR NO RIGHTS TO ACCESS";
         SELECT error;
@@ -248,7 +248,7 @@ exit_label: BEGIN
     END IF;
     
     SELECT 
-        s.sale_date date,
+        s.id, s.sale_date date,
         t.order_sum money_transfered, 
         u.username from_user,
         c.number card_number, c.valid_date card_valid_until_date, 
