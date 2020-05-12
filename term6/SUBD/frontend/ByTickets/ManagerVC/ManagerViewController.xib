@@ -7,6 +7,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="ManagerViewController" customModule="ByTickets" customModuleProvider="target">
             <connections>
+                <outlet property="ticketsAmount" destination="ew5-9l-OTB" id="bbU-Q1-jSj"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
@@ -16,16 +17,29 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="272"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4yM-Rp-6nf">
-                    <rect key="frame" x="222" y="128" width="58" height="16"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" title="manager" id="QlE-Ft-GI7">
-                        <font key="font" usesAppearanceFont="YES"/>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rT3-iz-vBc">
+                    <rect key="frame" x="18" y="233" width="192" height="19"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Available tickets amount: " id="dkI-SY-AiU">
+                        <font key="font" metaFont="systemBold" size="15"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ew5-9l-OTB">
+                    <rect key="frame" x="216" y="233" width="15" height="19"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="0" id="JZX-7x-Ewg">
+                        <font key="font" metaFont="systemBold" size="15"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
             </subviews>
+            <constraints>
+                <constraint firstItem="ew5-9l-OTB" firstAttribute="leading" secondItem="rT3-iz-vBc" secondAttribute="trailing" constant="10" id="Dsj-Ha-nQe"/>
+                <constraint firstItem="ew5-9l-OTB" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="20" id="EzZ-MC-8Ry"/>
+                <constraint firstItem="rT3-iz-vBc" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="20" id="Ucy-tv-DKF"/>
+                <constraint firstItem="rT3-iz-vBc" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" id="t1F-mJ-3ax"/>
+            </constraints>
             <point key="canvasLocation" x="140" y="154"/>
         </customView>
     </objects>
