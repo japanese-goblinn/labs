@@ -181,9 +181,8 @@ extension SharedViewController: NSSearchFieldDelegate {
         }
         if control as? NSSearchField != nil {
             let query = textView.string.components(separatedBy: .whitespaces)
-            guard query.count == 2 else { return false }
             let procName = "find_tickets_by_" + query[0]
-            Database.callProcedure(procName, with: [query[1]]) {
+            Database.callProcedure(procName, with: [query.dropFirst().joined(separator: " ")]) {
                 [weak self] (res: Result<[Ticket], RequestError>) -> Void in
                 guard let self = self else { return }
                 switch res {
@@ -194,11 +193,10 @@ extension SharedViewController: NSSearchFieldDelegate {
                 }
             }
         } else {
-            guard let query = textView.string
+            let query = textView.string
                 .components(separatedBy: .whitespaces)
                 .filter(\.isNotEmpty)
-                .first
-            else { return false }
+                .joined(separator: " ")
             guard let name = Filter.init(rawValue: filterByPopup.selectedItem!.title) else { return false }
             var procName = "filter_tickets_by_" + name.rawValue
             var args = [query]
