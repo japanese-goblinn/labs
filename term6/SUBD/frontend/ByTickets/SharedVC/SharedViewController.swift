@@ -172,7 +172,6 @@ extension SharedViewController: NSTableViewDelegate {
 }
 
 extension SharedViewController: NSSearchFieldDelegate {
-       
     func control(_ control: NSControl, textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
         guard commandSelector == #selector(insertNewline) else { return false }
         guard textView.string.isNotEmpty else {
