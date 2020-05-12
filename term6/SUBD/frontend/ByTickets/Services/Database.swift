@@ -137,6 +137,10 @@ class Database {
         }
     }
     
+    static func loadMovies(handler: @escaping (Result<[Movie], RequestError>) -> Void) {
+        executeSelect("SELECT * FROM movie") { handler($0) }
+    }
+    
     static func callVoidProcedure(
         _ procName: String,
         with params: [String],
