@@ -186,7 +186,7 @@ exit_label: BEGIN
         LEAVE exit_label;
     END IF;
     
-    SELECT COUNT(id) INTO amount FROM store;
+    SELECT COUNT(id) INTO amount FROM store WHERE sale_id IS NULL;
     SELECT amount; 
 END$$
 
