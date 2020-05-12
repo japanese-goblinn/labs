@@ -25,6 +25,7 @@ extension Transaction {
 }
 
 struct Sale: Codable {
+    let id: Int
     let date: Date
     let moneyTransfered: Int
     let user: String
@@ -35,6 +36,7 @@ struct Sale: Codable {
 
 extension Sale {
     enum CodingKeys: String, CodingKey {
+        case id
         case date
         case moneyTransfered = "money_transfered"
         case user = "from_user"
@@ -79,7 +81,7 @@ class HeadmasterViewController: NSViewController {
             case .success(let transactions):
                 self.transactions = transactions
             case .failure(let error):
-                self.showAlert(title: "TICKETS LOAD ERROR", content: error.error, buttonText: "OK", style: .critical)
+                self.showAlert(title: "TRANSACTIONS LOAD ERROR", content: error.error, buttonText: "OK", style: .critical)
             }
         }
         Database.callProcedure("see_sales", with: [user.username]) {
@@ -89,7 +91,7 @@ class HeadmasterViewController: NSViewController {
             case .success(let sales):
                 self.sales = sales
             case .failure(let error):
-                self.showAlert(title: "TICKETS LOAD ERROR", content: error.error, buttonText: "OK", style: .critical)
+                self.showAlert(title: "SALES LOAD ERROR", content: error.error, buttonText: "OK", style: .critical)
             }
         }
         Database.callProcedure("amount_of_tickets", with: [user.username]) {
@@ -127,6 +129,7 @@ extension HeadmasterViewController: NSTableViewDataSource {
 
 extension HeadmasterViewController: NSTableViewDelegate {
     private enum CellIdentifiers {
+        static let id = "idCell"
         static let date = "dateCell"
         static let money = "moneyCell"
         static let user = "fromUserCell"
@@ -141,21 +144,24 @@ extension HeadmasterViewController: NSTableViewDelegate {
         var cell: NSTableCellView
         
         if tableColumn == tableView.tableColumns[0] {
+          text = "\(sale.id)"
+          cellIdentifier = CellIdentifiers.id
+        } else if tableColumn == tableView.tableColumns[1] {
             text = "\(sale.date)"
             cellIdentifier = CellIdentifiers.date
-        } else if tableColumn == tableView.tableColumns[1] {
+        } else if tableColumn == tableView.tableColumns[2] {
             text = "\(sale.moneyTransfered)"
             cellIdentifier = CellIdentifiers.money
-        } else if tableColumn == tableView.tableColumns[2] {
+        } else if tableColumn == tableView.tableColumns[3] {
             text = "\(sale.user)"
             cellIdentifier = CellIdentifiers.user
-        } else if tableColumn == tableView.tableColumns[3] {
+        } else if tableColumn == tableView.tableColumns[4] {
             text = "\(sale.card)"
             cellIdentifier = CellIdentifiers.card
-        } else if tableColumn == tableView.tableColumns[4] {
+        } else if tableColumn == tableView.tableColumns[5] {
             text = "\(sale.cardValidDate)"
             cellIdentifier = CellIdentifiers.cardValid
-        } else if tableColumn == tableView.tableColumns[5] {
+        } else if tableColumn == tableView.tableColumns[6] {
             text = "\(sale.bank)"
             cellIdentifier = CellIdentifiers.bank
         } else {
