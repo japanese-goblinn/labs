@@ -215,8 +215,8 @@ exit_label: BEGIN
     END IF;
     
     SELECT 
-        t.id, t.order_sum money_transfered,
-        c.number card_number, c.valid_date card_valid_until_date,
+        t.order_sum money_transfered, 
+        c.number card_number, c.valid_date card_valid_until_date, 
         b.name bank_name
     FROM transaction t 
         JOIN card c ON t.card_id = c.id
@@ -246,11 +246,11 @@ exit_label: BEGIN
         SELECT error;
         LEAVE exit_label;
     END IF;
-     
+    
     SELECT 
-        s.id, s.sale_date date,
+        s.sale_date date,
         t.order_sum money_transfered, 
-        u.username to_user,
+        u.username from_user,
         c.number card_number, c.valid_date card_valid_until_date, 
         b.name bank_name
     FROM sale s
