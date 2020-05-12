@@ -86,7 +86,7 @@ struct SignUpView: View {
                     Database.insert(newUser) { res in
                         switch res {
                         case .failure(let error):
-                            self.message = error.reason
+                            self.message = error.error
                             self.showingAlert = true
                         case .success(_):
                             Database.authenticate(
@@ -95,7 +95,7 @@ struct SignUpView: View {
                             ) { res in
                                 switch res {
                                 case .failure(let error):
-                                    self.message = error.reason
+                                    self.message = error.error
                                     self.showingAlert = true
                                 case .success(let user):
                                     switch user.role {

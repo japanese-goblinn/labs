@@ -105,6 +105,57 @@ class Database {
             }
         }
     }
+    
+    static func callProcedure<T: Codable>(
+        _ procName: String,
+        with params: [String],
+        handler: @escaping (Result<[T], RequestError>) -> Void
+    ) {
+        let r = ProcedureRequest(procedureName: procName, params: params)
+        guard let request = Networking.createRequest(to: "procedure", body: r) else {
+            handler(.failure("BAD URL"))
+            return
+        }
+        Networking.request(request) { res in
+            switch res {
+            case .success(let data):
+                do {
+                    let decodedData = try JSONDecoder.timestampValidDecoder.decode([T].self, from: data)
+                    handler(.success(decodedData))
+                } catch {
+                    print(error.localizedDescription)
+                }
+            case .failure(let error):
+                handler(.failure(error))
+            }
+        }
+    }
+    
+    static func callVoidProcedure(
+        _ procName: String,
+        with params: [String],
+        handler: @escaping (RequestError?) -> Void
+    ) {
+        let r = ProcedureRequest(procedureName: procName, params: params)
+        guard let request = Networking.createRequest(to: "procedure", body: r) else {
+            handler("BAD URL")
+            return
+        }
+        Networking.request(request) { res in
+            switch res {
+            case .success(let data):
+                do {
+                    let err = try JSONDecoder.timestampValidDecoder.decode(RequestError.self, from: data)
+                    handler(err)
+                } catch {
+                    handler(nil)
+                }
+            case .failure(let error):
+                handler(error)
+            }
+        }
+    }
+    
         
     static func fetchUsers(
         _ appending: String = "",

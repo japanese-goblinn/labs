@@ -36,6 +36,8 @@
 		CE9E30072468DAA100E8F863 /* AdminViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9E30052468DAA100E8F863 /* AdminViewController.xib */; };
 		CE9E300A2468DAB400E8F863 /* ManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9E30082468DAB400E8F863 /* ManagerViewController.swift */; };
 		CE9E300B2468DAB400E8F863 /* ManagerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9E30092468DAB400E8F863 /* ManagerViewController.xib */; };
+		CEA4716F246A024900FDDDA7 /* Ticket+CodingKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA4716E246A024900FDDDA7 /* Ticket+CodingKeys.swift */; };
+		CEA4B7EB246A119C00605DD1 /* NSViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA4B7EA246A119C00605DD1 /* NSViewController+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +73,8 @@
 		CE9E30052468DAA100E8F863 /* AdminViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdminViewController.xib; sourceTree = "<group>"; };
 		CE9E30082468DAB400E8F863 /* ManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerViewController.swift; sourceTree = "<group>"; };
 		CE9E30092468DAB400E8F863 /* ManagerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ManagerViewController.xib; sourceTree = "<group>"; };
+		CEA4716E246A024900FDDDA7 /* Ticket+CodingKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ticket+CodingKeys.swift"; sourceTree = "<group>"; };
+		CEA4B7EA246A119C00605DD1 /* NSViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSViewController+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,12 +114,14 @@
 			isa = PBXGroup;
 			children = (
 				CE12B9FC242CDCB30013346C /* User+Extension.swift */,
+				CEA4716E246A024900FDDDA7 /* Ticket+CodingKeys.swift */,
 				CE8B8C022466F2B700432B4B /* Ban+Extension.swift */,
 				CE9E2FFA24670ACA00E8F863 /* Procedure.swift */,
 				CE12B9F6242BB7180013346C /* RequestError+Extension.swift */,
 				CE12B9FE242CDFAD0013346C /* JSONDecoder+Extension.swift */,
 				CE12BA00242CEDF50013346C /* String+Extenstion.swift */,
 				CE67F0D8242FA8620002BC86 /* Date+Extension.swift */,
+				CEA4B7EA246A119C00605DD1 /* NSViewController+Extension.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -301,6 +307,7 @@
 				CE9E2FFE2468D84000E8F863 /* SharedViewController.swift in Sources */,
 				CE9E30062468DAA100E8F863 /* AdminViewController.swift in Sources */,
 				CE12BA09242D22870013346C /* ViewControllerWrapper+Extension.swift in Sources */,
+				CEA4716F246A024900FDDDA7 /* Ticket+CodingKeys.swift in Sources */,
 				CE12BA01242CEDF50013346C /* String+Extenstion.swift in Sources */,
 				CE2B9C87241ED5BA00354EE3 /* ContentView.swift in Sources */,
 				CE2B9C85241ED5BA00354EE3 /* AppDelegate.swift in Sources */,
@@ -308,6 +315,7 @@
 				CE9E30022468DA9000E8F863 /* HeadmasterViewController.swift in Sources */,
 				CE12B9FF242CDFAD0013346C /* JSONDecoder+Extension.swift in Sources */,
 				CE12B9EF242B5C9C0013346C /* Networking.swift in Sources */,
+				CEA4B7EB246A119C00605DD1 /* NSViewController+Extension.swift in Sources */,
 				CE12B9F5242BB63D0013346C /* SignUpView.swift in Sources */,
 				CE12BA05242CF2830013346C /* ChooserView.swift in Sources */,
 				CE12B9F3242BB5DC0013346C /* SignInView.swift in Sources */,

@@ -7,12 +7,12 @@
 //
 
 struct RequestError: Error {
-    let reason: String
+    let error: String
 }
 
 extension RequestError: ExpressibleByStringLiteral {
     init(stringLiteral value: String) {
-        self.reason = value
+        self.error = value
     }
 }
 

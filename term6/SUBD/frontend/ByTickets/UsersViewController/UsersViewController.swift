@@ -59,7 +59,7 @@ class UsersViewController: NSViewController {
                     "CREATE EVENT IF NOT EXISTS block_event_\(username) ON SCHEDULE AT CURRENT_TIMESTAMP + INTERVAL 30 SECOND DO UPDATE ban SET is_blocked='no' WHERE blocked_username='\(username)';"
                 )
             case .failure(let error):
-                self?.showAlert(title: "BAN ERROR", content: error.reason, buttonText: "OK", style: .critical)
+                self?.showAlert(title: "BAN ERROR", content: error.error, buttonText: "OK", style: .critical)
             }
         }
     }
@@ -76,7 +76,7 @@ class UsersViewController: NSViewController {
                     "CREATE EVENT IF NOT EXISTS block_event_\(username) ON SCHEDULE AT CURRENT_TIMESTAMP + INTERVAL 60 SECOND DO UPDATE ban SET is_blocked='no' WHERE blocked_username='\(username)';"
                 )
             case .failure(let error):
-                self?.showAlert(title: "BAN ERROR", content: error.reason, buttonText: "OK", style: .critical)
+                self?.showAlert(title: "BAN ERROR", content: error.error, buttonText: "OK", style: .critical)
             }
         }
     }
@@ -93,7 +93,7 @@ class UsersViewController: NSViewController {
                     "CREATE EVENT IF NOT EXISTS block_event_\(username) ON SCHEDULE AT CURRENT_TIMESTAMP + INTERVAL 5 MINUTE DO UPDATE ban SET is_blocked='no' WHERE blocked_username='\(username)';"
                 )
             case .failure(let error):
-                self?.showAlert(title: "BAN ERROR", content: error.reason, buttonText: "OK", style: .critical)
+                self?.showAlert(title: "BAN ERROR", content: error.error, buttonText: "OK", style: .critical)
             }
         }
     }
@@ -139,7 +139,7 @@ class UsersViewController: NSViewController {
                     Database.insert(user) { [weak self] result in
                         switch result {
                         case .failure(let error):
-                            self?.showAlert(title: "DB ERROR", content: error.reason, buttonText: "OK", style: .critical)
+                            self?.showAlert(title: "DB ERROR", content: error.error, buttonText: "OK", style: .critical)
                         case .success(let message):
                             print(#function, message)
                         }
@@ -152,7 +152,7 @@ class UsersViewController: NSViewController {
                     Database.update(user) { [weak self] result in
                         switch result {
                         case .failure(let error):
-                            self?.showAlert(title: "DB UPDATE ERROR", content: error.reason, buttonText: "OK", style: .critical)
+                            self?.showAlert(title: "DB UPDATE ERROR", content: error.error, buttonText: "OK", style: .critical)
                         case .success(let message):
                             print(#function, message)
                         }
@@ -163,7 +163,7 @@ class UsersViewController: NSViewController {
                     Database.delete(users[i]) { [weak self] result in
                         switch result {
                         case .failure(let error):
-                            self?.showAlert(title: "DB DELETE ERROR", content: error.reason, buttonText: "OK", style: .critical)
+                            self?.showAlert(title: "DB DELETE ERROR", content: error.error, buttonText: "OK", style: .critical)
                         case .success(let message):
                             print(#function, message)
                         }
@@ -174,20 +174,6 @@ class UsersViewController: NSViewController {
         if !errors.isEmpty {
             showAlert(title: "VALIDATION ERROR", content: errors.sorted().joined(separator: "\n"), buttonText: "OK", style: .critical)
         }
-    }
-    
-    private func showAlert(
-        title: String,
-        content: String,
-        buttonText: String,
-        style: NSAlert.Style
-    ) {
-        let alert = NSAlert()
-        alert.messageText = title
-        alert.informativeText = content
-        alert.alertStyle = style
-        alert.addButton(withTitle: buttonText)
-        alert.runModal()
     }
     
     private func userForRow(at index: Int) -> User? {
@@ -298,7 +284,7 @@ class UsersViewController: NSViewController {
                 self.diffUsers.removeAll()
                 self.tableView.reloadData()
             case .failure(let error):
-                self.showAlert(title: "DB ERORR", content: error.reason, buttonText: "OK", style: .critical)
+                self.showAlert(title: "DB ERORR", content: error.error, buttonText: "OK", style: .critical)
             }
         }
     }
@@ -332,7 +318,7 @@ extension UsersViewController: NSSearchFieldDelegate {
                 self.diffUsers.removeAll()
                 self.tableView.reloadData()
             case .failure(let error):
-                self.showAlert(title: "DB ERROR", content: error.reason, buttonText: "OK", style: .critical)
+                self.showAlert(title: "DB ERROR", content: error.error, buttonText: "OK", style: .critical)
             }
         }
     }
@@ -436,3 +422,4 @@ extension UsersViewController {
 }
 
 extension UsersViewController: Userable {}
+

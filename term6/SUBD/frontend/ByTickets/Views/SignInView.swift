@@ -30,7 +30,7 @@ struct SignInView: View {
                     Database.authenticate(username: self.username, password: self.password) { res in
                         switch res {
                         case .failure(let error):
-                            self.message = error.reason
+                            self.message = error.error
                             self.showingAlert = true
                         case .success(let user):
                             switch user.role {
