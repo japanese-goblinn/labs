@@ -119,11 +119,17 @@ class Database {
         Networking.request(request) { res in
             switch res {
             case .success(let data):
+                print(String(decoding: data, as: UTF8.self))
                 do {
                     let decodedData = try JSONDecoder.timestampValidDecoder.decode([T].self, from: data)
                     handler(.success(decodedData))
                 } catch {
-                    print(error.localizedDescription)
+                    do {
+                        let error = try JSONDecoder.timestampValidDecoder.decode([RequestError].self, from: data)
+                        handler(.failure(error.first!))
+                    } catch {
+                        print(error.localizedDescription)
+                    }
                 }
             case .failure(let error):
                 handler(.failure(error))
