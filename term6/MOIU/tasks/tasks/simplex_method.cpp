@@ -297,7 +297,7 @@ void firstPhase(int &m, int &n, matrix &a_star, matrix &a_b_inv, vector &b, vect
                 j_b.erase(j_b.begin() + replace_index);
                 a_b_inv.erase(a_b_inv.begin() + replace_index);
                 for (unsigned long i = 0; i < a_b_inv.size(); ++i)
-                    a_b_inv[i].erase(a_b_inv[i].begin() + i_0);
+                    a_b_inv[i].erase(a_b_inv[i].begin() + replace_index);
             }
         }
     }
