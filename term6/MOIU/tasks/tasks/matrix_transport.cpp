@@ -13,12 +13,13 @@
 #include <iterator>
 #include <cmath>
 #include <numeric>
+#include <queue>
 
-typedef std::pair<int, int> cell;
+typedef std::pair<int, int> coordinate;
+typedef std::pair<int, coordinate> cell;
 typedef std::vector<int> vector;
 typedef std::vector<std::vector<int>> matrix;
 
-#define EPSILON 1e-10
 #define endlPrint(x) std::cout << x << "\n"
 #define answerPrint(x) std::cout << x << " ";
 
@@ -32,7 +33,7 @@ void outputFor(matrix &m) {
 }
 
 void outputFor(vector &v) {
-    for (auto const &e: v) {
+    for (auto const &e : v) {
         answerPrint(e);
     }
     std::cout << "\n";
@@ -50,12 +51,52 @@ void inputFor(vector &vector) {
 }
 
 void addColumn(matrix &m, int value = 0) {
-    for (auto &row: m)
+    for (auto &row : m)
         row.emplace_back(value);
 }
 
 void addRow(matrix &m, int value = 0) {
     m.emplace_back(vector(m.at(0).size(), value));
+}
+
+vector getBasisCellsIndexesForColumn(unsigned long columnIndex, std::vector<cell> const &basis) {
+    vector indexes;
+    for (unsigned long i = 0; i < basis.size(); ++i) {
+        if (basis.at(i).second.second != columnIndex)
+            continue;
+        indexes.emplace_back(i);
+    }
+    return indexes;
+}
+
+std::vector<cell> getBasisCellsForColumn(unsigned long columnIndex, std::vector<cell> const &basis) {
+    std::vector<cell> cells;
+    for (unsigned long i = 0; i < basis.size(); ++i) {
+        if (basis.at(i).second.second != columnIndex)
+            continue;
+        cells.emplace_back(basis.at(i));
+    }
+    return cells;
+}
+
+vector getBasisCellsIndexesForRow(unsigned long rowIndex, std::vector<cell> const &basis) {
+    vector indexes;
+    for (unsigned long i = 0; i < basis.size(); ++i) {
+        if (basis.at(i).second.first != rowIndex)
+            continue;
+        indexes.emplace_back(i);
+    }
+    return indexes;
+}
+
+std::vector<cell> getBasisCellsForRow(unsigned long rowIndex, std::vector<cell> const &basis) {
+    std::vector<cell> cells;
+    for (unsigned long i = 0; i < basis.size(); ++i) {
+        if (basis.at(i).second.first != rowIndex)
+            continue;
+        cells.emplace_back(basis.at(i));
+    }
+    return cells;
 }
 
 void balance(matrix &x, matrix &c, vector &a, vector &b) {
@@ -73,34 +114,231 @@ void balance(matrix &x, matrix &c, vector &a, vector &b) {
     }
 }
 
-void matrixTransportTask(matrix &x, matrix &c, vector &a, vector &b) {
-    balance(x, c, a, b);
-    auto used = a;
-    auto need = b;
-    unsigned long i = 0;
-    unsigned long j = 0;
-    std::vector<cell> basis;
-    while (j < x.at(0).size()) {
-        x.at(i).at(j) = std::min(used.at(i), need.at(j));
-        auto diff = used.at(i) - need.at(j);
-        basis.emplace_back(cell(i, j));
-        if (diff > 0) {
-            used.at(i) -= x.at(i).at(j);
-            j++;
-        } else if (diff < 0) {
-            need.at(j) -= x.at(i).at(j);
-            i++;
+void potentialsCalculation(matrix &c, std::vector<cell> &basis, vector &v, vector &u, unsigned long n) {
+    std::queue<int> q;
+    std::vector<bool> alreadyCounted(basis.size());
+
+    auto indexes = getBasisCellsIndexesForColumn(n - 1, basis);
+    auto i = 0;
+    auto j = 0;
+    for (auto const &index : indexes) {
+        i = basis.at(index).second.first;
+        j = basis.at(index).second.second;
+        alreadyCounted.at(index) = true;
+        u.at(i) = c.at(i).at(j);
+        q.push(i);
+    }
+
+    auto isColumn = false;
+    auto changeSize = q.size();
+
+    while (!q.empty()) {
+        if (isColumn) {
+            while (changeSize--) {
+                auto col = q.front();
+                q.pop();
+                indexes = getBasisCellsIndexesForColumn(col, basis);
+                for (auto const &index: indexes) {
+                    if (alreadyCounted.at(index))
+                        continue;
+                    alreadyCounted.at(index) = true;
+                    i = basis.at(index).second.first;
+                    j = basis.at(index).second.second;
+                    u.at(i) = c.at(i).at(j) - v.at(j);
+                    q.push(i);
+                }
+            }
         } else {
-            if (j + 1 != x.at(0).size())
-                basis.emplace_back(cell(i, j + 1));
-            j++;
-            i++;
+            while (changeSize--) {
+                auto row = q.front();
+                q.pop();
+                indexes = getBasisCellsIndexesForRow(row, basis);
+                for (auto const &index: indexes) {
+                    if (alreadyCounted.at(index))
+                        continue;
+                    alreadyCounted.at(index) = true;
+                    i = basis.at(index).second.first;
+                    j = basis.at(index).second.second;
+                    v.at(j) = c.at(i).at(j) - u.at(i);
+                    q.push(j);
+                }
+            }
+        }
+        changeSize = q.size();
+        isColumn = !isColumn;
+    }
+}
+
+cell findNonBasisMinimum(matrix &c, std::vector<cell> &basis, vector &v, vector &u) {
+    coordinate min;
+    int minCost = 0;
+    int delta;
+    for (int i = 0; i < c.size(); ++i) {
+        for (int j = 0; j < c.at(0).size(); ++j) {
+            delta = c.at(i).at(j) - u.at(i) - v.at(j);
+            if (delta >= minCost)
+                continue;
+            minCost = delta;
+            min = { i, j };
         }
     }
-    while (true) {
-        for (auto &b : basis) {
-            
+    return cell(minCost, min);
+}
+
+std::vector<cell> deletingMethod(std::vector<cell> const &basis, unsigned long n, unsigned long m) {
+    std::vector<cell> cycleCells;
+    std::vector<long> iCheck(m);
+    std::vector<long> jCheck(n);
+    
+    for (int i = 0; i < m; ++i)
+        iCheck.at(i) = getBasisCellsIndexesForRow(i, basis).size();
+    for (int j = 0; j < n; ++j)
+        jCheck.at(j) = getBasisCellsIndexesForColumn(j, basis).size();
+    
+    auto i = 0;
+    auto j = 0;
+    auto findedOne = true;
+    while (findedOne) {
+        findedOne = false;
+        for (const auto &basisCell : basis) {
+            i = basisCell.second.first;
+            j = basisCell.second.second;
+            if (iCheck.at(i) != 1 && jCheck.at(j) != 1)
+                continue;
+            if (jCheck.at(j) == 0)
+                continue;
+            if (iCheck.at(i) == 0)
+                continue;
+            iCheck.at(i)--;
+            jCheck.at(j)--;
+            findedOne = true;
         }
+    }
+    
+    for (const auto &basisCell : basis) {
+        i = basisCell.second.first;
+        j = basisCell.second.second;
+        if (iCheck.at(i) == 0 || jCheck.at(j) == 0)
+            continue;
+        cycleCells.emplace_back(basisCell);
+    }
+    return cycleCells;
+}
+
+void parseCycle(std::vector<cell> &cycle, cell minimum, matrix &x, std::vector<cell> &basis) {
+    std::vector<cell> orderedCells;
+    orderedCells.reserve(cycle.size());
+    long count = cycle.size();
+    
+    auto currentCell = minimum;
+    orderedCells.emplace_back(currentCell);
+    count--;
+    
+    auto columGo = true;
+    std::vector<cell> cells;
+    
+    while (count--) {
+        if (columGo) {
+            cells = getBasisCellsForColumn(currentCell.second.second, cycle);
+            std::sort(cells.begin(), cells.end(), [](auto lhs, auto rhs) { return lhs.second.first < rhs.second.first; });
+        } else {
+            cells = getBasisCellsForRow(currentCell.second.first, cycle);
+            std::sort(cells.begin(), cells.end(), [](auto lhs, auto rhs) { return lhs.second.second < rhs.second.second; });
+        }
+        for (int i = 0; i < cells.size(); ++i) {
+            if (cells.at(i).second.first != currentCell.second.first || cells.at(i).second.second != currentCell.second.second)
+                continue;
+            if (i % 2) {
+                currentCell = cells.at(i - 1);
+            } else {
+                currentCell = cells.at(i + 1);
+            }
+            orderedCells.emplace_back(currentCell);
+            break;
+        }
+        columGo = !columGo;
+    }
+    
+    int min = INT_MAX;
+    coordinate minCoord;
+    cell cell;
+    for (int i = 1; i < orderedCells.size(); i += 2) {
+        cell = orderedCells.at(i);
+        if (x.at(cell.second.first).at(cell.second.second) >= min)
+            continue;
+        min = x.at(cell.second.first).at(cell.second.second);
+        minCoord = { cell.second.first, cell.second.second };
+    }
+    for (int i = 0; i < orderedCells.size(); ++i) {
+        cell = orderedCells.at(i);
+        if (i % 2) {
+            x.at(cell.second.first).at(cell.second.second) -= min;
+        } else {
+            x.at(cell.second.first).at(cell.second.second) += min;
+        }
+    }
+    int deleteIndex = -1;
+    for (int i = 0; i < basis.size(); ++i) {
+        if (basis.at(i).second.first != minCoord.first || basis.at(i).second.second != minCoord.second)
+            continue;
+        deleteIndex = i;
+    }
+    basis.erase(basis.begin() + deleteIndex);
+}
+
+void matrixTransportTask(matrix &x, matrix &c, vector &a, vector &b) {
+    balance(x, c, a, b);
+    auto n = x.at(0).size();
+    auto m = x.size();
+    auto storage = a;
+    auto consumer = b;
+    auto i = 0;
+    auto j = 0;
+    std::vector<cell> basis;
+    basis.reserve(n + m - 1);
+    while (j < n && i < m) {
+        x.at(i).at(j) = std::min(storage.at(i), consumer.at(j));
+        auto diff = storage.at(i) - consumer.at(j);
+        if (diff > 0) {
+            basis.emplace_back(cell(c.at(i).at(j), coordinate(i, j)));
+            storage.at(i) -= x.at(i).at(j++);
+        } else if (diff < 0) {
+            basis.emplace_back(cell(c.at(i).at(j), coordinate(i, j)));
+            consumer.at(j) -= x.at(i++).at(j);
+        } else {
+            if (j == n - 1 && n + m - 1 != basis.size()) {
+                while (i < m) {
+                    basis.emplace_back(cell(c.at(i).at(j), coordinate(i, j)));
+                    i++;
+                }
+            } else if (i == m - 1 && n + m - 1 != basis.size()) {
+                while (j < n) {
+                    basis.emplace_back(cell(c.at(i).at(j), coordinate(i, j)));
+                    j++;
+                }
+            } else {
+                basis.emplace_back(cell(c.at(i).at(j), coordinate(i, j)));
+                if (j + 1 != n)
+                    basis.emplace_back(cell(c.at(i).at(j + 1), coordinate(i, j + 1)));
+                else if (i + 1 != m)
+                    basis.emplace_back(cell(c.at(i + 1).at(j), coordinate(i + 1, j)));
+                i++;
+                j++;
+            }
+        }
+    }
+    auto v = vector(n);
+    auto u = vector(m);
+    cell minCell;
+    std::vector<cell> cycleCells;
+    while (true) {
+        potentialsCalculation(c, basis, v, u, n);
+        minCell = findNonBasisMinimum(c, basis, v, u);
+        if (minCell.first == 0)
+            return;
+        basis.emplace_back(minCell);
+        cycleCells = deletingMethod(basis, n, m);
+        parseCycle(cycleCells, minCell, x, basis);
     }
 }
 
@@ -115,5 +353,11 @@ int main(int argc, const char * argv[]) {
     inputFor(a);
     inputFor(b);
     matrixTransportTask(x, c, a, b);
+    for (unsigned long i = 0; i < m; ++i) {
+        for (unsigned long j = 0; j < n; ++j) {
+            answerPrint(x.at(i).at(j));
+        }
+        std::cout << "\n";
+    }
     return 0;
 }
