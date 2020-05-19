@@ -22,7 +22,7 @@ typedef std::vector<int> indexes;
 typedef std::vector<long double> vector;
 typedef std::vector<std::vector<long double>> matrix;
 
-void outputFor(matrix &m) {
+void outputFor(matrix const &m) {
     for (unsigned long i = 0; i < m.size(); ++i) {
         for (unsigned long j = 0; j < m.at(0).size(); ++j) {
             answerPrint(m.at(i).at(j));
@@ -31,7 +31,7 @@ void outputFor(matrix &m) {
     }
 }
 
-void outputFor(vector &v) {
+void outputFor(vector const &v) {
     for (auto const &e : v) {
         answerPrint(e);
     }
@@ -62,9 +62,38 @@ vector mul(vector const &v, double value) {
     return nv;
 }
 
-void addInPlace(vector &row, vector const &added_row) {
+vector mul(matrix const &m, vector const &v) {
+    vector result(m.size());
+    for (unsigned long i = 0; i < m.size(); ++i) {
+        auto row_result = 0.0;
+        for (unsigned long j = 0; j < m.at(0).size(); ++j)
+            row_result += m.at(i).at(j) * v.at(j);
+        result.at(i) = row_result;
+    }
+    return result;
+}
+
+vector mul(vector const &v, matrix const &m) {
+    vector result(m.at(0).size());
+    for (auto i = 0; i < m.at(0).size(); ++i) {
+        double col_result = 0;
+        for (auto j = 0; j < v.size(); ++j)
+            col_result += v.at(j) * m.at(j).at(i);
+        result.at(i) = col_result;
+    }
+    return result;
+}
+
+void addInPlace(vector &row, vector &added_row) {
     for (unsigned long j = 0; j < row.size(); ++j)
         row.at(j) += added_row.at(j);
+}
+
+vector columnFrom(matrix const &m, int index) {
+    vector column(m.size());
+    for (unsigned long i = 0; i < m.size(); ++i)
+        column.at(i) = m.at(i).at(index);
+    return column;
 }
 
 matrix inverseMatrixOf(matrix const &m) {
@@ -102,7 +131,128 @@ matrix inverseMatrixOf(matrix const &m) {
     return inversed;
 }
 
-void quadraticProgramming() {
+void quadraticProgramming(matrix const &a, vector const &b, vector &c, matrix const &d,
+                          vector &x, indexes const &j_op, indexes const &j_extd) {
+    
+    // 1
+    auto c_x = mul(d, x);
+    addInPlace(c_x, c);
+    
+    // 2
+    matrix a_op(a.size(), vector(j_op.size()));
+    vector c_x_op(j_op.size());
+    vector temp;
+    for (unsigned long i = 0; i < j_op.size(); ++i) {
+        temp = columnFrom(a, j_op.at(i));
+        for (unsigned long j = 0; j < temp.size(); ++j)
+            a_op.at(j).at(i) = temp.at(j);
+        c_x_op.at(i) = c_x.at(j_op.at(i));
+    }
+    
+    // 3
+    mulInPlace(c_x_op, -1);
+    auto a_op_inv = inverseMatrixOf(a_op);
+    auto u = mul(c_x_op, a_op_inv);
+    
+    auto j0 = -1;
+    long double delta_j0 = 0.0;
+    for (int i = 0; i < a.at(0).size(); ++i) {
+        if (std::find(j_extd.begin(), j_extd.end(), i) != j_extd.end())
+            continue;
+        auto delta = 0.0;
+        for (int j = 0; j < u.size(); ++j) {
+            delta += u.at(j) * a.at(j).at(i);
+        }
+        delta += c_x.at(i);
+        if (delta >= delta_j0)
+            continue;
+        delta_j0 = delta;
+        j0 = i;
+    }
+    if (j0 == -1) {
+        endlPrint("Bounded");
+        outputFor(x);
+        return;
+    }
+    
+    // 4
+    matrix h(j_extd.size() + a.size(), vector(j_extd.size() + a.size()));
+    
+    matrix a_star(a.size(), vector(j_extd.size()));
+    for (unsigned long i = 0; i < j_extd.size(); ++i) {
+        temp = columnFrom(a, j_extd.at(i));
+        for (unsigned long j = 0; j < temp.size(); ++j)
+            a_star.at(j).at(i) = temp.at(j);
+    }
+    
+    vector l(a.at(0).size());
+    l.at(j0) = 1;
+    
+    for (int i = 0; i < j_extd.size(); ++i) {
+        int j = 0;
+        for (; j < j_extd.size(); ++j)
+            h.at(i).at(j) = d.at(j_extd.at(i)).at(j_extd.at(j));
+        for (; j < j_extd.size() + a.size(); ++j)
+            h.at(i).at(j) = a_star.at(j - j_extd.size()).at(i);
+    }
+    for (unsigned long i = j_extd.size(); i < a.size() + j_extd.size(); ++i) {
+        for (int j = 0; j < a_star.at(0).size(); ++j)
+            h.at(i).at(j) = a_star.at(i - j_extd.size()).at(j);
+    }
+    
+    vector bb(j_extd.size() + a.size());
+    for (unsigned long i = 0; i < j_extd.size(); ++i)
+        bb.at(i) = d.at(j_extd.at(i)).at(j0);
+    for (unsigned long i = j_extd.size(); i < j_extd.size() + a.size(); ++i)
+        bb.at(i) = a.at(i - j_extd.size()).at(j0);
+    
+    auto h_inv = inverseMatrixOf(h);
+    auto l_y = mul(h_inv, bb);
+    mulInPlace(l_y, -1);
+    for (unsigned long i = 0; i < j_extd.size(); ++i)
+        l.at(j_extd.at(i)) = l_y.at(i);
+    
+    // 5
+    auto theta_j_min = std::numeric_limits<long double>::infinity();
+    long double l_i = 0.0;
+    long double theta_i = 0.0;
+    int j_star = -1;
+    for (unsigned long i = 0; i < j_extd.size(); ++i) {
+        l_i = l.at(j_extd.at(i));
+        if (l_i >= 0)
+            continue;
+        theta_i = -x.at(j_extd.at(i)) / l_i;
+        if (theta_i >= theta_j_min)
+            continue;
+        j_star = j_extd.at(i);
+        theta_j_min = theta_i;
+    }
+    
+    auto theta_j0 = std::numeric_limits<long double>::infinity();
+    long double delta = 0.0;
+    for (unsigned long i = 0; i < j_extd.size(); ++i)
+        delta += d.at(j_extd.at(i)).at(j0) * l_y.at(i);
+    auto a_j0 = columnFrom(a, j0);
+    for (unsigned long i = 0; i < l_y.size() - j_extd.size(); ++i)
+        delta += a_j0.at(i) * l_y.at(i + j_extd.size());
+    delta += d.at(j0).at(j0);
+    if (delta > 0)
+        theta_j0 = std::abs(delta_j0) / delta;
+    
+    auto theta0 = std::min(theta_j_min, theta_j0);
+    if (theta0 == std::numeric_limits<long double>::infinity()) {
+        endlPrint("Unbounded");
+        outputFor(x);
+        return;
+    }
+    
+    // 6
+    mulInPlace(l, theta0);
+    addInPlace(x, l);
+    
+    // 7
+    
+    answerPrint("");
     
 }
 
@@ -127,6 +277,6 @@ int main(int argc, const char * argv[]) {
         j--;
     for (auto &j : j_extd)
         j--;
-    quadraticProgramming();
+    quadraticProgramming(a, b, c, d, x, j_op, j_extd);
     return 0;
 }
