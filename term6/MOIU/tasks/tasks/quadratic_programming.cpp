@@ -164,20 +164,18 @@ void quadraticProgramming(matrix const &a, vector const &b, vector &c, matrix co
             auto u = mul(c_x_op, a_op_inv);
             
             j0 = -1;
-            delta_j0 = 0;
+            delta_j0 = -EPSILON;
             for (int i = 0; i < a.at(0).size(); ++i) {
                 if (std::find(j_extd.begin(), j_extd.end(), i) != j_extd.end())
                     continue;
                 auto delta = 0.0;
-                for (int j = 0; j < u.size(); ++j) {
+                for (int j = 0; j < u.size(); ++j)
                     delta += u.at(j) * a.at(j).at(i);
-                }
                 delta += c_x.at(i);
-                if (delta > -EPSILON)
+                if (delta >= delta_j0)
                     continue;
                 delta_j0 = delta;
                 j0 = i;
-                break;
             }
             if (j0 == -1) {
                 endlPrint("Bounded");
@@ -254,7 +252,7 @@ void quadraticProgramming(matrix const &a, vector const &b, vector &c, matrix co
         for (unsigned long i = 0; i < l_y.size() - j_extd.size(); ++i)
             delta += a_j0.at(i) * l_y.at(i + j_extd.size());
         delta += d.at(j0).at(j0);
-        if (std::abs(delta) > EPSILON)
+        if (delta > EPSILON)
             theta_j0 = std::abs(delta_j0) / delta;
         
         auto theta0 = std::min(theta_j_min, theta_j0);
@@ -312,7 +310,8 @@ void quadraticProgramming(matrix const &a, vector const &b, vector &c, matrix co
                     skipFirstSteps = true;
                 }
             } else {
-                j_extd.erase(j_extd.begin() + s);
+                index = std::find(j_extd.begin(), j_extd.end(), j_star) - j_extd.begin();
+                j_extd.erase(j_extd.begin() + index);
                 delta_j0 += theta0 * delta;
                 skipFirstSteps = true;
             }
