@@ -1,6 +1,3 @@
--- brew uninstall mysql
--- brew uninstall mysql-client
-
 CALL firstnameAndLastnameID('test', 'test');
 
 INSERT INTO user (username, email, password_hash, firstname_id, lastname_id) VALUES ('test0', 'kek@gmail.com', '2342342', '1', '1');
