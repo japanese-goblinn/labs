@@ -1,6 +1,7 @@
 @import "../main.css";
 @import "../animations.css";
 @import "../forms.css";
+@import "../search/search.css";
 
 main {
     padding: 20px;

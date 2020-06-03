@@ -1,4 +1,4 @@
 const searchModal = document.getElementById('search-modal');
-const activateButton = document.getElementById('button');
+const activateButton = document.getElementById('search-trigger');
 
 handleModalWindow(searchModal, activateButton);

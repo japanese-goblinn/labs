@@ -1,44 +1,34 @@
-@import "../main.css";
-@import "../animations.css";
-
-#button {
-    left: 45vw;
-    top: 50vh;
-    position: absolute;
-    background-color: red;
-}
-
-::placeholder {
+.search-container::placeholder {
     color: var(--text-secondary-color);
 }
 
-.list {
+.search-container .list {
     overflow: scroll;
 }
 
-.list > * {
+.search-container .list > * {
     flex-direction: column;
     width: 100%;
 }
 
-.list > :last-child {
+.search-container .list > :last-child {
     border: none;
 }
 
-.search {
+.search-container .search {
     display: flex;
     flex-direction: column;
 }
 
-.search-bar {
+.search-container .search-bar {
     display: inherit;
 }
 
-.search-bar img {
+.search-container .search-bar img {
     margin-left: 15px;
 }
 
-.search-bar input {
+.search-container .search-bar input {
     outline: none;
     border: none;
     margin: 15px;
@@ -49,14 +39,14 @@
     min-width: 0;
 }
 
-.search-element-type {
+.search-container .search-element-type {
     padding-top: 8px;
     font-weight: 200;
     font-size: 5%;
 }
 
 @media only screen and (min-width: 800px) {
-    .modal-content {
+    .search-container .modal-content {
         width: 50%;
     }
 }
