@@ -1,7 +1,7 @@
 const profileModal = document.getElementById('profile-modal');
-const activateButton = document.getElementById('button');
+const profileActivateButton = document.getElementById('profile-trigger');
 
-handleModalWindow(profileModal, activateButton);
+handleModalWindow(profileModal, profileActivateButton);
 
 const editButton = document.getElementById('edit-button');
 const editForm = document.getElementById('edit-form');

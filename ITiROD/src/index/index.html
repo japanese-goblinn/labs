@@ -14,6 +14,33 @@
 
 <body>
 
+    <div id="profile-modal" class="profile-container modal">
+        <div class="modal-content">
+            <figure>
+                <img src="../assets/account-big.svg" />
+                <figcaption>nagibator_2007sdjfsdfsdhfsdufishdfshdfishdufhsiudhfsidufhisdhfisudhfi</figcaption>
+            </figure>
+            <hr />
+            <div id="edit-form" class="form-container" style="display: none;">
+                <form class="form">
+                    <label for="email">New email</label>
+                    <input id="email" type="email" />
+                    <label for="old-password">Old Password</label>
+                    <input id="old-password" type="password" />
+                    <label for="new-password">New password</label>
+                    <input id="new-password" type="password" />
+                    <label for="repeat-new-password">Repeat new password</label>
+                    <input id="repeat-new-password" type="password" />
+                </form>
+            </div>
+            <div class="buttons-container">
+                <button id="save-changes-button" class="primary-button" style="display: none;">Save changes</button>
+                <button id="edit-button" class="primary-button">Edit profile</button>
+                <button class="sign-out-button">Sign Out</button>
+            </div>
+        </div>
+    </div>
+
     <div id="search-modal" class="search-container modal">
         <div class="modal-content">
             <div class="search">
@@ -53,7 +80,7 @@
 
     <div class="root-layout">
         <header class="layout-header">
-            <figure class="selectable">
+            <figure id="profile-trigger" class="selectable">
                 <img src="../assets/account.svg" />
                 <figcaption>nagibator_2007</figcaption>
             </figure>
@@ -135,6 +162,8 @@
     <script src="../modal.js"></script>
     <script src="./index.js"></script>
     <script src="../search/search.js"></script>
+    <script src="../profile/profile.js"></script>
+    
 </body>
 
 </html>

@@ -1,15 +1,4 @@
-@import "../main.css";
-@import "../animations.css";
-@import "../forms.css";
-
-#button {
-    left: 45vw;
-    top: 50vh;
-    position: absolute;
-    background-color: red;
-}
-
-figure {
+.profile-container figure {
     margin: 15px;
     display: flex;
     color: var(--text-secondary-color);
@@ -18,7 +7,7 @@ figure {
     overflow: hidden;
 }
 
-figcaption {
+.profile-container figcaption {
     padding-left: 20px;
     overflow: hidden;
     white-space: nowrap;
@@ -26,13 +15,13 @@ figcaption {
     align-self: center;
 }
 
-.form-container {
+.profile-container .form-container {
     padding: 15px 15px 0;
     border: none;
     margin: 0;
 }
 
-.buttons-container {
+.profile-container .buttons-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -40,11 +29,11 @@ figcaption {
     padding: 15px;
 }
 
-.modal-content {
+.profile-container .modal-content {
     max-height: 80%;
 }
 
-.primary-button {
+.profile-container .primary-button {
     width: 40%;
     padding: 10px;
 }
@@ -63,7 +52,7 @@ figcaption {
 }
 
 @media only screen and (min-width: 800px) {
-    .modal-content {
+    .profile-container .modal-content {
         width: 40%;
     }
 }
