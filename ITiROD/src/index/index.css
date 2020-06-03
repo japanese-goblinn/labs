@@ -1,0 +1,269 @@
+@import "../main.css";
+@import "../animations.css";
+@import "../forms.css";
+
+main {
+    padding: 20px;
+    max-width: 65%;
+    display: flex;
+    flex-direction: column;
+}
+
+main > :last-child {
+    padding-top: 15px;
+    justify-content: space-between;
+    display: flex;
+    flex: 1 2 1px;
+}
+
+time {
+    color: var(--text-secondary-color);
+    font-family: monospace;
+    font-weight: 600;
+}
+
+figure {
+    display: flex;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+figcaption {
+    padding-left: 7px;
+}
+
+#markdown-input {
+    color: var(--text-color);
+    font-family: monospace;
+    resize: none;
+}
+
+#markdown-input::placeholder {
+    color: var(--text-secondary-color);
+}
+
+#markdown-input:focus {
+    outline: none;
+}
+
+#markdown-preview li {
+    list-style-position: inside;
+}
+
+.markdown-presentable {
+    width: 49%;
+    max-height: 75vh;
+    padding: 15px;
+    overflow: scroll;
+    overflow-wrap: break-word;
+    border-radius: 10px;
+    border: 2px solid var(--separator-color);
+}
+
+.folder-button {
+    border: none;
+    background-color: inherit;
+    outline: none;
+}
+
+.note-button {
+    outline: none;
+    border: none;
+    background-color: var(--separator-color);
+}
+
+.toolbar {
+    display: flex;
+    padding-top: 15px;
+    width: 25%;
+    justify-content: space-evenly;
+}
+
+.toolbar > :first-child {
+    border-radius: 5px 0 0 5px;
+    border-right: none;
+}
+
+.toolbar > :last-child {
+    border-radius: 0 5px 5px 0;
+}
+
+.toolbar-item {
+    padding: 1px;
+    outline: none;
+    flex-grow: 1;
+    border: 2px solid var(--separator-color);
+    background-color: white;
+}
+
+.primary-button-click-animation {
+    animation: jumping 1s ease-in-out;
+}
+
+.rounded {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    margin: auto;
+    margin-right: 0;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-trigger:hover + :last-child {
+    display: flex;
+    flex-direction: column;
+    transition: 1s ease;
+}
+
+.dropdown-container {
+    display: none;
+    position: absolute;
+    right: 8px;
+    top: 14px;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 9px 9px 51px -21px rgba(0,0,0,0.75);
+}
+
+.dropdown-container > * {
+    z-index: 1;
+    padding: 11px;
+    border: none;
+    font-weight: bold;
+    text-align: start;
+    outline: none;
+    background-color: white;
+}
+
+.dropdown-container > *:last-child {
+    color: var(--destuctive-color);
+    border-radius: 0 0 10px 10px;
+}
+
+.dropdown-container > *:first-child {
+    border-radius: 10px 10px 0 0;
+}
+
+.dropdown-container:hover {
+    display: flex;
+    flex-direction: column;
+    transition: 0.4s ease;
+}
+
+.layout-header {
+    color: var(--text-secondary-color);
+    font-weight: 500;
+}
+
+.layout-header > :not(:last-child) {
+    padding: 10px;
+}
+
+.root-layout {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.root-layout > :last-child {
+    flex-grow: 2;
+}
+
+.main-columns {
+    display: flex;
+}
+
+.main-columns > :first-child {
+    width: 15%;
+}
+
+.main-columns > :nth-child(2) {
+    width: 20%;
+}
+
+.main-columns > :last-child {
+    flex-grow: 2;
+}
+
+.folders-column {
+    background-color: var(--folders-column-color);
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.folders-column > :first-child {
+    min-height: 90%;
+    overflow: scroll;
+    flex: 0 1 1px;
+}
+
+.folders-column > :last-child {
+    padding: 10px;
+    margin: 15px;
+}
+
+.notes-column {
+    border-right: 1px solid var(--separator-color);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.notes-column > :last-child {
+    min-height: 100%;
+    flex: 0 2 1px;
+    overflow: scroll;
+}
+
+.notes-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+.notes-header-description {
+    width: 80%;
+}
+
+.notes-header-description > * {
+    overflow-wrap: break-word;
+}
+
+.notes-header-description > :last-child {
+    padding-top: 5px;
+}
+
+.form-container {
+    padding: 15px 15px 0;
+    border: none;
+    margin: 0;
+}
+
+#confirm-new-folder-button {
+    margin: 15px;
+    align-self: center;
+    width: 40%;
+    padding: 10px;
+}
+
+@media only screen and (max-width: 800px) {
+    .main-columns > :first-child {
+        background-color: inherit;
+        width: 100%;
+        flex-grow: 1;
+    }
+
+    .main-columns > :not(:first-child) {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 800px) {
+    .modal-content {
+        width: 40%;
+    }
+}

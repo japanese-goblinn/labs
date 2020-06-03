@@ -1,0 +1,62 @@
+@import "../main.css";
+@import "../animations.css";
+
+#button {
+    left: 45vw;
+    top: 50vh;
+    position: absolute;
+    background-color: red;
+}
+
+::placeholder {
+    color: var(--text-secondary-color);
+}
+
+.list {
+    overflow: scroll;
+}
+
+.list > * {
+    flex-direction: column;
+    width: 100%;
+}
+
+.list > :last-child {
+    border: none;
+}
+
+.search {
+    display: flex;
+    flex-direction: column;
+}
+
+.search-bar {
+    display: inherit;
+}
+
+.search-bar img {
+    margin-left: 15px;
+}
+
+.search-bar input {
+    outline: none;
+    border: none;
+    margin: 15px;
+    margin-left: 10px;
+    font-size: 1rem;
+    color: var(--text-secondary-color);
+    flex-grow: 1;
+    min-width: 0;
+}
+
+.search-element-type {
+    padding-top: 8px;
+    font-weight: 200;
+    font-size: 5%;
+}
+
+@media only screen and (min-width: 800px) {
+    .modal-content {
+        width: 50%;
+    }
+}

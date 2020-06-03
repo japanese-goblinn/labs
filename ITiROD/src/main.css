@@ -1,0 +1,103 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100%; 
+    overflow: hidden;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+hr {
+    border: 1px solid var(--separator-color);
+}
+
+:root {
+    height: 100%;
+
+    --primary-color: #7F6A93;
+    --text-primary-color: #FFFFFF;
+    --text-color: #000000;
+    --text-secondary-color: rgba(25, 23, 17, 0.6);
+    --destuctive-color: #D62839;
+    --blur-color: rgba(25, 23, 17, 0.1);
+    --separator-color: #ECECEC;
+    --folders-column-color: #F7F6F3;
+}
+
+.selectable:hover {
+    background-color: var(--blur-color);
+    transition: 0.4s ease;
+}
+
+.secondary {
+    color: var(--text-secondary-color);
+}
+
+.folder-description {
+    width: 70%;
+}
+
+.folder-description > * {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.note-description {
+    width: 80%;
+    align-self: center;
+}
+
+.note-description > * {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.list {
+    list-style-type: none;
+}
+
+.list > * {
+    display: flex;
+    padding: 15px;
+    border-bottom: 1px solid var(--separator-color);
+}
+
+.modal-content {
+    margin: 15% auto;
+    margin-top: 5%;
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    background-color: white;
+    border-radius: 10px;
+    max-height: 50%;
+    animation: bounceIn 0.4s;
+}
+
+.modal {
+    z-index: 1;
+    position: fixed;
+    display: none;
+    backdrop-filter: blur(3px);
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.185);
+}
+
+.primary-button {
+    background: linear-gradient(180deg, rgba(148,143,223,1) 0%, rgba(184,123,195,1) 54%);
+    color: var(--text-primary-color);
+    border-radius: 20px;
+    border: none;
+    font-weight: 650;
+    font-size: 0.8rem;
+}
+
+.primary-button:focus {
+    outline: none;
+}
