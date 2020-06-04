@@ -1,3 +1,5 @@
+import handleModalWindow from "../scripts/modal.js";
+
 const profileModal = document.getElementById('profile-modal');
 const profileActivateButton = document.getElementById('profile-trigger');
 

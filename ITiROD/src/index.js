@@ -1,3 +1,7 @@
+import "./profile/profile.js";
+import "./search/search.js";
+import handleModalWindow from "./scripts/modal.js";
+
 function handleMarkdown() {
     const textarea = document.getElementById('markdown-input');
     const preview = document.getElementById('markdown-preview');

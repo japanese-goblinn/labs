@@ -1,4 +1,4 @@
-function handleModalWindow(modal, triggerButton) {
+export default function handleModalWindow(modal, triggerButton) {
     triggerButton.addEventListener('click', () => {
         modal.style.display = "block";
     });
