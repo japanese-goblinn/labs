@@ -1,34 +1,22 @@
 import "./profile/profile.js";
 import "./search/search.js";
 import handleModalWindow from "./scripts/modal.js";
+import animate from "./scripts/animate.js";
+import handleMarkdown from "./scripts/markdown.js";
 
-function handleMarkdown() {
+function configureViews() {
     const textarea = document.getElementById('markdown-input');
     const preview = document.getElementById('markdown-preview');
-    textarea.addEventListener('input', () => {
-        preview.innerHTML = marked(textarea.value);
-    });
-}
+    handleMarkdown(textarea, preview);
 
-function animate(button, animationName) {
-    button.addEventListener('click', () => {
-        button.classList.add(animationName);
-    });
-    button.addEventListener('animationend', () => {
-        button.classList.remove(animationName);
-    });
-}
-
-function configureButtons() {
     const buttons = document.getElementsByClassName('primary-button');
     Array.from(buttons).forEach((button) => {
         animate(button, 'primary-button-click-animation');
     });
+    
+    const newFolderButton = document.getElementById('new-folder-button');
+    const folderModal = document.getElementById('folder-modal');
+    handleModalWindow(folderModal, newFolderButton);
 }
 
-handleMarkdown();
-configureButtons();
-
-const newFolderButton = document.getElementById('new-folder-button');
-const folderModal = document.getElementById('folder-modal');
-handleModalWindow(folderModal, newFolderButton);
+configureViews();
