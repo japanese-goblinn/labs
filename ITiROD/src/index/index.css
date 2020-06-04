@@ -52,6 +52,10 @@ figcaption {
     list-style-position: inside;
 }
 
+#markdown-preview > * {
+    margin-top: 5px;
+}
+
 .markdown-presentable {
     width: 49%;
     max-height: 75vh;
