@@ -1,8 +1,9 @@
-import "./profile/profile.js";
-import "./search/search.js";
-import handleModalWindow from "./scripts/modal.js";
-import animate from "./scripts/animate.js";
-import handleMarkdown from "./scripts/markdown.js";
+import './profile/profile.js';
+import './search/search.js';
+import handleModalWindow from './scripts/modal.js';
+import animate from './scripts/animate.js';
+import handleMarkdown from './scripts/markdown.js';
+import Router from './scripts/router.js';
 
 function configureViews() {
     const textarea = document.getElementById('markdown-input');
