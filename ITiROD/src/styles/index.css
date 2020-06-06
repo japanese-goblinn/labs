@@ -1,8 +1,8 @@
-@import "./styles/main.css";
-@import "./styles/animations.css";
-@import "./styles/forms.css";
-@import "./search/search.css";
-@import "./profile/profile.css";
+@import "./main.css";
+@import "./animations.css";
+@import "./forms.css";
+@import "./search.css";
+@import "./profile.css";
 
 main {
     padding: 20px;
@@ -166,6 +166,10 @@ figcaption {
 
 .layout-header > :not(:last-child) {
     padding: 10px;
+}
+
+#root {
+    height: 100%;
 }
 
 .root-layout {
