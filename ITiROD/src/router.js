@@ -4,13 +4,14 @@ export default class Router {
 
     #routes = {
         '/': 'MainPageView',
-        '/welcome': 'WelcomePageView'
+        '/welcome': 'WelcomePageView',
+        '/404': '404'
     };
 
     get currentView() { 
         const path = window.location.pathname;
         console.log(path);
-        return this.#routes[path] ? this.#routes[path] : "not founded";
+        return this.#routes[path] ? this.#routes[path] : this.#routes['/404'];
     }
 
     async navigate(path) {

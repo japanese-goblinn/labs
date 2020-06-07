@@ -9,6 +9,7 @@ import SearchView from './views/searchView.js';
 import FolderCreateView from './views/folderCreateView.js';
 import MainPageView from './views/mainPageView.js';
 import WelcomePageView from './views/welcomePageView.js';
+import NotFounded from './views/404.js';
 
 export default class Renderer {
 
@@ -19,6 +20,10 @@ export default class Renderer {
         },
         'WelcomePageView': {
             class: WelcomePageView,
+            containerID: 'root'
+        },
+        '404': {
+            class: NotFounded,
             containerID: 'root'
         },
         'HeaderView': {

@@ -24,6 +24,7 @@ export default class MainPageView {
         
         await renderer.render('HeaderView');
         await renderer.render('FoldersColumnView');
+        
         await renderer.render('ProfileView');
         await renderer.render('FolderCreateView');
         await renderer.render('SearchView');
