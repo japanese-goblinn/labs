@@ -1,3 +1,5 @@
+import animate from "../../scripts/animate.js";
+
 export default class NotesColumnView {
 
     #body = async () => /*html*/`
@@ -6,7 +8,7 @@ export default class NotesColumnView {
                 <h3>Loooooooooooooong folder</h3>
                 <p class="secondary">Description wow wow wow wow</p>
             </div>
-            <button class="primary-button rounded">+</button>
+            <button id="new-note-button" class="primary-button rounded">+</button>
         </section>
         <hr />
         <nav>
@@ -27,8 +29,14 @@ export default class NotesColumnView {
         </nav>
     `
 
+    #configure = async () => {
+        const newNoteButton = document.getElementById('new-note-button');
+        animate(newNoteButton, 'primary-button-click-animation');
+    }
+
     async render() {
         this.container.innerHTML = await this.#body();
+        await this.#configure();
     }
 
     constructor(container) {

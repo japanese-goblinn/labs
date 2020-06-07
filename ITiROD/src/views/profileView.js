@@ -32,7 +32,7 @@ export default class ProfileView {
     #configure = async () => {
         const b = document.getElementById('sign-out-button');
         b.addEventListener('click', async () => {
-            await router.navigate('/welcome');
+            await router.navigate('welcome');
         });
 
         const editButton = document.getElementById('edit-button');

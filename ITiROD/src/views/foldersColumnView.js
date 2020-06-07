@@ -1,9 +1,11 @@
+import { renderer } from '../../app.js';
+
 export default class FoldersColumnView {
 
     #body = async () => /*html*/`
         <nav>
             <ul class="list folder-list">
-                <li class="dropdown selectable">
+                <li id="f-t" class="dropdown selectable">
                     <div class="folder-description">
                         <h4>Loooooooooooooong folder</h4>
                         <p class="secondary">Description wow wow wow wowwowowowowo</p>
@@ -21,8 +23,16 @@ export default class FoldersColumnView {
         <button id="folder-create-trigger" class="primary-button">+ New folder</button>
     `
 
+    #configure = async () => {
+        const li = document.getElementById('f-t');
+        li.addEventListener('click', async () => {
+            await renderer.render('NotesColumnView');
+        });
+    }
+
     async render() {
         this.container.innerHTML = await this.#body();
+        await this.#configure();
     }
 
     constructor(container) {
