@@ -216,8 +216,11 @@ figcaption {
     margin: 15px;
 }
 
-.notes-column {
+.right-bordered {
     border-right: 1px solid var(--separator-color);
+}
+
+.notes-column {
     display: flex;
     flex-direction: column;
     overflow: hidden;

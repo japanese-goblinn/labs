@@ -5,22 +5,76 @@ export default class Router {
     #routes = {
         '/': 'MainPageView',
         '/welcome': 'WelcomePageView',
+        '/folder/:id': 'NotesColumnView',
+        '/folder/:id/note/:id': 'NoteView',
         '/404': '404'
     };
 
-    get currentView() { 
-        const path = window.location.pathname;
-        console.log(path);
-        return this.#routes[path] ? this.#routes[path] : this.#routes['/404'];
+    _splitCurrentURL() {
+        return this._splitURL(window.location.pathname);
+    }
+
+    _splitURL(url) {
+        return url.split('/').filter(l => l);
+    }
+
+    _matchURL(splittedURL) {
+        switch (splittedURL.length) {
+            case 0:
+                return '/';
+            case 1:
+                return '/' + splittedURL[0];
+            case 2:
+                return '/folder/:id';
+            case 4:
+                return '/folder/:id/note/:id';
+            default:
+                return '/404';
+        }
+    }
+
+    _dataFromURL(splittedURL) {
+        switch (splittedURL.length) {
+            case 2:
+                return {
+                    folderID: splittedURL[1]
+                };
+            case 4:
+                return {
+                    folderID: splittedURL[1],
+                    noteID: splittedURL[3]
+                };
+            default:
+                return null;
+        }
+    }
+
+    get currentView() {
+        const path = this._matchURL(this._splitCurrentURL());
+        return this.#routes[path];
     }
 
     async navigate(path) {
-        window.history.pushState(null, null, path);
+        const pathSplitted = this._splitURL(path);
+        switch (pathSplitted[0]) {
+            case 'folder':
+                window.history.replaceState(null, null, '/');
+                window.history.pushState(null, null, path);
+                break;
+            case 'note':
+                const replace = this._splitCurrentURL().slice(0, 2).join('/');
+                window.history.replaceState(null, null, '/');
+                window.history.pushState(null, null, replace + '/' + path);
+                break;
+            default:
+                window.history.pushState(null, null, path);
+        }
         await this.render();
     }
 
     async render() {
-        await renderer.render(this.currentView);
+        const data = this._dataFromURL(this._splitCurrentURL());
+        await renderer.render(this.currentView, data);
     }
 
     constructor() {
@@ -29,5 +83,4 @@ export default class Router {
             await this.render();
         });
     }
-
 }

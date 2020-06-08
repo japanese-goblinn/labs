@@ -27,6 +27,10 @@ hr {
     --folders-column-color: #F7F6F3;
 }
 
+.selected {
+    background-color: var(--blur-color);
+}
+
 .selectable:hover {
     background-color: var(--blur-color);
     transition: 0.4s ease;

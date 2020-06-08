@@ -6,10 +6,10 @@ export default class NoteView {
         <time datetime="2017-1-3 15:00-0800">2017-1-3 15:00</time>
         <div class="toolbar">
             <button class="toolbar-item selectable">
-                <img src="../assets/folder.svg" alt="Move to folder" />
+                <img src="../../../assets/folder.svg" alt="Move to folder" />
             </button>
             <button class="toolbar-item selectable">
-                <img src="../assets/trash.svg" alt="Delete" />
+                <img src="../../../assets/trash.svg" alt="Delete" />
             </button>
         </div>
         <div>

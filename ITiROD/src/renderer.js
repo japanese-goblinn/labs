@@ -59,6 +59,16 @@ export default class Renderer {
         }
     };
 
+    async renderEmpty(viewName) {
+        const viewObject = this.#views[viewName];
+        if (!viewObject) {
+            console.log(`No view with name ${viewName}`);
+            return
+        }
+        const viewContainer = document.getElementById(viewObject.containerID);
+        viewContainer.innerHTML = null;
+    }
+
     async render(viewName, data = null) {
         const viewObject = this.#views[viewName];
         if (!viewObject) {
