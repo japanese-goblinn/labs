@@ -1,5 +1,5 @@
 .DS_Store
 .firebase
 .firebaserc
-firebase.json
 .vscode/
+src/scripts/firebaseConfig.js
