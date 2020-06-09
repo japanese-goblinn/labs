@@ -1,3 +1,5 @@
+import Auth from "../scripts/auth.js";
+
 export default class WelcomePageView {
 
     #body = async () => /*html*/`
@@ -9,10 +11,10 @@ export default class WelcomePageView {
                 <h2>Sign In</h2>
                 <hr>
                 <form class="form">
-                    <label for="si-email">Email</label>
-                    <input id="si-email" type="email" />
-                    <label for="si-password">Password</label>
-                    <input id="si-password" type="password" />
+                    <label for="sign-in-email">Email</label>
+                    <input id="sign-in-email" type="email" />
+                    <label for="sign-in-password">Password</label>
+                    <input id="sign-in-password" type="password" />
                     <button id="show-sign-up" class="change-button" type="button">No profile?</button>
                     <button class="primary-button">Sign In</button>
                 </form>
@@ -21,12 +23,12 @@ export default class WelcomePageView {
                 <h2>Sign Up</h2>
                 <hr>
                 <form class="form">
-                    <label for="su-email">Email</label>
-                    <input id="su-email" type="email" />
-                    <label for="su-password">Password</label>
-                    <input id="su-password" type="password" />
-                    <label for="repeat-password">Repeat password</label>
-                    <input id="repeat-password" type="password" />
+                    <label for="sign-up-email">Email</label>
+                    <input id="sign-up-email" type="email" placeholder="example@smthing.com" required />
+                    <label for="sign-up-password">Password</label>
+                    <input id="sign-up-password" type="password" required />
+                    <label for="sign-up-repeat-password">Repeat password</label>
+                    <input id="sign-up-repeat-password" type="password" required />
                     <button id="show-sign-in" class="change-button" type="button">Already signed up?</button>
                     <button class="primary-button">Sign Up</button>
                 </form>
@@ -50,6 +52,24 @@ export default class WelcomePageView {
         showSignUp.addEventListener('click', () => {
             signUpForm.style.display = "block";
             signInForm.style.display = "none";
+        });
+
+        signInForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const emailValue = document.getElementById('sign-in-email').value;
+            const passwordValue = document.getElementById('sign-in-password').value;
+            Auth.signIn(emailValue, passwordValue);
+        });
+        signUpForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const emailValue = document.getElementById('sign-up-email').value;
+            const passwordValue = document.getElementById('sign-up-password').value;
+            const repetedPasswordValue = document.getElementById('sign-up-repeat-password').value;
+            if (passwordValue != repetedPasswordValue) {
+                alert("Passwords do not match");
+                return;
+            }
+            Auth.signUp(emailValue, passwordValue);
         });
     }
 

@@ -1,18 +1,19 @@
 import { router } from '../../app.js';
+import Auth from '../scripts/auth.js';
 
 export default class ProfileView {
 
-    #body = async () => /*html*/`
+    #body = async (email) => /*html*/`
         <div class="modal-content">
             <figure>
                 <img src="../assets/account-big.svg" />
-                <figcaption>${'Kirill'}</figcaption>
+                <figcaption>${email}</figcaption>
             </figure>
             <hr />
             <div id="edit-form" class="form-container" style="display: none;">
                 <form class="form">
                     <label for="email">New email</label>
-                    <input id="email" type="email" />
+                    <input id="email" type="email" placeholder="${email}"/>
                     <label for="old-password">Old Password</label>
                     <input id="old-password" type="password" />
                     <label for="new-password">New password</label>
@@ -30,10 +31,8 @@ export default class ProfileView {
     `
 
     #configure = async () => {
-        const b = document.getElementById('sign-out-button');
-        b.addEventListener('click', async () => {
-            await router.navigate('/404');
-        });
+        const signOut = document.getElementById('sign-out-button');
+        signOut.addEventListener('click', () => Auth.signOut());
 
         const editButton = document.getElementById('edit-button');
         const editForm = document.getElementById('edit-form');
@@ -51,7 +50,7 @@ export default class ProfileView {
     }
 
     async render() {
-        this.container.innerHTML = await this.#body();
+        this.container.innerHTML = await this.#body(Auth.currentUser.email);
         await this.#configure();
     }
 

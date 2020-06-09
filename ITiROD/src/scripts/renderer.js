@@ -69,7 +69,7 @@ export default class Renderer {
         viewContainer.innerHTML = null;
     }
 
-    async render(viewName, data = null) {
+    async render(viewName) {
         const viewObject = this.#views[viewName];
         if (!viewObject) {
             console.log(`No view with name ${viewName}`);

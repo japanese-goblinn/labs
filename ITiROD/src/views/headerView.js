@@ -1,9 +1,11 @@
+import Auth from "../scripts/auth.js";
+
 export default class HeaderView {
 
-    #body = async () => /*html*/`
+    #body = async (email) => /*html*/`
         <figure id="profile-trigger" class="selectable">
             <img src="./assets/account.svg" />
-            <figcaption>nagibator_2007</figcaption>
+            <figcaption>${email}</figcaption>
         </figure>
         <figure id="search-trigger" class="selectable">
             <img src="./assets/search.svg" />
@@ -13,7 +15,7 @@ export default class HeaderView {
     `
 
     async render() {
-        this.container.innerHTML = await this.#body();
+        this.container.innerHTML = await this.#body(Auth.currentUser.email);
     }
 
     constructor(container) {

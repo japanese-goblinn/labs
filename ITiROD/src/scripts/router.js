@@ -1,4 +1,5 @@
 import { renderer, mobile } from '../app.js';
+import Auth from './auth.js';
 
 export default class Router {
 
@@ -67,6 +68,12 @@ export default class Router {
                 window.history.pushState(null, null, replace + '/');
                 window.history.pushState(null, null, newURL);
                 break;
+            case 'welcome':
+                window.history.replaceState(null, null, '/welcome');
+                break;
+            case undefined:
+                window.history.replaceState(null, null, '/');
+                break;
             default:
                 window.history.pushState(null, null, newURL);
         }
@@ -78,8 +85,7 @@ export default class Router {
     }
 
     async render() {
-        const data = this._dataFromURL(this._splitCurrentURL());
-        await renderer.render(this.currentView, data);
+        await renderer.render(this.currentView);
     }
 
     constructor() {
@@ -88,6 +94,9 @@ export default class Router {
             await this.render();
         });
         mobile.addListener(async () => {
+            if (!Auth.isSignedIn()) {
+                return
+            }
             const splitted = this._splitCurrentURL();
             window.history.replaceState(null, null, '/');
             switch (splitted.length) {
@@ -109,5 +118,6 @@ export default class Router {
                     break;
             }
         });
+        Auth.init();
     }
 }
