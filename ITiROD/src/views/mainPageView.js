@@ -1,4 +1,3 @@
-import animate from '../scripts/animate.js';
 import { renderer } from '../app.js';
 
 export default class MainPageView {
@@ -28,11 +27,6 @@ export default class MainPageView {
         await renderer.render('ProfileView');
         await renderer.render('FolderCreateView');
         await renderer.render('SearchView');
-
-        // TODO: Move this to each component 
-        Array.from(document.getElementsByClassName('primary-button')).forEach((button) => {
-            animate(button, 'primary-button-click-animation');
-        });
     }
 
     async render() {

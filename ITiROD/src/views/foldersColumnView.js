@@ -1,4 +1,5 @@
 import { router, mobile } from '../app.js';
+import animate from '../scripts/animate.js';
 
 export default class FoldersColumnView {
 
@@ -45,6 +46,9 @@ export default class FoldersColumnView {
         li2.addEventListener('click', async () => {
             await router.navigate('folder/' + 'f-t2');              
         });
+
+        const folderCreate = document.getElementById('folder-create-trigger');
+        animate(folderCreate, 'primary-button-click-animation');
     }
 
     async render() {
