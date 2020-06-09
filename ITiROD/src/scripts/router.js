@@ -68,12 +68,6 @@ export default class Router {
                 window.history.pushState(null, null, replace + '/');
                 window.history.pushState(null, null, newURL);
                 break;
-            case 'welcome':
-                window.history.replaceState(null, null, '/welcome');
-                break;
-            case undefined:
-                window.history.replaceState(null, null, '/');
-                break;
             default:
                 window.history.pushState(null, null, newURL);
         }
@@ -118,6 +112,14 @@ export default class Router {
                     break;
             }
         });
+        window.onpopstate = () => {
+            const spitted = this._splitCurrentURL();
+            if (spitted[0] === 'welcome') {
+                this._changeURL('/welcome');
+            } else if (spitted[0] == undefined) {
+                this._changeURL('/');
+            }
+        }
         Auth.init();
     }
 }

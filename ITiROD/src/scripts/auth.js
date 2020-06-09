@@ -6,6 +6,18 @@ export default class Auth {
         alert(`Error. ${error.message}`);
     }
 
+    static updatePassword(newPassword) {
+        this.currentUser.updatePassword(newPassword).then(() => {
+            this.signOut()
+        }).catch(this._showError);
+    }
+
+    static updateEmail(newEmail) {
+        this.currentUser.updateEmail(newEmail).then(async () => {
+            this.signOut();
+        }).catch(this._showError);
+    }
+
     static signUp(email, password) {
         firebase.auth().createUserWithEmailAndPassword(email, password).then(async () => {
             await router.navigate('/');
@@ -20,7 +32,7 @@ export default class Auth {
 
     static signOut() {
         firebase.auth().signOut().then(async () => {
-            router.navigate('/welcome');
+            await router.navigate('/welcome');
         }).catch(this._showError);
     }
 

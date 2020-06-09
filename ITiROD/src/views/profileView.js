@@ -11,11 +11,9 @@ export default class ProfileView {
             </figure>
             <hr />
             <div id="edit-form" class="form-container" style="display: none;">
-                <form class="form">
+                <form id="account-edit-form" class="form">
                     <label for="email">New email</label>
                     <input id="email" type="email" placeholder="${email}"/>
-                    <label for="old-password">Old Password</label>
-                    <input id="old-password" type="password" />
                     <label for="new-password">New password</label>
                     <input id="new-password" type="password" />
                     <label for="repeat-new-password">Repeat new password</label>
@@ -23,7 +21,9 @@ export default class ProfileView {
                 </form>
             </div>
             <div class="buttons-container">
-                <button id="save-changes-button" class="primary-button" style="display: none;">Save changes</button>
+                <button id="save-changes-button" form="account-edit-form" class="primary-button" style="display: none;">
+                    Save changes
+                </button>
                 <button id="edit-button" class="primary-button">Edit profile</button>
                 <button id="sign-out-button" class="sign-out-button">Sign Out</button>
             </div>
@@ -42,10 +42,33 @@ export default class ProfileView {
             editButton.style.display = "none";
             saveChangesButton.style.display = "inline";
         });
-        saveChangesButton.addEventListener('click', () => {
-            editForm.style.display = "none";
-            saveChangesButton.style.display = "none";
-            editButton.style.display = "inline";
+
+        const accountEditForm = document.getElementById('account-edit-form');
+        accountEditForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const newEmailValue = document.getElementById('email').value;
+            const newPasswordValue = document.getElementById('new-password').value;
+            const newPasswordRepetedValue = document.getElementById('repeat-new-password').value;  
+            
+            if (newPasswordValue !== '' && newEmailValue !== '') {
+                alert('Can\'t change password and email at the same time');
+                return;
+            }
+            
+            if (newEmailValue) {
+                Auth.updateEmail(newEmailValue);
+                return
+            }
+
+            if (newPasswordValue === '' && newPasswordRepetedValue === '') {
+                return
+            }
+            if (newPasswordValue != newPasswordRepetedValue) {
+                alert("New and repeted new passwords do not match");
+                return;
+            }
+            Auth.updatePassword(newPasswordValue);
         });
     }
 
