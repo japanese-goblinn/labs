@@ -263,6 +263,23 @@ figcaption {
     padding: 10px;
 }
 
+.back-button {
+    width: 30px;
+    text-align: start;
+    border: none;
+    background-color: inherit;
+    border-radius: 5px;
+}
+
+.folder-back-button {
+    margin-top: 15px;
+    margin-left: 15px;
+}
+
+.note-back-button {
+    margin-bottom: 15px;
+}
+
 @media only screen and (max-width: 800px) {
     .main-columns > :first-child {
         background-color: inherit;

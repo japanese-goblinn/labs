@@ -3,6 +3,9 @@ import handleMarkdown from '../../scripts/markdown.js';
 export default class NoteView {
 
     #body = async () => /*html*/`
+        <button id="note-back-button" class="back-button note-back-button selectable">
+            <img src="../../../assets/back.svg" alt="Back" />
+        </button>
         <time datetime="2017-1-3 15:00-0800">2017-1-3 15:00</time>
         <div class="toolbar">
             <button class="toolbar-item selectable">
@@ -19,11 +22,18 @@ export default class NoteView {
         </div>
     `
 
-    async render() {
-        this.container.innerHTML = await this.#body();
+    #configure = async () => {
+        const noteBack = document.getElementById('note-back-button');
+        noteBack.addEventListener('click', () => window.history.back());
+
         const textarea = document.getElementById('markdown-input');
         const preview = document.getElementById('markdown-preview');
         handleMarkdown(textarea, preview);
+    }
+
+    async render() {
+        this.container.innerHTML = await this.#body();
+        await this.#configure();
     }
 
     constructor(container) {

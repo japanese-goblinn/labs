@@ -64,7 +64,8 @@ export default class Router {
             case 'note':
                 const replace = this._splitCurrentURL().slice(0, 2).join('/');
                 window.history.replaceState(null, null, '/');
-                window.history.pushState(null, null, replace + '/' + path);
+                window.history.pushState(null, null, replace + '/');
+                window.history.pushState(null, null, path);
                 break;
             default:
                 window.history.pushState(null, null, path);

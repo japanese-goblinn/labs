@@ -4,6 +4,9 @@ import { router, renderer } from "../app.js";
 export default class NotesColumnView {
 
     #body = async () => /*html*/`
+        <button id="folder-back-button" class="back-button folder-back-button selectable">
+            <img src="../../../assets/back.svg" alt="Back" />
+        </button>
         <section class="notes-header">
             <div class="notes-header-description">
                 <h3>Loooooooooooooong folder</h3>
@@ -52,6 +55,9 @@ export default class NotesColumnView {
         li2.addEventListener('click', async () => {
             await router.navigate('note/' + 'n-t2');
         });
+
+        const folderBack = document.getElementById('folder-back-button');
+        folderBack.addEventListener('click', () => window.history.back());
 
         this.container.classList.add('right-bordered');
         
