@@ -1,4 +1,4 @@
-import { renderer, mobile } from './app.js';
+import { renderer, mobile } from '../app.js';
 
 export default class Router {
 
