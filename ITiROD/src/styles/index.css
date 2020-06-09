@@ -111,6 +111,7 @@ figcaption {
     height: 30px;
     margin: auto;
     margin-right: 0;
+    margin-bottom: 0;
 }
 
 .dropdown {
