@@ -10,6 +10,11 @@ export default class Router {
         '/404': '404'
     };
 
+    get currentView() {
+        const path = this._matchURL(this._splitCurrentURL());
+        return this.#routes[path];
+    }
+
     _splitCurrentURL() {
         return this._splitURL(window.location.pathname);
     }
@@ -49,27 +54,26 @@ export default class Router {
         }
     }
 
-    get currentView() {
-        const path = this._matchURL(this._splitCurrentURL());
-        return this.#routes[path];
-    }
-
-    async navigate(path) {
-        const pathSplitted = this._splitURL(path);
+    _changeURL(newURL) {
+        const pathSplitted = this._splitURL(newURL);
         switch (pathSplitted[0]) {
             case 'folder':
                 window.history.replaceState(null, null, '/');
-                window.history.pushState(null, null, path);
+                window.history.pushState(null, null, newURL);
                 break;
             case 'note':
                 const replace = this._splitCurrentURL().slice(0, 2).join('/');
                 window.history.replaceState(null, null, '/');
                 window.history.pushState(null, null, replace + '/');
-                window.history.pushState(null, null, path);
+                window.history.pushState(null, null, newURL);
                 break;
             default:
-                window.history.pushState(null, null, path);
+                window.history.pushState(null, null, newURL);
         }
+    }
+
+    async navigate(path) {
+        this._changeURL(path);
         await this.render();
     }
 
@@ -93,7 +97,11 @@ export default class Router {
                     break;
                 case 4:
                     await this.navigate('/');
-                    await this.navigate('folder/' + splitted[1]);
+                    if (mobile.matches) {
+                        this._changeURL('folder/' + splitted[1]);
+                    } else {
+                        await this.navigate('folder/' + splitted[1]);
+                    }
                     await this.navigate('note/' + splitted[3]);
                     break;
                 default:
