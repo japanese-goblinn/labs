@@ -1,4 +1,4 @@
-import { renderer } from './app.js';
+import { renderer, mobile } from './app.js';
 
 export default class Router {
 
@@ -82,6 +82,24 @@ export default class Router {
         window.history.replaceState(null, null, '/');
         window.addEventListener('popstate', async () => {
             await this.render();
+        });
+        mobile.addListener(async () => {
+            const splitted = this._splitCurrentURL();
+            window.history.replaceState(null, null, '/');
+            switch (splitted.length) {
+                case 2:
+                    await this.navigate('/');
+                    await this.navigate('folder/' + splitted[1]);
+                    break;
+                case 4:
+                    await this.navigate('/');
+                    await this.navigate('folder/' + splitted[1]);
+                    await this.navigate('note/' + splitted[3]);
+                    break;
+                default:
+                    await this.navigate('/');
+                    break;
+            }
         });
     }
 }

@@ -1,5 +1,5 @@
 import animate from "../../scripts/animate.js";
-import { router, renderer } from "../app.js";
+import { router, renderer, mobile } from "../app.js";
 
 export default class NotesColumnView {
 
@@ -58,6 +58,7 @@ export default class NotesColumnView {
 
         const folderBack = document.getElementById('folder-back-button');
         folderBack.addEventListener('click', () => window.history.back());
+        folderBack.style.display = "none";
 
         this.container.classList.add('right-bordered');
         
@@ -65,6 +66,12 @@ export default class NotesColumnView {
 
         const newNoteButton = document.getElementById('new-note-button');
         animate(newNoteButton, 'primary-button-click-animation');
+
+        if (mobile.matches) {
+            folderBack.style.display = "inline-block";
+        } else {
+            folderBack.style.display = "none";
+        }
     }
 
     async render() {
@@ -73,6 +80,12 @@ export default class NotesColumnView {
     }
 
     constructor(container) {
-        this.container = container;
+        if (mobile.matches) {
+            this.container = document.getElementById('folders-column-container');
+            this.container.classList.remove(...this.container.classList);
+            this.container.classList.add(container.className);
+        } else {
+            this.container = container;
+        }
     }
 }

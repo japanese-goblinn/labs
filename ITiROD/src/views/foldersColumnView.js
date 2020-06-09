@@ -1,4 +1,4 @@
-import { router } from '../app.js';
+import { router, mobile } from '../app.js';
 
 export default class FoldersColumnView {
 
@@ -53,6 +53,9 @@ export default class FoldersColumnView {
     }
 
     constructor(container) {
+        const containerName = container.className;
         this.container = container;
+        this.container.classList.remove(...this.container.classList);
+        this.container.classList.add(containerName);
     }
 }

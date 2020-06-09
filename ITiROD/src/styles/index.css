@@ -4,20 +4,6 @@
 @import "./search.css";
 @import "./profile.css";
 
-main {
-    padding: 20px;
-    max-width: 65%;
-    display: flex;
-    flex-direction: column;
-}
-
-main > :last-child {
-    padding-top: 15px;
-    justify-content: space-between;
-    display: flex;
-    flex: 1 2 1px;
-}
-
 time {
     color: var(--text-secondary-color);
     font-family: monospace;
@@ -32,6 +18,12 @@ figure {
 
 figcaption {
     padding-left: 7px;
+}
+
+.note-view-column {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
 }
 
 #markdown-input {
@@ -56,13 +48,20 @@ figcaption {
     margin-top: 5px;
 }
 
+.markdown-area {
+    padding-top: 5px;
+    justify-content: space-between;
+    display: flex;
+    flex: 1 2 1px;
+}
+
 .markdown-presentable {
-    width: 49%;
-    max-height: 75vh;
+    min-width: 50%;
+    flex-grow: 1;
     padding: 15px;
     overflow: scroll;
     overflow-wrap: break-word;
-    border-radius: 10px;
+    border-radius: 5px;
     border: 2px solid var(--separator-color);
 }
 
@@ -81,8 +80,7 @@ figcaption {
 .toolbar {
     display: flex;
     padding-top: 15px;
-    width: 25%;
-    justify-content: space-evenly;
+    width: 48%;
 }
 
 .toolbar > :first-child {
@@ -100,6 +98,7 @@ figcaption {
     flex-grow: 1;
     border: 2px solid var(--separator-color);
     background-color: white;
+    color: var(--text-secondary-color);
 }
 
 .primary-button-click-animation {

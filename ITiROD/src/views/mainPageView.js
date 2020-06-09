@@ -12,7 +12,7 @@ export default class MainPageView {
             <div class="main-columns">
                 <div id="folders-column-container" class="folders-column"></div>
                 <div id="notes-column-container" class="notes-column"></div>
-                <main id="note-content-container"></main>
+                <main id="note-content-container" class="note-view-column"></main>
             </div>
         </div>
     `
@@ -24,11 +24,12 @@ export default class MainPageView {
         
         await renderer.render('HeaderView');
         await renderer.render('FoldersColumnView');
-        
+
         await renderer.render('ProfileView');
         await renderer.render('FolderCreateView');
         await renderer.render('SearchView');
 
+        // TODO: Move this to each component 
         Array.from(document.getElementsByClassName('primary-button')).forEach((button) => {
             animate(button, 'primary-button-click-animation');
         });
