@@ -33,11 +33,7 @@
     outline-color: var(--primary-color);
 }
 
-.form input[type="email"]:valid {
-    outline-color: green;
-}
-
-.form input[type="email"]:invalid {
+.form input:invalid {
     outline-color: var(--destuctive-color);
 }
 

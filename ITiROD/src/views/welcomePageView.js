@@ -12,9 +12,9 @@ export default class WelcomePageView {
                 <hr>
                 <form class="form">
                     <label for="sign-in-email">Email</label>
-                    <input id="sign-in-email" type="email" />
+                    <input id="sign-in-email" type="email" required />
                     <label for="sign-in-password">Password</label>
-                    <input id="sign-in-password" type="password" />
+                    <input id="sign-in-password" type="password" required />
                     <button id="show-sign-up" class="change-button" type="button">No profile?</button>
                     <button class="primary-button">Sign In</button>
                 </form>
