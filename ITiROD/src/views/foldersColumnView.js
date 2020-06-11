@@ -32,8 +32,8 @@ export default class FoldersColumnView {
 
     async render() {
         this.container.innerHTML = await this.#body();
-        await this.#configure();
         await this._loadData();
+        await this.#configure();
     }
 
     constructor(container) {

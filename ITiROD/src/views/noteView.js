@@ -1,12 +1,13 @@
-import { mobile } from "../app.js";
+import { mobile, router, renderer } from "../app.js";
+import Database from "../scripts/database.js";
 
 export default class NoteView {
 
-    #body = async () => /*html*/`
+    #body = async (content, date) => /*html*/`
         <button id="note-back-button" class="back-button note-back-button selectable">
             <img src="../../../assets/back.svg" alt="Back" />
         </button>
-        <time datetime="2017-1-3 15:00-0800">2017-1-3 15:00</time>
+        <time datetime="2017-1-3 15:00-0800">${date.toLocaleDateString('en-US') + ' ' + date.toLocaleTimeString('en-US')}</time>
         <div id="note-toolbar" class="toolbar">
             <button class="toolbar-item white-background selectable">
                 <img src="../../../assets/folder.svg" alt="Move to folder" />
@@ -21,12 +22,12 @@ export default class NoteView {
         </div>
         <div class="markdown-area">
             <textarea id="markdown-input" class="markdown-presentable"
-                placeholder="Your markdown here..."># Some text</textarea>
+                placeholder="Your markdown here...">${content}</textarea>
             <div id="markdown-preview" class="markdown-presentable"></div>
         </div>
     `
 
-    #configure = async () => {
+    #configure = async (noteID, folderID) => {
         const noteBack = document.getElementById('note-back-button');
         noteBack.addEventListener('click', () => window.history.back());
         
@@ -34,7 +35,20 @@ export default class NoteView {
         const preview = document.getElementById('markdown-preview');
         textarea.addEventListener('input', () => this._handleMarkdown(textarea, preview));
         this._handleMarkdown(textarea, preview);
-
+    
+        let noteConent = textarea.value;
+        textarea.addEventListener('focusout', async () => {
+            if (noteConent.replace(/\s+$/, '') === textarea.value.replace(/\s+$/, '')) {
+                return;
+            }
+            noteConent = textarea.value;
+            await Database.updateNote(folderID, noteID, noteConent);
+            if (mobile.matches) {
+                return;
+            }
+            await renderer.render('NotesColumnView');
+        });
+    
         const markdownWriteActivate = document.getElementById('markdown-toolbar-item-write');
         const markdownPreviewActivate = document.getElementById('markdown-toolbar-item-preview');
         markdownWriteActivate.addEventListener('click', () => {
@@ -79,9 +93,18 @@ export default class NoteView {
         previewSource.innerHTML = marked(inputSource.value);
     }
 
+    async _loadNote() {
+        const data = router.dataFromURL();
+        const noteID = data.noteID;
+        const folderID = data.folderID;
+        const note = await Database.loadNote(folderID, noteID);
+        return note
+    }
+
     async render() {
-        this.container.innerHTML = await this.#body();
-        await this.#configure();
+        const note = await this._loadNote();
+        this.container.innerHTML = await this.#body(note.content, new Date(note.date));
+        await this.#configure(note.id, note.folderID);
     }
 
     constructor(container) {

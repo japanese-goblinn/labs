@@ -1,5 +1,6 @@
 import animate from "../../scripts/animate.js";
 import { router, renderer, mobile } from "../app.js";
+import NoteComponent from "./components/noteComponent.js";
 import Database from "../scripts/database.js";
 
 export default class NotesColumnView {
@@ -19,45 +20,12 @@ export default class NotesColumnView {
         </section>
         <hr />
         <nav>
-            <ul class="list note-list">
-                <li id="n-t" class="dropdown selectable">
-                    <div class="note-description">
-                        <h5>Nooooooooooooooooooote 1</h5>
-                    </div>
-                    <button class="note-button rounded dropdown-trigger">
-                        ...
-                    </button>
-                    <div class="dropdown-container">
-                        <button class="secondary selectable">Move to</button>
-                        <button class="destructive selectable">Delete</button>
-                    </div>
-                </li>
-                <li id="n-t2" class="dropdown selectable">
-                    <div class="note-description">
-                        <h5>Nooooooooooooooooooote 2</h5>
-                    </div>
-                    <button class="note-button rounded dropdown-trigger">
-                        ...
-                    </button>
-                    <div class="dropdown-container">
-                        <button class="secondary selectable">Move to</button>
-                        <button class="destructive selectable">Delete</button>
-                    </div>
-                </li>
-            </ul>
+            <ul id="note-list" class="list note-list"></ul>
         </nav>
     `
 
-    #configure = async () => {
-        const li = document.getElementById('n-t');
-        li.addEventListener('click', async () => {
-            await router.navigate('note/' + 'n-t');
-        });
-
-        const li2 = document.getElementById('n-t2');
-        li2.addEventListener('click', async () => {
-            await router.navigate('note/' + 'n-t2');
-        });
+    #configure = async (folderID) => {
+;        const noteList = document.getElementById('note-list');
 
         const folderBack = document.getElementById('folder-back-button');
         folderBack.addEventListener('click', () => window.history.back());
@@ -69,6 +37,13 @@ export default class NotesColumnView {
 
         const newNoteButton = document.getElementById('new-note-button');
         animate(newNoteButton, 'primary-button-click-animation');
+        newNoteButton.addEventListener('click', async () => {
+            const noteTitle = 'New Note'
+            const date = Date.now();
+            const noteID = await Database.saveNote(folderID, noteTitle, date);
+            const newNote = new NoteComponent(noteList, noteID, noteTitle);
+            await newNote.render();
+        });
 
         if (mobile.matches) {
             folderBack.style.display = 'inline-block';
@@ -83,11 +58,24 @@ export default class NotesColumnView {
         return folder;
     }
 
+    async _loadNotes(folderID) {
+        const noteList = document.getElementById('note-list');
+        const notes = await Database.loadAllNotes(folderID);
+        for (const note of notes) {
+            const noteView = new NoteComponent(
+                noteList, 
+                note.id, 
+                note.content, 
+            );
+            await noteView.render();
+        }
+    }
 
     async render() {
         const folder = await this._loadFolder();
         this.container.innerHTML = await this.#body(folder.title, folder.description);
-        await this.#configure();
+        await this.#configure(folder.id);
+        await this._loadNotes(folder.id);
     }
 
     constructor(container) {

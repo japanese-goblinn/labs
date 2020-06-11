@@ -239,10 +239,18 @@ figcaption {
 }
 
 .notes-header-description {
+    display: flex;
+    flex-direction: column;
     width: 80%;
 }
 
+.notes-header-description h3 {
+    display: flex;
+    align-items: center;
+}
+
 .notes-header-description > * {
+    flex-grow: 1;
     overflow-wrap: break-word;
 }
 
