@@ -68,9 +68,9 @@ export default class NotesColumnView {
         animate(newNoteButton, 'primary-button-click-animation');
 
         if (mobile.matches) {
-            folderBack.style.display = "inline-block";
+            folderBack.style.display = 'inline-block';
         } else {
-            folderBack.style.display = "none";
+            folderBack.style.display = 'none';
         }
     }
 

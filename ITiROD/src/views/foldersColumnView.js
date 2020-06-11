@@ -1,5 +1,4 @@
-import { router, mobile } from '../app.js';
-import animate from '../scripts/animate.js';
+import animate from "../scripts/animate.js";
 
 export default class FoldersColumnView {
 

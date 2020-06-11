@@ -1,5 +1,4 @@
-import { router } from '../../app.js';
-import Auth from '../scripts/auth.js';
+import Auth from "../scripts/auth.js";
 
 export default class ProfileView {
 
@@ -38,9 +37,9 @@ export default class ProfileView {
         const editForm = document.getElementById('edit-form');
         const saveChangesButton = document.getElementById('save-changes-button');
         editButton.addEventListener('click', () => {
-            editForm.style.display = "flex";
-            editButton.style.display = "none";
-            saveChangesButton.style.display = "inline";
+            editForm.style.display = 'flex';
+            editButton.style.display = 'none';
+            saveChangesButton.style.display = 'inline';
         });
 
         const accountEditForm = document.getElementById('account-edit-form');
@@ -65,7 +64,7 @@ export default class ProfileView {
                 return
             }
             if (newPasswordValue != newPasswordRepetedValue) {
-                alert("New and repeted new passwords do not match");
+                alert('New and repeated new passwords do not match');
                 return;
             }
             Auth.updatePassword(newPasswordValue);

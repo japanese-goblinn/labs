@@ -1,5 +1,5 @@
-import { renderer, mobile } from '../app.js';
-import Auth from './auth.js';
+import { renderer, mobile } from "../app.js";
+import Auth from "./auth.js";
 
 export default class Router {
 

@@ -1,15 +1,15 @@
-import handleModalWindow from './modal.js';
+import handleModalWindow from "./modal.js";
 
-import HeaderView from '../views/headerView.js';
-import FoldersColumnView from '../views/foldersColumnView.js';
-import NotesColumnView from '../views/notesColumnView.js';
-import NoteView from '../views/noteView.js';
-import ProfileView from '../views/profileView.js';
-import SearchView from '../views/searchView.js';
-import FolderCreateView from '../views/folderCreateView.js';
-import MainPageView from '../views/mainPageView.js';
-import WelcomePageView from '../views/welcomePageView.js';
-import NotFounded from '../views/404.js';
+import HeaderView from "../views/headerView.js";
+import FoldersColumnView from "../views/foldersColumnView.js";
+import NotesColumnView from "../views/notesColumnView.js";
+import NoteView from "../views/noteView.js";
+import ProfileView from "../views/profileView.js";
+import SearchView from "../views/searchView.js";
+import FolderCreateView from "../views/folderCreateView.js";
+import MainPageView from "../views/mainPageView.js";
+import WelcomePageView from "../views/welcomePageView.js";
+import NotFounded from "../views/404.js";
 
 export default class Renderer {
 

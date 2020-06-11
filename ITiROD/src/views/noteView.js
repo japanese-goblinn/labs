@@ -1,4 +1,4 @@
-import { mobile } from '../app.js';
+import { mobile } from "../app.js";
 
 export default class NoteView {
 
@@ -38,18 +38,17 @@ export default class NoteView {
         const markdownWriteActivate = document.getElementById('markdown-toolbar-item-write');
         const markdownPreviewActivate = document.getElementById('markdown-toolbar-item-preview');
         markdownWriteActivate.addEventListener('click', () => {
-            textarea.style.display = "inline-block";
-            preview.style.display = "none";
-            markdownWriteActivate.style.backgroundColor = "var(--blur-color)";
-            markdownPreviewActivate.style.backgroundColor = "white";
+            textarea.style.display = 'inline-block';
+            preview.style.display = 'none';
+            markdownWriteActivate.style.backgroundColor = 'var(--blur-color)';
+            markdownPreviewActivate.style.backgroundColor = 'white';
         });
         markdownPreviewActivate.addEventListener('click', () => {
-            preview.style.display = "inline-block";
-            textarea.style.display = "none";
-            markdownPreviewActivate.style.backgroundColor = "var(--blur-color)";
-            markdownWriteActivate.style.backgroundColor = "white";
+            preview.style.display = 'inline-block';
+            textarea.style.display = 'none';
+            markdownPreviewActivate.style.backgroundColor = 'var(--blur-color)';
+            markdownWriteActivate.style.backgroundColor = 'white';
         });
-
         this._mediaQueryMatch(mobile);
     }
 
@@ -61,18 +60,18 @@ export default class NoteView {
         const preview = document.getElementById('markdown-preview');
         const markdownWriteActivate = document.getElementById('markdown-toolbar-item-write');
         if (viewConfig.matches) {
-            noteToolbar.style.width = "100%";
-            markdownToolbar.style.display = "flex";
-            noteBack.style.display = "inline-block";
-            textarea.style.maxHeight = "67vh";
-            preview.style.maxHeight = "67vh";
+            noteToolbar.style.width = '100%';
+            markdownToolbar.style.display = 'flex';
+            noteBack.style.display = 'inline-block';
+            textarea.style.maxHeight = '67vh';
+            preview.style.maxHeight = '67vh';
             markdownWriteActivate.click();
         } else {
-            noteToolbar.style.width = "25%";
-            markdownToolbar.style.display = "none";
-            noteBack.style.display = "none";
-            textarea.style.maxHeight = "77vh";
-            preview.style.maxHeight = "77vh";
+            noteToolbar.style.width = '25%';
+            markdownToolbar.style.display = 'none';
+            noteBack.style.display = 'none';
+            textarea.style.maxHeight = '77vh';
+            preview.style.maxHeight = '77vh';
         }
     }
 

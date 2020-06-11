@@ -46,12 +46,12 @@ export default class WelcomePageView {
         const showSignIn = document.getElementById('show-sign-in');
         const showSignUp = document.getElementById('show-sign-up');
         showSignIn.addEventListener('click', () => {
-            signInForm.style.display = "block";
-            signUpForm.style.display = "none";
+            signInForm.style.display = 'block';
+            signUpForm.style.display = 'none';
         });
         showSignUp.addEventListener('click', () => {
-            signUpForm.style.display = "block";
-            signInForm.style.display = "none";
+            signUpForm.style.display = 'block';
+            signInForm.style.display = 'none';
         });
 
         signInForm.addEventListener('submit', (event) => {
@@ -66,7 +66,7 @@ export default class WelcomePageView {
             const passwordValue = document.getElementById('sign-up-password').value;
             const repetedPasswordValue = document.getElementById('sign-up-repeat-password').value;
             if (passwordValue != repetedPasswordValue) {
-                alert("Passwords do not match");
+                alert('Passwords do not match');
                 return;
             }
             Auth.signUp(emailValue, passwordValue);
