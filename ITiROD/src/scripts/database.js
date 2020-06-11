@@ -2,6 +2,10 @@ import Auth from "./auth.js";
 import { router } from "../app.js";
 
 export default class Database {
+
+    static _showError(error) {
+        alert(`Error. ${error.message}`);
+    }
     
     static async saveFolder(title, description) {
         const newFolderRef = this.db.ref('users/' + Auth.currentUser.uid + '/folders').push();
@@ -10,6 +14,13 @@ export default class Database {
             description: description
         });
         return newFolderRef.key;
+    }
+
+    static async deleteFolder(id, title) {
+        const ref = this.db.ref('users/' + Auth.currentUser.uid + '/folders/' + id);
+        ref.remove().then(() => {
+            setTimeout(() => alert(`${title} deleted`), 50);
+        }).catch(this._showError);
     }
 
     static async loadFolder(id) {

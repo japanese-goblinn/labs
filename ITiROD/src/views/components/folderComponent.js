@@ -1,4 +1,5 @@
 import { router } from "../../app.js";
+import Database from "../../scripts/database.js";
 
 export default class FolderComponent {
 
@@ -14,16 +15,35 @@ export default class FolderComponent {
                 ...
             </button>
             <div class="dropdown-container">
-                <button class="secondary selectable">Edit</button>
-                <button class="destructive selectable">Delete</button>
+                <button id="edit-${id}" class="secondary selectable">Edit</button>
+                <button id="delete-${id}" class="destructive selectable">Delete</button>
             </div>
         </li>
     `
     #configure = async () => {
+        const editFolder = document.getElementById(`edit-${this.id}`);
+        editFolder.addEventListener('click', () => {
+            console.log('edit ' + this.id);
+        });
+
+        const deleteFolder = document.getElementById(`delete-${this.id}`);
+        deleteFolder.addEventListener('click', async () => {
+            const deletedConfirmed = confirm(`Are you shure want to delete '${this.title}'?`);
+            if (!deletedConfirmed) {
+                return;
+            }
+            await Database.deleteFolder(this.id, this.title);
+            await router.navigate('/');
+        });
+
         const folderListElement = document.getElementById(`${this.id}`);
-        folderListElement.addEventListener('click', async () => {
+        folderListElement.addEventListener('click', async (event) => {
+            if (event.target === editFolder || event.target === deleteFolder) {
+                return;
+            }
             await router.navigate('folder/' + `${this.id}`);
         });
+        
     }
 
     async render() {
