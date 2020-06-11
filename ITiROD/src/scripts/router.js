@@ -120,6 +120,5 @@ export default class Router {
                 this._changeURL('/');
             }
         }
-        Auth.init();
     }
 }
