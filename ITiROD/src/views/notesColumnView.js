@@ -1,16 +1,19 @@
 import animate from "../../scripts/animate.js";
 import { router, renderer, mobile } from "../app.js";
+import Database from "../scripts/database.js";
 
 export default class NotesColumnView {
 
-    #body = async () => /*html*/`
+    #body = async (title, description) => /*html*/`
         <button id="folder-back-button" class="back-button folder-back-button selectable">
             <img src="../../../assets/back.svg" alt="Back" />
         </button>
         <section class="notes-header">
             <div class="notes-header-description">
-                <h3>Loooooooooooooong folder</h3>
-                <p class="secondary">Description wow wow wow wow</p>
+                <h3>${title}</h3>
+                <p class="secondary" style="${description ? '' : 'display: none;'}">
+                    ${description}
+                </p>
             </div>
             <button id="new-note-button" class="primary-button rounded">+</button>
         </section>
@@ -74,8 +77,16 @@ export default class NotesColumnView {
         }
     }
 
+    async _loadFolder() {
+        const folderID = router.dataFromURL().folderID;
+        const folder = await Database.loadFolder(folderID);
+        return folder;
+    }
+
+
     async render() {
-        this.container.innerHTML = await this.#body();
+        const folder = await this._loadFolder();
+        this.container.innerHTML = await this.#body(folder.title, folder.description);
         await this.#configure();
     }
 

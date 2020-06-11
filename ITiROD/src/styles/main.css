@@ -41,13 +41,21 @@ hr {
 }
 
 .folder-description {
+    display: flex;
+    flex-direction: column;
     width: 70%;
 }
 
 .folder-description > * {
+    flex-grow: 1;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+}
+
+.folder-description h4 {
+    display: flex;
+    align-items: center;
 }
 
 .note-description {
