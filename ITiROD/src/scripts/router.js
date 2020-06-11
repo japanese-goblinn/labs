@@ -39,22 +39,6 @@ export default class Router {
         }
     }
 
-    _dataFromURL(splittedURL) {
-        switch (splittedURL.length) {
-            case 2:
-                return {
-                    folderID: splittedURL[1]
-                };
-            case 4:
-                return {
-                    folderID: splittedURL[1],
-                    noteID: splittedURL[3]
-                };
-            default:
-                return null;
-        }
-    }
-
     _changeURL(newURL) {
         const pathSplitted = this._splitURL(newURL);
         switch (pathSplitted[0]) {
@@ -70,6 +54,23 @@ export default class Router {
                 break;
             default:
                 window.history.pushState(null, null, newURL);
+        }
+    }
+
+    dataFromURL() {
+        const splittedURL = this._splitCurrentURL();
+        switch (splittedURL.length) {
+            case 2:
+                return {
+                    folderID: splittedURL[1]
+                };
+            case 4:
+                return {
+                    folderID: splittedURL[1],
+                    noteID: splittedURL[3]
+                };
+            default:
+                return null;
         }
     }
 
