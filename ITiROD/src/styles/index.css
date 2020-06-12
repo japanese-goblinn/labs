@@ -118,12 +118,6 @@ figcaption {
     position: relative;
 }
 
-.dropdown-trigger:hover + :last-child {
-    display: flex;
-    flex-direction: column;
-    transition: 1s ease;
-}
-
 .dropdown-container {
     display: none;
     position: absolute;
@@ -151,12 +145,6 @@ figcaption {
 
 .dropdown-container > *:first-child {
     border-radius: 10px 10px 0 0;
-}
-
-.dropdown-container:hover {
-    display: flex;
-    flex-direction: column;
-    transition: 0.4s ease;
 }
 
 .layout-header {

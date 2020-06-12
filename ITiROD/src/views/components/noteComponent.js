@@ -8,10 +8,10 @@ export default class NoteComponent {
             <div class="note-description">
                 <h5>${title}</h5>
             </div>
-            <button class="note-button rounded dropdown-trigger">
+            <button id="show-note-dropdown-${id}" class="note-button rounded">
                 ...
             </button>
-            <div class="dropdown-container">
+            <div id="note-dropdown-${id}" class="dropdown-container">
                 <button id="note-move-${id}" class="secondary selectable">Move to</button>
                 <button id="note-delete-${id}" class="destructive selectable">Delete</button>
             </div>
@@ -19,10 +19,23 @@ export default class NoteComponent {
     `
     
     #configure = async () => {
+        const showDropdown = document.getElementById(`show-note-dropdown-${this.id}`);
+        const dropdown = document.getElementById(`note-dropdown-${this.id}`);
+        showDropdown.addEventListener('click', () => {
+            dropdown.style.display = 'flex';
+            dropdown.style.flexDirection = 'column';
+        });
+        window.addEventListener('click', (event) => {
+            if (event.target === dropdown || event.target === showDropdown) {
+                return;
+            }
+            dropdown.style.display = 'none';
+        });
+
         const noteListElement = document.getElementById(`${this.id}`);
         
         const deleteNote = document.getElementById(`note-delete-${this.id}`);
-        deleteNote.addEventListener('click', async () => {
+        deleteNote.addEventListener('click', async (event) => {
             const deletedConfirmed = confirm(`Are you shure want to delete this note?`);
             if (!deletedConfirmed) {
                 return;
@@ -37,7 +50,7 @@ export default class NoteComponent {
         });
 
         noteListElement.addEventListener('click', async (event) => {
-            if (event.target === moveNote || event.target === deleteNote) {
+            if (event.target === moveNote || event.target === deleteNote || event.target === showDropdown) {
                 return;
             }
             await router.navigate('note/' + `${this.id}`);

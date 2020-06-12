@@ -13,7 +13,7 @@ export default class FolderComponent {
                     ${description}
                 </p>
             </div>
-            <button class="folder-button rounded selectable dropdown-trigger">
+            <button id="show-folder-dropdown-${id}" class="folder-button rounded selectable">
                 ...
             </button>
             <div id="actions-dropdown-${id}" class="dropdown-container">
@@ -23,10 +23,30 @@ export default class FolderComponent {
         </li>
     `
     #configure = async () => {
-        const actionsModal = document.getElementById(`actions-dropdown-${this.id}`);
+
+        const showDropdown = document.getElementById(`show-folder-dropdown-${this.id}`);
+        const dropdown = document.getElementById(`actions-dropdown-${this.id}`);
+        showDropdown.addEventListener('click', () => {
+            dropdown.style.display = 'flex';
+            dropdown.style.flexDirection = 'column';
+        });
+        window.addEventListener('click', (event) => {
+            if (event.target === dropdown || event.target === showDropdown) {
+                return;
+            }
+            dropdown.style.display = 'none';
+        });
+
+        const container = document.getElementById('folder-edit-container');
+        window.addEventListener('click', (event) => {
+            if (event.target != container) {
+                return
+            }
+            container.style.display = 'none';
+        });
+        
         const editFolder = document.getElementById(`edit-${this.id}`);
         editFolder.addEventListener('click', async () => {
-            const container = document.getElementById('folder-edit-container');
             const folderEditView = new FolderEditView(container, {
                 id: this.id,
                 title: this.title,
@@ -34,14 +54,6 @@ export default class FolderComponent {
             });
             await folderEditView.render();
             container.style.display = 'block';
-            window.addEventListener('click', (event) => {
-                if (event.target != container) {
-                    return
-                }
-                container.style.display = 'none';
-            })
-            actionsModal.style.pointerEvents = "none";
-            setTimeout(() => actionsModal.style.pointerEvents = "auto", 50);
         });
 
         const deleteFolder = document.getElementById(`delete-${this.id}`);
@@ -56,12 +68,11 @@ export default class FolderComponent {
 
         const folderListElement = document.getElementById(`${this.id}`);
         folderListElement.addEventListener('click', debounce(async (event) => {
-            if (event.target === editFolder || event.target === deleteFolder) {
+            if (event.target === editFolder || event.target === deleteFolder || event.target === showDropdown) {
                 return;
             }
             await router.navigate('folder/' + `${this.id}`);
-        }, 150));
-        
+        }, 150));  
     }
 
     async render() {
