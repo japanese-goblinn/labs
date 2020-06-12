@@ -191,6 +191,12 @@ figcaption {
     flex-grow: 2;
 }
 
+.note-list {
+    max-height: 90%;
+    overflow: scroll;
+    flex: 0 1 1px;
+}
+
 .folders-column {
     background-color: var(--folders-column-color);
     display: flex;
