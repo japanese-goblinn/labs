@@ -23,6 +23,14 @@ export default class Database {
         }).catch(this._showError);
     }
 
+    static async editFolder(id, newTitle, newDescription) {
+        const ref = this.db.ref('users/' + Auth.currentUser.uid + '/folders/' + id);
+        ref.update({
+            title: newTitle,
+            description: newDescription
+        });
+    }
+
     static async loadFolder(id) {
         const snapshot = await this.db.ref('users/' + Auth.currentUser.uid + '/folders/' + id).once('value');
         return {

@@ -74,6 +74,29 @@ export default class Router {
         }
     }
 
+    async refresh() {
+        const splitted = this._splitCurrentURL();
+        window.history.replaceState(null, null, '/');
+        switch (splitted.length) {
+            case 2:
+                await this.navigate('/');
+                await this.navigate('folder/' + splitted[1]);
+                break;
+            case 4:
+                await this.navigate('/');
+                if (mobile.matches) {
+                    this._changeURL('folder/' + splitted[1]);
+                } else {
+                    await this.navigate('folder/' + splitted[1]);
+                }
+                await this.navigate('note/' + splitted[3]);
+                break;
+            default:
+                await this.navigate('/');
+                break;
+        }
+    }
+
     async navigate(path) {
         this._changeURL(path);
         await this.render();
@@ -92,26 +115,7 @@ export default class Router {
             if (!Auth.isSignedIn()) {
                 return
             }
-            const splitted = this._splitCurrentURL();
-            window.history.replaceState(null, null, '/');
-            switch (splitted.length) {
-                case 2:
-                    await this.navigate('/');
-                    await this.navigate('folder/' + splitted[1]);
-                    break;
-                case 4:
-                    await this.navigate('/');
-                    if (mobile.matches) {
-                        this._changeURL('folder/' + splitted[1]);
-                    } else {
-                        await this.navigate('folder/' + splitted[1]);
-                    }
-                    await this.navigate('note/' + splitted[3]);
-                    break;
-                default:
-                    await this.navigate('/');
-                    break;
-            }
+            await this.refresh();
         });
         window.onpopstate = () => {
             const spitted = this._splitCurrentURL();

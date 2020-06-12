@@ -6,6 +6,7 @@ export default class MainPageView {
         <div id="profile-container" class="profile-container modal"></div>
         <div id="search-container" class="search-container modal"></div>
         <div id="folder-create-container" class="modal"></div>
+        <div id="folder-edit-container" class="modal"></div>
         <div class="root-layout">
             <header id='header-container' class="layout-header"></header>
             <div class="main-columns">

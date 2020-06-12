@@ -1,5 +1,7 @@
-import { router } from "../../app.js";
+import { router, renderer } from "../../app.js";
 import Database from "../../scripts/database.js";
+import handleModalWindow from "../../scripts/modal.js";
+import FolderEditView from "../folderEditView.js";
 
 export default class FolderComponent {
 
@@ -14,16 +16,32 @@ export default class FolderComponent {
             <button class="folder-button rounded selectable dropdown-trigger">
                 ...
             </button>
-            <div class="dropdown-container">
+            <div id="actions-dropdown-${id}" class="dropdown-container">
                 <button id="edit-${id}" class="secondary selectable">Edit</button>
                 <button id="delete-${id}" class="destructive selectable">Delete</button>
             </div>
         </li>
     `
     #configure = async () => {
+        const actionsModal = document.getElementById(`actions-dropdown-${this.id}`);
         const editFolder = document.getElementById(`edit-${this.id}`);
-        editFolder.addEventListener('click', () => {
-            console.log('edit ' + this.id);
+        editFolder.addEventListener('click', async () => {
+            const container = document.getElementById('folder-edit-container');
+            const folderEditView = new FolderEditView(container, {
+                id: this.id,
+                title: this.title,
+                description: this.description
+            });
+            await folderEditView.render();
+            container.style.display = 'block';
+            window.addEventListener('click', (event) => {
+                if (event.target != container) {
+                    return
+                }
+                container.style.display = 'none';
+            })
+            actionsModal.style.pointerEvents = "none";
+            setTimeout(() => actionsModal.style.pointerEvents = "auto", 50);
         });
 
         const deleteFolder = document.getElementById(`delete-${this.id}`);
