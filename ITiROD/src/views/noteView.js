@@ -48,6 +48,7 @@ export default class NoteView {
                 return;
             }
             await renderer.render('NotesColumnView');
+            await renderer.render('NoteView');
         });
 
         const noteDelete = document.getElementById(`toolbar-note-delete-${noteID}`);
