@@ -3,7 +3,7 @@ import Database from "../scripts/database.js";
 
 export default class NoteView {
 
-    #body = async (content, date) => /*html*/`
+    #body = async (id, content, date) => /*html*/`
         <button id="note-back-button" class="back-button note-back-button selectable">
             <img src="../../../assets/back.svg" alt="Back" />
         </button>
@@ -12,7 +12,7 @@ export default class NoteView {
             <button class="toolbar-item white-background selectable">
                 <img src="../../../assets/folder.svg" alt="Move to folder" />
             </button>
-            <button class="toolbar-item selectable">
+            <button id="toolbar-note-delte-${id}" class="toolbar-item selectable">
                 <img src="../../../assets/trash.svg" alt="Delete" />
             </button>
         </div>
@@ -47,6 +47,16 @@ export default class NoteView {
                 return;
             }
             await renderer.render('NotesColumnView');
+        });
+
+        const noteDelete = document.getElementById(`toolbar-note-delte-${noteID}`);
+        noteDelete.addEventListener('click', async () => {
+            const deletedConfirmed = confirm(`Are you shure want to delete this note?`);
+            if (!deletedConfirmed) {
+                return;
+            }
+            await Database.deleteNote(folderID, noteID);
+            await router.navigate('folder/' + folderID);
         });
     
         const markdownWriteActivate = document.getElementById('markdown-toolbar-item-write');
@@ -103,7 +113,7 @@ export default class NoteView {
 
     async render() {
         const note = await this._loadNote();
-        this.container.innerHTML = await this.#body(note.content, new Date(note.date));
+        this.container.innerHTML = await this.#body(note.id, note.content, new Date(note.date));
         await this.#configure(note.id, note.folderID);
     }
 

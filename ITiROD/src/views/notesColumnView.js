@@ -41,7 +41,7 @@ export default class NotesColumnView {
             const noteTitle = 'New Note'
             const date = Date.now();
             const noteID = await Database.saveNote(folderID, noteTitle, date);
-            const newNote = new NoteComponent(noteList, noteID, noteTitle);
+            const newNote = new NoteComponent(noteList, folderID, noteID, noteTitle);
             await newNote.render();
         });
 
@@ -64,6 +64,7 @@ export default class NotesColumnView {
         for (const note of notes) {
             const noteView = new NoteComponent(
                 noteList, 
+                folderID,
                 note.id, 
                 note.content, 
             );

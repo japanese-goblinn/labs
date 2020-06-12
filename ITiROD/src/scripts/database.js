@@ -62,6 +62,11 @@ export default class Database {
         return newNoteRef.key;
     }
 
+    static async deleteNote(folderID, noteID) {
+        const ref = this.db.ref('users/' + Auth.currentUser.uid + '/folders/' + folderID + '/notes/' + noteID);
+        ref.remove().catch(this._showError);
+    }
+
     static async loadNote(folderID, noteID) {
         const snapshot = await this.db.ref('users/' + Auth.currentUser.uid + '/folders/' + folderID + '/notes/' + noteID).once('value');
         return {

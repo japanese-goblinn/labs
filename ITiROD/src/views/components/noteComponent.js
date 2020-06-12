@@ -1,4 +1,5 @@
 import { router } from "../../app.js";
+import Database from "../../scripts/database.js";
 
 export default class NoteComponent {
 
@@ -11,15 +12,34 @@ export default class NoteComponent {
                 ...
             </button>
             <div class="dropdown-container">
-                <button class="secondary selectable">Move to</button>
-                <button class="destructive selectable">Delete</button>
+                <button id="note-move-${id}" class="secondary selectable">Move to</button>
+                <button id="note-delete-${id}" class="destructive selectable">Delete</button>
             </div>
         </li>
     `
     
     #configure = async () => {
         const noteListElement = document.getElementById(`${this.id}`);
-        noteListElement.addEventListener('click', async () => {
+        
+        const deleteNote = document.getElementById(`note-delete-${this.id}`);
+        deleteNote.addEventListener('click', async () => {
+            const deletedConfirmed = confirm(`Are you shure want to delete this note?`);
+            if (!deletedConfirmed) {
+                return;
+            }
+            await Database.deleteNote(this.folderID, this.id);
+            await router.navigate('folder/' + this.folderID);
+        });
+
+        const moveNote = document.getElementById(`note-move-${this.id}`);
+        moveNote.addEventListener('click', async () => {
+            console.log('move');
+        });
+
+        noteListElement.addEventListener('click', async (event) => {
+            if (event.target === moveNote || event.target === deleteNote) {
+                return;
+            }
             await router.navigate('note/' + `${this.id}`);
         });
     }
@@ -32,8 +52,9 @@ export default class NoteComponent {
         await this.#configure();
     }
 
-    constructor(container, id, title) {
+    constructor(container, folderID, id, title) {
         this.container = container;
+        this.folderID = folderID;
         this.id = id;
         this.title = title;
     }
