@@ -1,7 +1,7 @@
-import { router, renderer } from "../../app.js";
+import { router } from "../../app.js";
 import Database from "../../scripts/database.js";
-import handleModalWindow from "../../scripts/modal.js";
 import FolderEditView from "../folderEditView.js";
+import debounce from "../../scripts/debounce.js";
 
 export default class FolderComponent {
 
@@ -55,12 +55,12 @@ export default class FolderComponent {
         });
 
         const folderListElement = document.getElementById(`${this.id}`);
-        folderListElement.addEventListener('click', async (event) => {
+        folderListElement.addEventListener('click', debounce(async (event) => {
             if (event.target === editFolder || event.target === deleteFolder) {
                 return;
             }
             await router.navigate('folder/' + `${this.id}`);
-        });
+        }, 150));
         
     }
 
