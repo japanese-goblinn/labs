@@ -1,5 +1,4 @@
 import Auth from "./auth.js";
-import { router } from "../app.js";
 
 export default class Database {
 
@@ -65,6 +64,12 @@ export default class Database {
     static async deleteNote(folderID, noteID) {
         const ref = this.db.ref('users/' + Auth.currentUser.uid + '/folders/' + folderID + '/notes/' + noteID);
         ref.remove().catch(this._showError);
+    }
+
+    static async moveNote(noteID, oldFolderID, newFolderID) {
+        const note = await this.loadNote(oldFolderID, noteID);
+        await this.saveNote(newFolderID, note.content, note.date);
+        await this.deleteNote(oldFolderID, noteID);
     }
 
     static async loadNote(folderID, noteID) {

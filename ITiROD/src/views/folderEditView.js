@@ -13,7 +13,7 @@ export default class FolerEditView {
                     <label for="edit-folder-description-${id}">New folder desctiption</label>
                     <input id="edit-folder-description-${id}" type="text" 
                         placeholder="Some fancy description (max 100 symbols)" value="${desciption}" maxlength="100" />
-                    <button id="confirm-update-folder-button-${id}" class="primary-button modal-folder-button">
+                    <button id="confirm-update-folder-button-${id}" class="primary-button modal-folder">
                         Update
                     </button>
                 </form>

@@ -72,7 +72,7 @@ export default class FolderComponent {
                 return;
             }
             await router.navigate('folder/' + `${this.id}`);
-        }, 150));  
+        }, 170));  
     }
 
     async render() {

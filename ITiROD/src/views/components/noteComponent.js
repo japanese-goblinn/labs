@@ -1,5 +1,6 @@
 import { router } from "../../app.js";
 import Database from "../../scripts/database.js";
+import NoteMoveView from "../noteMoveView.js";
 
 export default class NoteComponent {
 
@@ -19,6 +20,7 @@ export default class NoteComponent {
     `
     
     #configure = async () => {
+        
         const showDropdown = document.getElementById(`show-note-dropdown-${this.id}`);
         const dropdown = document.getElementById(`note-dropdown-${this.id}`);
         showDropdown.addEventListener('click', () => {
@@ -32,8 +34,6 @@ export default class NoteComponent {
             dropdown.style.display = 'none';
         });
 
-        const noteListElement = document.getElementById(`${this.id}`);
-        
         const deleteNote = document.getElementById(`note-delete-${this.id}`);
         deleteNote.addEventListener('click', async (event) => {
             const deletedConfirmed = confirm(`Are you shure want to delete this note?`);
@@ -44,11 +44,21 @@ export default class NoteComponent {
             await router.navigate('folder/' + this.folderID);
         });
 
+        const container = document.getElementById('note-move-container');
+        window.addEventListener('click', (event) => {
+            if (event.target != container) {
+                return;
+            }
+            container.style.display = 'none';
+        });
         const moveNote = document.getElementById(`note-move-${this.id}`);
         moveNote.addEventListener('click', async () => {
-            console.log('move');
+            const noteMoveModal = new NoteMoveView(container, this.id, this.folderID);
+            await noteMoveModal.render();
+            container.style.display = 'block';
         });
 
+        const noteListElement = document.getElementById(`${this.id}`);
         noteListElement.addEventListener('click', async (event) => {
             if (event.target === moveNote || event.target === deleteNote || event.target === showDropdown) {
                 return;

@@ -4,6 +4,11 @@
 @import "./search.css";
 @import "./profile.css";
 
+select {
+    color: var(--text-secondary-color);
+    outline-color: var(--primary-color);
+}
+
 time {
     color: var(--text-secondary-color);
     font-family: monospace;
@@ -252,7 +257,7 @@ figcaption {
     margin: 0;
 }
 
-.modal-folder-button {
+.modal-folder {
     margin: 15px;
     align-self: center;
     width: 40%;

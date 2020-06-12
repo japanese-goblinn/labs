@@ -11,7 +11,7 @@ export default class FolerCreateView {
                     <input id="folder-name" type="text" placeholder="New Folder (max 50 symbols)" maxlength="50" />
                     <label for="folder-description">Folder desctiption</label>
                     <input id="folder-description" type="text" placeholder="Some fancy description (max 100 symbols)" maxlength="100" />
-                    <button id="confirm-new-folder-button" class="primary-button modal-folder-button" type="button">
+                    <button id="confirm-new-folder-button" class="primary-button modal-folder" type="button">
                         Create
                     </button>
                 </form>

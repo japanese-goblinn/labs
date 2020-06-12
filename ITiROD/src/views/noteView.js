@@ -1,5 +1,6 @@
 import { mobile, router, renderer } from "../app.js";
 import Database from "../scripts/database.js";
+import NoteMoveView from "./noteMoveView.js";
 
 export default class NoteView {
 
@@ -9,10 +10,10 @@ export default class NoteView {
         </button>
         <time datetime="2017-1-3 15:00-0800">${date.toLocaleDateString('en-US') + ' ' + date.toLocaleTimeString('en-US')}</time>
         <div id="note-toolbar" class="toolbar">
-            <button class="toolbar-item white-background selectable">
+            <button id="toolbar-note-move-${id}" class="toolbar-item white-background selectable">
                 <img src="../../../assets/folder.svg" alt="Move to folder" />
             </button>
-            <button id="toolbar-note-delte-${id}" class="toolbar-item selectable">
+            <button id="toolbar-note-delete-${id}" class="toolbar-item selectable">
                 <img src="../../../assets/trash.svg" alt="Delete" />
             </button>
         </div>
@@ -49,7 +50,7 @@ export default class NoteView {
             await renderer.render('NotesColumnView');
         });
 
-        const noteDelete = document.getElementById(`toolbar-note-delte-${noteID}`);
+        const noteDelete = document.getElementById(`toolbar-note-delete-${noteID}`);
         noteDelete.addEventListener('click', async () => {
             const deletedConfirmed = confirm(`Are you shure want to delete this note?`);
             if (!deletedConfirmed) {
@@ -57,6 +58,20 @@ export default class NoteView {
             }
             await Database.deleteNote(folderID, noteID);
             await router.navigate('folder/' + folderID);
+        });
+
+        const container = document.getElementById('note-move-container');
+        window.addEventListener('click', (event) => {
+            if (event.target != container) {
+                return;
+            }
+            container.style.display = 'none';
+        });
+        const moveNote = document.getElementById(`toolbar-note-move-${noteID}`);
+        moveNote.addEventListener('click', async () => {
+            const noteMoveModal = new NoteMoveView(container, noteID, folderID);
+            await noteMoveModal.render();
+            container.style.display = 'block';
         });
     
         const markdownWriteActivate = document.getElementById('markdown-toolbar-item-write');
