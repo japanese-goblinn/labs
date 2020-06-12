@@ -73,6 +73,21 @@ export default class FolderComponent {
             }
             await router.navigate('folder/' + `${this.id}`);
         }, 170));  
+
+        folderListElement.addEventListener('dragover', (event) => {
+            event.preventDefault();
+        });
+
+        folderListElement.addEventListener('drop', async (event) => {
+            const dataString = event.dataTransfer.getData('text');
+            const data = JSON.parse(dataString);
+            if (this.id == data.folderID) {
+                alert('Can\'t move to the same folder');
+                return;
+            }
+            await Database.moveNote(data.noteID, data.folderID, this.id);
+            await router.navigate('folder/' + data.folderID);
+        });
     }
 
     async render() {

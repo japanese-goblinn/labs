@@ -5,7 +5,7 @@ import NoteMoveView from "../noteMoveView.js";
 export default class NoteComponent {
 
     #body = async (id, title) => /*html*/`
-        <li id="${id}" class="dropdown selectable">
+        <li id="${id}" class="dropdown selectable" draggable='true'>
             <div class="note-description">
                 <h5>${title}</h5>
             </div>
@@ -35,7 +35,7 @@ export default class NoteComponent {
         });
 
         const deleteNote = document.getElementById(`note-delete-${this.id}`);
-        deleteNote.addEventListener('click', async (event) => {
+        deleteNote.addEventListener('click', async () => {
             const deletedConfirmed = confirm(`Are you shure want to delete this note?`);
             if (!deletedConfirmed) {
                 return;
@@ -65,8 +65,18 @@ export default class NoteComponent {
             }
             await router.navigate('note/' + `${this.id}`);
         });
-    }
 
+        noteListElement.addEventListener('dragstart', (event) => {
+            const dataString = JSON.stringify({
+                id: event.target.id,
+                folderID: this.folderID,
+                noteID: this.id
+            });
+            event.dataTransfer.setData('text/plain', dataString);
+        });
+
+    }
+ 
     async render() {
         this.container.insertAdjacentHTML(
             'beforeend', 
