@@ -6,6 +6,35 @@ export default class Database {
         alert(`Error. ${error.message}`);
     }
     
+    static async search(string) {
+        const searchString = string.toLowerCase();
+        const results = [];
+        const folders = await this.loadAllFolders();
+        for (const folder of folders) {
+            if (folder.title.toLowerCase().includes(searchString) || folder.description.toLowerCase().includes(searchString)) {
+                results.push({
+                    type: 'folder',
+                    id: folder.id,
+                    title: folder.title,
+                    description: folder.description
+                });
+            }
+            const notes = await this.loadAllNotes(folder.id);
+            for (const note of notes) {
+                if (!note.content.toLowerCase().includes(searchString)) {
+                    continue;
+                }
+                results.push({
+                    type: 'note',
+                    id: note.id,
+                    content: note.content,
+                    folderID: folder.id
+                });
+            }
+        }
+        return Promise.all(results);
+    }
+
     static async saveFolder(title, description) {
         const newFolderRef = this.db.ref('users/' + Auth.currentUser.uid + '/folders').push();
         newFolderRef.set({
@@ -89,7 +118,7 @@ export default class Database {
             notes.push({
                 id: childSnap.key,
                 content: childSnap.val().content,
-                description: childSnap.val().date
+                date: childSnap.val().date
             });
         });
         return Promise.all(notes);

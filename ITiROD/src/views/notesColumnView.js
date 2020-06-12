@@ -25,7 +25,7 @@ export default class NotesColumnView {
     `
 
     #configure = async (folderID) => {
-;        const noteList = document.getElementById('note-list');
+        const noteList = document.getElementById('note-list');
 
         const folderBack = document.getElementById('folder-back-button');
         folderBack.addEventListener('click', () => window.history.back());

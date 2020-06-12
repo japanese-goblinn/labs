@@ -31,6 +31,10 @@ hr {
     background-color: var(--blur-color);
 }
 
+.search-list > :last-child:hover {
+    border-radius: 0 0 10px 10px;
+}
+
 .selectable:hover {
     background-color: var(--blur-color);
     transition: 0.4s ease;
