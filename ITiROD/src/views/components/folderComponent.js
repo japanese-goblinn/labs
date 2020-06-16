@@ -62,7 +62,7 @@ export default class FolderComponent {
             if (!deletedConfirmed) {
                 return;
             }
-            await Database.deleteFolder(this.id, this.title);
+            await Database.deleteFolder(this.id);
             await router.navigate('/');
         });
 

@@ -44,11 +44,9 @@ export default class Database {
         return newFolderRef.key;
     }
 
-    static async deleteFolder(id, title) {
+    static async deleteFolder(id) {
         const ref = this.db.ref('users/' + Auth.currentUser.uid + '/folders/' + id);
-        ref.remove().then(() => {
-            setTimeout(() => alert(`${title} deleted`), 50);
-        }).catch(this._showError);
+        ref.remove().catch(this._showError);
     }
 
     static async editFolder(id, newTitle, newDescription) {
