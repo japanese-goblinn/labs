@@ -70,6 +70,23 @@ figcaption {
     border: 2px solid var(--separator-color);
 }
 
+.markdown-presentable-mobile {
+    height: 70vh;
+}
+
+#markdown-input.markdown-presentable-desktop {
+    border-radius: 5px 0 0 5px;
+    border-right: none;
+}
+
+#markdown-preview.markdown-presentable-desktop {
+    border-radius: 0 5px 5px 0;
+}
+
+.markdown-presentable-desktop {
+    height: 78vh;
+}
+
 .folder-button {
     border: none;
     background-color: inherit;

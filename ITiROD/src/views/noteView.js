@@ -103,20 +103,15 @@ export default class NoteView {
             noteToolbar.style.width = '100%';
             markdownToolbar.style.display = 'flex';
             noteBack.style.display = 'inline-block';
-            const height = '70vh'
-            textarea.style.maxHeight = height;
-            preview.style.maxHeight = height;
+            textarea.classList.add('markdown-presentable-mobile');
+            preview.classList.add('markdown-presentable-mobile');
             markdownWriteActivate.click();
         } else {
             noteToolbar.style.width = '25%';
             markdownToolbar.style.display = 'none';
             noteBack.style.display = 'none';
-            const height = '78vh'
-            textarea.style.maxHeight = height;
-            preview.style.maxHeight = height;
-            textarea.style.borderRadius = '5px 0 0 5px';
-            textarea.style.borderRight = 'none';
-            preview.style.borderRadius = '0 5px 5px 0';
+            textarea.classList.add('markdown-presentable-desktop');
+            preview.classList.add('markdown-presentable-desktop');
         }
     }
 
