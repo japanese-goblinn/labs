@@ -1,19 +1,12 @@
-@import "../main.css";
-@import "../animations.css";
-@import "../forms.css";
+@import "./main.css";
+@import "./animations.css";
+@import "./forms.css";
+@import "./search.css";
+@import "./profile.css";
 
-main {
-    padding: 20px;
-    max-width: 65%;
-    display: flex;
-    flex-direction: column;
-}
-
-main > :last-child {
-    padding-top: 15px;
-    justify-content: space-between;
-    display: flex;
-    flex: 1 2 1px;
+select {
+    color: var(--text-secondary-color);
+    outline-color: var(--primary-color);
 }
 
 time {
@@ -30,6 +23,12 @@ figure {
 
 figcaption {
     padding-left: 7px;
+}
+
+.note-view-column {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
 }
 
 #markdown-input {
@@ -50,14 +49,42 @@ figcaption {
     list-style-position: inside;
 }
 
+#markdown-preview > * {
+    margin-top: 5px;
+}
+
+.markdown-area {
+    padding-top: 8px;
+    justify-content: space-between;
+    display: flex;
+    flex: 1 2 1px;
+}
+
 .markdown-presentable {
-    width: 49%;
-    max-height: 75vh;
+    width: 0;
+    flex-grow: 1;
     padding: 15px;
     overflow: scroll;
     overflow-wrap: break-word;
-    border-radius: 10px;
+    border-radius: 5px;
     border: 2px solid var(--separator-color);
+}
+
+.markdown-presentable-mobile {
+    height: 70vh;
+}
+
+#markdown-input.markdown-presentable-desktop {
+    border-radius: 5px 0 0 5px;
+    border-right: none;
+}
+
+#markdown-preview.markdown-presentable-desktop {
+    border-radius: 0 5px 5px 0;
+}
+
+.markdown-presentable-desktop {
+    height: 78vh;
 }
 
 .folder-button {
@@ -75,8 +102,7 @@ figcaption {
 .toolbar {
     display: flex;
     padding-top: 15px;
-    width: 25%;
-    justify-content: space-evenly;
+    width: 48%;
 }
 
 .toolbar > :first-child {
@@ -94,6 +120,7 @@ figcaption {
     flex-grow: 1;
     border: 2px solid var(--separator-color);
     background-color: white;
+    color: var(--text-secondary-color);
 }
 
 .primary-button-click-animation {
@@ -106,16 +133,11 @@ figcaption {
     height: 30px;
     margin: auto;
     margin-right: 0;
+    margin-bottom: 0;
 }
 
 .dropdown {
     position: relative;
-}
-
-.dropdown-trigger:hover + :last-child {
-    display: flex;
-    flex-direction: column;
-    transition: 1s ease;
 }
 
 .dropdown-container {
@@ -147,12 +169,6 @@ figcaption {
     border-radius: 10px 10px 0 0;
 }
 
-.dropdown-container:hover {
-    display: flex;
-    flex-direction: column;
-    transition: 0.4s ease;
-}
-
 .layout-header {
     color: var(--text-secondary-color);
     font-weight: 500;
@@ -160,6 +176,10 @@ figcaption {
 
 .layout-header > :not(:last-child) {
     padding: 10px;
+}
+
+#root {
+    height: 100%;
 }
 
 .root-layout {
@@ -188,6 +208,12 @@ figcaption {
     flex-grow: 2;
 }
 
+.note-list {
+    height: 90%;
+    overflow: scroll;
+    flex: 0 1 1px;
+}
+
 .folders-column {
     background-color: var(--folders-column-color);
     display: flex;
@@ -206,8 +232,11 @@ figcaption {
     margin: 15px;
 }
 
-.notes-column {
+.right-bordered {
     border-right: 1px solid var(--separator-color);
+}
+
+.notes-column {
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -226,10 +255,18 @@ figcaption {
 }
 
 .notes-header-description {
+    display: flex;
+    flex-direction: column;
     width: 80%;
 }
 
+.notes-header-description h3 {
+    display: flex;
+    align-items: center;
+}
+
 .notes-header-description > * {
+    flex-grow: 1;
     overflow-wrap: break-word;
 }
 
@@ -243,11 +280,28 @@ figcaption {
     margin: 0;
 }
 
-#confirm-new-folder-button {
+.modal-folder {
     margin: 15px;
     align-self: center;
     width: 40%;
     padding: 10px;
+}
+
+.back-button {
+    width: 30px;
+    text-align: start;
+    border: none;
+    background-color: inherit;
+    border-radius: 5px;
+}
+
+.folder-back-button {
+    margin-top: 15px;
+    margin-left: 15px;
+}
+
+.note-back-button {
+    margin-bottom: 15px;
 }
 
 @media only screen and (max-width: 800px) {

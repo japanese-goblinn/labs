@@ -33,6 +33,14 @@
     outline-color: var(--primary-color);
 }
 
+.form input:invalid {
+    outline-color: var(--destuctive-color);
+}
+
+.form input::placeholder {
+    color: rgba(161, 161, 157, 0.685);
+}
+
 .form label {
     margin: 10px 0;
 }

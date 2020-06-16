@@ -27,6 +27,14 @@ hr {
     --folders-column-color: #F7F6F3;
 }
 
+.selected {
+    background-color: var(--blur-color);
+}
+
+.search-list > :last-child:hover {
+    border-radius: 0 0 10px 10px;
+}
+
 .selectable:hover {
     background-color: var(--blur-color);
     transition: 0.4s ease;
@@ -37,13 +45,21 @@ hr {
 }
 
 .folder-description {
+    display: flex;
+    flex-direction: column;
     width: 70%;
 }
 
 .folder-description > * {
+    flex-grow: 1;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+}
+
+.folder-description h4 {
+    display: flex;
+    align-items: center;
 }
 
 .note-description {
