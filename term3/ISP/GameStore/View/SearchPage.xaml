@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"   
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
+             x:Class="GameStore.SearchPage" Title="{Binding [SearchPageTitle], Source={x:Static local:Translator.Instance}}"  Style="{DynamicResource pageStyle}"  xmlns:local="clr-namespace:GameStore.Model"  >
+    <ContentPage.Content ios:NavigationPage.HideNavigationBarSeparator="true">
+        <StackLayout Spacing="5">
+            <SearchBar Style="{DynamicResource searchBar}" x:Name="searchBar" CancelButtonColor="#ff4c50" Placeholder="{Binding [SearchPageInSearchText], Source={x:Static local:Translator.Instance}}" TextChanged="Handle_TextChanged"></SearchBar>
+        
+            <ListView x:Name="searchList"
+                      SeparatorVisibility="None"
+                      HasUnevenRows="true"
+                      ItemTapped="Handle_ItemTapped"
+                      Style="{DynamicResource listView}">  
+              <ListView.ItemTemplate>  
+                 <DataTemplate>  
+                   <ViewCell>
+                        <Frame Style="{DynamicResource frame}" Margin="5" CornerRadius="9" >
+                           <AbsoluteLayout HeightRequest="100" x:Name="layout">
+                            <Image AbsoluteLayout.LayoutBounds="0, 0, 75, 105" Source="{Binding ResourcePosterImage}" x:Name="imgSource" Aspect="AspectFill"/>
+                            <Label Text="{Binding Name}" LineBreakMode="WordWrap" Style="{DynamicResource label}" FontSize="17" FontAttributes="Bold" AbsoluteLayout.LayoutBounds="108, 5, 266, 20" />
+                            <StackLayout Spacing="3" AbsoluteLayout.LayoutBounds="108, 45, 266, 20">
+                                <Label Text="{Binding AgeLimit}" Style="{DynamicResource label}" FontSize="15"/>
+                                <Label Text="{Binding Developer}" Style="{DynamicResource label}" FontSize="15"/>
+                            </StackLayout>
+                           </AbsoluteLayout>                       
+                        </Frame>  
+                   </ViewCell>  
+                 </DataTemplate>  
+              </ListView.ItemTemplate>  
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

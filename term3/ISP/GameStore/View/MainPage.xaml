@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms" 
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:pages="clr-namespace:GameStore"
+            x:Class="GameStore.MainPage"
+            xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+            xmlns:local="clr-namespace:GameStore.Model"  
+            BarBackgroundColor="{DynamicResource backgroundColor}"
+            >
+    <TabbedPage.Children>
+        <NavigationPage Style="{DynamicResource navPage}"  Title="{Binding [StatisticsPageTabTitle], Source={x:Static local:Translator.Instance}}" ios:NavigationPage.PrefersLargeTitles="true">
+            <NavigationPage.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="iOS" Value="statistic_icon@2x.png"/>
+                </OnPlatform>
+            </NavigationPage.Icon>
+            <x:Arguments>
+                <pages:StatisticsPage />
+            </x:Arguments>
+        </NavigationPage>
+        <NavigationPage Style="{DynamicResource navPage}" Title="{Binding [LibraryPageTabTitle], Source={x:Static local:Translator.Instance}}" ios:NavigationPage.PrefersLargeTitles="true">
+            <NavigationPage.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="iOS" Value="library_icon@2x.png" />
+                </OnPlatform>
+            </NavigationPage.Icon>
+            <x:Arguments>
+                <pages:LibraryPage />
+            </x:Arguments>
+        </NavigationPage>
+         <NavigationPage Style="{DynamicResource navPage}" Title="{Binding [ShopPageTabTitle], Source={x:Static local:Translator.Instance}}" ios:NavigationPage.PrefersLargeTitles="true">
+            <NavigationPage.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="iOS" Value="shop_icon@2x.png" />
+                </OnPlatform>
+            </NavigationPage.Icon>
+            <x:Arguments>
+                <pages:ShopPage />
+            </x:Arguments>
+        </NavigationPage>
+         <NavigationPage Style="{DynamicResource navPage}" Title="{Binding [SearchPageTabTitle], Source={x:Static local:Translator.Instance}}" ios:NavigationPage.PrefersLargeTitles="true">
+            <NavigationPage.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="iOS" Value="search_icon@2x.png" />
+                </OnPlatform>
+            </NavigationPage.Icon>
+            <x:Arguments>
+                <pages:SearchPage />
+            </x:Arguments>
+        </NavigationPage>
+         <NavigationPage Style="{DynamicResource navPage}" Title="{Binding [SettingsPageTabTitle], Source={x:Static local:Translator.Instance}}" ios:NavigationPage.PrefersLargeTitles="true" >
+            <NavigationPage.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="iOS" Value="settings_icon@2x.png"/>
+                </OnPlatform>
+            </NavigationPage.Icon>
+            <x:Arguments>
+                <pages:SettingsPage />
+            </x:Arguments>
+        </NavigationPage>
+    </TabbedPage.Children>
+</TabbedPage>

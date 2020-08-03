@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms" x:Class="GameStore.App">
+    <Application.Resources>
+        <ResourceDictionary>
+           <Color x:Key="backgroundColor">#FFFFFF</Color>
+           <Color x:Key="textColor">#000000</Color>
+           <Color x:Key="searchbarBackground">#BABABE</Color>
+           <Color x:Key="buttonColor">#0076CA</Color>
+            
+           <Style x:Key="pageStyle" TargetType="ContentPage">
+                <Setter Property="BackgroundColor" Value="{DynamicResource backgroundColor}"/>  
+           </Style>
+           <Style x:Key="navPage" TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="{DynamicResource backgroundColor}"/> 
+                <Setter Property="BarTextColor" Value="{DynamicResource textColor}"/>
+           </Style>
+           <Style x:Key="searchBar" TargetType="SearchBar">
+                <Setter Property="BackgroundColor" Value="{DynamicResource searchbarBackground}"/>
+           </Style>
+            
+           <Style x:Key="listView" TargetType="ListView">
+                <Setter Property="BackgroundColor" Value="{DynamicResource backgroundColor}"/>
+           </Style>
+           <Style x:Key="frame" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="{DynamicResource backgroundColor}"/>
+           </Style>
+           <Style x:Key="label" TargetType="Label">
+                <Setter Property="TextColor" Value="{DynamicResource textColor}"/>
+           </Style>
+           <Style x:Key="button" TargetType="Button">
+               <Setter Property="TextColor" Value="#FFFFFF"/> 
+               <Setter Property="BackgroundColor" Value="{DynamicResource buttonColor}"/>
+           </Style>
+            <Style x:Key="linkLabel" TargetType="Label">
+               <Setter Property="TextColor" Value="{DynamicResource buttonColor}"/> 
+           </Style>
+           <Style x:Key="separator" TargetType="BoxView">
+                <Setter Property="BackgroundColor" Value="{DynamicResource textColor}"/>
+           </Style>
+           
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
