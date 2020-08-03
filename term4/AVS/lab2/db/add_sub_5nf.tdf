@@ -1,0 +1,113 @@
+--lpm_add_sub CARRY_CHAIN="MANUAL" CARRY_CHAIN_LENGTH=48 DEVICE_FAMILY="MAX V" LPM_DIRECTION="DEFAULT" LPM_REPRESENTATION="UNSIGNED" LPM_WIDTH=9 add_sub dataa datab result
+--VERSION_BEGIN 18.1 cbx_cycloneii 2018:09:12:13:04:24:SJ cbx_lpm_add_sub 2018:09:12:13:04:24:SJ cbx_mgl 2018:09:12:13:10:36:SJ cbx_nadder 2018:09:12:13:04:24:SJ cbx_stratix 2018:09:12:13:04:24:SJ cbx_stratixii 2018:09:12:13:04:24:SJ  VERSION_END
+
+
+-- Copyright (C) 2018  Intel Corporation. All rights reserved.
+--  Your use of Intel Corporation's design tools, logic functions 
+--  and other software and tools, and its AMPP partner logic 
+--  functions, and any output files from any of the foregoing 
+--  (including device programming or simulation files), and any 
+--  associated documentation or information are expressly subject 
+--  to the terms and conditions of the Intel Program License 
+--  Subscription Agreement, the Intel Quartus Prime License Agreement,
+--  the Intel FPGA IP License Agreement, or other applicable license
+--  agreement, including, without limitation, that your use is for
+--  the sole purpose of programming logic devices manufactured by
+--  Intel and sold by Intel or its authorized distributors.  Please
+--  refer to the applicable agreement for further details.
+
+
+FUNCTION maxv_lcell (aclr, aload, cin, clk, dataa, datab, datac, datad, ena, inverta, regcascin, sclr, sload)
+WITH ( cin0_used, cin1_used, cin_used, lut_mask, operation_mode, output_mode, power_up, register_cascade_mode, sum_lutc_input, synch_mode, x_on_violation)
+RETURNS ( combout, cout, regout);
+
+--synthesis_resources = lut 10 
+SUBDESIGN add_sub_5nf
+( 
+	add_sub	:	input;
+	dataa[8..0]	:	input;
+	datab[8..0]	:	input;
+	result[8..0]	:	output;
+) 
+VARIABLE 
+	add_sub_cella0 : maxv_lcell
+		WITH (
+			cin_used = "true",
+			lut_mask = "96E8",
+			operation_mode = "arithmetic",
+			sum_lutc_input = "cin"
+		);
+	add_sub_cella1 : maxv_lcell
+		WITH (
+			cin_used = "true",
+			lut_mask = "96E8",
+			operation_mode = "arithmetic",
+			sum_lutc_input = "cin"
+		);
+	add_sub_cella2 : maxv_lcell
+		WITH (
+			cin_used = "true",
+			lut_mask = "96E8",
+			operation_mode = "arithmetic",
+			sum_lutc_input = "cin"
+		);
+	add_sub_cella3 : maxv_lcell
+		WITH (
+			cin_used = "true",
+			lut_mask = "96E8",
+			operation_mode = "arithmetic",
+			sum_lutc_input = "cin"
+		);
+	add_sub_cella4 : maxv_lcell
+		WITH (
+			cin_used = "true",
+			lut_mask = "96E8",
+			operation_mode = "arithmetic",
+			sum_lutc_input = "cin"
+		);
+	add_sub_cella5 : maxv_lcell
+		WITH (
+			cin_used = "true",
+			lut_mask = "96E8",
+			operation_mode = "arithmetic",
+			sum_lutc_input = "cin"
+		);
+	add_sub_cella6 : maxv_lcell
+		WITH (
+			cin_used = "true",
+			lut_mask = "96E8",
+			operation_mode = "arithmetic",
+			sum_lutc_input = "cin"
+		);
+	add_sub_cella7 : maxv_lcell
+		WITH (
+			cin_used = "true",
+			lut_mask = "96E8",
+			operation_mode = "arithmetic",
+			sum_lutc_input = "cin"
+		);
+	add_sub_cella8 : maxv_lcell
+		WITH (
+			cin_used = "true",
+			lut_mask = "9696",
+			operation_mode = "normal",
+			sum_lutc_input = "cin"
+		);
+	strx_lcell1 : maxv_lcell
+		WITH (
+			cin_used = "false",
+			lut_mask = "00CC",
+			operation_mode = "arithmetic"
+		);
+
+BEGIN 
+	add_sub_cella[8..0].cin = ( add_sub_cella[7..0].cout, strx_lcell1.cout);
+	add_sub_cella[8..0].dataa = datab[];
+	add_sub_cella[8..0].datab = dataa[];
+	add_sub_cella[8..0].inverta = (! add_sub);
+	strx_lcell1.dataa = B"0";
+	strx_lcell1.datab = (! add_sub);
+	strx_lcell1.inverta = (! add_sub);
+	result[] = add_sub_cella[8..0].combout;
+END;
+--VALID FILE

@@ -1,0 +1,153 @@
+|lab_test
+C <= inst3.DB_MAX_OUTPUT_PORT_TYPE
+A[0] => HA:inst11.a
+A[1] => FA:inst14.A
+A[2] => FA:inst15.A
+A[3] => FA:inst12.A
+A[4] => FA:inst13.A
+Sign => BIT_ADD:inst18.bit
+Sign => INV:inst.sign
+Sign => inst2.IN1
+B[0] => INV:inst.num[0]
+B[1] => INV:inst.num[1]
+B[2] => INV:inst.num[2]
+B[3] => INV:inst.num[3]
+B[4] => INV:inst.num[4]
+B[4] => inst2.IN2
+Q[0] <= HA:inst11.s
+Q[1] <= FA:inst14.S
+Q[2] <= FA:inst15.S
+Q[3] <= FA:inst12.S
+Q[4] <= FA:inst13.S
+
+
+|lab_test|FA:inst13
+S <= inst1.DB_MAX_OUTPUT_PORT_TYPE
+Pi => inst1.IN0
+Pi => inst4.IN0
+A => inst.IN0
+A => inst5.IN0
+B => inst.IN1
+B => inst5.IN1
+Pn <= inst3.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab_test|FA:inst12
+S <= inst1.DB_MAX_OUTPUT_PORT_TYPE
+Pi => inst1.IN0
+Pi => inst4.IN0
+A => inst.IN0
+A => inst5.IN0
+B => inst.IN1
+B => inst5.IN1
+Pn <= inst3.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab_test|FA:inst15
+S <= inst1.DB_MAX_OUTPUT_PORT_TYPE
+Pi => inst1.IN0
+Pi => inst4.IN0
+A => inst.IN0
+A => inst5.IN0
+B => inst.IN1
+B => inst5.IN1
+Pn <= inst3.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab_test|FA:inst14
+S <= inst1.DB_MAX_OUTPUT_PORT_TYPE
+Pi => inst1.IN0
+Pi => inst4.IN0
+A => inst.IN0
+A => inst5.IN0
+B => inst.IN1
+B => inst5.IN1
+Pn <= inst3.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab_test|HA:inst11
+p <= inst6.DB_MAX_OUTPUT_PORT_TYPE
+a => inst6.IN0
+a => inst7.IN0
+b => inst6.IN1
+b => inst7.IN1
+s <= inst7.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab_test|BIT_ADD:inst18
+res[0] <= HA:inst4.s
+res[1] <= HA:inst3.s
+res[2] <= HA:inst.s
+res[3] <= HA:inst1.s
+res[4] <= HA:inst2.s
+N[0] => HA:inst4.a
+N[1] => HA:inst3.a
+N[2] => HA:inst.a
+N[3] => HA:inst1.a
+N[4] => HA:inst2.a
+bit => HA:inst4.b
+
+
+|lab_test|BIT_ADD:inst18|HA:inst4
+p <= inst6.DB_MAX_OUTPUT_PORT_TYPE
+a => inst6.IN0
+a => inst7.IN0
+b => inst6.IN1
+b => inst7.IN1
+s <= inst7.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab_test|BIT_ADD:inst18|HA:inst3
+p <= inst6.DB_MAX_OUTPUT_PORT_TYPE
+a => inst6.IN0
+a => inst7.IN0
+b => inst6.IN1
+b => inst7.IN1
+s <= inst7.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab_test|BIT_ADD:inst18|HA:inst
+p <= inst6.DB_MAX_OUTPUT_PORT_TYPE
+a => inst6.IN0
+a => inst7.IN0
+b => inst6.IN1
+b => inst7.IN1
+s <= inst7.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab_test|BIT_ADD:inst18|HA:inst1
+p <= inst6.DB_MAX_OUTPUT_PORT_TYPE
+a => inst6.IN0
+a => inst7.IN0
+b => inst6.IN1
+b => inst7.IN1
+s <= inst7.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab_test|BIT_ADD:inst18|HA:inst2
+p <= inst6.DB_MAX_OUTPUT_PORT_TYPE
+a => inst6.IN0
+a => inst7.IN0
+b => inst6.IN1
+b => inst7.IN1
+s <= inst7.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab_test|INV:inst
+N[0] <= inst.DB_MAX_OUTPUT_PORT_TYPE
+N[1] <= inst8.DB_MAX_OUTPUT_PORT_TYPE
+N[2] <= inst9.DB_MAX_OUTPUT_PORT_TYPE
+N[3] <= inst10.DB_MAX_OUTPUT_PORT_TYPE
+N[4] <= inst11.DB_MAX_OUTPUT_PORT_TYPE
+sign => inst.IN0
+sign => inst8.IN0
+sign => inst9.IN0
+sign => inst10.IN0
+sign => inst11.IN0
+num[0] => inst.IN1
+num[1] => inst8.IN1
+num[2] => inst9.IN1
+num[3] => inst10.IN1
+num[4] => inst11.IN1
+
+
