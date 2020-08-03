@@ -1,0 +1,168 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Forms" Version="3.1.0.697729" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+    <PackageReference Include="Microcharts" Version="0.7.1" />
+    <PackageReference Include="Microcharts.Forms" Version="0.7.1" />
+    <PackageReference Include="Com.Airbnb.Xamarin.Forms.Lottie" Version="2.7.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Xamarin.iOS">
+      <HintPath>..\..\..\..\..\..\Library\Frameworks\Xamarin.iOS.framework\Versions\Current\lib\mono\Xamarin.iOS\Xamarin.iOS.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="SettingsPage.cs" />
+    <Compile Remove="Resource.Designer.cs" />
+    <Compile Remove="Resources\Resources.Designer.cs" />
+    <Compile Remove="View\CalendarPage.xaml.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Model\" />
+    <Folder Include="ViewModel\" />
+    <Folder Include="View\" />
+    <Folder Include="Images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Images\20180820132317_scdk.jpg" />
+    <None Remove="Images\image.jpeg" />
+    <None Remove="Images\asH.jpg" />
+    <None Remove="Images\asP.jpeg" />
+    <None Remove="AppData.json" />
+    <None Remove="Images\acP.jpeg" />
+    <None Remove="Images\btfH.jpg" />
+    <None Remove="Images\boP.jpg" />
+    <None Remove="Images\asH.jpeg" />
+    <None Remove="Images\boH.jpg" />
+    <None Remove="Images\btfP.png" />
+    <None Remove="Images\rdH.jpg" />
+    <None Remove="Images\rdP.jpg" />
+    <None Remove="Images\ascP.jpg" />
+    <None Remove="app.config" />
+    <None Remove="Images\cpP.jpg" />
+    <None Remove="Images\cpH.jpg" />
+    <None Remove="Images\acomP.jpg" />
+    <None Remove="Images\acomH.jpg" />
+    <None Remove="Images\bf3P.jpg" />
+    <None Remove="Images\bf3H.jpg" />
+    <None Remove="Images\tesVP.jpg" />
+    <None Remove="Images\tw3P.jpg" />
+    <None Remove="Images\sekP.jpg" />
+    <None Remove="Images\tesVH.jpg" />
+    <None Remove="Images\tw3H.jpg" />
+    <None Remove="Images\sekH.jpg" />
+    <None Remove="Images\lswP.jpg" />
+    <None Remove="Images\me2P.jpg" />
+    <None Remove="Images\dgP.jpg" />
+    <None Remove="Images\ftlP.jpg" />
+    <None Remove="Images\civVP.jpg" />
+    <None Remove="Images\fnvP.jpg" />
+    <None Remove="Images\louP.jpg" />
+    <None Remove="Images\lozbowP.jpg" />
+    <None Remove="Images\gtavP.jpg" />
+    <None Remove="Images\prskP.jpg" />
+    <None Remove="Images\legofzelP.jpg" />
+    <None Remove="Images\meP.jpg" />
+    <None Remove="Images\dmcP.jpg" />
+    <None Remove="Images\lswH.jpg" />
+    <None Remove="Images\me2H.jpg" />
+    <None Remove="Images\dgH.jpg" />
+    <None Remove="Images\ftlH.jpg" />
+    <None Remove="Images\civVH.jpg" />
+    <None Remove="Images\fnvH.jpg" />
+    <None Remove="Images\louH.jpg" />
+    <None Remove="Images\lozbowH.jpg" />
+    <None Remove="Images\gtavH.jpg" />
+    <None Remove="Images\prskH.jpg" />
+    <None Remove="Images\legofzelH.jpg" />
+    <None Remove="Images\meH.jpg" />
+    <None Remove="Images\dmcH.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Remove="Images\asP.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AppData.json" />
+    <EmbeddedResource Include="Images\asH.jpeg" />
+    <EmbeddedResource Include="Images\boH.jpg" />
+    <EmbeddedResource Include="Images\boP.jpg" />
+    <EmbeddedResource Include="Images\btfH.jpg" />
+    <EmbeddedResource Include="Images\btfP.png" />
+    <EmbeddedResource Include="Images\rdH.jpg" />
+    <EmbeddedResource Include="Images\rdP.jpg" />
+    <EmbeddedResource Include="Images\ascP.jpg" />
+    <EmbeddedResource Include="Images\cpP.jpg" />
+    <EmbeddedResource Include="Images\cpH.jpg" />
+    <EmbeddedResource Include="Images\acomP.jpg" />
+    <EmbeddedResource Include="Images\acomH.jpg" />
+    <EmbeddedResource Include="Images\bf3P.jpg" />
+    <EmbeddedResource Include="Images\bf3H.jpg" />
+    <EmbeddedResource Include="Images\tesVP.jpg" />
+    <EmbeddedResource Include="Images\tw3P.jpg" />
+    <EmbeddedResource Include="Images\sekP.jpg" />
+    <EmbeddedResource Include="Images\tesVH.jpg" />
+    <EmbeddedResource Include="Images\tw3H.jpg" />
+    <EmbeddedResource Include="Images\sekH.jpg" />
+    <EmbeddedResource Include="Images\lswP.jpg" />
+    <EmbeddedResource Include="Images\me2P.jpg" />
+    <EmbeddedResource Include="Images\dgP.jpg" />
+    <EmbeddedResource Include="Images\ftlP.jpg" />
+    <EmbeddedResource Include="Images\civVP.jpg" />
+    <EmbeddedResource Include="Images\fnvP.jpg" />
+    <EmbeddedResource Include="Images\louP.jpg" />
+    <EmbeddedResource Include="Images\lozbowP.jpg" />
+    <EmbeddedResource Include="Images\gtavP.jpg" />
+    <EmbeddedResource Include="Images\prskP.jpg" />
+    <EmbeddedResource Include="Images\legofzelP.jpg" />
+    <EmbeddedResource Include="Images\meP.jpg" />
+    <EmbeddedResource Include="Images\dmcP.jpg" />
+    <EmbeddedResource Include="Images\lswH.jpg" />
+    <EmbeddedResource Include="Images\me2H.jpg" />
+    <EmbeddedResource Include="Images\dgH.jpg" />
+    <EmbeddedResource Include="Images\ftlH.jpg" />
+    <EmbeddedResource Include="Images\civVH.jpg" />
+    <EmbeddedResource Include="Images\fnvH.jpg" />
+    <EmbeddedResource Include="Images\louH.jpg" />
+    <EmbeddedResource Include="Images\lozbowH.jpg" />
+    <EmbeddedResource Include="Images\gtavH.jpg" />
+    <EmbeddedResource Include="Images\prskH.jpg" />
+    <EmbeddedResource Include="Images\legofzelH.jpg" />
+    <EmbeddedResource Include="Images\meH.jpg" />
+    <EmbeddedResource Include="Images\dmcH.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Resources.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Resources.be.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.be.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Resources.en.Designer.cs">
+      <DependentUpon>Resources.en.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resource.Designer.cs">
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources.Designer.cs">
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="GameStore.StatisticsPage" 
+             xmlns:local="clr-namespace:GameStore.Model"  
+             xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms" 
+             Title="{Binding [StatisticsPageTitle], Source={x:Static local:Translator.Instance}}" 
+             Style="{DynamicResource pageStyle}">
+    <ContentPage.Content>
+       <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <microcharts:ChartView x:Name="chartView" Grid.Row="0"/>
+            <microcharts:ChartView x:Name="chartView1" Grid.Row="2"/>
+            <microcharts:ChartView x:Name="chartView2" Grid.Row="1"/>
+        </Grid> 
+    </ContentPage.Content>
+</ContentPage>

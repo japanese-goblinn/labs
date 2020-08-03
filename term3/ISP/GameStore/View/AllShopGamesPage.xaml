@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage Title="{Binding [AllGames], Source={x:Static local:Translator.Instance}}" Style="{DynamicResource pageStyle}" xmlns="http://xamarin.com/schemas/2014/forms"  xmlns:local="clr-namespace:GameStore.Model"   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="GameStore.AllShopGamesPage">
+    <ContentPage.Content>
+         <StackLayout>
+      
+          <ListView x:Name="allGamesList"
+              HasUnevenRows="true" 
+              ItemsSource="{Binding Games}"
+              ItemTapped="Handle_ItemTapped" 
+               SeparatorVisibility="None"
+                 Style="{DynamicResource listView}"  
+            
+                    >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Frame Style="{DynamicResource frame}" Margin="5" CornerRadius="9" >
+                           <AbsoluteLayout HeightRequest="100">
+                            <Image AbsoluteLayout.LayoutBounds="0, 0, 75, 105" Source="{Binding ResourcePosterImage}" x:Name="imgSource" Aspect="AspectFill"/>
+                            <Label Text="{Binding Name}" LineBreakMode="WordWrap" Style="{DynamicResource label}" FontSize="17" FontAttributes="Bold" AbsoluteLayout.LayoutBounds="108, 5, 266, 20" />
+                            <StackLayout Spacing="3" AbsoluteLayout.LayoutBounds="108, 45, 266, 20">
+                                <Label Text="{Binding AgeLimit}" Style="{DynamicResource label}" FontSize="15"/>
+                                <Label Text="{Binding Developer}" Style="{DynamicResource label}" FontSize="15"/>
+                            </StackLayout>
+                           </AbsoluteLayout>                       
+                        </Frame>
+                     </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView> 
+    </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

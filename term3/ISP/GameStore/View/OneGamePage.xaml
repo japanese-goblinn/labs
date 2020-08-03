@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="GameStore.OneGamePage" 
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
+             ios:Page.LargeTitleDisplay="Never"  
+             Style="{DynamicResource pageStyle}"
+              xmlns:local="clr-namespace:GameStore.Model">
+        <ScrollView HeightRequest="700" x:Name="baseLayer"  >    
+        <StackLayout>
+                <Image  HeightRequest="215" x:Name="headerImage" Aspect="AspectFill"/>
+                <AbsoluteLayout HeightRequest="130">
+                    <Image AbsoluteLayout.LayoutBounds="15, 2, 85, 125" x:Name="posterImage" Aspect="AspectFill"/>
+                    <Label FontSize="18" FontAttributes="Bold" Style="{DynamicResource label}"
+                           AbsoluteLayout.LayoutBounds="108, 5, 266, 20" x:Name="gameTitle"/>
+                    <StackLayout Spacing="3" AbsoluteLayout.LayoutBounds="108, 45, 266, 20">
+                        <Label  FontSize="13" Style="{DynamicResource label}" x:Name="releaseDateLabel"/>
+                        <Label  FontSize="13" Style="{DynamicResource label}" x:Name="ganersLabel"/>
+                    </StackLayout>
+                    <Button Style="{DynamicResource button}" Text="Add To Library" Clicked="Handle_Clicked" FontAttributes="Bold" CornerRadius="7"
+                            AbsoluteLayout.LayoutBounds="108, 99, 255, 27" x:Name="addButton"/>
+                </AbsoluteLayout>
+                
+                
+                <ContentView Padding="15, 10.5, 0 , 0">
+                    <Label Text="{Binding [About], Source={x:Static local:Translator.Instance}}" FontAttributes="Bold" Style="{DynamicResource label}" 
+                           HeightRequest="15" x:Name="aboutTheGameTitle"/>
+                </ContentView>
+                <StackLayout Padding="15, 10, 8, 0" HeightRequest="95">
+                   <Label Style="{DynamicResource label}" Font="12" x:Name="descriptionLabel"/>
+                </StackLayout>
+               
+                <ContentView Padding="15, 10, 0 , 0">
+                    <Label Text="{Binding [Metascore], Source={x:Static local:Translator.Instance}}" FontAttributes="Bold" Style="{DynamicResource label}" 
+                          HeightRequest="15"/>
+                </ContentView>
+                <StackLayout HeightRequest="110" Orientation="Horizontal" x:Name="criticStackLayout">
+                    <StackLayout Padding="15, 10, 0, 0" WidthRequest="100" Spacing="3">
+                      <Frame HeightRequest="100" HasShadow="false" x:Name="metascoreFrame">
+                        <Label x:Name="metascoreLabel" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" FontSize="30" TextColor="White"/>
+                      </Frame>  
+                    </StackLayout>
+                    <StackLayout Padding="15, 14, 0, 0" WidthRequest="150" Spacing="3">
+                      <Label Text="{Binding [CriticReviews], Source={x:Static local:Translator.Instance}}" FontSize="14" Style="{DynamicResource label}"/>
+                      <Label Text="{Binding [CriticReviewsDesc], Source={x:Static local:Translator.Instance}}" Font="12" HeightRequest="50" 
+                              Style="{DynamicResource label}" HorizontalOptions="Start"/>
+                     <Button Text="{Binding [LinkToCrit], Source={x:Static local:Translator.Instance}}" Font="12" HeightRequest="15" 
+                              Style="{DynamicResource linkLabel}" HorizontalOptions="Start" Pressed="Handle_Pressed" 
+                               />
+                    </StackLayout> 
+                </StackLayout>
+            
+          
+                <ContentView Padding="15, 10, 0 , 0">
+                    <Label Text="{Binding [UserScore], Source={x:Static local:Translator.Instance}}" FontAttributes="Bold" Style="{DynamicResource label}" 
+                          HeightRequest="15"/>
+                </ContentView>
+                <StackLayout HeightRequest="110" Orientation="Horizontal" x:Name="gamersStackLayout">
+                    <StackLayout Padding="15, 10, 0, 0" WidthRequest="100" Spacing="3">
+                      <Frame HeightRequest="100" CornerRadius="50" HasShadow="false" x:Name="userScoreFrame">
+                        <Label x:Name="userScoreLabel" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" FontSize="30" TextColor="White"/>
+                      </Frame>  
+                    </StackLayout>
+                    <StackLayout Padding="15, 14, 0, 0" WidthRequest="150" Spacing="3">
+                      <Label Text="{Binding [UserReviews], Source={x:Static local:Translator.Instance}}" FontSize="14" Style="{DynamicResource label}"/>
+                      <Label Text="{Binding [UserReviewsDesc], Source={x:Static local:Translator.Instance}}" Font="12" HeightRequest="50" 
+                              Style="{DynamicResource label}" HorizontalOptions="Start"/>
+                      <Button Style="{DynamicResource linkLabel}" Text="{Binding [LinkToUser], Source={x:Static local:Translator.Instance}}" Font="12" HeightRequest="15" 
+                              HorizontalOptions="Start" Pressed="Handle_Pressed_1"/>
+                    </StackLayout> 
+                </StackLayout>
+            
+                
+                 <ContentView Padding="15, 18, 0 , 0">
+                    <Label Text="{Binding [Information], Source={x:Static local:Translator.Instance}}" FontAttributes="Bold" Style="{DynamicResource label}" HeightRequest="15"/>
+                </ContentView>
+                 <StackLayout HeightRequest="120" Padding="15, 10, 0 ,0" Spacing="0">
+                    <Grid RowSpacing="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="80" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>  
+                        <Label Grid.Row="0" Grid.Column="0" Style="{DynamicResource label}" Font="14" Text="{Binding [MetacriticLink], Source={x:Static local:Translator.Instance}}"/>
+                        <Label Grid.Row="0" Grid.Column="1" Style="{DynamicResource linkLabel}" Font="14" Text="{Binding [LinkToGame], Source={x:Static local:Translator.Instance}}" x:Name="gameLink"/>
+                        <Label Grid.Row="1" Grid.Column="0" Style="{DynamicResource label}" Font="14" Text="{Binding [Developer], Source={x:Static local:Translator.Instance}}"/>
+                        <Label Grid.Row="1" Grid.Column="1" Style="{DynamicResource label}" Font="14" x:Name="devName"/>
+                        <Label Grid.Row="2" Grid.Column="0" Style="{DynamicResource label}" Font="14" Text="{Binding [AgeLimit], Source={x:Static local:Translator.Instance}}"/>
+                        <Label Grid.Row="2" Grid.Column="1" Style="{DynamicResource label}" Font="14" x:Name="ageLimit"/>
+                        <Label Grid.Row="3" Grid.Column="0" Style="{DynamicResource label}" Font="14" Text="{Binding [Platforms], Source={x:Static local:Translator.Instance}}"/>
+                        <Label Grid.Row="3" Grid.Column="1" Style="{DynamicResource label}" Font="14" x:Name="platformsLabel"/>
+                    </Grid>
+                </StackLayout>
+                </StackLayout>
+            </ScrollView>
+</ContentPage>
