@@ -1,0 +1,50 @@
+
+when (y)
+{
+  1 ->
+  {
+    if(x>10)
+    {
+        x--
+        if(x<15)
+        {
+            x = (10+15)/2
+            if(true)
+            {
+                x++
+            }
+        }
+    }
+    else 
+    {
+        x++
+    }
+  }
+  2->
+  {
+    while (x>0)
+    {
+        x--
+        println("x again less by 1")
+    }
+  }
+  3,4 ->
+  {
+    if(true)
+    {
+        while (x >= 54)
+        {
+            x = x-54
+        }
+    }
+  }
+  else -> 
+  {
+    do
+    {
+        x++     
+    } while (x > 0)
+  }
+}
+
+println(x)

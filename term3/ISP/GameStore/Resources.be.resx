@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+     <data name="StatisticsPageTitle" xml:space="preserve">
+        <value>Статыстыка</value>
+    </data>
+     <data name="StatisticsPageTabTitle" xml:space="preserve">
+        <value>Статыстыка</value>
+    </data>
+     <data name="LibraryPageTitle" xml:space="preserve">
+        <value>Бібліятэка</value>
+    </data>
+     <data name="LibraryPageTabTitle" xml:space="preserve">
+        <value>Бібліятэка</value>
+    </data>
+     <data name="ShopPageTitle" xml:space="preserve">
+        <value>Крама</value>
+    </data>
+     <data name="ShopPageTabTitle" xml:space="preserve">
+        <value>Крама</value>
+    </data>
+     <data name="SearchPageTitle" xml:space="preserve">
+        <value>Пошук</value>
+    </data>
+     <data name="SearchPageTabTitle" xml:space="preserve">
+        <value>Пошук</value>
+    </data>
+     <data name="SearchPageInSearchText" xml:space="preserve">
+        <value>Увядзіце гульню якую жадаеце знайсці</value>
+    </data>
+     <data name="SettingsPageTitle" xml:space="preserve">
+        <value>Налады</value>
+    </data>
+     <data name="SettingsPageLangTitle" xml:space="preserve">
+        <value>Мова</value>
+    </data>
+     <data name="SettingsPageTabTitle" xml:space="preserve">
+        <value>Налады</value>
+    </data>
+     <data name="Appearance" xml:space="preserve">
+        <value>Знешні Выгляд</value>
+    </data>
+     <data name="DarkTheme" xml:space="preserve">
+        <value>Цёмная Тэма</value>
+    </data>
+     <data name="DeleteButton" xml:space="preserve">
+        <value>Выдаліць</value>
+    </data>
+     <data name="TopGames" xml:space="preserve">
+        <value>Лепшыя Гульні</value>
+    </data>
+     <data name="Soon" xml:space="preserve">
+        <value>Хутка Выйдуць...</value>
+    </data>
+     <data name="SeeAllGames" xml:space="preserve">
+        <value>Паглядзець Усе Гульні</value>
+    </data>
+     <data name="About" xml:space="preserve">
+        <value>Апісанне</value>
+    </data>
+     <data name="Metascore" xml:space="preserve">
+        <value>Металік</value>
+    </data>
+     <data name="CriticReviews" xml:space="preserve">
+        <value>Водгукі Крытыкаў</value>
+    </data>
+     <data name="CriticReviewsDesc" xml:space="preserve">
+        <value>У цэлым спрыяльныя водгукі, заснаваныя на думках крытыкаў</value>
+    </data>
+     <data name="LinkToCrit" xml:space="preserve">
+        <value>Спасылка на Водгукі Крытыкаў</value>
+    </data>
+     <data name="UserScore" xml:space="preserve">
+        <value>Aцэнка Юзераў</value>
+    </data>
+     <data name="UserReviews" xml:space="preserve">
+        <value>Водгукі Юзераў</value>
+    </data>
+    <data name="UserReviewsDesc" xml:space="preserve">
+        <value>Змешаныя або сярэднія водгукі, заснаваныя на думках юзераў</value>
+    </data>
+     <data name="LinkToUser" xml:space="preserve">
+        <value>Спасылка на Водгукі Юзераў</value>
+    </data>
+     <data name="Information" xml:space="preserve">
+        <value>Інфармацыя</value>
+    </data>
+     <data name="MetacriticLink" xml:space="preserve">
+        <value>Гульня</value>
+    </data>
+     <data name="LinkToGame" xml:space="preserve">
+        <value>Спасылка</value>
+    </data>
+      <data name="AllGames" xml:space="preserve">
+        <value>Усе Гульні</value>
+    </data>
+      <data name="Developer" xml:space="preserve">
+        <value>Разраб.</value>
+    </data>
+      <data name="AgeLimit" xml:space="preserve">
+        <value>Ўзрост</value>
+    </data>
+      <data name="Platforms" xml:space="preserve">
+        <value>Пляцоўкі</value>
+    </data>
+</root>

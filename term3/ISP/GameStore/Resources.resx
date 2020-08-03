@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="StatisticsPageTitle" xml:space="preserve">
+        <value>Statistics</value>
+    </data>
+     <data name="StatisticsPageTabTitle" xml:space="preserve">
+        <value>Statistics</value>
+    </data>
+     <data name="LibraryPageTitle" xml:space="preserve">
+        <value>Library</value>
+    </data>
+     <data name="LibraryPageTabTitle" xml:space="preserve">
+        <value>Library</value>
+    </data>
+     <data name="ShopPageTitle" xml:space="preserve">
+        <value>Shop</value>
+    </data>
+     <data name="ShopPageTabTitle" xml:space="preserve">
+        <value>Shop</value>
+    </data>
+     <data name="SearchPageTitle" xml:space="preserve">
+        <value>Search</value>
+    </data>
+     <data name="SearchPageTabTitle" xml:space="preserve">
+        <value>Search</value>
+    </data>
+     <data name="SearchPageInSearchText" xml:space="preserve">
+        <value>Enter game that you want to find</value>
+    </data>
+     <data name="SettingsPageTitle" xml:space="preserve">
+        <value>Settings</value>
+    </data>
+     <data name="SettingsPageLangTitle" xml:space="preserve">
+        <value>Language</value>
+    </data>
+     <data name="SettingsPageTabTitle" xml:space="preserve">
+        <value>Settings</value>
+    </data>
+     <data name="Appearance" xml:space="preserve">
+        <value>Appearance</value>
+    </data>
+     <data name="DarkTheme" xml:space="preserve">
+        <value>Dark Theme</value>
+    </data>
+     <data name="DeleteButton" xml:space="preserve">
+        <value>Delete</value>
+    </data>
+     <data name="TopGames" xml:space="preserve">
+        <value>Top Games</value>
+    </data>
+     <data name="Soon" xml:space="preserve">
+        <value>Soon...</value>
+    </data>
+     <data name="SeeAllGames" xml:space="preserve">
+        <value>See All Games</value>
+    </data>
+     <data name="About" xml:space="preserve">
+        <value>About</value>
+    </data>
+     <data name="Metascore" xml:space="preserve">
+        <value>Metascore</value>
+    </data>
+     <data name="CriticReviews" xml:space="preserve">
+        <value>Critic Reviews</value>
+    </data>
+     <data name="CriticReviewsDesc" xml:space="preserve">
+        <value>Generally favorable reviews based on citics opinion</value>
+    </data>
+     <data name="LinkToCrit" xml:space="preserve">
+        <value>Link To Critic Reviews</value>
+    </data>
+     <data name="UserScore" xml:space="preserve">
+        <value>User Score</value>
+    </data>
+     <data name="UserReviews" xml:space="preserve">
+        <value>User Reviews</value>
+    </data>
+    <data name="UserReviewsDesc" xml:space="preserve">
+        <value>Mixed or average reviews based on users opinion</value>
+    </data>
+     <data name="LinkToUser" xml:space="preserve">
+        <value>Link To User Reviews</value>
+    </data>
+     <data name="Information" xml:space="preserve">
+        <value>Information</value>
+    </data>
+     <data name="MetacriticLink" xml:space="preserve">
+        <value>Metacritic</value>
+    </data>
+     <data name="LinkToGame" xml:space="preserve">
+        <value>Link To The Game Page</value>
+    </data>
+     <data name="AllGames" xml:space="preserve">
+        <value>All Games</value>
+    </data>
+      <data name="Developer" xml:space="preserve">
+        <value>Developer</value>
+    </data>
+      <data name="AgeLimit" xml:space="preserve">
+        <value>Age Limit</value>
+    </data>
+      <data name="Platforms" xml:space="preserve">
+        <value>Platforms</value>
+    </data>
+</root>

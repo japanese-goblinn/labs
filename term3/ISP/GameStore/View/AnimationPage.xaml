@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage Style="{DynamicResource pageStyle}" xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="GameStore.AnimationPage">
+    <ContentPage.Content>
+        <forms:AnimationView 
+            x:Name="AnimationView"
+            Animation="banim.json"
+            Loop="True"
+            AutoPlay="True"
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand" />
+    </ContentPage.Content>
+</ContentPage>

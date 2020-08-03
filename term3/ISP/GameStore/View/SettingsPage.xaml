@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="GameStore.SettingsPage" 
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
+             Title="{Binding [SettingsPageTitle], Source={x:Static local:Translator.Instance}}" 
+             xmlns:local="clr-namespace:GameStore.Model"  
+             Style="{DynamicResource pageStyle}">
+  
+    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+       <Label Text="{Binding [Appearance], Source={x:Static local:Translator.Instance}}" FontAttributes="Bold" Style="{DynamicResource label}" Margin="18, 20, 0, 0"/>
+       <Frame Style="{DynamicResource frame}" Margin="18" CornerRadius="9">
+            <StackLayout Orientation="Horizontal">
+                <Label VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" Text="{Binding [DarkTheme], Source={x:Static local:Translator.Instance}}" FontAttributes="Bold" Style="{DynamicResource label}"/>
+                <Switch HorizontalOptions="EndAndExpand" x:Name="darkTheme" Toggled="Handle_Toggled"/>
+            </StackLayout> 
+       </Frame>
+       <Label x:Name="langHeader" Text="{Binding [SettingsPageLangTitle], Source={x:Static local:Translator.Instance}}" FontAttributes="Bold" Style="{DynamicResource label}"  Margin="18, 20, 0, 0"/>
+       <Frame Style="{DynamicResource frame}" Margin="18" CornerRadius="9">
+            <StackLayout Orientation="Horizontal">
+                <Label x:Name="langLabel" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" Text="{Binding [SettingsPageLangTitle], Source={x:Static local:Translator.Instance}}" FontAttributes="Bold" Style="{DynamicResource label}"/>
+                <Switch HorizontalOptions="EndAndExpand" x:Name="langSwitch" Toggled="Handle_Toggled_1" />
+            </StackLayout> 
+       </Frame>
+   </StackLayout>
+</ContentPage>

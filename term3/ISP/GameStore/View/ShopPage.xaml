@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage  xmlns="http://xamarin.com/schemas/2014/forms" 
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+              x:Class="GameStore.ShopPage" 
+              Title="{Binding [ShopPageTitle], Source={x:Static local:Translator.Instance}}" 
+               xmlns:local="clr-namespace:GameStore.Model"  
+              Style="{DynamicResource pageStyle}">
+      <StackLayout Spacing="0">
+        <ScrollView VerticalOptions="FillAndExpand" HeightRequest="1000" x:Name="Scroll">
+          <StackLayout HeightRequest="1000" Spacing="0" >
+                <ScrollView Orientation="Horizontal" HeightRequest="200" x:Name="HeaderScrollView">
+                    <StackLayout Orientation="Horizontal" Spacing="0" x:Name="headerStack">
+                    </StackLayout> 
+                </ScrollView>
+                <ContentView Padding="15, 15, 0 , 0">
+                    <Label Text="{Binding [TopGames], Source={x:Static local:Translator.Instance}}" FontAttributes="Bold"
+                           Style="{DynamicResource label}" HeightRequest="18"/>
+                </ContentView>
+                <ScrollView Orientation="Horizontal" HeightRequest="222" >
+                    <StackLayout Orientation="Horizontal" 
+                                 Spacing="15" Padding="15, 15, 0, 15" 
+                                 x:Name="topGamesStack"> 
+                    </StackLayout>  
+               </ScrollView>
+               
+               <ScrollView Orientation="Horizontal" HeightRequest="120">
+                    <StackLayout Orientation="Horizontal" x:Name="firstCoverGameStack"
+                                 Spacing="15" Padding="15, 15, 20, 15">
+                    </StackLayout>  
+               </ScrollView>
+              
+               <ContentView Padding="15, 15, 0 , 0">
+                    <Label Text="{Binding [Soon], Source={x:Static local:Translator.Instance}}" 
+                           Style="{DynamicResource label}" FontAttributes="Bold" HeightRequest="18"/>
+                </ContentView>
+                <ScrollView Orientation="Horizontal" HeightRequest="222" >
+                    <StackLayout Orientation="Horizontal" 
+                                 Spacing="15" Padding="15, 15, 0, 15" 
+                                 x:Name="newAndNoteworthyStackView"> 
+                    </StackLayout>  
+               </ScrollView>
+               
+               <ScrollView Orientation="Horizontal" HeightRequest="120">
+                    <StackLayout Orientation="Horizontal" x:Name="secondCoverGameStack"
+                                 Spacing="15" Padding="15, 15, 20, 15">
+                    </StackLayout>  
+               </ScrollView>
+             
+               <Button Style="{DynamicResource button}" Margin="12, 12, 12, 14" Pressed="Handle_Pressed" Text="{Binding [SeeAllGames], Source={x:Static local:Translator.Instance}}" FontAttributes="Bold" CornerRadius="7"
+                          />
+          </StackLayout>
+        </ScrollView>
+    </StackLayout>
+</ContentPage>

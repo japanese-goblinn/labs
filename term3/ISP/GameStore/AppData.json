@@ -1,0 +1,603 @@
+﻿[
+  {
+    "ganers": [
+      "Action Adventure",
+      "Open-World"
+    ],
+    "platforms": [
+      "PS4",
+      "Xbox One",
+      "PC"
+    ],
+    "Name": "Assassins Creed Odyssey",
+    "Developer": "Ubisoft",
+    "Description": "Write your own epic odyssey and become a legendary Spartan hero. Forge your destiny in a world on the brink of tearing itself apart. Influence how history unfolds in an ever-changing world shaped by your choices. Features: * LEGENDARY SPARTAN HERO - Embark on your journey from outcast to…",
+    "PosterImage": "GameStore.Images.ascP.jpg",
+    "HeadImage": "GameStore.Images.asH.jpeg",
+    "ResourcePosterImage": "ascP.jpg",
+    "Metascore": 82,
+    "UserScore": 5.7,
+    "AgeLimit": "18+",
+    "Year": 2018,
+    "IsAlreadyReleased": true,
+    "IsAlreadyAddedToLibrary": false,
+    "MetacriticUrl": "https://www.metacritic.com/game/playstation-4/assassins-creed-odyssey",
+    "CriticReviewUrl": "https://www.metacritic.com/game/playstation-4/assassins-creed-odyssey/critic-reviews",
+    "UserReviewUrl": "https://www.metacritic.com/game/playstation-4/assassins-creed-odyssey/user-reviews"
+  },
+  {
+    "ganers": [
+      "Action",
+      "Shooter",
+      "First-Person",
+      "Tactical"
+    ],
+    "platforms": [
+      "PS4",
+      "Xbox One",
+      "PC"
+    ],
+    "Name": "Battlefield V",
+    "Developer": "EA DICE",
+    "Description": "Enter mankind's greatest conflict with Battlefield 5 as the series goes back to its roots with a never-before-seen portrayal of World War 2. Lead your squad to victory with new ways to turn the battlefield to your advantage. Assemble your Company of customized soldiers, weapons, and vehicles…",
+    "PosterImage": "GameStore.Images.btfP.png",
+    "HeadImage": "GameStore.Images.btfH.jpg",
+    "ResourcePosterImage": "btfP.png",
+    "Metascore": 74,
+    "UserScore": 2.0,
+    "AgeLimit": "18+",
+    "Year": 2018,
+    "IsAlreadyReleased": true,
+    "IsAlreadyAddedToLibrary": false,
+    "MetacriticUrl": "https://www.metacritic.com/game/playstation-4/battlefield-v",
+    "CriticReviewUrl": "https://www.metacritic.com/game/playstation-4/battlefield-v/critic-reviews",
+    "UserReviewUrl": "https://www.metacritic.com/game/playstation-4/battlefield-v/user-reviews"
+  },
+  {
+    "ganers": [
+      "Action Adventure",
+      "Open-World"
+    ],
+    "platforms": [
+      "PS4",
+      "Xbox One"
+    ],
+    "Name": "Red Dead Redemption 2",
+    "Developer": "Rockstar",
+    "Description": "America, 1899. The end of the Wild West era has begun. After a robbery goes badly wrong in the western town of Blackwater, Arthur Morgan and the Van der Linde gang are forced to flee. With federal agents and the best bounty hunters in the nation massing on their heels, the gang has to rob, steal and fight...",
+    "PosterImage": "GameStore.Images.rdP.jpg",
+    "HeadImage": "GameStore.Images.rdH.jpg",
+    "ResourcePosterImage": "rdP.jpg",
+    "Metascore": 97,
+    "UserScore": 7.9,
+    "AgeLimit": "18+",
+    "Year": 2018,
+    "IsAlreadyReleased": true,
+    "IsAlreadyAddedToLibrary": false,
+    "MetacriticUrl": "https://www.metacritic.com/game/playstation-4/red-dead-redemption-2",
+    "CriticReviewUrl": "https://www.metacritic.com/game/playstation-4/red-dead-redemption-2/critic-reviews",
+    "UserReviewUrl": "https://www.metacritic.com/game/playstation-4/red-dead-redemption-2/user-reviews"
+  },
+  {
+    "ganers": [
+      "Action",
+      "Shooter",
+      "First-Person",
+      "Tactical"
+    ],
+    "platforms": [
+      "PS4",
+      "Xbox One",
+      "PC"
+    ],
+    "Name": "Call of Duty: BlackOps IIII",
+    "Developer": "Treyarch",
+    "Description": "Black Ops returns - in your face. Featuring gritty, grounded, fluid Multiplayer combat, a massive Zombies offering with 3 full undead adventures at launch, and Blackout, where the universe of Black Ops comes to life in one huge battle royale experience featuring the largest map in Call of…",
+    "PosterImage": "GameStore.Images.boP.jpg",
+    "HeadImage": "GameStore.Images.boH.jpg",
+    "ResourcePosterImage": "boP.jpg",
+    "Metascore": 83,
+    "UserScore": 4.3,
+    "AgeLimit": "18+",
+    "Year": 2018,
+    "IsAlreadyReleased": true,
+    "IsAlreadyAddedToLibrary": false,
+    "MetacriticUrl": "https://www.metacritic.com/game/playstation-4/call-of-duty-black-ops-4",
+    "CriticReviewUrl": "https://www.metacritic.com/game/playstation-4/call-of-duty-black-ops-4/critic-reviews",
+    "UserReviewUrl": "https://www.metacritic.com/game/playstation-4/call-of-duty-black-ops-4/user-reviews"
+  },
+  {
+    "ganers": [
+      "Action RPG",
+      "Role-Playing",
+      "Action RPG"
+    ],
+    "platforms": [
+      "PS4",
+      "Xbox One",
+      "PC"
+    ],
+    "Name": "Cyberpunk 2077",
+    "Developer": "CD Projekt Red Studio",
+    "Description": "From the makers of the Witcher series, Cyberpunk 2077 is a narrative-driven, open world RPG set in the most vibrant and dangerous metropolis of the future — Night City. Assume the role of V, a hired gun on the rise, who just got their first serious contract. In a world of cyber-enhanced…",
+    "PosterImage": "GameStore.Images.cpP.jpg",
+    "HeadImage": "GameStore.Images.cpH.jpg",
+    "ResourcePosterImage": "cpP.jpg",
+    "Metascore": 0,
+    "UserScore": 0,
+    "AgeLimit": "18+",
+    "Year": 0,
+    "IsAlreadyReleased": false,
+    "IsAlreadyAddedToLibrary": false,
+    "MetacriticUrl": "https://www.metacritic.com/game/pc/cyberpunk-2077",
+    "CriticReviewUrl": "https://www.metacritic.com/game/pc/cyberpunk-2077/critic-reviews",
+    "UserReviewUrl": "https://www.metacritic.com/game/pc/cyberpunk-2077/user-reviews"
+  },
+  {
+    "ganers": [
+      "Simulation",
+       "Flight",
+       "Combat"
+    ],
+    "platforms": [
+      "PS4",
+      "Xbox One",
+      "PC"
+    ],
+    "Name": "Ace Combat 7",
+    "Developer": "Project Aces",
+    "Description": "Strap yourself into the cockpit of some of the worlds most formidable fighter planes and skim through the clouds embarking on daring aerial stunts and nerve-shredding tactical dogfights.",
+    "PosterImage": "GameStore.Images.acomP.jpg",
+    "HeadImage": "GameStore.Images.acomH.jpg",
+    "ResourcePosterImage": "acomP.jpg",
+    "Metascore": 0,
+    "UserScore": 0,
+    "AgeLimit": "13+",
+    "Year": 2019,
+    "IsAlreadyReleased": false,
+    "IsAlreadyAddedToLibrary": false,
+    "MetacriticUrl": "https://www.metacritic.com/game/playstation-4/ace-combat-7-skies-unknown",
+    "CriticReviewUrl": "https://www.metacritic.com/game/playstation-4/ace-combat-7-skies-unknown/critic-reviews",
+    "UserReviewUrl": "https://www.metacritic.com/game/playstation-4/ace-combat-7-skies-unknown/user-reviews"
+  },
+  {
+    "ganers": [
+      "Action Adventure",
+       "General"
+    ],
+    "platforms": [
+      "PS4",
+      "Xbox One",
+      "PC"
+    ],
+    "Name": "Devil May Cry 5",
+    "Developer": "Capcom",
+    "Description": "Behold stunning visuals built upon the technology that brought you Resident Evil 7 biohazard. High framerate graphics and flexible design give our creators what they need to offer fans the latest and greatest DMC experience.",
+    "PosterImage": "GameStore.Images.dmcP.jpg",
+    "HeadImage": "GameStore.Images.dmcH.jpg",
+    "ResourcePosterImage": "dmcP.jpg",
+    "Metascore": 0,
+    "UserScore": 0,
+    "AgeLimit": "18+",
+    "Year": 2019,
+    "IsAlreadyReleased": false,
+    "IsAlreadyAddedToLibrary": false,
+    "MetacriticUrl": "https://www.metacritic.com/game/playstation-4/devil-may-cry-5",
+    "CriticReviewUrl": "https://www.metacritic.com/game/playstation-4/devil-may-cry-5/critic-reviews",
+    "UserReviewUrl": "https://www.metacritic.com/game/playstation-4/devil-may-cry-5/user-reviews"
+  },
+  {
+    "ganers": [
+      "Action",
+      "Shooter",
+      "First-Person",
+      "Arcade"
+    ],
+    "platforms": [
+      "PS4",
+      "Xbox One",
+      "PC"
+    ],
+    "Name": "Metro Exodus",
+    "Developer": "4A Games",
+    "Description": "In Metro Exodus, Artyom and a band of survivors must flee the shattered ruins of the Moscow Metro and embark on an epic, continent-spanning journey across the post-apocalyptic Russian wilderness. Explore vast, non-linear levels, lose yourself...",
+    "PosterImage": "GameStore.Images.meP.jpg",
+    "HeadImage": "GameStore.Images.meH.jpg",
+    "ResourcePosterImage": "meP.jpg",
+    "Metascore": 0,
+    "UserScore": 0,
+    "AgeLimit": "18+",
+    "Year": 2019,
+    "IsAlreadyReleased": false,
+    "IsAlreadyAddedToLibrary": false,
+    "MetacriticUrl": "https://www.metacritic.com/game/playstation-4/metro-exodus",
+    "CriticReviewUrl": "https://www.metacritic.com/game/playstation-4/metro-exodus/critic-reviews",
+    "UserReviewUrl": "https://www.metacritic.com/game/playstation-4/metro-exodus/user-reviews"
+  },
+  {
+    "ganers": [
+      "Action Adventure",
+      "General" 
+    ],
+    "platforms": [
+      "PS4"
+    ],
+    "Name": "Sekiro: Shadows Die Twice",
+    "Developer": "From Software",
+    "Description": "Your death won’t come easily. Enter the world of late 1500s Sengoku Japan; a brutal, bloody period of constant life-and-death conflict. As tensions rise, a compelling new story unfolds amongst the chaos. Introducing Sekiro: Shadows Die Twice, a dark and twisted new gameplay experience…",
+    "PosterImage": "GameStore.Images.sekP.jpg",
+    "HeadImage": "GameStore.Images.sekH.jpg",
+    "ResourcePosterImage": "sekP.jpg",
+    "Metascore": 0,
+    "UserScore": 0,
+    "AgeLimit": "18+",
+    "Year": 2019,
+    "IsAlreadyReleased": false,
+    "IsAlreadyAddedToLibrary": false,
+    "MetacriticUrl": "https://www.metacritic.com/game/playstation-4/sekiro-shadows-die-twice",
+    "CriticReviewUrl": "https://www.metacritic.com/game/playstation-4/sekiro-shadows-die-twice/critic-reviews",
+    "UserReviewUrl": "https://www.metacritic.com/game/playstation-4/sekiro-shadows-die-twice/user-reviews"
+  },
+  {
+    "ganers": [
+      "Action Adventure",
+      "Fantasy"
+    ],
+    "platforms": [
+      "Nintendo 64"
+    ],
+    "Name": "The Legend of Zelda",
+    "Developer": "Nintendo",
+    "Description": "As a young boy, Link is tricked by Ganondorf, the King of the Gerudo Thieves. The evil human uses Link to gain access to the Sacred Realm, where he places his tainted hands on Triforce and transforms the beautiful Hyrulean landscape into a barren wasteland. Link is determined to fix the…",
+    "PosterImage": "GameStore.Images.legofzelP.jpg",
+    "HeadImage": "GameStore.Images.legofzelH.jpg",
+    "ResourcePosterImage": "legofzelP.jpg",
+    "Metascore": 99,
+    "UserScore": 9.1,
+    "AgeLimit": "Everyone",
+    "Year": 1998,
+    "IsAlreadyReleased": true,
+    "IsAlreadyAddedToLibrary": false,
+    "MetacriticUrl": "https://www.metacritic.com/game/nintendo-64/the-legend-of-zelda-ocarina-of-time",
+    "CriticReviewUrl": "https://www.metacritic.com/game/nintendo-64/the-legend-of-zelda-ocarina-of-time/critic-reviews",
+    "UserReviewUrl": "https://www.metacritic.com/game/nintendo-64/the-legend-of-zelda-ocarina-of-time/user-reviews"
+  },
+  {
+    "ganers": [
+      "Sports",
+      "Alternative",
+      "Skateboarding"
+    ],
+    "platforms": [
+      "PS",
+      "PC"
+    ],
+    "Name": "Tony Hawk’s Pro Skater 2",
+    "Developer": "Neversoft Entertainment",
+    "Description": "As most major publishers' development efforts shift to any number of next-generation platforms, Tony Hawk 2 will likely stand as one of the last truly fantastic games to be released on the PlayStation.",
+    "PosterImage": "GameStore.Images.prskP.jpg",
+    "HeadImage": "GameStore.Images.prskH.jpg",
+    "ResourcePosterImage": "prskP.jpg",
+    "Metascore": 98,
+    "UserScore": 7.4,
+    "AgeLimit": "13+",
+    "Year": 2000,
+    "IsAlreadyReleased": true,
+    "IsAlreadyAddedToLibrary": false,
+    "MetacriticUrl": "https://www.metacritic.com/game/playstation/tony-hawks-pro-skater-2",
+    "CriticReviewUrl": "https://www.metacritic.com/game/playstation/tony-hawks-pro-skater-2/critic-reviews",
+    "UserReviewUrl": "https://www.metacritic.com/game/playstation/tony-hawks-pro-skater-2/user-reviews"
+  },
+  {
+    "ganers": [
+      "Action Adventure", 
+      "Modern", 
+      "Open-World"
+    ],
+    "platforms": [
+      "PS4",
+      "Xbox One",
+      "PC",
+      "Xbox 360",
+      "PS3"
+    ],
+    "Name": "Grand Theft Auto V",
+    "Developer": "Rockstar",
+    "Description": "Grand Theft Auto 5 melds storytelling and gameplay in unique ways as players repeatedly jump in and out of the lives of the game's three protagonists, playing all sides of the game's interwoven story.",
+    "PosterImage": "GameStore.Images.gtavP.jpg",
+    "HeadImage": "GameStore.Images.gtavH.jpg",
+    "ResourcePosterImage": "gtavP.jpg",
+    "Metascore": 97,
+    "UserScore": 7.8,
+    "AgeLimit": "18+",
+    "Year": 2014,
+    "IsAlreadyReleased": true,
+    "IsAlreadyAddedToLibrary": false,
+    "MetacriticUrl": "https://www.metacritic.com/game/xbox-one/grand-theft-auto-v",
+    "CriticReviewUrl": "https://www.metacritic.com/game/xbox-one/grand-theft-auto-v/critic-reviews",
+    "UserReviewUrl": "https://www.metacritic.com/game/xbox-one/grand-theft-auto-v/user-reviews"
+  },
+  {
+    "ganers": [
+      "Action Adventure",
+      "Open-World"
+    ],
+    "platforms": [
+      "Switch"
+    ],
+    "Name": "The Legend of Zelda: BoW",
+    "Developer": "Nintendo",
+    "Description": " Forget everything you know about The Legend of Zelda games. Step into a world of discovery, exploration and adventure in The Legend of Zelda: Breath of the Wild, a boundary-breaking new game in the acclaimed series. Travel across fields, through forests and to mountain peaks as you discover…",
+    "PosterImage": "GameStore.Images.lozbowP.jpg",
+    "HeadImage": "GameStore.Images.lozbowH.jpg",
+    "ResourcePosterImage": "lozbowP.jpg",
+    "Metascore": 97,
+    "UserScore": 8.5,
+    "AgeLimit": "10+",
+    "Year": 2017,
+    "IsAlreadyReleased": true,
+    "IsAlreadyAddedToLibrary": false,
+    "MetacriticUrl": "https://www.metacritic.com/game/switch/the-legend-of-zelda-breath-of-the-wild",
+    "CriticReviewUrl": "https://www.metacritic.com/game/switch/the-legend-of-zelda-breath-of-the-wild/critic-reviews",
+    "UserReviewUrl": "https://www.metacritic.com/game/switch/the-legend-of-zelda-breath-of-the-wild/user-reviews"
+  },
+  {
+    "ganers": [
+      "Action",
+      "Shooter",
+      "First-Person",
+      "Tactical"
+    ],
+    "platforms": [
+      "PS3",
+      "Xbox 360",
+      "PC"
+    ],
+    "Name": "Battlefield 3",
+    "Developer": "EA DICE",
+    "Description": "As bullets whiz by, walls crumble, and explosions throw you to the ground, the battlefield feels more alive and interactive than ever before. In Battlefield 3, players step into the role of the elite U.S. Marines where they will experience heart-pounding single player missions and…",
+    "PosterImage": "GameStore.Images.bf3P.jpg",
+    "HeadImage": "GameStore.Images.bf3H.jpg",
+    "ResourcePosterImage": "bf3P.jpg",
+    "Metascore": 89,
+    "UserScore": 7.6,
+    "AgeLimit": "18+",
+    "Year": 2011,
+    "IsAlreadyReleased": true,
+    "IsAlreadyAddedToLibrary": false,
+    "MetacriticUrl": "https://www.metacritic.com/game/pc/battlefield-3",
+    "CriticReviewUrl": "https://www.metacritic.com/game/pc/battlefield-3/critic-reviews",
+    "UserReviewUrl": "https://www.metacritic.com/game/pc/battlefield-3/user-reviews"
+  },
+  {
+    "ganers": [
+      "General", 
+      "Action Adventure", 
+      "Modern"
+    ],
+    "platforms": [
+      "PS3"
+    ],
+    "Name": "The Last Of Us",
+    "Developer": "Naughty Dog",
+    "Description": "Twenty years after a pandemic radically transformed known civilization, infected humans run amuck and survivors kill one another for sustenance and weapons - literally whatever they can get their hands on. Joel, a salty survivor, is hired to smuggle a fourteen-year-old girl, Ellie, out of a…",
+    "PosterImage": "GameStore.Images.louP.jpg",
+    "HeadImage": "GameStore.Images.louH.jpg",
+    "ResourcePosterImage": "louP.jpg",
+    "Metascore": 95,
+    "UserScore": 9.2,
+    "AgeLimit": "18+",
+    "Year": 2013,
+    "IsAlreadyReleased": true,
+    "IsAlreadyAddedToLibrary": false,
+    "MetacriticUrl": "https://www.metacritic.com/game/playstation-3/the-last-of-us",
+    "CriticReviewUrl": "https://www.metacritic.com/game/playstation-3/the-last-of-us/critic-reviews",
+    "UserReviewUrl": "https://www.metacritic.com/game/playstation-3/the-last-of-us/user-reviews"
+  },
+  {
+    "ganers": [
+      "Action RPG", 
+      "Role-Playing", 
+      "Action RPG"
+    ],
+    "platforms": [
+      "PS4",
+      "Xbox One",
+      "PC"
+    ],
+    "Name": "The Witcher 3: Wild Hunt",
+    "Developer": "CD Projekt Red Studio",
+    "Description": "With the Empire attacking the Kingdoms of the North and the Wild Hunt, a cavalcade of ghastly riders, breathing down your neck, the only way to survive is to fight back. As Geralt of Rivia, a master swordsman and monster hunter, leave none of your enemies standing. Explore a gigantic open… ",
+    "PosterImage": "GameStore.Images.tw3P.jpg",
+    "HeadImage": "GameStore.Images.tw3H.jpg",
+    "ResourcePosterImage": "tw3P.jpg",
+    "Metascore": 93,
+    "UserScore": 9.4,
+    "AgeLimit": "18+",
+    "Year": 2015,
+    "IsAlreadyReleased": true,
+    "IsAlreadyAddedToLibrary": false,
+    "MetacriticUrl": "https://www.metacritic.com/game/pc/the-witcher-3-wild-hunt",
+    "CriticReviewUrl": "https://www.metacritic.com/game/pc/the-witcher-3-wild-hunt/critic-reviews",
+    "UserReviewUrl": "https://www.metacritic.com/game/pc/the-witcher-3-wild-hunt/user-reviews"
+  },
+  {
+    "ganers": [
+      "Role-Playing", 
+      "First-Person"
+    ],
+    "platforms": [
+      "PS3",
+      "Xbox 360",
+      "PC"
+    ],
+    "Name": "The Elder Scrolls V: Skyrim",
+    "Developer": "Bethesda",
+    "Description": "The next chapter in the Elder Scrolls saga arrives from the Bethesda Game Studios. Skyrim reimagines the open-world fantasy epic, bringing to life a complete virtual world open for you to explore any way you choose. Play any type of character you can imagine, and do whatever you want; the…",
+    "PosterImage": "GameStore.Images.tesVP.jpg",
+    "HeadImage": "GameStore.Images.tesVH.jpg",
+    "ResourcePosterImage": "tesVP.jpg",
+    "Metascore": 94,
+    "UserScore": 8.2,
+    "AgeLimit": "18+",
+    "Year": 2011,
+    "IsAlreadyReleased": true,
+    "IsAlreadyAddedToLibrary": false,
+    "MetacriticUrl": "https://www.metacritic.com/game/pc/the-elder-scrolls-v-skyrim",
+    "CriticReviewUrl": "https://www.metacritic.com/game/pc/the-elder-scrolls-v-skyrim/critic-reviews",
+    "UserReviewUrl": "https://www.metacritic.com/game/pc/the-elder-scrolls-v-skyrim/user-reviews"
+  },
+  {
+    "ganers": [
+      "Role-Playing", 
+      "Action RPG", 
+      "First-Person"
+    ],
+    "platforms": [
+      "PS3",
+      "Xbox 360",
+      "PC"
+    ],
+    "Name": "Fallout: New Vegas",
+    "Developer": "Obsidian Entertainmen",
+    "Description": "The latest game in the post-nuclear RPG series is being developed by many members of the Fallout 1 and 2 team at Obsidian Entertainment using the Fallout 3 engine.",
+    "PosterImage": "GameStore.Images.fnvP.jpg",
+    "HeadImage": "GameStore.Images.fnvH.jpg",
+    "ResourcePosterImage": "fnvP.jpg",
+    "Metascore": 84,
+    "UserScore": 8.7,
+    "AgeLimit": "18+",
+    "Year": 2010,
+    "IsAlreadyReleased": true,
+    "IsAlreadyAddedToLibrary": false,
+    "MetacriticUrl": "https://www.metacritic.com/game/pc/fallout-new-vegas",
+    "CriticReviewUrl": "https://www.metacritic.com/game/pc/fallout-new-vegas/critic-reviews",
+    "UserReviewUrl": "https://www.metacritic.com/game/pc/fallout-new-vegas/user-reviews"
+  },
+  {
+    "ganers": [
+      "Strategy", 
+      "Turn-Based", 
+      "Historic" 
+    ],
+    "platforms": [
+      "PC"
+    ],
+    "Name": "Sid Meier's Civilization V",
+    "Developer": "Firaxis Games",
+    "Description": "With over nine million units sold worldwide, and unprecedented critical acclaim from fans and press around the world, Sid Meier's Civilization is recognized as one of the greatest strategy franchises of all-time. Now, Firaxis Games will take this incredibly fun and addictive strategy game to… ",
+    "PosterImage": "GameStore.Images.civVP.jpg",
+    "HeadImage": "GameStore.Images.civVH.jpg",
+    "ResourcePosterImage": "civVP.jpg",
+    "Metascore": 90,
+    "UserScore": 8.0,
+    "AgeLimit": "10+",
+    "Year": 2010,
+    "IsAlreadyReleased": true,
+    "IsAlreadyAddedToLibrary": false,
+    "MetacriticUrl": "https://www.metacritic.com/game/pc/sid-meiers-civilization-v",
+    "CriticReviewUrl": "https://www.metacritic.com/game/pc/sid-meiers-civilization-v/critic-reviews",
+    "UserReviewUrl": "https://www.metacritic.com/game/pc/sid-meiers-civilization-v/user-reviews"
+  },
+  {
+    "ganers": [
+      "Sci-Fi", 
+      "Space", 
+      "Combat"
+    ],
+    "platforms": [
+      "PC"
+    ],
+    "Name": "FTL: Faster Than Light",
+    "Developer": "Subset Games",
+    "Description": "You manage the Kestrel and its crew as you explore the galaxy. Strategic, real-time combat involves managing power between essential systems and choosing which enemy systems to target. Meanwhile, you control your crew to keep the ship functioning and fight off intruders. The combat is…",
+    "PosterImage": "GameStore.Images.ftlP.jpg",
+    "HeadImage": "GameStore.Images.ftlH.jpg",
+    "ResourcePosterImage": "ftlP.jpg",
+    "Metascore": 84,
+    "UserScore": 8.4,
+    "AgeLimit": "Everyone",
+    "Year": 2012,
+    "IsAlreadyReleased": true,
+    "IsAlreadyAddedToLibrary": false,
+    "MetacriticUrl": "https://www.metacritic.com/game/pc/ftl-faster-than-light",
+    "CriticReviewUrl": "https://www.metacritic.com/game/pc/ftl-faster-than-light/critic-reviews",
+    "UserReviewUrl": "https://www.metacritic.com/game/pc/ftl-faster-than-light/user-reviews"
+  },
+  {
+    "ganers": [
+      "Action Adventure", 
+      "Open-World"
+    ],
+    "platforms": [
+      "PS4"
+    ],
+    "Name": "Days Gone",
+    "Developer": "Sony",
+    "Description": "Set in the beautiful, volcanic scarred high-desert of the Pacific Northwest, Days Gone is an open-world action-adventure game in which you assume the role of Deacon St. John, a Drifter and bounty hunter who would rather risk the dangers of the broken road than live in one of the “safe”…",
+    "PosterImage": "GameStore.Images.dgP.jpg",
+    "HeadImage": "GameStore.Images.dgH.jpg",
+    "ResourcePosterImage": "dgP.jpg",
+    "Metascore": 0,
+    "UserScore": 0,
+    "AgeLimit": "18+",
+    "Year": 2019,
+    "IsAlreadyReleased": false,
+    "IsAlreadyAddedToLibrary": false,
+    "MetacriticUrl": "https://www.metacritic.com/game/playstation-4/days-gone",
+    "CriticReviewUrl": "https://www.metacritic.com/game/playstation-4/days-gone/critic-reviews",
+    "UserReviewUrl": "https://www.metacritic.com/game/playstation-4/days-gone/user-reviews"
+  },
+  {
+    "ganers": [
+      "Role-Playing", 
+      "Action RPG"
+    ],
+    "platforms": [
+      "PS3",
+      "Xbox 360",
+      "PC"
+    ],
+    "Name": "Mass Effect 2",
+    "Developer": "BioWare",
+    "Description": "The Mass Effect trilogy is a science fiction adventure set in a vast universe filled with dangerous alien life forms and mysterious uncharted planets. In this dark second chapter, Saren’s evil army of Geth soldiers has just been defeated, and humans, who are still struggling to make their…",
+    "PosterImage": "GameStore.Images.me2P.jpg",
+    "HeadImage": "GameStore.Images.me2H.jpg",
+    "ResourcePosterImage": "me2P.jpg",
+    "Metascore": 96,
+    "UserScore": 8.9,
+    "AgeLimit": "18+",
+    "Year": 2010,
+    "IsAlreadyReleased": true,
+    "IsAlreadyAddedToLibrary": false,
+    "MetacriticUrl": "https://www.metacritic.com/game/xbox-360/mass-effect-2",
+    "CriticReviewUrl": "https://www.metacritic.com/game/xbox-360/mass-effect-2/critic-reviews",
+    "UserReviewUrl": "https://www.metacritic.com/game/xbox-360/mass-effect-2/user-reviews"
+  },
+  {
+    "ganers": [
+      "Action", 
+      "General"
+    ],
+    "platforms": [
+      "PS3",
+      "Xbox 360",
+      "PC"
+    ],
+    "Name": "Lego Star Wars",
+    "Developer": "Traveller's Tales",
+    "Description": "From the Trade Federation's negotiations with Obi-Wan Kenobi and Qui-Gon Jinn in The Phantom Menace to the space battle above Endor in Return of the Jedi, The Complete Saga allows players to kick some brick through 36 Story Mode levels, including Episode II's newly added high-speed pursuit...",
+    "PosterImage": "GameStore.Images.lswP.jpg",
+    "HeadImage": "GameStore.Images.lswH.jpg",
+    "ResourcePosterImage": "lswP.jpg",
+    "Metascore": 80,
+    "UserScore": 7.6,
+    "AgeLimit": "10+",
+    "Year": 2007,
+    "IsAlreadyReleased": true,
+    "IsAlreadyAddedToLibrary": false,
+    "MetacriticUrl": "https://www.metacritic.com/game/xbox-360/lego-star-wars-the-complete-saga",
+    "CriticReviewUrl": "https://www.metacritic.com/game/xbox-360/lego-star-wars-the-complete-saga/critic-reviews",
+    "UserReviewUrl": "https://www.metacritic.com/game/xbox-360/lego-star-wars-the-complete-saga/user-reviews"
+  }
+]
