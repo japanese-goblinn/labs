@@ -1,0 +1,31 @@
+{% extends 'main/base.html' %}
+{% block content %}
+    {% if book_search %}
+        {% for book in book_search %}
+            <div class="card shadow border-primary mb-3" style="max-width: 20rem; margin-top: 30px;">
+            <div class="card-header">
+                <a class='book-card-title' href="{% url 'book_detail' pk=book.pk %}">{{ book.name }}</a>
+            </div>
+            <div class="card-body">
+                <p class="card-title"><strong>Author:</strong> {{ book.author }}</p>
+                <p class="card-text"><strong>Geners:</strong> {{ book.get_genres_string }}</p>
+                <p class="card-text"><strong>Price:</strong> {{ book.get_price }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    {% endif %}
+    {% if author_search %}
+        {% for author in author_search %}
+            <div class="card shadow mb-3" style="max-width: 20rem; margin-top: 40px;">
+              <div class="card-body">
+                <a href={% url 'author_detail' author.id %}>{{ author }}</a>
+              </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+    {% if not book_search and not author_search %}
+        <div class="container">
+            <h2 style="font-weight: 700; text-align: center;">Nothing founded</h2>
+        </div>
+    {% endif %}
+{% endblock %}

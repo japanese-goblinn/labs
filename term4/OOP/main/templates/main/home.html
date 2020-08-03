@@ -1,0 +1,218 @@
+{% extends 'main/base.html' %}
+{% block content %}
+{#     <div>#}
+{#         {% if easter_egg %}#}
+{#             <h1>This site is made by @kirillgorbachyonok</h1>#}
+{#         {% endif %}#}
+{#     </div>#}
+        {% if user.is_authenticated %}
+            {% if not user.is_superuser %}
+                <h2>Recommendations for you, {{ user.profile.name }}</h2>
+                <hr>
+                {% if books %}
+                    <div class="box">
+                        {% for book in books %}
+                            <div class="card card-in-box border-primary mb-3" style="max-width: 20rem;">
+                                <div class="card-header">
+                                    <a class='book-card-title' href="{% url 'book_detail' pk=book.pk %}">{{ book.name }}</a>
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-title"><strong>Author:</strong> {{ book.author }}</p>
+                                    <p class="card-text"><strong>Price:</strong> {{ book.get_price }}</p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p>No recommendations for you :c</p>
+                {% endif %}
+            <h2 style="margin-top: 30px">Rent period is about to expire</h2>
+            <hr>
+                {% if recently_taken %}
+                    <div class="box">
+                        {% for r_book in recently_taken %}
+                            <div class="card card-in-box border-primary mb-3" style="max-width: 20rem;">
+                                <div class="card-header">
+                                    <a class='book-card-title' href="{% url 'book_detail' pk=r_book.book.pk %}">{{ r_book.book.name }}</a>
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-title"><strong>Author:</strong> {{ r_book.book.author }}</p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p>You're not taking anything in a while</p>
+                {% endif %}
+            {% endif %}
+            {% if user.is_superuser %}
+                <h2>Admin Dashboard</h2>
+                <hr>
+                <h2 style="font-weight: 700">2019</h2>
+                 <div class="row">
+                    <div class="col-sm-8" style="margin-top: 30px;" url-enpoint="{% url 'chart_data_get' %}">
+                        <canvas id="myChart" width="auto" height="auto"></canvas>
+                    </div>
+                    <div class="col-sm-4" style="margin-top: 20px;">
+                        <div class="card shadow text-white bg-info mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title"><a style="color: white;" href="{% url 'account_sales' %}">Total income</a></h5>
+                            <h4 class="card-text" style="font-weight: 700">$ {{ total_income }}</h4>
+                        </div>
+                        </div>
+                        <div class="card shadow text-white bg-warning mb-3">
+                            <div class="card-body">
+                            <h5 class="card-title">This month income</h5>
+                            <h4 class="card-text" style="font-weight: 700">$ {{ month_income }}</h4>
+                        </div>
+                        </div>
+                        <div class="card shadow text-white bg-secondary mb-3">
+                            <div class="card-body">
+                            <h5 class="card-title">Users registered</h5>
+                            <h4 class="card-text" style="font-weight: 700">{{ users }}</h4>
+                        </div>
+                        </div>
+                        <div class="card shadow text-white bg-success mb-3">
+                            <div class="card-body">
+                            <h5 class="card-title">Books available</h5>
+                            <h4 class="card-text" style="font-weight: 700">{{ books }}</h4>
+                        </div>
+                        </div>
+                        <div class="card shadow text-white bg-primary mb-3">
+                            <div class="card-body">
+                            <h5 class="card-title">Copies available</h5>
+                            <h4 class="card-text" style="font-weight: 700">{{ copies }}</h4>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endif %}
+
+             <script>
+                var endpoint = "{% url 'chart_data_get' %}";
+                var defaultData = [];
+                var labels = []
+                $.ajax({
+                    method: "GET",
+                    url: endpoint,
+                    success: function (data) {
+                        labels = data.labels
+                        defaultData = data.default
+                        setChart()
+                    }
+                });
+
+                function number_format(number, decimals, dec_point, thousands_sep) {
+                  number = (number + '').replace(',', '').replace(' ', '');
+                  var n = !isFinite(+number) ? 0 : +number,
+                    prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
+                    sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
+                    dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
+                    s = '',
+                    toFixedFix = function(n, prec) {
+                      var k = Math.pow(10, prec);
+                      return '' + Math.round(n * k) / k;
+                    };
+                  s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
+                  if (s[0].length > 3) {
+                    s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
+                  }
+                  if ((s[1] || '').length < prec) {
+                    s[1] = s[1] || '';
+                    s[1] += new Array(prec - s[1].length + 1).join('0');
+                  }
+                  return s.join(dec);
+                }
+
+                function setChart() {
+                    var ctx = document.getElementById("myChart");
+                    var myLineChart = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: "Month income",
+                                lineTension: 0.3,
+                                backgroundColor: "rgba(78, 115, 223, 0.05)",
+                                borderColor: "rgba(78, 115, 223, 1)",
+                                pointRadius: 3,
+                                pointBackgroundColor: "rgba(78, 115, 223, 1)",
+                                pointBorderColor: "rgba(78, 115, 223, 1)",
+                                pointHoverRadius: 3,
+                                pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
+                                pointHoverBorderColor: "rgba(78, 115, 223, 1)",
+                                pointHitRadius: 10,
+                                pointBorderWidth: 2,
+                                data: defaultData,
+                            }],
+                        },
+                        options: {
+                            maintainAspectRatio: false,
+                            layout: {
+                                padding: {
+                                    left: 10,
+                                    right: 25,
+                                    top: 25,
+                                    bottom: 0
+                                }
+                            },
+                            scales: {
+                                xAxes: [{
+                                    time: {
+                                        unit: 'date'
+                                    },
+                                    gridLines: {
+                                        display: false,
+                                        drawBorder: false
+                                    },
+                                    ticks: {
+                                        maxTicksLimit: 7
+                                    }
+                                }],
+                                yAxes: [{
+                                    ticks: {
+                                        maxTicksLimit: 5,
+                                        padding: 10,
+                                        callback: function (value, index, values) {
+                                            return '$' + number_format(value);
+                                        }
+                                    },
+                                    gridLines: {
+                                        color: "rgb(234, 236, 244)",
+                                        zeroLineColor: "rgb(234, 236, 244)",
+                                        drawBorder: false,
+                                        borderDash: [2],
+                                        zeroLineBorderDash: [2]
+                                    }
+                                }],
+                            },
+                            legend: {
+                                display: false
+                            },
+                            tooltips: {
+                                backgroundColor: "rgb(255,255,255)",
+                                bodyFontColor: "#858796",
+                                titleMarginBottom: 10,
+                                titleFontColor: '#6e707e',
+                                titleFontSize: 14,
+                                borderColor: '#dddfeb',
+                                borderWidth: 1,
+                                xPadding: 15,
+                                yPadding: 15,
+                                displayColors: false,
+                                intersect: false,
+                                mode: 'index',
+                                caretPadding: 10,
+                                callbacks: {
+                                    label: function (tooltipItem, chart) {
+                                        var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
+                                        return datasetLabel + ': $' + number_format(tooltipItem.yLabel);
+                                    }
+                                }
+                            }
+                        },
+                    })
+                }
+            </script>
+{% endblock %}

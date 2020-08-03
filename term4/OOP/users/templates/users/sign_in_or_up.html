@@ -1,0 +1,112 @@
+{% load static %}
+{% load widget_tweaks %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/sign_in_up.css' %}">
+</head>
+<body>
+    <div class="{{ choose }}" id="container">
+    <div class="form-container sign-up-container">
+        <form action="{% url 'register' %}" method="POST" novalidate>
+            {% csrf_token %}
+            <h1 class="header-h1">Create Account</h1>
+            {% for field in form.visible_fields %}
+                <div class="form-group form-element">
+                    {% if form.is_bound %}
+                        {% if field.errors %}
+                            {% render_field field class="form-control is-invalid" placeholder=field.label %}
+                            {% for error in field.errors %}
+                                <div class="invalid-feedback">
+                                    {{ error }}
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            {% render_field field class="form-control is-valid" placeholder=field.label %}
+                        {% endif %}
+                    {% else %}
+                        {% render_field field class="form-control" placeholder=field.label %}
+                    {% endif %}
+                    {% if field.help_text %}
+                        <small class="form-text text-muted">{{ field.help_text }}</small>
+                    {% endif %}
+                </div>
+            {% endfor %}
+            <button type="submit" class='register-button'>Register</button>
+        </form>
+    </div>
+    <div class="form-container sign-in-container">
+        <form action="{% url 'login' %}" method="POST" novalidate>
+            {% csrf_token %}
+            <h1 class='header-h1'>Login</h1>
+            {% if form.non_field_errors %}
+                <div class="alert alert-danger form-element" role="alert">
+                  {% for error in form.non_field_errors %}
+                    {{ error }}
+                  {% endfor %}
+                </div>
+            {% endif %}
+            {% for field in form.visible_fields %}
+                <div class="form-group form-element">
+                    {% if form.is_bound %}
+                        {% if field.errors %}
+                            {% render_field field class="form-control is-invalid"%}
+                            {% for error in field.errors %}
+                                <div class="invalid-feedback">
+                                    {{ error }}
+                                </div>
+                            {% endfor %}
+                        {% elif form.non_field_errors %}
+                            {% render_field field class="form-control is-invalid"%}
+                        {% else %}
+                            {% render_field field class="form-control is-valid"%}
+                        {% endif %}
+                    {% else %}
+                        {% render_field field class="form-control" %}
+                    {% endif %}
+                </div>
+            {% endfor %}
+            <a href="{% url 'password_reset' %}">Forgot your password?</a>
+            <button type='submit'>Login</button>
+        </form>
+
+    </div>
+    <div class="overlay-container">
+        <div class="overlay">
+        <div class="overlay-panel overlay-left">
+            <h1>Welcome back, book lover!</h1>
+            <p>To comeback to your favourite books, please login</p>
+            <button class="ghost" id="signIn">Login</button>
+        </div>
+        <div class="overlay-panel overlay-right">
+            <h1>Hello, friend!</h1>
+            <p>Enter your personal details and start exploring ProjectLib</p>
+            <button class="ghost" id="signUp">Register</button>
+        </div>
+    </div>
+    </div>
+</div>
+<script>
+    const signUpButton = document.getElementById('signUp');
+    const signInButton = document.getElementById('signIn');
+    const container = document.getElementById('container');
+
+    signUpButton.addEventListener('click', () => {
+        container.classList.add('right-panel-active');
+        setTimeout(() => {
+            location.href = '/user/register/';
+        }, 483)
+    });
+
+    signInButton.addEventListener('click', () => {
+        container.classList.remove('right-panel-active');
+        setTimeout(() => {
+            location.href = '/user/login/';
+        }, 483)
+    });
+</script>
+</body>
+</html>
+

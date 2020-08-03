@@ -1,0 +1,7 @@
+.DS_Store
+.mypy_cache/
+.vscode/
+__pycache__/
+django_venv/
+db.sqlite3
+.idea/
