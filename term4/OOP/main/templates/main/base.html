@@ -1,0 +1,128 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>home.</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <a class="navbar-brand" href="{% url 'home' %}">ProjectLib</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor01">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item {% if request.path == '/all_books/' %} active {% endif %}">
+                  <a class="nav-link" href="{% url 'all_books' %}">All Books</a>
+                </li>
+                <li class="nav-item {% if request.path == '/all_authors/' %} active {% endif %}">
+                  <a class="nav-link" href="{% url 'all_authors' %}">All Authors</a>
+                </li>
+              </ul>
+              <form action="{% url 'search' %}" method="get" class="form-inline my-2 my-lg-0" style="margin-right: 10px">
+                <input name="search" class="form-control mr-sm-2" type="text" placeholder="Search">
+                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+              </form>
+                {% if not user.is_superuser %}
+                    <button type="button" class="btn btn-success" onclick="location.href = '/sales/transactions/'">
+                    Transactions <span class="badge badge-light">{{ user.sale_set.all.count }}</span>
+                    </button>
+                {% endif %}
+              <ul class="navbar-nav mr-right userpic">
+                  {% if user.is_authenticated %}
+                      <div class="dropdown">
+                          <div class="c-avatar has-dropdown dropdown-toggle" id="dropdownMenuAvatar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <img class="rounded-circle account-img profile-image" src="{{ user.profile.image.url }}">
+                          </div>
+                          <div class="dropdown-menu dropdown-menu-right drop-menu">
+                              <h6 class="dropdown-header">{{ user.username }}</h6>
+                              <div class="dropdown-divider"></div>
+                              <a class="dropdown-item" href="{%  url 'profile_update' %}">Edit Profile</a>
+                              {% if not user.is_superuser %}
+                                  <a class="dropdown-item" href="{% url 'user_books' %}">My Books</a>
+                              {% endif %}
+                              <div class="dropdown-divider"></div>
+                               <a class="dropdown-item text-danger" data-toggle="modal" data-target="#logoutModal" href="#logoutModal">
+                                      Logout
+                               </a>
+                          </div>
+                      </div>
+                      <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                  <div class="modal-header">
+                                      <h5 class="modal-title" id="logoutModalLabel">Are you sure want to logout?</h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                      </button>
+                                  </div>
+                                  <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                      <a type="button" class="btn btn-danger float-right" href="{% url 'logout'%}">
+                                          Logout
+                                      </a>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  {% else %}
+                    <li class="nav-item">
+                      <a class="nav-link" href="{% url 'login' %}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'register' %}">Register</a>
+                    </li>
+                  {% endif %}
+              </ul>
+            </div>
+        </nav>
+        <div>
+            {% if messages %}
+              {% for message in messages %}
+              <div class="alert alert-dismissible alert-{{ message.tags }}">
+                  <button type="button" class="close" data-dismiss="alert">&times;</button>
+                  <strong>{{ message }}</strong></a>.
+              </div>
+              {% endfor %}
+            {% endif %}
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="" crossorigin="anonymous"></script>
+
+        <div class="container">
+          <div class="content-container">
+            {% block content %}
+            {% endblock %}
+          </div>
+        </div>
+        <div class="container">
+            {% block pagination %}
+               {% if is_paginated %}
+                  {% if page_obj.has_previous %}
+                    <a class="btn btn-outline-primary mb-4" href="?page=1">First</a>
+                    <a class="btn btn-outline-primary mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                  {% endif %}
+
+                  {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                      <a class="btn btn-primary mb-4" href="?page={{ num }}">{{ num }}</a>
+                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                      <a class="btn btn-outline-primary mb-4" href="?page={{ num }}">{{ num }}</a>
+                    {% endif %}
+                  {% endfor %}
+
+                  {% if page_obj.has_next %}
+                    <a class="btn btn-outline-primary mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+                    <a class="btn btn-outline-primary mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+                  {% endif %}
+                {% endif %}
+            {% endblock %}
+        </div>
+    </body>
+</html>

@@ -1,0 +1,12 @@
+{% extends 'main/base.html' %}
+{% block content %}
+    <ul>
+        {% for author in authors %}
+            <div class="card shadow mb-3" style="max-width: 20rem; margin-top: 30px;">
+              <div class="card-body">
+                <a href={% url 'author_detail' author.id %}>{{ author }}</a>
+              </div>
+            </div>
+        {% endfor %}
+    </ul>
+{% endblock content %}

@@ -1,0 +1,885 @@
+|lab2
+R <= R2.DB_MAX_OUTPUT_PORT_TYPE
+inpuls => trigger9:inst22.clk
+inpuls => inst26.IN0
+inpuls => trigger9:inst16.clk
+inpuls => inst19.IN0
+init => andWithRes:inst45.ResX
+init => andWithRes:inst18.ResX
+COSTIL[0] => andWithRes:inst45.Q[0]
+COSTIL[1] => andWithRes:inst45.Q[1]
+COSTIL[2] => andWithRes:inst45.Q[2]
+COSTIL[3] => andWithRes:inst45.Q[3]
+COSTIL[4] => andWithRes:inst45.Q[4]
+COSTIL[5] => andWithRes:inst45.Q[5]
+COSTIL[6] => andWithRes:inst45.Q[6]
+COSTIL[7] => andWithRes:inst45.Q[7]
+COSTIL[8] => andWithRes:inst45.Q[8]
+Q[0] <= withoutLastBit:inst15.P[0]
+Q[1] <= withoutLastBit:inst15.P[1]
+Q[2] <= withoutLastBit:inst15.P[2]
+Q[3] <= withoutLastBit:inst15.P[3]
+Q[4] <= withoutLastBit:inst15.P[4]
+Q[5] <= withoutLastBit:inst15.P[5]
+Q[6] <= withoutLastBit:inst15.P[6]
+Q[7] <= withoutLastBit:inst15.P[7]
+B[0] => makeP:inst4.B[0]
+B[1] => makeP:inst4.B[1]
+B[2] => makeP:inst4.B[2]
+B[3] => makeP:inst4.B[3]
+A[0] => makeAorS:inst456.B[0]
+A[0] => inv:inst2.num[0]
+A[1] => makeAorS:inst456.B[1]
+A[1] => inv:inst2.num[1]
+A[2] => makeAorS:inst456.B[2]
+A[2] => inv:inst2.num[2]
+A[3] => makeAorS:inst456.B[3]
+A[3] => inv:inst2.num[3]
+
+
+|lab2|add_bit9:inst544
+S[0] <= HA:inst17.s
+S[1] <= HA:inst13.s
+S[2] <= HA:inst16.s
+S[3] <= HA:inst15.s
+S[4] <= HA:inst9.s
+S[5] <= HA:inst14.s
+S[6] <= HA:inst2.s
+S[7] <= HA:inst1.s
+S[8] <= HA:inst.s
+A[0] => HA:inst17.a
+A[1] => HA:inst13.a
+A[2] => HA:inst16.a
+A[3] => HA:inst15.a
+A[4] => HA:inst9.a
+A[5] => HA:inst14.a
+A[6] => HA:inst2.a
+A[7] => HA:inst1.a
+A[8] => HA:inst.a
+
+
+|lab2|add_bit9:inst544|HA:inst15
+p <= inst6.DB_MAX_OUTPUT_PORT_TYPE
+a => inst6.IN0
+a => inst7.IN0
+b => inst6.IN1
+b => inst7.IN1
+s <= inst7.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab2|add_bit9:inst544|HA:inst16
+p <= inst6.DB_MAX_OUTPUT_PORT_TYPE
+a => inst6.IN0
+a => inst7.IN0
+b => inst6.IN1
+b => inst7.IN1
+s <= inst7.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab2|add_bit9:inst544|HA:inst13
+p <= inst6.DB_MAX_OUTPUT_PORT_TYPE
+a => inst6.IN0
+a => inst7.IN0
+b => inst6.IN1
+b => inst7.IN1
+s <= inst7.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab2|add_bit9:inst544|HA:inst17
+p <= inst6.DB_MAX_OUTPUT_PORT_TYPE
+a => inst6.IN0
+a => inst7.IN0
+b => inst6.IN1
+b => inst7.IN1
+s <= inst7.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab2|add_bit9:inst544|HA:inst9
+p <= inst6.DB_MAX_OUTPUT_PORT_TYPE
+a => inst6.IN0
+a => inst7.IN0
+b => inst6.IN1
+b => inst7.IN1
+s <= inst7.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab2|add_bit9:inst544|HA:inst14
+p <= inst6.DB_MAX_OUTPUT_PORT_TYPE
+a => inst6.IN0
+a => inst7.IN0
+b => inst6.IN1
+b => inst7.IN1
+s <= inst7.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab2|add_bit9:inst544|HA:inst2
+p <= inst6.DB_MAX_OUTPUT_PORT_TYPE
+a => inst6.IN0
+a => inst7.IN0
+b => inst6.IN1
+b => inst7.IN1
+s <= inst7.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab2|add_bit9:inst544|HA:inst1
+p <= inst6.DB_MAX_OUTPUT_PORT_TYPE
+a => inst6.IN0
+a => inst7.IN0
+b => inst6.IN1
+b => inst7.IN1
+s <= inst7.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab2|add_bit9:inst544|HA:inst
+p <= inst6.DB_MAX_OUTPUT_PORT_TYPE
+a => inst6.IN0
+a => inst7.IN0
+b => inst6.IN1
+b => inst7.IN1
+s <= inst7.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab2|trigger9:inst22
+B[0] <= inst5.DB_MAX_OUTPUT_PORT_TYPE
+B[1] <= inst3.DB_MAX_OUTPUT_PORT_TYPE
+B[2] <= inst4.DB_MAX_OUTPUT_PORT_TYPE
+B[3] <= inst2.DB_MAX_OUTPUT_PORT_TYPE
+B[4] <= inst8.DB_MAX_OUTPUT_PORT_TYPE
+B[5] <= inst1.DB_MAX_OUTPUT_PORT_TYPE
+B[6] <= inst.DB_MAX_OUTPUT_PORT_TYPE
+B[7] <= inst6.DB_MAX_OUTPUT_PORT_TYPE
+B[8] <= inst7.DB_MAX_OUTPUT_PORT_TYPE
+clk => inst7.CLK
+clk => inst6.CLK
+clk => inst.CLK
+clk => inst1.CLK
+clk => inst8.CLK
+clk => inst2.CLK
+clk => inst4.CLK
+clk => inst3.CLK
+clk => inst5.CLK
+A[0] => inst5.DATAIN
+A[1] => inst3.DATAIN
+A[2] => inst4.DATAIN
+A[3] => inst2.DATAIN
+A[4] => inst8.DATAIN
+A[5] => inst1.DATAIN
+A[6] => inst.DATAIN
+A[7] => inst6.DATAIN
+A[8] => inst7.DATAIN
+
+
+|lab2|LPM_ADD_SUB:inst11
+dataa[0] => alt_stratix_add_sub:stratix_adder.dataa[0]
+dataa[1] => alt_stratix_add_sub:stratix_adder.dataa[1]
+dataa[2] => alt_stratix_add_sub:stratix_adder.dataa[2]
+dataa[3] => alt_stratix_add_sub:stratix_adder.dataa[3]
+dataa[4] => alt_stratix_add_sub:stratix_adder.dataa[4]
+dataa[5] => alt_stratix_add_sub:stratix_adder.dataa[5]
+dataa[6] => alt_stratix_add_sub:stratix_adder.dataa[6]
+dataa[7] => alt_stratix_add_sub:stratix_adder.dataa[7]
+dataa[8] => alt_stratix_add_sub:stratix_adder.dataa[8]
+datab[0] => alt_stratix_add_sub:stratix_adder.datab[0]
+datab[1] => alt_stratix_add_sub:stratix_adder.datab[1]
+datab[2] => alt_stratix_add_sub:stratix_adder.datab[2]
+datab[3] => alt_stratix_add_sub:stratix_adder.datab[3]
+datab[4] => alt_stratix_add_sub:stratix_adder.datab[4]
+datab[5] => alt_stratix_add_sub:stratix_adder.datab[5]
+datab[6] => alt_stratix_add_sub:stratix_adder.datab[6]
+datab[7] => alt_stratix_add_sub:stratix_adder.datab[7]
+datab[8] => alt_stratix_add_sub:stratix_adder.datab[8]
+cin => ~NO_FANOUT~
+add_sub => alt_stratix_add_sub:stratix_adder.add_sub
+clock => ~NO_FANOUT~
+aclr => ~NO_FANOUT~
+clken => ~NO_FANOUT~
+result[0] <= alt_stratix_add_sub:stratix_adder.result[0]
+result[1] <= alt_stratix_add_sub:stratix_adder.result[1]
+result[2] <= alt_stratix_add_sub:stratix_adder.result[2]
+result[3] <= alt_stratix_add_sub:stratix_adder.result[3]
+result[4] <= alt_stratix_add_sub:stratix_adder.result[4]
+result[5] <= alt_stratix_add_sub:stratix_adder.result[5]
+result[6] <= alt_stratix_add_sub:stratix_adder.result[6]
+result[7] <= alt_stratix_add_sub:stratix_adder.result[7]
+result[8] <= alt_stratix_add_sub:stratix_adder.result[8]
+cout <= <GND>
+overflow <= <GND>
+
+
+|lab2|LPM_ADD_SUB:inst11|alt_stratix_add_sub:stratix_adder
+dataa[0] => add_sub_cell[0].DATAB
+dataa[1] => add_sub_cell[1].DATAB
+dataa[2] => add_sub_cell[2].DATAB
+dataa[3] => add_sub_cell[3].DATAB
+dataa[4] => add_sub_cell[4].DATAB
+dataa[5] => add_sub_cell[5].DATAB
+dataa[6] => add_sub_cell[6].DATAB
+dataa[7] => add_sub_cell[7].DATAB
+dataa[8] => add_sub_cell[8].DATAB
+datab[0] => add_sub_cell[0].DATAA
+datab[1] => add_sub_cell[1].DATAA
+datab[2] => add_sub_cell[2].DATAA
+datab[3] => add_sub_cell[3].DATAA
+datab[4] => add_sub_cell[4].DATAA
+datab[5] => add_sub_cell[5].DATAA
+datab[6] => add_sub_cell[6].DATAA
+datab[7] => add_sub_cell[7].DATAA
+datab[8] => add_sub_cell[8].DATAA
+cin => ~NO_FANOUT~
+add_sub => add_sub_cell[8].IN0
+clock => ~NO_FANOUT~
+aclr => ~NO_FANOUT~
+clken => ~NO_FANOUT~
+result[0] <= add_sub_cell[0].COMBOUT
+result[1] <= add_sub_cell[1].COMBOUT
+result[2] <= add_sub_cell[2].COMBOUT
+result[3] <= add_sub_cell[3].COMBOUT
+result[4] <= add_sub_cell[4].COMBOUT
+result[5] <= add_sub_cell[5].COMBOUT
+result[6] <= add_sub_cell[6].COMBOUT
+result[7] <= add_sub_cell[7].COMBOUT
+result[8] <= add_sub_cell[8].COMBOUT
+cout <= <GND>
+overflow <= <GND>
+
+
+|lab2|andWithRes:inst45
+AS[0] <= inst4.DB_MAX_OUTPUT_PORT_TYPE
+AS[1] <= inst3.DB_MAX_OUTPUT_PORT_TYPE
+AS[2] <= inst2.DB_MAX_OUTPUT_PORT_TYPE
+AS[3] <= inst.DB_MAX_OUTPUT_PORT_TYPE
+AS[4] <= inst5.DB_MAX_OUTPUT_PORT_TYPE
+AS[5] <= inst6.DB_MAX_OUTPUT_PORT_TYPE
+AS[6] <= inst7.DB_MAX_OUTPUT_PORT_TYPE
+AS[7] <= inst8.DB_MAX_OUTPUT_PORT_TYPE
+AS[8] <= inst9.DB_MAX_OUTPUT_PORT_TYPE
+Q[0] => inst4.IN0
+Q[1] => inst3.IN0
+Q[2] => inst2.IN0
+Q[3] => inst.IN0
+Q[4] => inst5.IN0
+Q[5] => inst6.IN0
+Q[6] => inst7.IN0
+Q[7] => inst8.IN0
+Q[8] => inst9.IN0
+ResX => inst.IN1
+ResX => inst2.IN1
+ResX => inst3.IN1
+ResX => inst4.IN1
+ResX => inst5.IN1
+ResX => inst6.IN1
+ResX => inst7.IN1
+ResX => inst8.IN1
+ResX => inst9.IN1
+
+
+|lab2|trigger9:inst23
+B[0] <= inst5.DB_MAX_OUTPUT_PORT_TYPE
+B[1] <= inst3.DB_MAX_OUTPUT_PORT_TYPE
+B[2] <= inst4.DB_MAX_OUTPUT_PORT_TYPE
+B[3] <= inst2.DB_MAX_OUTPUT_PORT_TYPE
+B[4] <= inst8.DB_MAX_OUTPUT_PORT_TYPE
+B[5] <= inst1.DB_MAX_OUTPUT_PORT_TYPE
+B[6] <= inst.DB_MAX_OUTPUT_PORT_TYPE
+B[7] <= inst6.DB_MAX_OUTPUT_PORT_TYPE
+B[8] <= inst7.DB_MAX_OUTPUT_PORT_TYPE
+clk => inst7.CLK
+clk => inst6.CLK
+clk => inst.CLK
+clk => inst1.CLK
+clk => inst8.CLK
+clk => inst2.CLK
+clk => inst4.CLK
+clk => inst3.CLK
+clk => inst5.CLK
+A[0] => inst5.DATAIN
+A[1] => inst3.DATAIN
+A[2] => inst4.DATAIN
+A[3] => inst2.DATAIN
+A[4] => inst8.DATAIN
+A[5] => inst1.DATAIN
+A[6] => inst.DATAIN
+A[7] => inst6.DATAIN
+A[8] => inst7.DATAIN
+
+
+|lab2|withoutLastBit:inst15
+P[0] <= A[1].DB_MAX_OUTPUT_PORT_TYPE
+P[1] <= A[2].DB_MAX_OUTPUT_PORT_TYPE
+P[2] <= A[3].DB_MAX_OUTPUT_PORT_TYPE
+P[3] <= A[4].DB_MAX_OUTPUT_PORT_TYPE
+P[4] <= A[5].DB_MAX_OUTPUT_PORT_TYPE
+P[5] <= A[6].DB_MAX_OUTPUT_PORT_TYPE
+P[6] <= A[7].DB_MAX_OUTPUT_PORT_TYPE
+P[7] <= A[8].DB_MAX_OUTPUT_PORT_TYPE
+A[0] => ~NO_FANOUT~
+A[1] => P[0].DATAIN
+A[2] => P[1].DATAIN
+A[3] => P[2].DATAIN
+A[4] => P[3].DATAIN
+A[5] => P[4].DATAIN
+A[6] => P[5].DATAIN
+A[7] => P[6].DATAIN
+A[8] => P[7].DATAIN
+
+
+|lab2|rightShift:inst14
+B[0] <= A[1].DB_MAX_OUTPUT_PORT_TYPE
+B[1] <= A[2].DB_MAX_OUTPUT_PORT_TYPE
+B[2] <= A[3].DB_MAX_OUTPUT_PORT_TYPE
+B[3] <= A[4].DB_MAX_OUTPUT_PORT_TYPE
+B[4] <= A[5].DB_MAX_OUTPUT_PORT_TYPE
+B[5] <= A[6].DB_MAX_OUTPUT_PORT_TYPE
+B[6] <= A[7].DB_MAX_OUTPUT_PORT_TYPE
+B[7] <= A[8].DB_MAX_OUTPUT_PORT_TYPE
+B[8] <= A[8].DB_MAX_OUTPUT_PORT_TYPE
+A[0] => ~NO_FANOUT~
+A[1] => B[0].DATAIN
+A[2] => B[1].DATAIN
+A[3] => B[2].DATAIN
+A[4] => B[3].DATAIN
+A[5] => B[4].DATAIN
+A[6] => B[5].DATAIN
+A[7] => B[6].DATAIN
+A[8] => B[7].DATAIN
+A[8] => B[8].DATAIN
+
+
+|lab2|LPM_ADD_SUB:inst1488
+dataa[0] => alt_stratix_add_sub:stratix_adder.dataa[0]
+dataa[1] => alt_stratix_add_sub:stratix_adder.dataa[1]
+dataa[2] => alt_stratix_add_sub:stratix_adder.dataa[2]
+dataa[3] => alt_stratix_add_sub:stratix_adder.dataa[3]
+dataa[4] => alt_stratix_add_sub:stratix_adder.dataa[4]
+dataa[5] => alt_stratix_add_sub:stratix_adder.dataa[5]
+dataa[6] => alt_stratix_add_sub:stratix_adder.dataa[6]
+dataa[7] => alt_stratix_add_sub:stratix_adder.dataa[7]
+dataa[8] => alt_stratix_add_sub:stratix_adder.dataa[8]
+datab[0] => alt_stratix_add_sub:stratix_adder.datab[0]
+datab[1] => alt_stratix_add_sub:stratix_adder.datab[1]
+datab[2] => alt_stratix_add_sub:stratix_adder.datab[2]
+datab[3] => alt_stratix_add_sub:stratix_adder.datab[3]
+datab[4] => alt_stratix_add_sub:stratix_adder.datab[4]
+datab[5] => alt_stratix_add_sub:stratix_adder.datab[5]
+datab[6] => alt_stratix_add_sub:stratix_adder.datab[6]
+datab[7] => alt_stratix_add_sub:stratix_adder.datab[7]
+datab[8] => alt_stratix_add_sub:stratix_adder.datab[8]
+cin => ~NO_FANOUT~
+add_sub => alt_stratix_add_sub:stratix_adder.add_sub
+clock => ~NO_FANOUT~
+aclr => ~NO_FANOUT~
+clken => ~NO_FANOUT~
+result[0] <= alt_stratix_add_sub:stratix_adder.result[0]
+result[1] <= alt_stratix_add_sub:stratix_adder.result[1]
+result[2] <= alt_stratix_add_sub:stratix_adder.result[2]
+result[3] <= alt_stratix_add_sub:stratix_adder.result[3]
+result[4] <= alt_stratix_add_sub:stratix_adder.result[4]
+result[5] <= alt_stratix_add_sub:stratix_adder.result[5]
+result[6] <= alt_stratix_add_sub:stratix_adder.result[6]
+result[7] <= alt_stratix_add_sub:stratix_adder.result[7]
+result[8] <= alt_stratix_add_sub:stratix_adder.result[8]
+cout <= <GND>
+overflow <= <GND>
+
+
+|lab2|LPM_ADD_SUB:inst1488|alt_stratix_add_sub:stratix_adder
+dataa[0] => add_sub_cell[0].DATAB
+dataa[1] => add_sub_cell[1].DATAB
+dataa[2] => add_sub_cell[2].DATAB
+dataa[3] => add_sub_cell[3].DATAB
+dataa[4] => add_sub_cell[4].DATAB
+dataa[5] => add_sub_cell[5].DATAB
+dataa[6] => add_sub_cell[6].DATAB
+dataa[7] => add_sub_cell[7].DATAB
+dataa[8] => add_sub_cell[8].DATAB
+datab[0] => add_sub_cell[0].DATAA
+datab[1] => add_sub_cell[1].DATAA
+datab[2] => add_sub_cell[2].DATAA
+datab[3] => add_sub_cell[3].DATAA
+datab[4] => add_sub_cell[4].DATAA
+datab[5] => add_sub_cell[5].DATAA
+datab[6] => add_sub_cell[6].DATAA
+datab[7] => add_sub_cell[7].DATAA
+datab[8] => add_sub_cell[8].DATAA
+cin => ~NO_FANOUT~
+add_sub => add_sub_cell[8].IN0
+clock => ~NO_FANOUT~
+aclr => ~NO_FANOUT~
+clken => ~NO_FANOUT~
+result[0] <= add_sub_cell[0].COMBOUT
+result[1] <= add_sub_cell[1].COMBOUT
+result[2] <= add_sub_cell[2].COMBOUT
+result[3] <= add_sub_cell[3].COMBOUT
+result[4] <= add_sub_cell[4].COMBOUT
+result[5] <= add_sub_cell[5].COMBOUT
+result[6] <= add_sub_cell[6].COMBOUT
+result[7] <= add_sub_cell[7].COMBOUT
+result[8] <= add_sub_cell[8].COMBOUT
+cout <= <GND>
+overflow <= <GND>
+
+
+|lab2|LPM_ADD_SUB:inst333
+dataa[0] => alt_stratix_add_sub:stratix_adder.dataa[0]
+dataa[1] => alt_stratix_add_sub:stratix_adder.dataa[1]
+dataa[2] => alt_stratix_add_sub:stratix_adder.dataa[2]
+dataa[3] => alt_stratix_add_sub:stratix_adder.dataa[3]
+dataa[4] => alt_stratix_add_sub:stratix_adder.dataa[4]
+dataa[5] => alt_stratix_add_sub:stratix_adder.dataa[5]
+dataa[6] => alt_stratix_add_sub:stratix_adder.dataa[6]
+dataa[7] => alt_stratix_add_sub:stratix_adder.dataa[7]
+dataa[8] => alt_stratix_add_sub:stratix_adder.dataa[8]
+datab[0] => alt_stratix_add_sub:stratix_adder.datab[0]
+datab[1] => alt_stratix_add_sub:stratix_adder.datab[1]
+datab[2] => alt_stratix_add_sub:stratix_adder.datab[2]
+datab[3] => alt_stratix_add_sub:stratix_adder.datab[3]
+datab[4] => alt_stratix_add_sub:stratix_adder.datab[4]
+datab[5] => alt_stratix_add_sub:stratix_adder.datab[5]
+datab[6] => alt_stratix_add_sub:stratix_adder.datab[6]
+datab[7] => alt_stratix_add_sub:stratix_adder.datab[7]
+datab[8] => alt_stratix_add_sub:stratix_adder.datab[8]
+cin => ~NO_FANOUT~
+add_sub => alt_stratix_add_sub:stratix_adder.add_sub
+clock => ~NO_FANOUT~
+aclr => ~NO_FANOUT~
+clken => ~NO_FANOUT~
+result[0] <= alt_stratix_add_sub:stratix_adder.result[0]
+result[1] <= alt_stratix_add_sub:stratix_adder.result[1]
+result[2] <= alt_stratix_add_sub:stratix_adder.result[2]
+result[3] <= alt_stratix_add_sub:stratix_adder.result[3]
+result[4] <= alt_stratix_add_sub:stratix_adder.result[4]
+result[5] <= alt_stratix_add_sub:stratix_adder.result[5]
+result[6] <= alt_stratix_add_sub:stratix_adder.result[6]
+result[7] <= alt_stratix_add_sub:stratix_adder.result[7]
+result[8] <= alt_stratix_add_sub:stratix_adder.result[8]
+cout <= <GND>
+overflow <= <GND>
+
+
+|lab2|LPM_ADD_SUB:inst333|alt_stratix_add_sub:stratix_adder
+dataa[0] => add_sub_cell[0].DATAB
+dataa[1] => add_sub_cell[1].DATAB
+dataa[2] => add_sub_cell[2].DATAB
+dataa[3] => add_sub_cell[3].DATAB
+dataa[4] => add_sub_cell[4].DATAB
+dataa[5] => add_sub_cell[5].DATAB
+dataa[6] => add_sub_cell[6].DATAB
+dataa[7] => add_sub_cell[7].DATAB
+dataa[8] => add_sub_cell[8].DATAB
+datab[0] => add_sub_cell[0].DATAA
+datab[1] => add_sub_cell[1].DATAA
+datab[2] => add_sub_cell[2].DATAA
+datab[3] => add_sub_cell[3].DATAA
+datab[4] => add_sub_cell[4].DATAA
+datab[5] => add_sub_cell[5].DATAA
+datab[6] => add_sub_cell[6].DATAA
+datab[7] => add_sub_cell[7].DATAA
+datab[8] => add_sub_cell[8].DATAA
+cin => ~NO_FANOUT~
+add_sub => add_sub_cell[8].IN0
+clock => ~NO_FANOUT~
+aclr => ~NO_FANOUT~
+clken => ~NO_FANOUT~
+result[0] <= add_sub_cell[0].COMBOUT
+result[1] <= add_sub_cell[1].COMBOUT
+result[2] <= add_sub_cell[2].COMBOUT
+result[3] <= add_sub_cell[3].COMBOUT
+result[4] <= add_sub_cell[4].COMBOUT
+result[5] <= add_sub_cell[5].COMBOUT
+result[6] <= add_sub_cell[6].COMBOUT
+result[7] <= add_sub_cell[7].COMBOUT
+result[8] <= add_sub_cell[8].COMBOUT
+cout <= <GND>
+overflow <= <GND>
+
+
+|lab2|andWithRes:inst8
+AS[0] <= inst4.DB_MAX_OUTPUT_PORT_TYPE
+AS[1] <= inst3.DB_MAX_OUTPUT_PORT_TYPE
+AS[2] <= inst2.DB_MAX_OUTPUT_PORT_TYPE
+AS[3] <= inst.DB_MAX_OUTPUT_PORT_TYPE
+AS[4] <= inst5.DB_MAX_OUTPUT_PORT_TYPE
+AS[5] <= inst6.DB_MAX_OUTPUT_PORT_TYPE
+AS[6] <= inst7.DB_MAX_OUTPUT_PORT_TYPE
+AS[7] <= inst8.DB_MAX_OUTPUT_PORT_TYPE
+AS[8] <= inst9.DB_MAX_OUTPUT_PORT_TYPE
+Q[0] => inst4.IN0
+Q[1] => inst3.IN0
+Q[2] => inst2.IN0
+Q[3] => inst.IN0
+Q[4] => inst5.IN0
+Q[5] => inst6.IN0
+Q[6] => inst7.IN0
+Q[7] => inst8.IN0
+Q[8] => inst9.IN0
+ResX => inst.IN1
+ResX => inst2.IN1
+ResX => inst3.IN1
+ResX => inst4.IN1
+ResX => inst5.IN1
+ResX => inst6.IN1
+ResX => inst7.IN1
+ResX => inst8.IN1
+ResX => inst9.IN1
+
+
+|lab2|trigger9:inst16
+B[0] <= inst5.DB_MAX_OUTPUT_PORT_TYPE
+B[1] <= inst3.DB_MAX_OUTPUT_PORT_TYPE
+B[2] <= inst4.DB_MAX_OUTPUT_PORT_TYPE
+B[3] <= inst2.DB_MAX_OUTPUT_PORT_TYPE
+B[4] <= inst8.DB_MAX_OUTPUT_PORT_TYPE
+B[5] <= inst1.DB_MAX_OUTPUT_PORT_TYPE
+B[6] <= inst.DB_MAX_OUTPUT_PORT_TYPE
+B[7] <= inst6.DB_MAX_OUTPUT_PORT_TYPE
+B[8] <= inst7.DB_MAX_OUTPUT_PORT_TYPE
+clk => inst7.CLK
+clk => inst6.CLK
+clk => inst.CLK
+clk => inst1.CLK
+clk => inst8.CLK
+clk => inst2.CLK
+clk => inst4.CLK
+clk => inst3.CLK
+clk => inst5.CLK
+A[0] => inst5.DATAIN
+A[1] => inst3.DATAIN
+A[2] => inst4.DATAIN
+A[3] => inst2.DATAIN
+A[4] => inst8.DATAIN
+A[5] => inst1.DATAIN
+A[6] => inst.DATAIN
+A[7] => inst6.DATAIN
+A[8] => inst7.DATAIN
+
+
+|lab2|LPM_ADD_SUB:inst10
+dataa[0] => alt_stratix_add_sub:stratix_adder.dataa[0]
+dataa[1] => alt_stratix_add_sub:stratix_adder.dataa[1]
+dataa[2] => alt_stratix_add_sub:stratix_adder.dataa[2]
+dataa[3] => alt_stratix_add_sub:stratix_adder.dataa[3]
+dataa[4] => alt_stratix_add_sub:stratix_adder.dataa[4]
+dataa[5] => alt_stratix_add_sub:stratix_adder.dataa[5]
+dataa[6] => alt_stratix_add_sub:stratix_adder.dataa[6]
+dataa[7] => alt_stratix_add_sub:stratix_adder.dataa[7]
+dataa[8] => alt_stratix_add_sub:stratix_adder.dataa[8]
+datab[0] => alt_stratix_add_sub:stratix_adder.datab[0]
+datab[1] => alt_stratix_add_sub:stratix_adder.datab[1]
+datab[2] => alt_stratix_add_sub:stratix_adder.datab[2]
+datab[3] => alt_stratix_add_sub:stratix_adder.datab[3]
+datab[4] => alt_stratix_add_sub:stratix_adder.datab[4]
+datab[5] => alt_stratix_add_sub:stratix_adder.datab[5]
+datab[6] => alt_stratix_add_sub:stratix_adder.datab[6]
+datab[7] => alt_stratix_add_sub:stratix_adder.datab[7]
+datab[8] => alt_stratix_add_sub:stratix_adder.datab[8]
+cin => ~NO_FANOUT~
+add_sub => alt_stratix_add_sub:stratix_adder.add_sub
+clock => ~NO_FANOUT~
+aclr => ~NO_FANOUT~
+clken => ~NO_FANOUT~
+result[0] <= alt_stratix_add_sub:stratix_adder.result[0]
+result[1] <= alt_stratix_add_sub:stratix_adder.result[1]
+result[2] <= alt_stratix_add_sub:stratix_adder.result[2]
+result[3] <= alt_stratix_add_sub:stratix_adder.result[3]
+result[4] <= alt_stratix_add_sub:stratix_adder.result[4]
+result[5] <= alt_stratix_add_sub:stratix_adder.result[5]
+result[6] <= alt_stratix_add_sub:stratix_adder.result[6]
+result[7] <= alt_stratix_add_sub:stratix_adder.result[7]
+result[8] <= alt_stratix_add_sub:stratix_adder.result[8]
+cout <= <GND>
+overflow <= <GND>
+
+
+|lab2|LPM_ADD_SUB:inst10|alt_stratix_add_sub:stratix_adder
+dataa[0] => add_sub_cell[0].DATAB
+dataa[1] => add_sub_cell[1].DATAB
+dataa[2] => add_sub_cell[2].DATAB
+dataa[3] => add_sub_cell[3].DATAB
+dataa[4] => add_sub_cell[4].DATAB
+dataa[5] => add_sub_cell[5].DATAB
+dataa[6] => add_sub_cell[6].DATAB
+dataa[7] => add_sub_cell[7].DATAB
+dataa[8] => add_sub_cell[8].DATAB
+datab[0] => add_sub_cell[0].DATAA
+datab[1] => add_sub_cell[1].DATAA
+datab[2] => add_sub_cell[2].DATAA
+datab[3] => add_sub_cell[3].DATAA
+datab[4] => add_sub_cell[4].DATAA
+datab[5] => add_sub_cell[5].DATAA
+datab[6] => add_sub_cell[6].DATAA
+datab[7] => add_sub_cell[7].DATAA
+datab[8] => add_sub_cell[8].DATAA
+cin => ~NO_FANOUT~
+add_sub => add_sub_cell[8].IN0
+clock => ~NO_FANOUT~
+aclr => ~NO_FANOUT~
+clken => ~NO_FANOUT~
+result[0] <= add_sub_cell[0].COMBOUT
+result[1] <= add_sub_cell[1].COMBOUT
+result[2] <= add_sub_cell[2].COMBOUT
+result[3] <= add_sub_cell[3].COMBOUT
+result[4] <= add_sub_cell[4].COMBOUT
+result[5] <= add_sub_cell[5].COMBOUT
+result[6] <= add_sub_cell[6].COMBOUT
+result[7] <= add_sub_cell[7].COMBOUT
+result[8] <= add_sub_cell[8].COMBOUT
+cout <= <GND>
+overflow <= <GND>
+
+
+|lab2|andWithRes:inst18
+AS[0] <= inst4.DB_MAX_OUTPUT_PORT_TYPE
+AS[1] <= inst3.DB_MAX_OUTPUT_PORT_TYPE
+AS[2] <= inst2.DB_MAX_OUTPUT_PORT_TYPE
+AS[3] <= inst.DB_MAX_OUTPUT_PORT_TYPE
+AS[4] <= inst5.DB_MAX_OUTPUT_PORT_TYPE
+AS[5] <= inst6.DB_MAX_OUTPUT_PORT_TYPE
+AS[6] <= inst7.DB_MAX_OUTPUT_PORT_TYPE
+AS[7] <= inst8.DB_MAX_OUTPUT_PORT_TYPE
+AS[8] <= inst9.DB_MAX_OUTPUT_PORT_TYPE
+Q[0] => inst4.IN0
+Q[1] => inst3.IN0
+Q[2] => inst2.IN0
+Q[3] => inst.IN0
+Q[4] => inst5.IN0
+Q[5] => inst6.IN0
+Q[6] => inst7.IN0
+Q[7] => inst8.IN0
+Q[8] => inst9.IN0
+ResX => inst.IN1
+ResX => inst2.IN1
+ResX => inst3.IN1
+ResX => inst4.IN1
+ResX => inst5.IN1
+ResX => inst6.IN1
+ResX => inst7.IN1
+ResX => inst8.IN1
+ResX => inst9.IN1
+
+
+|lab2|makeP:inst4
+P[0] <= inst11.DB_MAX_OUTPUT_PORT_TYPE
+P[1] <= B[0].DB_MAX_OUTPUT_PORT_TYPE
+P[2] <= B[1].DB_MAX_OUTPUT_PORT_TYPE
+P[3] <= B[2].DB_MAX_OUTPUT_PORT_TYPE
+P[4] <= B[3].DB_MAX_OUTPUT_PORT_TYPE
+P[5] <= inst6.DB_MAX_OUTPUT_PORT_TYPE
+P[6] <= inst5.DB_MAX_OUTPUT_PORT_TYPE
+P[7] <= inst4.DB_MAX_OUTPUT_PORT_TYPE
+P[8] <= inst3.DB_MAX_OUTPUT_PORT_TYPE
+B[0] => P[1].DATAIN
+B[1] => P[2].DATAIN
+B[2] => P[3].DATAIN
+B[3] => P[4].DATAIN
+
+
+|lab2|trigger9:inst17
+B[0] <= inst5.DB_MAX_OUTPUT_PORT_TYPE
+B[1] <= inst3.DB_MAX_OUTPUT_PORT_TYPE
+B[2] <= inst4.DB_MAX_OUTPUT_PORT_TYPE
+B[3] <= inst2.DB_MAX_OUTPUT_PORT_TYPE
+B[4] <= inst8.DB_MAX_OUTPUT_PORT_TYPE
+B[5] <= inst1.DB_MAX_OUTPUT_PORT_TYPE
+B[6] <= inst.DB_MAX_OUTPUT_PORT_TYPE
+B[7] <= inst6.DB_MAX_OUTPUT_PORT_TYPE
+B[8] <= inst7.DB_MAX_OUTPUT_PORT_TYPE
+clk => inst7.CLK
+clk => inst6.CLK
+clk => inst.CLK
+clk => inst1.CLK
+clk => inst8.CLK
+clk => inst2.CLK
+clk => inst4.CLK
+clk => inst3.CLK
+clk => inst5.CLK
+A[0] => inst5.DATAIN
+A[1] => inst3.DATAIN
+A[2] => inst4.DATAIN
+A[3] => inst2.DATAIN
+A[4] => inst8.DATAIN
+A[5] => inst1.DATAIN
+A[6] => inst.DATAIN
+A[7] => inst6.DATAIN
+A[8] => inst7.DATAIN
+
+
+|lab2|andWithRes:inst6
+AS[0] <= inst4.DB_MAX_OUTPUT_PORT_TYPE
+AS[1] <= inst3.DB_MAX_OUTPUT_PORT_TYPE
+AS[2] <= inst2.DB_MAX_OUTPUT_PORT_TYPE
+AS[3] <= inst.DB_MAX_OUTPUT_PORT_TYPE
+AS[4] <= inst5.DB_MAX_OUTPUT_PORT_TYPE
+AS[5] <= inst6.DB_MAX_OUTPUT_PORT_TYPE
+AS[6] <= inst7.DB_MAX_OUTPUT_PORT_TYPE
+AS[7] <= inst8.DB_MAX_OUTPUT_PORT_TYPE
+AS[8] <= inst9.DB_MAX_OUTPUT_PORT_TYPE
+Q[0] => inst4.IN0
+Q[1] => inst3.IN0
+Q[2] => inst2.IN0
+Q[3] => inst.IN0
+Q[4] => inst5.IN0
+Q[5] => inst6.IN0
+Q[6] => inst7.IN0
+Q[7] => inst8.IN0
+Q[8] => inst9.IN0
+ResX => inst.IN1
+ResX => inst2.IN1
+ResX => inst3.IN1
+ResX => inst4.IN1
+ResX => inst5.IN1
+ResX => inst6.IN1
+ResX => inst7.IN1
+ResX => inst8.IN1
+ResX => inst9.IN1
+
+
+|lab2|makeAorS:inst456
+P[0] <= inst11.DB_MAX_OUTPUT_PORT_TYPE
+P[1] <= inst4.DB_MAX_OUTPUT_PORT_TYPE
+P[2] <= inst3.DB_MAX_OUTPUT_PORT_TYPE
+P[3] <= inst1.DB_MAX_OUTPUT_PORT_TYPE
+P[4] <= inst2.DB_MAX_OUTPUT_PORT_TYPE
+P[5] <= B[0].DB_MAX_OUTPUT_PORT_TYPE
+P[6] <= B[1].DB_MAX_OUTPUT_PORT_TYPE
+P[7] <= B[2].DB_MAX_OUTPUT_PORT_TYPE
+P[8] <= B[3].DB_MAX_OUTPUT_PORT_TYPE
+B[0] => P[5].DATAIN
+B[1] => P[6].DATAIN
+B[2] => P[7].DATAIN
+B[3] => P[8].DATAIN
+
+
+|lab2|andWithRes:inst9
+AS[0] <= inst4.DB_MAX_OUTPUT_PORT_TYPE
+AS[1] <= inst3.DB_MAX_OUTPUT_PORT_TYPE
+AS[2] <= inst2.DB_MAX_OUTPUT_PORT_TYPE
+AS[3] <= inst.DB_MAX_OUTPUT_PORT_TYPE
+AS[4] <= inst5.DB_MAX_OUTPUT_PORT_TYPE
+AS[5] <= inst6.DB_MAX_OUTPUT_PORT_TYPE
+AS[6] <= inst7.DB_MAX_OUTPUT_PORT_TYPE
+AS[7] <= inst8.DB_MAX_OUTPUT_PORT_TYPE
+AS[8] <= inst9.DB_MAX_OUTPUT_PORT_TYPE
+Q[0] => inst4.IN0
+Q[1] => inst3.IN0
+Q[2] => inst2.IN0
+Q[3] => inst.IN0
+Q[4] => inst5.IN0
+Q[5] => inst6.IN0
+Q[6] => inst7.IN0
+Q[7] => inst8.IN0
+Q[8] => inst9.IN0
+ResX => inst.IN1
+ResX => inst2.IN1
+ResX => inst3.IN1
+ResX => inst4.IN1
+ResX => inst5.IN1
+ResX => inst6.IN1
+ResX => inst7.IN1
+ResX => inst8.IN1
+ResX => inst9.IN1
+
+
+|lab2|andWithRes:inst7
+AS[0] <= inst4.DB_MAX_OUTPUT_PORT_TYPE
+AS[1] <= inst3.DB_MAX_OUTPUT_PORT_TYPE
+AS[2] <= inst2.DB_MAX_OUTPUT_PORT_TYPE
+AS[3] <= inst.DB_MAX_OUTPUT_PORT_TYPE
+AS[4] <= inst5.DB_MAX_OUTPUT_PORT_TYPE
+AS[5] <= inst6.DB_MAX_OUTPUT_PORT_TYPE
+AS[6] <= inst7.DB_MAX_OUTPUT_PORT_TYPE
+AS[7] <= inst8.DB_MAX_OUTPUT_PORT_TYPE
+AS[8] <= inst9.DB_MAX_OUTPUT_PORT_TYPE
+Q[0] => inst4.IN0
+Q[1] => inst3.IN0
+Q[2] => inst2.IN0
+Q[3] => inst.IN0
+Q[4] => inst5.IN0
+Q[5] => inst6.IN0
+Q[6] => inst7.IN0
+Q[7] => inst8.IN0
+Q[8] => inst9.IN0
+ResX => inst.IN1
+ResX => inst2.IN1
+ResX => inst3.IN1
+ResX => inst4.IN1
+ResX => inst5.IN1
+ResX => inst6.IN1
+ResX => inst7.IN1
+ResX => inst8.IN1
+ResX => inst9.IN1
+
+
+|lab2|makeAorS:inst66
+P[0] <= inst11.DB_MAX_OUTPUT_PORT_TYPE
+P[1] <= inst4.DB_MAX_OUTPUT_PORT_TYPE
+P[2] <= inst3.DB_MAX_OUTPUT_PORT_TYPE
+P[3] <= inst1.DB_MAX_OUTPUT_PORT_TYPE
+P[4] <= inst2.DB_MAX_OUTPUT_PORT_TYPE
+P[5] <= B[0].DB_MAX_OUTPUT_PORT_TYPE
+P[6] <= B[1].DB_MAX_OUTPUT_PORT_TYPE
+P[7] <= B[2].DB_MAX_OUTPUT_PORT_TYPE
+P[8] <= B[3].DB_MAX_OUTPUT_PORT_TYPE
+B[0] => P[5].DATAIN
+B[1] => P[6].DATAIN
+B[2] => P[7].DATAIN
+B[3] => P[8].DATAIN
+
+
+|lab2|add_bit:inst3
+res[0] <= HA:inst54.s
+res[1] <= HA:inst2.s
+res[2] <= HA:inst3.s
+res[3] <= HA:inst5.s
+N[0] => HA:inst54.a
+N[1] => HA:inst2.a
+N[2] => HA:inst3.a
+N[3] => HA:inst5.a
+
+
+|lab2|add_bit:inst3|HA:inst54
+p <= inst6.DB_MAX_OUTPUT_PORT_TYPE
+a => inst6.IN0
+a => inst7.IN0
+b => inst6.IN1
+b => inst7.IN1
+s <= inst7.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab2|add_bit:inst3|HA:inst2
+p <= inst6.DB_MAX_OUTPUT_PORT_TYPE
+a => inst6.IN0
+a => inst7.IN0
+b => inst6.IN1
+b => inst7.IN1
+s <= inst7.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab2|add_bit:inst3|HA:inst3
+p <= inst6.DB_MAX_OUTPUT_PORT_TYPE
+a => inst6.IN0
+a => inst7.IN0
+b => inst6.IN1
+b => inst7.IN1
+s <= inst7.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab2|add_bit:inst3|HA:inst5
+p <= inst6.DB_MAX_OUTPUT_PORT_TYPE
+a => inst6.IN0
+a => inst7.IN0
+b => inst6.IN1
+b => inst7.IN1
+s <= inst7.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab2|inv:inst2
+N[0] <= inst999.DB_MAX_OUTPUT_PORT_TYPE
+N[1] <= inst8.DB_MAX_OUTPUT_PORT_TYPE
+N[2] <= inst9.DB_MAX_OUTPUT_PORT_TYPE
+N[3] <= inst10.DB_MAX_OUTPUT_PORT_TYPE
+num[0] => inst999.IN1
+num[1] => inst8.IN1
+num[2] => inst9.IN1
+num[3] => inst10.IN1
+
+

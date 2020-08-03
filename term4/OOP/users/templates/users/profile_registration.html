@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <style>
+            @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
+            body {
+                font-family: 'Montserrat', sans-serif;
+            }
+            .container {
+                margin-top: 5%;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            {% load crispy_forms_tags %}
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <fieldset class="form-group">
+                    <h1>Library profile registration</h1>
+                    <hr>
+                    {{ form|crispy }}
+                </fieldset>
+                <div class="form-group">
+                    <button class="btn btn-primary" type="submit">Subbmit</button>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

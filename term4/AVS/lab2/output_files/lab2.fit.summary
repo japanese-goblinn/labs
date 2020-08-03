@@ -1,0 +1,11 @@
+Fitter Status : Successful - Tue May 07 15:39:07 2019
+Quartus Prime Version : 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+Revision Name : lab2
+Top-level Entity Name : lab2
+Family : MAX V
+Device : 5M80ZM68C4
+Timing Models : Final
+Total logic elements : 44 / 80 ( 55 % )
+Total pins : 28 / 52 ( 54 % )
+Total virtual pins : 0
+UFM blocks : 0 / 1 ( 0 % )

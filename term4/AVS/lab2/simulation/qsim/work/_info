@@ -1,0 +1,52 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/intelFPGA_lite/18.1/lab2/simulation/qsim
+vlab2
+Z1 !s110 1557232925
+!i10b 1
+!s100 H>FGMdB@zl_XjD18R4BAA1
+IL?7oN[Cahg=_R715d_2dE0
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1557232924
+8lab2.vo
+Flab2.vo
+L0 31
+Z3 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z4 !s108 1557232925.000000
+!s107 lab2.vo|
+!s90 -work|work|lab2.vo|
+!i113 1
+Z5 o-work work
+Z6 tCvgOpt 0
+vlab2_vlg_vec_tst
+R1
+!i10b 1
+!s100 kMWgDkXkXbfF@kEZkjV@l1
+IUaWh3KLe?Y:^VT8Tfn58N3
+R2
+R0
+w1557232923
+8Waveform.vwf.vt
+FWaveform.vwf.vt
+L0 29
+R3
+r1
+!s85 0
+31
+R4
+!s107 Waveform.vwf.vt|
+!s90 -work|work|Waveform.vwf.vt|
+!i113 1
+R5
+R6

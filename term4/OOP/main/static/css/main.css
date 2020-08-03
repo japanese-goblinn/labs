@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.book-card-title {
+    font-weight: bold;
+}
+
+.content-container {
+    margin: 3%;
+}
+
+.userpic {
+    margin-left: 11px;
+}
+
+.drop-menu {
+    margin-top: 13px;
+}
+
+.profile-image {
+    width: 45px;
+    height: 45px;
+}
+
+.profile-image-big {
+    width: 200px;
+    height: 200px;
+}
+
+.dropdown-toggle {
+    color: white;
+}
+
+.shadow {
+   box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15)!important
+}
+
+.box {
+    margin-top: 40px;
+    height: auto;
+    overflow-y: hidden;
+    overflow-x: scroll;
+    white-space: nowrap;
+}
+
+.box::-webkit-scrollbar {
+    display: none;
+}
+
+.card-in-box {
+    margin-left: 1%;
+    display: inline-block;
+    height: 100%;
+    width: auto;
+}

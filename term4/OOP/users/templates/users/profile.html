@@ -1,0 +1,47 @@
+{% extends 'main/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="">
+    <div class="row">
+        <div class="col-sm-3 float-left">
+            <img class="rounded-circle profile-image-big" src="{{ user.profile.image.url }}">
+        </div>
+        <div class="col-sm-9 float-right">
+            <h2>{{ user.username }}</h2>
+            <p class="text-secondary">{{ user.email }}</p>
+        </div>
+    </div>
+    {% if not user.is_superuser %}
+    <div class="row" style="margin-right: 10%;">
+        <div class="col-sm-6" style="margin-top: 30px;">
+            <div class="card shadow text-white bg-success mb-3">
+                <div class="card-body">
+                <h5 class="card-title">Balance</h5>
+                <h4 class="card-text" style="font-weight: 700">$ {{ user.balance }}</h4>
+              </div>
+            </div>
+        </div>
+        <div class="col-sm-6" style="margin-top: 30px;">
+            <div class="card shadow text-white bg-info mb-3">
+                <div class="card-body">
+                <h5 class="card-title">Taken books amount</h5>
+                <h4 class="card-text" style="font-weight: 700">{{ books_count }}</h4>
+            </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    <div style="margin-top: 25px; margin-right: 11%;">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h2>Profile edit</h2>
+            <hr>
+            {{ u_form|crispy }}
+            {{ p_form|crispy }}
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit">Update</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
