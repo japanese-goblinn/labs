@@ -19,12 +19,6 @@ extension String {
     }
 }
 
-func readFromFile() -> [String]? {
-    guard let fileURL = Bundle.main.url(forResource: "vigenre", withExtension: "txt")
-        else { return nil }
-    return (try? String(contentsOf: fileURL, encoding: .ascii))?.components(separatedBy: .newlines)
-}
-
 let encodeShift = { (char: Character, key: Int) -> Character in
     let charValue = Int(char.asciiValue!)
     let shift = char.shift
@@ -85,13 +79,10 @@ func decode(this string: String, using key: String) -> String {
         .reduce("", +)
 }
 
-guard let inputData = readFromFile() else { fatalError("FILE READ ERROR") }
-let key = inputData[0]
-let encodeString = inputData[1].filter { $0.isLetter }
-print("STRING TO ENCODE: ", encodeString)
-print("KEY: ", key)
+let key = "LEMON"
+let string = "ATTACKATDAWN"
 
-let encodedString = encode(this: encodeString, using: key)
+let encodedString = encode(this: string, using: key)
 print("ENCODED: ", encodedString)
 print("DECODED: ", decode(this: encodedString, using: key))
 

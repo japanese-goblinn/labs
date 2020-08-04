@@ -1,12 +1,5 @@
 import Foundation
 
-func readFromFile() -> [String]? {
-    guard let fileURL = Bundle.main.url(forResource: "сaesar", withExtension: "txt"),
-        let string = try? String(contentsOf: fileURL, encoding: .utf8)
-        else { return nil }
-    return string.components(separatedBy: .newlines)
-}
-
 enum Alphabet {
     case english
     case cyrillic
@@ -93,13 +86,9 @@ func decode(this string: String, with key: Int) -> String {
         .reduce("", +)
 }
 
-guard let inputData = readFromFile(), let key = Int(inputData[0]) else { fatalError("FILE READ ERROR") }
-let encodeString = inputData[1]
-print("STRING TO ENCODE: ", encodeString)
-print("KEY: ", key)
+let string = "Hello"
+let key = 10
 
-let encodedString = encode(this: encodeString, with: key)
+let encodedString = encode(this: string, with: key)
 print("ENCODED: ", encodedString)
 print("DECODED: ", decode(this: encodedString, with: key))
-
-
