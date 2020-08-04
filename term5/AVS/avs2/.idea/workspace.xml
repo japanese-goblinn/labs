@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+    <generated>
+      <config projectName="avs2" targetName="dynamic_mutex_queue" />
+      <config projectName="avs2" targetName="mutex_counter" />
+      <config projectName="avs2" targetName="fixed_size_atomic_queue" />
+      <config projectName="avs2" targetName="fixed_size_mutex_queue" />
+      <config projectName="avs2" targetName="atomic_counter" />
+    </generated>
+  </component>
+  <component name="CMakeSettings" AUTO_RELOAD="true">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" TOOLCHAIN_NAME="Default" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="71332bec-3089-4068-a7f4-74bb60efe2e0" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/atomic_counter.dir/CXX.includecache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/atomic_counter.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/atomic_counter.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/atomic_counter.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/atomic_counter.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/atomic_counter.dir/depend.internal" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/atomic_counter.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/atomic_counter.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/atomic_counter.dir/task1/atomic_counter.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/avs2.dir/CXX.includecache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/avs2.dir/DependInfo.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/avs2.dir/build.make" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/avs2.dir/cmake_clean.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/avs2.dir/depend.internal" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/avs2.dir/depend.make" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/avs2.dir/flags.make" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/avs2.dir/link.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/avs2.dir/main.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/avs2.dir/mutex_counter.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/avs2.dir/progress.make" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/dynamic_mutex_queue.dir/CXX.includecache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/dynamic_mutex_queue.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/dynamic_mutex_queue.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/dynamic_mutex_queue.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/dynamic_mutex_queue.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/dynamic_mutex_queue.dir/depend.internal" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/dynamic_mutex_queue.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/dynamic_mutex_queue.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/dynamic_mutex_queue.dir/task2/dynamic_mutex_queue.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/fixed_size_atomic_queue.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/fixed_size_atomic_queue.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/fixed_size_atomic_queue.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/fixed_size_atomic_queue.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/fixed_size_atomic_queue.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/fixed_size_atomic_queue.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/fixed_size_atomic_queue.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/fixed_size_atomic_queue.dir/depend.internal" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/fixed_size_atomic_queue.dir/task2/flixed_size_atomic_queue.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/fixed_size_atomic_queue.dir/task2/flixed_size_atomic_queue.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/fixed_size_mutex_queue.dir/CXX.includecache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/fixed_size_mutex_queue.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/fixed_size_mutex_queue.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/fixed_size_mutex_queue.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/fixed_size_mutex_queue.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/fixed_size_mutex_queue.dir/depend.internal" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/fixed_size_mutex_queue.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/fixed_size_mutex_queue.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/fixed_size_mutex_queue.dir/task2/fixed_size_mutex_queue.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mutex_counter.dir/CXX.includecache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mutex_counter.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mutex_counter.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mutex_counter.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mutex_counter.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mutex_counter.dir/depend.internal" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mutex_counter.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mutex_counter.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mutex_counter.dir/main.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mutex_counter.dir/task1/mutex_counter.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/avs2.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/avs2.cbp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/fixed_size_atomic_queue" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/fixed_size_atomic_queue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/flixed_size_atomic_queue.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/task2/flixed_size_atomic_queue.cpp" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1Rsr5NSfj8FqL83M7UQcjnujg50" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="CMakeSettings" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/task2" />
+      <recent name="$PROJECT_DIR$/task1" />
+    </key>
+  </component>
+  <component name="RunManager" selected="CMake Application.fixed_size_atomic_queue">
+    <configuration name="atomic_counter" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="avs2" TARGET_NAME="atomic_counter" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="avs2" RUN_TARGET_NAME="atomic_counter">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="dynamic_mutex_queue" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="avs2" TARGET_NAME="dynamic_mutex_queue" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="avs2" RUN_TARGET_NAME="dynamic_mutex_queue">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="fixed_size_atomic_queue" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="avs2" TARGET_NAME="fixed_size_atomic_queue" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="avs2" RUN_TARGET_NAME="fixed_size_atomic_queue">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="fixed_size_mutex_queue" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="avs2" TARGET_NAME="fixed_size_mutex_queue" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="avs2" RUN_TARGET_NAME="fixed_size_mutex_queue">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="mutex_counter" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="avs2" TARGET_NAME="mutex_counter" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="avs2" RUN_TARGET_NAME="mutex_counter">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="CMake Application.atomic_counter" />
+      <item itemvalue="CMake Application.dynamic_mutex_queue" />
+      <item itemvalue="CMake Application.fixed_size_atomic_queue" />
+      <item itemvalue="CMake Application.fixed_size_mutex_queue" />
+      <item itemvalue="CMake Application.mutex_counter" />
+    </list>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="71332bec-3089-4068-a7f4-74bb60efe2e0" name="Default Changelist" comment="" />
+      <created>1570466460948</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1570466460948</updated>
+      <workItem from="1570466462979" duration="18503000" />
+      <workItem from="1570524328737" duration="35000" />
+      <workItem from="1570526054355" duration="609000" />
+      <workItem from="1570530367778" duration="9084000" />
+      <workItem from="1570574468273" duration="5755000" />
+      <workItem from="1572462489133" duration="646000" />
+      <workItem from="1572463586760" duration="6124000" />
+      <workItem from="1572794830254" duration="187000" />
+      <workItem from="1572795190018" duration="411000" />
+      <workItem from="1572802532335" duration="1444000" />
+      <workItem from="1572805310991" duration="5138000" />
+      <workItem from="1572860384840" duration="32540000" />
+      <workItem from="1576407798202" duration="8625000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1358" height="184" key="GridCell.Tab.0.bottom" timestamp="1576416588363">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1358" height="184" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1576416588363" />
+    <state width="1358" height="184" key="GridCell.Tab.0.center" timestamp="1576416588362">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1358" height="184" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1576416588362" />
+    <state width="1358" height="184" key="GridCell.Tab.0.left" timestamp="1576416588361">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1358" height="184" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1576416588361" />
+    <state width="1358" height="184" key="GridCell.Tab.0.right" timestamp="1576416588363">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1358" height="184" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1576416588363" />
+    <state width="1398" height="227" key="GridCell.Tab.1.bottom" timestamp="1576412992079">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1398" height="227" key="GridCell.Tab.1.bottom/0.23.1440.877@0.23.1440.877" timestamp="1576412992079" />
+    <state width="1398" height="227" key="GridCell.Tab.1.center" timestamp="1576412992078">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1398" height="227" key="GridCell.Tab.1.center/0.23.1440.877@0.23.1440.877" timestamp="1576412992078" />
+    <state width="1398" height="227" key="GridCell.Tab.1.left" timestamp="1576412992078">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1398" height="227" key="GridCell.Tab.1.left/0.23.1440.877@0.23.1440.877" timestamp="1576412992078" />
+    <state width="1398" height="227" key="GridCell.Tab.1.right" timestamp="1576412992079">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1398" height="227" key="GridCell.Tab.1.right/0.23.1440.877@0.23.1440.877" timestamp="1576412992079" />
+  </component>
+</project>

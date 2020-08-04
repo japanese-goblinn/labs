@@ -1,0 +1,21 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@model Twitter.ViewModels.EditTweetViewModel
+@inject IViewLocalizer Localizer
+
+@{
+    Layout = "_Layout";
+}
+
+<form asp-action="Edit" asp-controller="Tweets">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group">
+        <input type="hidden" asp-for="Id"/>
+    </div>
+    <div class="form-group">
+        <label asp-for="Content" class="control-label">@Localizer["Content"]</label>
+        <input type="text" asp-for="Content" class="form-control" />
+    </div>
+    <div class="form-group">
+        <input type="submit" value="@Localizer["Save"]" class="btn btn-primary" />
+    </div>
+</form>

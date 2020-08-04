@@ -1,0 +1,18 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@model string
+@inject IViewLocalizer Localizer 
+
+<div class="text-left mt-3">
+    <h3 class="display-6"></h3>
+</div>
+<hr/>
+<div style="overflow-x: hidden; overflow-y: scroll; height: 720px;">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <form asp-action="Create" method="post">
+        <div class="form-group">
+            <label for="name">@Localizer["RoleName"]</label>
+            <input name="name" class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-primary">@Localizer["Add"]</button>
+    </form>
+</div>

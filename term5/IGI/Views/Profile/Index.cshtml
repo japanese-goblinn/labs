@@ -1,0 +1,302 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@model Twitter.ViewModels.ProfileViewModel
+@inject IViewLocalizer Localizer
+
+@{
+    ViewData["Title"] = Localizer["Profile"];
+    Layout = "_Layout"; 
+}
+
+<div class="text-left mt-3">
+    <h3 class="display-6">@ViewData["Title"]</h3>
+</div>
+<hr/>
+<div class="d-flex flex-grow-1">
+    <div class="d-flex mt-1 ml-2 justify-content-start align-items-start">
+        <img height="80" width="80" class="rounded-circle" src="/images/default.jpg" alt="default userpic"/>
+    </div>
+    @if (Model.User.UserName != User.Identity.Name)
+        {
+            <div class="flex-fill d-flex flex-row justify-content-end align-self-end">
+                <div class="d-flex">
+                    <a asp-action="WriteMessage" asp-route-userName="@Model.User.UserName"
+                       class="btn btn-outline-primary mt-1 mr-2" style="border-radius: 20px">
+                        @Localizer["WriteMessage"]
+                    </a>
+                </div>
+                <div class="d-flex">
+                    @if (Model.IsCurrentUserFollowing)
+                    {
+                        <a asp-action="Unfollow" asp-route-userName="@Model.User.UserName"
+                           class="btn btn-danger mt-1" style="border-radius: 20px">
+                            @Localizer["Unfollow"]
+                        </a>
+                    }
+                    else
+                    {
+                        <a asp-action="Follow" asp-route-userName="@Model.User.UserName"
+                           class="btn btn-outline-primary mt-1" style="border-radius: 20px">
+                            @Localizer["Follow"]
+                        </a>
+                    }
+                </div>
+            </div>
+        } 
+</div>
+<div class="pl-2 mt-2 d-flex flex-grow-1 flex-column bd-highlight">
+        <div class="d-flex justify-content-start bd-highlight" style="font-weight: bold; font-size: x-large">
+            @Model.User.Name
+        </div>
+        
+        <div class="d-flex justify-content-start bd-highlight" style="color: rgb(101, 119, 134)">
+            @@@Model.User.UserName
+        </div>
+        
+        <div class="mt-2 d-flex flex-row bd-highlight">
+            <div class="d-flex">
+                <div style="font-weight: bold">
+                    @Model.Following.Count
+                </div>
+                <div class="ml-1">
+                    <a style="color: rgb(31, 31, 31);" href="" data-toggle="modal" data-target="#followingModal">
+                        @Localizer["Following"]
+                    </a>
+                    <div class="modal fade" id="followingModal" tabindex="-1" role="dialog" 
+                         aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">@Localizer["Following"]</h5>
+                                </div>
+                                <div class="modal-body">
+                                    @if (Model.Following.Count == 0)
+                                    {
+                                        @if (Model.User.UserName == User.Identity.Name)
+                                        {
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <p>@Localizer["YouNotFollowing"]</p>
+                                                <p style="color: rgb(101, 119, 134)">
+                                                    @Localizer["DoFollowingYou"]
+                                                </p>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <p>@Localizer["UserNotFollowing"]</p>
+                                                <p style="color: rgb(101, 119, 134)">
+                                                    @Localizer["DoFollowingUser"]
+                                                </p>
+                                            </div>
+                                        }
+                                    }
+                                    @foreach (var user in Model.Following)
+                                    {
+                                        <div class="pl-2 d-flex"> 
+                                            <div>
+                                                <a asp-controller="Profile" asp-action="Index" 
+                                                   asp-route-userName="@user.UserName" class="text-dark">
+                                                    @if (user.UserName == User.Identity.Name)
+                                                    {
+                                                        <text>@Localizer["Me"]</text>
+                                                    }
+                                                    else
+                                                    {
+                                                        @user.Name 
+                                                    }
+                                                </a>
+                                            </div>
+                                            <div>
+                                                <a class="ml-1" style="color: rgb(101, 119, 134);">
+                                                    @@@user.UserName
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <hr/>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ml-1 d-flex">
+                <div style="font-weight: bold">
+                    @Model.Followers.Count
+                </div>
+                <div class="ml-1">
+                    <a style="color: rgb(31, 31, 31);" href="" data-toggle="modal" data-target="#followersModal">
+                        @Localizer["Followers"]
+                    </a>
+                    <div class="modal fade" id="followersModal" tabindex="-1" role="dialog" 
+                         aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">@Localizer["Followers"]</h5>
+                                </div>
+                                <div class="modal-body">
+                                    @if (Model.Followers.Count == 0)
+                                    {
+                                        @if (Model.User.UserName == User.Identity.Name)
+                                        {
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <p>@Localizer["YouNotFollowed"]</p>
+                                                <p style="color: rgb(101, 119, 134)">
+                                                    @Localizer["DoFollowedYou"]
+                                                </p>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <p>@Localizer["UserNotFollowed"]</p>
+                                                <p style="color: rgb(101, 119, 134)">
+                                                    @Localizer["DoFollowedUser"]
+                                                </p>
+                                            </div>
+                                        }
+                                    }
+                                    @foreach (var user in Model.Followers)
+                                    {
+                                        <div class="pl-2 d-flex">
+                                            <div>
+                                                <a asp-controller="Profile" asp-action="Index"
+                                                   asp-route-userName="@user.UserName" class="text-dark">
+                                                    @if (user.UserName == User.Identity.Name)
+                                                    {
+                                                        <text>@Localizer["Me"]</text>
+                                                    }
+                                                    else
+                                                    {
+                                                        @user.Name 
+                                                    }
+                                                </a>
+                                            </div>
+                                            <div>
+                                                <a class="ml-1" style="color: rgb(101, 119, 134)">
+                                                    @@@user.UserName
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <hr/>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<ul class="ml-1 mt-3 nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link active" id="tweets-tab" data-toggle="tab" href="#tweets" role="tab" aria-controls="home" 
+           aria-selected="true">
+            @Localizer["Tweets"]
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="replies-tab" data-toggle="tab" href="#replies" role="tab" aria-controls="profile" 
+           aria-selected="false">
+            @Localizer["Replies"]
+        </a>
+    </li>
+    
+    <li class="nav-item">
+        <a class="nav-link" id="retweets-tab" data-toggle="tab" href="#retweets" role="tab" aria-controls="home" 
+           aria-selected="false">
+            @Localizer["Retweets"]
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="likes-tab" data-toggle="tab" href="#likes" role="tab" aria-controls="contact" 
+           aria-selected="false">
+            @Localizer["Likes"]
+        </a>
+    </li>
+</ul>
+    <div class="tab-content" id="myTabContent">
+        <div class="mt-3 tab-pane fade show active" id="tweets" role="tabpanel" aria-labelledby="home-tab">
+            <div style="overflow-y: scroll; height: 478px;">
+                @if (Model.UserTweets.Count == 0)
+                {
+                    <div class="d-flex flex-column justify-content-center">
+                        <p style="color: rgb(101, 119, 134)">@Localizer["NoTweets"]</p>
+                    </div>
+                }
+                else
+                {
+                    @foreach (var tweet in Model.UserTweets)
+                    {
+                        @await Component.InvokeAsync("Tweet", new {id = tweet.Id})
+                        <hr/>
+                    }
+                }
+            </div>
+        </div>
+        <div class="mt-3 tab-pane fade" id="retweets" role="tabpanel" style="overflow-y: scroll; height: 545px;"
+             aria-labelledby="profile-tab">
+            <div style="overflow-y: scroll; height: 478px;">
+                @if (Model.Retweets.Count == 0)
+                {
+                    <div class="d-flex flex-column justify-content-center">
+                        <p style="color: rgb(101, 119, 134)">@Localizer["NoRetweets"]</p>
+                    </div>
+                }
+                else
+                {
+                    @foreach (var retweet in Model.Retweets)
+                    {
+                        @await Component.InvokeAsync("Tweet", new {id = retweet.Tweet.Id})
+                        <hr/>
+                    }
+                }
+            </div>
+        </div>
+        <div class="mt-3 tab-pane fade" id="replies" role="tabpanel" style="overflow-y: scroll; height: 545px;"
+             aria-labelledby="profile-tab">
+            <div style="overflow-y: scroll; height: 478px;">
+                @if (Model.Replies.Count == 0)
+                {
+                    <div class="d-flex flex-column justify-content-center">
+                        <p style="color: rgb(101, 119, 134)">@Localizer["NoReplies"]</p>
+                    </div>
+                }
+                else
+                {
+                    @foreach (var reply in Model.Replies)
+                    {
+                        @await Component.InvokeAsync("Reply", new {id = reply.Id})
+                         <div class="flex-column">
+                        
+                             <a class="ml-2 mt-3 d-flex justify-content-start text-left" asp-controller="Home" asp-action="Replies" asp-route-id="@reply.OnTweet.Id">
+                                 @Localizer["Thread"]
+                             </a>
+                         </div>
+                        <hr/>
+                    }
+                }
+            </div>
+        </div>
+        <div class="mt-3 tab-pane fade" id="likes" role="tabpanel" style="overflow-y: scroll; height: 545px;"
+             aria-labelledby="contact-tab">
+            <div style="overflow-y: scroll; height: 478px;">
+                @if (Model.Likes.Count == 0)
+                {
+                    <div class="d-flex flex-column justify-content-center">
+                        <p style="color: rgb(101, 119, 134)">@Localizer["NoLikes"]</p>
+                    </div>
+                }
+                else
+                {
+                    @foreach (var like in Model.Likes)
+                    {
+                        @await Component.InvokeAsync("Tweet", new {id = like.LikedTweet.Id})
+                        <hr/>
+                    }
+                }
+            </div>
+        </div>
+    </div>

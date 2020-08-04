@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent">
+
+    <com.example.battleship.views.BattlefieldView
+        android:id="@+id/battlefieldView"
+        android:layout_width="320dp"
+        android:layout_height="320dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/continueGameButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:enabled="false"
+        android:padding="10dp"
+        android:text="Continue"
+        app:backgroundTint="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="@+id/battlefieldView"
+        app:layout_constraintStart_toStartOf="@+id/battlefieldView"
+        app:layout_constraintTop_toBottomOf="@+id/battlefieldView" />
+
+    <TextView
+        android:id="@+id/hintTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="Place ..."
+        android:textColor="@color/colorSecondary"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="@+id/battlefieldView"
+        app:layout_constraintStart_toStartOf="@+id/battlefieldView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.button.MaterialButtonToggleGroup
+        android:id="@+id/directionToggleGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:layout_marginTop="40dp"
+        android:gravity="center"
+        app:checkedButton="@+id/btnHorizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hintTextView"
+        app:singleSelection="true">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnHorizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/colorAccent"
+            android:enabled="false"
+            android:padding="10dp"
+            android:text="Horizontal"
+            android:textColor="@color/colorTextPrimary"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnVertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/colorPrimary"
+            android:padding="10dp"
+            android:text="Vertical"
+            android:textColor="@color/colorTextPrimary"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:iconGravity="end" />
+
+    </com.google.android.material.button.MaterialButtonToggleGroup>
+
+    <ProgressBar
+        android:id="@+id/continueProgressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        app:layout_constraintBottom_toBottomOf="@+id/continueGameButton"
+        app:layout_constraintEnd_toEndOf="@+id/continueGameButton"
+        app:layout_constraintStart_toStartOf="@+id/continueGameButton"
+        app:layout_constraintTop_toTopOf="@+id/continueGameButton" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

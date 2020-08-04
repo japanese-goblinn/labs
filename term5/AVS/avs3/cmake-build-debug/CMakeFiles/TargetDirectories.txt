@@ -1,0 +1,3 @@
+/Users/saisuicied/Downloads/avs3/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/saisuicied/Downloads/avs3/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/saisuicied/Downloads/avs3/cmake-build-debug/CMakeFiles/avs3.dir

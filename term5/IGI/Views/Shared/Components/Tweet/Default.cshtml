@@ -1,0 +1,43 @@
+@model Tweet
+
+<div class="d-flex">
+    <div class="ml-1 align-items-start">
+        <img height="50" width="50" class="rounded-circle" src="/images/default.jpg" alt="default userpic"/>
+    </div>
+    <div class="ml-1 flex-column" style="width: 550px;">
+        <div class="d-flex bd-highlight pl-2">
+            <div class="align-items-start bd-highlight" style="font-weight: bold">
+                <a asp-controller="Profile" asp-action="Index"
+                   asp-route-userName="@Model.Author.UserName" class="text-dark">
+                    @Model.Author.Name
+                </a>
+            </div>
+            <div class="ml-1 align-items-start bd-highlight" style="color: rgb(101, 119, 134)">
+                @@@Model.Author.UserName
+            </div>
+            <div class="ml-1 align-items-start bd-highlight" style="color: rgb(101, 119, 134)">
+                &#8226
+            </div>
+            <div class="ml-1 align-items-start bd-highlight" style="color: rgb(101, 119, 134)">
+                @Html.DisplayFor(t => t.Date)
+            </div>
+        </div>
+        <div class="d-flex justify-content-start text-left flex-column bd-hightlight mt-2 pl-2"
+             style="word-wrap: break-word;">
+            @Model.Content
+        </div>
+        <div class="d-flex bd-highlight mt-3 ml-2">
+            <div class="align-items-start bd-highlight">
+                <like tweet-id="@Model.Id" user-name="@User.Identity.Name" 
+                      redirect-url="@Context.Request.Path"></like>
+            </div>
+            <div class="align-items-start bd-highlight ml-3">
+                <retweet tweet-id="@Model.Id" user-name="@User.Identity.Name" 
+                         redirect-url="@Context.Request.Path"></retweet>
+            </div>
+            <div class="align-items-start bd-highlight ml-3">
+                <replies tweet-id="@Model.Id"></replies>
+            </div>
+        </div>
+    </div>
+</div>
