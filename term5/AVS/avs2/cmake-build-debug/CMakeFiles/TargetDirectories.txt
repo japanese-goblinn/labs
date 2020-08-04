@@ -1,0 +1,7 @@
+/Users/saisuicied/Downloads/avsgit/AVS-5-sem/avs2/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/saisuicied/Downloads/avsgit/AVS-5-sem/avs2/cmake-build-debug/CMakeFiles/fixed_size_atomic_queue.dir
+/Users/saisuicied/Downloads/avsgit/AVS-5-sem/avs2/cmake-build-debug/CMakeFiles/dynamic_mutex_queue.dir
+/Users/saisuicied/Downloads/avsgit/AVS-5-sem/avs2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/saisuicied/Downloads/avsgit/AVS-5-sem/avs2/cmake-build-debug/CMakeFiles/fixed_size_mutex_queue.dir
+/Users/saisuicied/Downloads/avsgit/AVS-5-sem/avs2/cmake-build-debug/CMakeFiles/atomic_counter.dir
+/Users/saisuicied/Downloads/avsgit/AVS-5-sem/avs2/cmake-build-debug/CMakeFiles/mutex_counter.dir

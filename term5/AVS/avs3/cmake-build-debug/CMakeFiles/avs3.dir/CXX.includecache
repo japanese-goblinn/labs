@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/saisuicied/Downloads/avs3/main.cpp
+iostream
+-
+vector
+-
+omp.h
+/Users/saisuicied/Downloads/avs3/omp.h
+
