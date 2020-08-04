@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundColor">
+
+    <Button
+        android:id="@+id/button_open_parenthesis"
+        style="@style/NumButton"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/open_parenthesis"
+        app:layout_constraintBottom_toTopOf="@+id/button_sin"
+        app:layout_constraintEnd_toStartOf="@+id/button_closing_parenthesis"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button_closing_parenthesis"
+        style="@style/NumButton"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/closing_parenthesis"
+        app:layout_constraintBottom_toTopOf="@+id/button_cos"
+        app:layout_constraintEnd_toStartOf="@+id/button_fact"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_open_parenthesis"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button_tg"
+        style="@style/NumButton"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/tg"
+        app:layout_constraintBottom_toTopOf="@+id/button_log2"
+        app:layout_constraintEnd_toStartOf="@+id/button_ctg"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_cos"
+        app:layout_constraintTop_toBottomOf="@+id/button_fact" />
+
+    <Button
+        android:id="@+id/button_fact"
+        style="@style/NumButton"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/factorial"
+        app:layout_constraintBottom_toTopOf="@+id/button_tg"
+        app:layout_constraintEnd_toStartOf="@+id/button_percent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_closing_parenthesis"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button_log2"
+        style="@style/NumButton"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/log2"
+        app:layout_constraintBottom_toTopOf="@+id/button_abs"
+        app:layout_constraintEnd_toStartOf="@+id/button_log10"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_log"
+        app:layout_constraintTop_toBottomOf="@+id/button_tg" />
+
+    <Button
+        android:id="@+id/button_log10"
+        style="@style/NumButton"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/log10"
+        app:layout_constraintBottom_toTopOf="@+id/button_sqrt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_log2"
+        app:layout_constraintTop_toBottomOf="@+id/button_ctg" />
+
+    <Button
+        android:id="@+id/button_cos"
+        style="@style/NumButton"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/cos"
+        app:layout_constraintBottom_toTopOf="@+id/button_log"
+        app:layout_constraintEnd_toStartOf="@+id/button_tg"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_sin"
+        app:layout_constraintTop_toBottomOf="@+id/button_closing_parenthesis" />
+
+    <Button
+        android:id="@+id/button_ctg"
+        style="@style/NumButton"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/ctg"
+        app:layout_constraintBottom_toTopOf="@+id/button_log10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_tg"
+        app:layout_constraintTop_toBottomOf="@+id/button_percent" />
+
+    <Button
+        android:id="@+id/button_sin"
+        style="@style/NumButton"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/sin"
+        app:layout_constraintBottom_toTopOf="@+id/button_ln"
+        app:layout_constraintEnd_toStartOf="@+id/button_cos"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_open_parenthesis" />
+
+    <Button
+        android:id="@+id/button_ln"
+        style="@style/NumButton"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/ln"
+        app:layout_constraintBottom_toTopOf="@+id/button_exp"
+        app:layout_constraintEnd_toStartOf="@+id/button_log"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_sin" />
+
+    <Button
+        android:id="@+id/button_exp"
+        style="@style/NumButton"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/e"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button_pi"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_ln" />
+
+    <Button
+        android:id="@+id/button_sqrt"
+        style="@style/NumButton"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/sqrt"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_abs"
+        app:layout_constraintTop_toBottomOf="@+id/button_log10" />
+
+    <Button
+        android:id="@+id/button_pi"
+        style="@style/NumButton"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/pi"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button_abs"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_exp"
+        app:layout_constraintTop_toBottomOf="@+id/button_log" />
+
+    <Button
+        android:id="@+id/button_percent"
+        style="@style/NumButton"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/percent"
+        app:layout_constraintBottom_toTopOf="@+id/button_ctg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_fact"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button_abs"
+        style="@style/NumButton"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/abs"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button_sqrt"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_pi"
+        app:layout_constraintTop_toBottomOf="@+id/button_log2" />
+
+    <Button
+        android:id="@+id/button_log"
+        style="@style/NumButton"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/log"
+        app:layout_constraintBottom_toTopOf="@+id/button_pi"
+        app:layout_constraintEnd_toStartOf="@+id/button_log2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_ln"
+        app:layout_constraintTop_toBottomOf="@+id/button_cos" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
