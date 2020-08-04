@@ -1,0 +1,49 @@
+@import "./main.css";
+@import "./forms.css";
+
+body {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 80%;
+}
+
+h1 {
+    margin: 35% 0 0;
+    color: var(--text-secondary-color);
+}
+
+main {
+    margin-top: 10px;
+}
+
+.change-button {
+    border: none;
+    color: var(--text-secondary-color);
+    margin: 15px auto 0;
+    text-align: center;
+    font-size: 0.7rem;
+    outline: none;
+    background-color: white;
+}
+
+.change-button:hover {
+    display: inline-block;
+    text-decoration: underline;
+}
+
+.primary-button {
+    padding: 10px;
+    margin: 10px auto;
+    width: 40%;
+}
+
+@media only screen and (min-width: 800px) {
+    body {
+        width: 40%;
+    }
+
+    h1 {
+        margin: 20% 0 0;
+    }
+}

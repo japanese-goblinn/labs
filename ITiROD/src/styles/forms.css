@@ -1,0 +1,46 @@
+.form-container {
+    border: 2px solid var(--separator-color);
+    border-radius: 10px;
+    padding: 25px 25px 0 25px;
+    margin-top: 5%;
+    margin-bottom: 0;
+}
+
+.form-container > * {
+    color: var(--text-secondary-color);
+}
+
+.form-container h2 {
+    margin-bottom: 10px;
+}
+
+.form {
+    padding: 5px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    flex-wrap: wrap;
+    flex-grow: 2;
+}
+
+.form input {
+    background-color: #FFFFFF;
+    border: 1px solid var(--separator-color);
+    border-radius: 4px;
+    width: 100%;
+    padding: 7px;
+    font-size: 14px;
+    outline-color: var(--primary-color);
+}
+
+.form input:invalid {
+    outline-color: var(--destuctive-color);
+}
+
+.form input::placeholder {
+    color: rgba(161, 161, 157, 0.685);
+}
+
+.form label {
+    margin: 10px 0;
+}

@@ -1,0 +1,15 @@
+{
+  "hosting": {
+    "site": "my-md-notes",
+    "public": "src",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [ {
+      "source": "**",
+      "destination": "/index.html"
+    } ]
+  }
+}

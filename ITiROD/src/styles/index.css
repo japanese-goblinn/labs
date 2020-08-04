@@ -1,0 +1,323 @@
+@import "./main.css";
+@import "./animations.css";
+@import "./forms.css";
+@import "./search.css";
+@import "./profile.css";
+
+select {
+    color: var(--text-secondary-color);
+    outline-color: var(--primary-color);
+}
+
+time {
+    color: var(--text-secondary-color);
+    font-family: monospace;
+    font-weight: 600;
+}
+
+figure {
+    display: flex;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+figcaption {
+    padding-left: 7px;
+}
+
+.note-view-column {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+#markdown-input {
+    color: var(--text-color);
+    font-family: monospace;
+    resize: none;
+}
+
+#markdown-input::placeholder {
+    color: var(--text-secondary-color);
+}
+
+#markdown-input:focus {
+    outline: none;
+}
+
+#markdown-preview li {
+    list-style-position: inside;
+}
+
+#markdown-preview > * {
+    margin-top: 5px;
+}
+
+.markdown-area {
+    padding-top: 8px;
+    justify-content: space-between;
+    display: flex;
+    flex: 1 2 1px;
+}
+
+.markdown-presentable {
+    width: 0;
+    flex-grow: 1;
+    padding: 15px;
+    overflow: scroll;
+    overflow-wrap: break-word;
+    border-radius: 5px;
+    border: 2px solid var(--separator-color);
+}
+
+.markdown-presentable-mobile {
+    height: 70vh;
+}
+
+#markdown-input.markdown-presentable-desktop {
+    border-radius: 5px 0 0 5px;
+    border-right: none;
+}
+
+#markdown-preview.markdown-presentable-desktop {
+    border-radius: 0 5px 5px 0;
+}
+
+.markdown-presentable-desktop {
+    height: 78vh;
+}
+
+.folder-button {
+    border: none;
+    background-color: inherit;
+    outline: none;
+}
+
+.note-button {
+    outline: none;
+    border: none;
+    background-color: var(--separator-color);
+}
+
+.toolbar {
+    display: flex;
+    padding-top: 15px;
+    width: 48%;
+}
+
+.toolbar > :first-child {
+    border-radius: 5px 0 0 5px;
+    border-right: none;
+}
+
+.toolbar > :last-child {
+    border-radius: 0 5px 5px 0;
+}
+
+.toolbar-item {
+    padding: 1px;
+    outline: none;
+    flex-grow: 1;
+    border: 2px solid var(--separator-color);
+    background-color: white;
+    color: var(--text-secondary-color);
+}
+
+.primary-button-click-animation {
+    animation: jumping 1s ease-in-out;
+}
+
+.rounded {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    margin: auto;
+    margin-right: 0;
+    margin-bottom: 0;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-container {
+    display: none;
+    position: absolute;
+    right: 8px;
+    top: 14px;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 9px 9px 51px -21px rgba(0,0,0,0.75);
+}
+
+.dropdown-container > * {
+    z-index: 1;
+    padding: 11px;
+    border: none;
+    font-weight: bold;
+    text-align: start;
+    outline: none;
+    background-color: white;
+}
+
+.dropdown-container > *:last-child {
+    color: var(--destuctive-color);
+    border-radius: 0 0 10px 10px;
+}
+
+.dropdown-container > *:first-child {
+    border-radius: 10px 10px 0 0;
+}
+
+.layout-header {
+    color: var(--text-secondary-color);
+    font-weight: 500;
+}
+
+.layout-header > :not(:last-child) {
+    padding: 10px;
+}
+
+#root {
+    height: 100%;
+}
+
+.root-layout {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.root-layout > :last-child {
+    flex-grow: 2;
+}
+
+.main-columns {
+    display: flex;
+}
+
+.main-columns > :first-child {
+    width: 15%;
+}
+
+.main-columns > :nth-child(2) {
+    width: 20%;
+}
+
+.main-columns > :last-child {
+    flex-grow: 2;
+}
+
+.note-list {
+    height: 90%;
+    overflow: scroll;
+    flex: 0 1 1px;
+}
+
+.folders-column {
+    background-color: var(--folders-column-color);
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.folders-column > :first-child {
+    min-height: 90%;
+    overflow: scroll;
+    flex: 0 1 1px;
+}
+
+.folders-column > :last-child {
+    padding: 10px;
+    margin: 15px;
+}
+
+.right-bordered {
+    border-right: 1px solid var(--separator-color);
+}
+
+.notes-column {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.notes-column > :last-child {
+    min-height: 100%;
+    flex: 0 2 1px;
+    overflow: scroll;
+}
+
+.notes-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+.notes-header-description {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+
+.notes-header-description h3 {
+    display: flex;
+    align-items: center;
+}
+
+.notes-header-description > * {
+    flex-grow: 1;
+    overflow-wrap: break-word;
+}
+
+.notes-header-description > :last-child {
+    padding-top: 5px;
+}
+
+.form-container {
+    padding: 15px 15px 0;
+    border: none;
+    margin: 0;
+}
+
+.modal-folder {
+    margin: 15px;
+    align-self: center;
+    width: 40%;
+    padding: 10px;
+}
+
+.back-button {
+    width: 30px;
+    text-align: start;
+    border: none;
+    background-color: inherit;
+    border-radius: 5px;
+}
+
+.folder-back-button {
+    margin-top: 15px;
+    margin-left: 15px;
+}
+
+.note-back-button {
+    margin-bottom: 15px;
+}
+
+@media only screen and (max-width: 800px) {
+    .main-columns > :first-child {
+        background-color: inherit;
+        width: 100%;
+        flex-grow: 1;
+    }
+
+    .main-columns > :not(:first-child) {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 800px) {
+    .modal-content {
+        width: 40%;
+    }
+}
