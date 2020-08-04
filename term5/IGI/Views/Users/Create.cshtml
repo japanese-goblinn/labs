@@ -1,0 +1,36 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@model Twitter.ViewModels.CreateUserViewModel
+@inject IViewLocalizer Localizer
+
+@{
+    ViewData["Title"] = Localizer["Create"];
+}
+
+<div class="text-left mt-3">
+    <h3 class="display-6">@ViewData["Title"]</h3>
+</div>
+<hr/>
+<div style="overflow-x: hidden; overflow-y: scroll; height: 720px;">
+    <form asp-action="Create" asp-controller="Users">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div asp-validation-for="Email" class="form-group">
+            <label asp-for="Email" class="control-label">@Localizer["Email"]</label>
+            <input type="text" asp-for="Email" class="form-control" />
+        </div>
+        <div asp-validation-for="Name" class="form-group">
+                <label asp-for="Name" class="control-label">@Localizer["Name"]</label>
+                <input type="text" asp-for="Name" class="form-control" />
+            </div>
+        <div asp-validation-for="UserName" class="form-group">
+            <label asp-for="UserName" class="control-label">@Localizer["Username"]</label>
+            <input type="text" asp-for="UserName" class="form-control" />
+        </div>
+        <div asp-validation-for="Password" class="form-group">
+            <label asp-for="Password" class="control-label">@Localizer["Password"]</label>
+            <input type="password" asp-for="Password" class="form-control" />
+        </div>
+        <div class="form-group">
+            <input type="submit" value="@Localizer["Add"]" class="btn btn-primary" />
+        </div>
+    </form>
+</div>

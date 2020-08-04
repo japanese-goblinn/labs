@@ -1,0 +1,381 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@model Twitter.ViewModels.RepliesViewModel
+@inject IViewLocalizer Localizer
+
+@{
+    ViewData["Title"] = Localizer["Tweet"];
+}
+
+<div class="text-left mt-3">
+    <h3 class="display-6">@ViewData["Title"]</h3>
+</div>
+<hr/>
+
+<div style="overflow-y: scroll; height: 735px;">
+    <div class="flex-column">
+        <div class="d-flex">
+            <div class="d-flex ml-1 align-items-start mt-1">
+                <img height="50" width="50" class="rounded-circle" src="~/images/default.jpg" alt="default userpic"/>
+            </div>
+            <div class="ml-2 mt-1 flex-column">
+                <div class="ml-1 d-flex justify-content-start" style="font-weight: bold; font-size: large">
+                    <a asp-controller="Profile" asp-action="Index"
+                       asp-route-userName="@Model.Tweet.Author.UserName" class="text-dark">
+                        @Model.Tweet.Author.Name
+                    </a>
+                </div>
+                <div class="ml-1 d-flex justify-content-start" style="color: rgb(101, 119, 134)">
+                    @@@Model.Tweet.Author.UserName
+                </div>
+            </div>
+        </div>
+        <div class="ml-1 mt-3 flex-column justify-content-start text-left" style="word-wrap: break-word">
+            @Model.Tweet.Content
+        </div>
+        <div class="d-flex ml-1 mt-3" style="color: rgb(101, 119, 134)">
+            <div class="justify-content-start">
+                @String.Format("{0:H:mm}", Model.Tweet.Date)
+            </div>
+            <div class="ml-1 justify-content-start">
+                &#8226
+            </div>
+            <div class="ml-1 justify-content-start">
+                @String.Format("{0:MMM d, yyyy}", Model.Tweet.Date)
+            </div>
+        </div>
+        <hr/>
+        <div class="d-flex">
+            <div class="ml-1 d-flex">
+                <div id="retweetsCount" class="font-weight-bold"></div>
+                <div class="ml-1">
+                    <a style="color: rgb(31, 31, 31);" href="" data-toggle="modal" data-target="#retweetsModal">
+                        @Localizer["Retweets"]
+                    </a>
+                    <div class="modal fade" id="retweetsModal" tabindex="-1" role="dialog"
+                         aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">@Localizer["Retweets"]</h5>
+                                </div>
+                                <div id="retweetsModalBody" class="modal-body">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ml-1 d-flex">
+                <div id="likesCount" class="font-weight-bold">
+                </div>
+                <div class="ml-1">
+                    <a style="color: rgb(31, 31, 31);" href="" data-toggle="modal" data-target="#likesModal">
+                        @Localizer["Likes"]
+                    </a>
+                    <div class="modal fade" id="likesModal" tabindex="-1" role="dialog"
+                         aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">@Localizer["Likes"]</h5>
+                                </div>
+                                <div id="likesModalBody" class="modal-body"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr/>
+        <div class="d-flex">
+            <svg id="comment" data-toggle="modal" data-target="#replyModal" class="flex-fill comment" height="20" width="20" viewBox="0 0 24 24">
+                <g>
+                    <path d="M14.046 2.242l-4.148-.01h-.002c-4.374 0-7.8 3.427-7.8 7.802 0 4.098 3.186 7.206 7.465 7.37v3.828c0 .108.044.286.12.403.142.225.384.347.632.347.138 0 .277-.038.402-.118.264-.168 6.473-4.14 8.088-5.506 1.902-1.61 3.04-3.97 3.043-6.312v-.017c-.006-4.367-3.43-7.787-7.8-7.788zm3.787 12.972c-1.134.96-4.862 3.405-6.772 4.643V16.67c0-.414-.335-.75-.75-.75h-.396c-3.66 0-6.318-2.476-6.318-5.886 0-3.534 2.768-6.302 6.3-6.302l4.147.01h.002c3.532 0 6.3 2.766 6.302 6.296-.003 1.91-.942 3.844-2.514 5.176z"></path>
+                </g>
+            </svg>
+            <div id="replyModal" class="modal fade"tabindex="-1" role="dialog"
+                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">@Localizer["Reply"]</h5>
+                        </div>
+                        <div class="modal-body">
+                            <form id="reply-form" method="post" asp-controller="Home" asp-action="Reply"
+                                  asp-route-tweetId="@Model.Tweet.Id" class="form-group">
+                                <input name="content" class="form-control" placeholder="@Localizer["TweetReply"]"/>
+                                <div class="text-right">
+                                    <button onclick="document.getElementById('reply-form').submit();" type="submit"
+                                            class="mt-4 btn btn-primary">
+                                        @Localizer["Replying"]
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <svg id="retweet" class="flex-fill retweet" height="20" width="20" viewBox="0 0 24 24">
+                <g>
+                    <path d="M23.77 15.67c-.292-.293-.767-.293-1.06 0l-2.22 2.22V7.65c0-2.068-1.683-3.75-3.75-3.75h-5.85c-.414 0-.75.336-.75.75s.336.75.75.75h5.85c1.24 0 2.25 1.01 2.25 2.25v10.24l-2.22-2.22c-.293-.293-.768-.293-1.06 0s-.294.768 0 1.06l3.5 3.5c.145.147.337.22.53.22s.383-.072.53-.22l3.5-3.5c.294-.292.294-.767 0-1.06zm-10.66 3.28H7.26c-1.24 0-2.25-1.01-2.25-2.25V6.46l2.22 2.22c.148.147.34.22.532.22s.384-.073.53-.22c.293-.293.293-.768 0-1.06l-3.5-3.5c-.293-.294-.768-.294-1.06 0l-3.5 3.5c-.294.292-.294.767 0 1.06s.767.293 1.06 0l2.22-2.22V16.7c0 2.068 1.683 3.75 3.75 3.75h5.85c.414 0 .75-.336.75-.75s-.337-.75-.75-.75z"></path>
+                </g>
+            </svg>
+
+            <svg id="like" class="flex-fill like" height="20" width="20" viewBox="0 0 24 24">
+                <g>
+                    <path d="M12 21.638h-.014C9.403 21.59 1.95 14.856 1.95 8.478c0-3.064 2.525-5.754 5.403-5.754 2.29 0 3.83 1.58 4.646 2.73.814-1.148 2.354-2.73 4.645-2.73 2.88 0 5.404 2.69 5.404 5.755 0 6.376-7.454 13.11-10.037 13.157H12zM7.354 4.225c-2.08 0-3.903 1.988-3.903 4.255 0 5.74 7.034 11.596 8.55 11.658 1.518-.062 8.55-5.917 8.55-11.658 0-2.267-1.823-4.255-3.903-4.255-2.528 0-3.94 2.936-3.952 2.965-.23.562-1.156.562-1.387 0-.014-.03-1.425-2.965-3.954-2.965z"></path>
+                </g>
+            </svg>
+        </div>
+        <hr/>
+        <div id="replies"></div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+<script>
+    let amount = 4;
+    var pageNum = 1;
+        
+    $(document).ready(() => {
+        checkStates();
+        loadLikes();
+        loadRetweets();
+        loadReplies();
+    });
+    
+    function checkRetweet() {
+        if ($('#retweet').hasClass('retweet')) {
+            $('#retweet').removeClass('retweet');
+            $('#retweet').addClass('retweet-toggled');
+        } else if ($('#retweet').hasClass('retweet-toggled')) {
+            $('#retweet').removeClass('retweet-toggled');
+            $('#retweet').addClass('retweet');
+        }
+    }
+    
+    function checkLike() {
+        if ($('#like').hasClass('like')) {
+            $('#like').removeClass('like');
+            $('#like').addClass('like-toggled');
+        } else if ($('#like').hasClass('like-toggled')) {
+            $('#like').removeClass('like-toggled');
+            $('#like').addClass('like');
+        }
+    }
+    
+    function checkStates() {
+          if ('@Model.isCurrentUserLiked' === 'True') {
+             $('#like').removeClass('like');
+             $('#like').addClass('like-toggled');
+          } else {
+             $('#like').addClass('like');
+          }
+              
+          if ('@Model.isCurrentUserRetweeted' === 'True') {
+             $('#retweet').removeClass('retweet');
+             $('#retweet').addClass('retweet-toggled');  
+          } else {
+             $('#retweet').addClass('retweet');
+          }
+    }
+  
+    function loadMore() {
+        $("#loadMoreButton").remove();
+        loadReplies();
+    }
+    
+    function loadLikes() {
+      $.ajax(`/api/likes/@Model.Tweet.Id`).done((response) => {
+          let data = JSON.parse(response);
+          var dataCount = Object(data).length;
+          $('#likesCount').text(`${dataCount}`);
+          $('#likesModalBody').empty();
+          if (dataCount === 0) {
+              $('#likesModalBody').append(
+                  `<div class="d-flex flex-column justify-content-center">
+                       <p>@Localizer["NoOneLikes"]</p>
+                       <p style="color: rgb(101, 119, 134)">
+                           @Localizer["WhenTheyDo"]
+                       </p>
+                  </div>`
+              );
+          } else {
+              for (let node in data) {
+                  if (data.hasOwnProperty(node)) {
+                      var showUsername;
+                      if (data[node].Username === data[node].UsernameOfCurrentUser) {
+                          showUsername = '@Localizer["Me"]';
+                      } else {
+                          showUsername = data[node].Name;
+                      }
+                      $('#likesModalBody').append(
+                          `<div class="pl-2 d-flex">
+                              <div>
+                                 <a href="/Profile/?userName=${data[node].Username}" class="text-dark">
+                                    ${showUsername}
+                                 </a>
+                                 </div>
+                                 <div>
+                                    <a class="ml-1" style="color: rgb(101, 119, 134);">
+                                       @@${data[node].Username}
+                                    </a>
+                                 </div>
+                              </div>
+                          <hr/>`
+                      )
+                  }
+              }
+          }
+      });
+    }
+    
+    function loadRetweets() {
+      $.ajax(`/api/retweets/@Model.Tweet.Id`).done((response) => {
+          let data = JSON.parse(response);
+          var dataCount = Object(data).length;
+          $('#retweetsCount').text(`${dataCount}`);
+          $("#retweetsModalBody").empty();
+          if (dataCount === 0) {
+              $('#retweetsModalBody').append(
+                  `<div class="d-flex flex-column justify-content-center">
+                      <p>@Localizer["NoOneRetweeted"]</p>
+                      <p style="color: rgb(101, 119, 134)">
+                         @Localizer["WhenTheyDo"]
+                      </p>
+                  </div>`
+              );
+          } else {
+              for (let node in data) {
+                  if (data.hasOwnProperty(node)) {
+                      var showUsername;
+                      if (data[node].Username === data[node].UsernameOfCurrentUser) {
+                          showUsername = '@Localizer["Me"]';
+                      } else {
+                          showUsername = data[node].Name;
+                      }
+                      $('#retweetsModalBody').append(
+                         `<div class="pl-2 d-flex">
+                            <div>
+                               <a href="/Profile/?userName=${data[node].Username}" class="text-dark">
+                                    ${showUsername}
+                               </a>
+                            </div>
+                            <div>
+                               <a class="ml-1" style="color: rgb(101, 119, 134);">
+                                    @@${data[node].Username}
+                               </a>
+                            </div>
+                         </div>
+                         <hr/>`
+                      )                      
+                  }
+              }
+          }
+      });
+    }
+    
+    function loadReplies() {
+        $.ajax({
+           url: `/api/replies/@Model.Tweet.Id/${amount}/${pageNum}`,
+           success: (response) => {
+               let data = JSON.parse(response);
+               if (Object.keys(data).length === 0 && pageNum === 1) {
+                   $("#replies").append(
+                       `<div class="d-flex flex-column justify-content-center">
+                            <p style="color: rgb(101, 119, 134)">@Localizer["NoReplies"]</p>
+                        </div>`
+                   )   
+               } else if (Object.keys(data).length !== 0) {
+                       for (let node in data) {
+              if (data.hasOwnProperty(node)) {
+                          let dateString = moment(data[node].Date).format("DD.MM.Y, H:mm");
+                          $("#replies").append(
+                              `<div class="flex-column">
+                                    <div class="d-flex">
+                                        <div class="d-flex ml-1 align-items-start mt-1">
+                                            <img height="50" width="50" class="rounded-circle" src="/images/default.jpg" alt="default userpic"/>
+                                        </div>
+                                        <div class="flex-column ml-1 mt-1">
+                                            <div class="d-flex bd-highlight pl-2">
+                                                <div class="align-items-start bd-highlight" style="font-weight: bold">
+                                                    <a href="/Profile/?userName=${data[node].AuthorUsername}" class="text-dark">
+                                                        ${data[node].AuthorName}
+                                                    </a>
+                                                </div>
+                                                <div class="ml-1 align-items-start bd-highlight" style="color: rgb(101, 119, 134)">
+                                                    @@${data[node].AuthorUsername}
+                                                </div>
+                                                <div class="ml-1 align-items-start bd-highlight" style="color: rgb(101, 119, 134)">
+                                                    &#8226
+                                                </div>
+                                                <div class="ml-1 align-items-start bd-highlight" style="color: rgb(101, 119, 134)">
+                                                    ${dateString}
+                                                </div>
+                                            </div>
+                                            <div class="pl-2 mt-0 mb-2 d-flex">
+                                                <div style="color: rgb(101, 119, 134)">
+                                                    @Localizer["ReplyingTo"]
+                                                </div>
+                                                <a class="ml-1" href="/Profile/?userName=${data[node].TweetAuthorUsername}">
+                                                    @@${data[node].TweetAuthorUsername}
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-start text-left flex-column mt-2 pl-2"
+                                         style="word-wrap: break-word">
+                                        ${data[node].Content}
+                                    </div>
+                                </div>
+                               <hr/>`
+                          )
+                      } 
+                       }
+                       $("#replies").append(
+                          `<button id="loadMoreButton" class="btn btn-primary mb-4" onclick="loadMore()">
+                             @Localizer["LoadMore"]
+                          </button>`
+                       )
+                       pageNum++;
+               }
+            },
+           failure: (response) => {
+               alert("Something went wrong and idk what is it");
+           },
+           error: (response) => {
+               alert("Wow, error, impossable");
+           }               
+        });
+    }
+</script>
+
+<script>
+    $("#retweet").click(() => {
+        if ($("#retweet").hasClass("retweet")) {
+           $.ajax("/Home/Retweet/@Model.Tweet.Id").done(() => {
+               loadRetweets();
+           });
+        } else {
+           $.ajax("/Home/DeleteRetweet/@Model.Tweet.Id").done(() => {
+               loadRetweets();
+           });
+        }
+        checkRetweet();
+    });
+    
+    $("#like").click(() => {
+        if ($("#like").hasClass("like")) {
+            $.ajax("/Home/Like/@Model.Tweet.Id").done(() => {
+                loadLikes();
+            });
+        } else {
+            $.ajax("/Home/DeleteLike/@Model.Tweet.Id").done(() => {
+                loadLikes();
+            });
+        }
+        checkLike();
+    });
+</script>

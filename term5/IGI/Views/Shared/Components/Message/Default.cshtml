@@ -1,0 +1,32 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@model Message
+@inject IViewLocalizer Localizer
+
+<div class="ml-2 text-left">
+    @if (Model.SendedBy.UserName == User.Identity.Name)
+    {
+        <div class="d-flex">
+            <div style="font-weight: bold">
+                @Localizer["Me"]
+            </div>
+            <div style="color: rgb(101, 119, 134)" class="ml-1">
+                &#8226 @Html.DisplayFor(_ => Model.DateTime)
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="d-flex">
+            <div style="font-weight: bold">
+                @Model.SendedBy.Name
+            </div>
+            <div class="ml-1 text-muted">
+                &#8226 @Html.DisplayFor(_ => Model.DateTime)
+            </div>
+        </div>
+    }
+    <div class="mt-1">
+        @Model.Text
+    </div>
+</div>
+<hr/>

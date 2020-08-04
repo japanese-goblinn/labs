@@ -1,0 +1,4 @@
+.idea/
+Migrations/
+.DS_Store
+*.db

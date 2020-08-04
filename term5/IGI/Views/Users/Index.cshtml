@@ -1,0 +1,55 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@model IEnumerable<User>
+@inject IViewLocalizer Localizer
+
+@{
+    ViewData["Title"] = Localizer["Users"];
+}
+ 
+
+<div class="text-left mt-3">
+    <h3 class="display-6">@ViewData["Title"]</h3>
+</div>
+<hr/>
+
+<div class="mt-3 mb-3" style="overflow-x: hidden; overflow-y: scroll; height: 720px;">
+    @foreach (var user in @Model)
+    {
+        <div class="ml-2 row">
+            <div class="p-2 col-3 text-left">
+                @user.Name
+            </div>
+            <div class="p-2 col-3 text-left">
+                @user.UserName
+            </div>
+            <div class="p-2 col-3 text-left">
+                @user.Email
+            </div>
+            
+            <div class="col-3 dropdown">
+                <a class="nav-link dropdown-toggle" href="#" 
+                   role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    @Localizer["Action"]
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <div class="d-flex flex-column">
+                        <a class="text-primary text-center mt-2l" asp-action="Edit" asp-route-id="@user.Id">
+                            @Localizer["Edit"]
+                        </a>
+                        <a class="text-info text-center mt-2" asp-action="ChangePassword" asp-route-id="@user.Id">
+                            @Localizer["ChangePassword"]
+                        </a>
+                        <a class="text-secondary text-center mt-2" asp-controller="Roles" asp-action="Edit" asp-route-userid="@user.Id">
+                            @Localizer["Rights"]
+                        </a>
+                        <a class="text-danger text-center mt-2" asp-action="Delete" asp-route-id="@user.Id">
+                            @Localizer["Delete"]
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr/>
+    }
+    <a class="btn btn-primary" asp-action="Create">@Localizer["Add"]</a>
+</div>

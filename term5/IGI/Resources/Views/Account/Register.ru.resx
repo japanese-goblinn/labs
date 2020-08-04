@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+            
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="Twitter" xml:space="preserve">
+        <value>Твиттер</value>
+    </data>
+    <data name="SignUp" xml:space="preserve">
+        <value>Регистрация</value>
+    </data>
+    <data name="SignUpLoc" xml:space="preserve">
+        <value>Зарегистрироваться</value>
+    </data>
+    <data name="SignIn" xml:space="preserve">
+        <value>Или войти</value>
+    </data>
+    <data name="Email" xml:space="preserve">
+        <value>Почта</value>
+    </data>
+    <data name="EmailExpl" xml:space="preserve">
+        <value>почта@чтото.гдето</value>
+    </data>
+    <data name="Username" xml:space="preserve">
+        <value>Никнейм</value>
+    </data>
+    <data name="UsernameExpl" xml:space="preserve">
+        <value>Какой-нибудь прикольный ник</value>
+    </data>
+    <data name="Name" xml:space="preserve">
+        <value>Имя</value>
+    </data>
+    <data name="NameExpl" xml:space="preserve">
+        <value>Сашенька</value>
+    </data>
+    <data name="Password" xml:space="preserve">
+        <value>Пароль</value>
+    </data>
+    <data name="PasswordExpl" xml:space="preserve">
+        <value>Какой-то очень защищенный пароль</value>
+    </data>
+    <data name="ConfPassword" xml:space="preserve">
+        <value>Повторите пароль</value>
+    </data>
+    <data name="ConfPasswordExpl" xml:space="preserve">
+        <value>Повторите свой очень защищенный пароль</value>
+    </data>
+</root>

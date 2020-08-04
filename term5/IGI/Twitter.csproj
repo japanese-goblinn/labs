@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp2.2</TargetFramework>
+        <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    </PropertyGroup>
+
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.App">
+          <PrivateAssets Condition="'%(PackageReference.Version)' == ''">all</PrivateAssets>
+          <Publish Condition="'%(PackageReference.Version)' == ''">true</Publish>
+        </PackageReference>
+        <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+        <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.1.0" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.SQLite" Version="2.2.6" />
+        <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
+        <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    </ItemGroup>
+
+
+    <ItemGroup>
+      <Compile Remove="Migrations\20190916174740_InitialCreate.cs" />
+      <Compile Remove="Migrations\20190916174740_InitialCreate.Designer.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Twitter.db" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Views\Users\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Tweets\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Tweets\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Tweets\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Tweets\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Tweets\Index.cshtml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="wwwroot\images" />
+    </ItemGroup>
+</Project>

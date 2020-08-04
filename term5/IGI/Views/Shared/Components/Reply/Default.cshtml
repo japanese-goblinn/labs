@@ -1,0 +1,42 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@model Reply
+@inject IViewLocalizer Localizer
+
+<div class="flex-column">
+    <div class="d-flex">
+        <div class="d-flex ml-1 align-items-start mt-1">
+            <img height="50" width="50" class="rounded-circle" src="~/images/default.jpg" alt="default userpic"/>
+        </div>
+        <div class="flex-column ml-1 mt-1">
+            <div class="d-flex bd-highlight pl-2">
+                <div class="align-items-start bd-highlight" style="font-weight: bold">
+                    <a asp-controller="Profile" asp-action="Index"
+                       asp-route-userName="@Model.User.UserName" class="text-dark">
+                        @Model.User.Name
+                    </a>
+                </div>
+                <div class="ml-1 align-items-start bd-highlight" style="color: rgb(101, 119, 134)">
+                    @@@Model.User.UserName
+                </div>
+                <div class="ml-1 align-items-start bd-highlight" style="color: rgb(101, 119, 134)">
+                    &#8226
+                </div>
+                <div class="ml-1 align-items-start bd-highlight" style="color: rgb(101, 119, 134)">
+                    @Html.DisplayFor(t => t.Date)
+                </div>
+            </div>
+            <div class="pl-2 mt-0 mb-2 d-flex">
+                <div style="color: rgb(101, 119, 134)">
+                    @Localizer["Reply"]
+                </div>
+                <a class="ml-1" asp-controller="Profile" asp-action="Index" asp-route-userName="@Model.OnTweet.Author.UserName">
+                    @@@Model.OnTweet.Author.UserName
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex justify-content-start text-left flex-column mt-2 pl-2"
+         style="word-wrap: break-word">
+        @Model.Content
+    </div>
+</div>

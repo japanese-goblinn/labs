@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+            
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="Profile" xml:space="preserve">
+        <value>Profile</value>
+    </data>
+    <data name="WriteMessage" xml:space="preserve">
+        <value>Write message</value>
+    </data>
+    <data name="Follow" xml:space="preserve">
+        <value>Follow</value>
+    </data>
+    <data name="Following" xml:space="preserve">
+        <value>Following</value>
+    </data>
+    <data name="Unfollow" xml:space="preserve">
+        <value>Unfollow</value>
+    </data>
+    <data name="Me" xml:space="preserve">
+        <value>Me</value>
+    </data>
+    <data name="YouNotFollowing" xml:space="preserve">
+        <value>You aren’t following anyone yet :c</value>
+    </data>
+    <data name="DoFollowingYou" xml:space="preserve">
+        <value>When you do, they’ll be listed here and you’ll see their Tweets in your timeline.</value>
+    </data>
+    <data name="UserNotFollowing" xml:space="preserve">
+        <value>This user isn’t following anyone yet</value>
+    </data>
+    <data name="DoFollowingUser" xml:space="preserve">
+        <value>When user do, they’ll be listed here.</value>
+    </data>
+    <data name="Followers" xml:space="preserve">
+        <value>Followers</value>
+    </data>
+    <data name="YouNotFollowed" xml:space="preserve">
+        <value>You don’t have any followers yet :c</value>
+    </data>
+    <data name="DoFollowedYou" xml:space="preserve">
+        <value>When someone follows you, you’ll see them here</value>
+    </data>
+    <data name="UserNotFollowed" xml:space="preserve">
+        <value>User don’t have any followers yet</value>
+    </data>
+    <data name="DoFollowedUser" xml:space="preserve">
+        <value>When someone follows this user, you’ll see them here</value>
+    </data>
+    <data name="Tweets" xml:space="preserve">
+        <value>Tweets</value>
+    </data>
+    <data name="Replies" xml:space="preserve">
+        <value>Replies</value>
+    </data>
+    <data name="Likes" xml:space="preserve">
+        <value>Likes</value>
+    </data>
+    <data name="Retweets" xml:space="preserve">
+        <value>Retweets</value>
+    </data>
+    <data name="NoTweets" xml:space="preserve">
+        <value>No tweets yet :c</value>
+    </data>
+    <data name="NoRetweets" xml:space="preserve">
+        <value>No retweets yet :c</value>
+    </data>
+    <data name="NoReplies" xml:space="preserve">
+        <value>No replies yet :c</value>
+    </data>
+    <data name="NoLikes" xml:space="preserve">
+        <value>No likes yet :c</value>
+    </data>
+    <data name="Thread" xml:space="preserve">
+        <value>View in thread</value>
+    </data>
+</root>

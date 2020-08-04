@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+            
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="Profile" xml:space="preserve">
+        <value>Профиль</value>
+    </data>
+    <data name="WriteMessage" xml:space="preserve">
+        <value>Написать сообщение</value>
+    </data>
+    <data name="Follow" xml:space="preserve">
+        <value>Подписаться</value>
+    </data>
+    <data name="Following" xml:space="preserve">
+        <value>Подписки</value>
+    </data>
+    <data name="Unfollow" xml:space="preserve">
+        <value>Отписаться</value>
+    </data>
+    <data name="Me" xml:space="preserve">
+        <value>Я</value>
+    </data>
+    <data name="YouNotFollowing" xml:space="preserve">
+        <value>У вас пока нет подписок :c</value>
+    </data>
+    <data name="DoFollowingYou" xml:space="preserve">
+        <value>Как только они появятся, вы увидите новые твиты в своей ленте</value>
+    </data>
+    <data name="UserNotFollowing" xml:space="preserve">
+        <value>У этого пользователя пока нет подписок</value>
+    </data>
+    <data name="DoFollowingUser" xml:space="preserve">
+        <value>Как только они появятся вы увидите из здесь</value>
+    </data>
+    <data name="Followers" xml:space="preserve">
+        <value>Подписчики</value>
+    </data>
+    <data name="YouNotFollowed" xml:space="preserve">
+        <value>У вас нет подписчиков :c</value>
+    </data>
+    <data name="DoFollowedYou" xml:space="preserve">
+        <value>Когда кто-то на вас подпишится, вы увидите из здесь</value>
+    </data>
+    <data name="UserNotFollowed" xml:space="preserve">
+        <value>У этого пользоваетеля нет подписчков</value>
+    </data>
+    <data name="DoFollowedUser" xml:space="preserve">
+        <value>Как только на него кто-то подпишется, вы увидите их здесь</value>
+    </data>
+    <data name="Tweets" xml:space="preserve">
+        <value>Твиты</value>
+    </data>
+    <data name="Replies" xml:space="preserve">
+        <value>Ответы</value>
+    </data>
+    <data name="Likes" xml:space="preserve">
+        <value>Нравится</value>
+    </data>
+    <data name="Retweets" xml:space="preserve">
+        <value>Ретвиты</value>
+    </data>
+    <data name="NoTweets" xml:space="preserve">
+        <value>Пока пусто, твитов нет :c</value>
+    </data>
+    <data name="NoRetweets" xml:space="preserve">
+        <value>Пока пусто, ретвитов нет :c</value>
+    </data>
+    <data name="NoReplies" xml:space="preserve">
+        <value>Пока пусто, ответов нет :c</value>
+    </data>
+    <data name="NoLikes" xml:space="preserve">
+        <value>Пока пусто, лайков нет :c</value>
+    </data>
+    <data name="Thread" xml:space="preserve">
+        <value>Посмотреть обсуждение</value>
+    </data>
+</root>
