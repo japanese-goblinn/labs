@@ -1,0 +1,12 @@
+.DS_Store
+<<<<<<< HEAD
+*.xcworkspace
+*xcuserdata
+
+=======
+lab1.playground/playground.xcworkspace
+lab2/lab2.xcodeproj/xcuserdata
+lab2/lab2.xcodeproj/project.xcworkspace/xcuserdata
+venv/
+.vscode/
+>>>>>>> lab3
