@@ -11,6 +11,7 @@
 		CE452FAC250EA7CC006B22C0 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE452FAB250EA7CC006B22C0 /* File.swift */; };
 		CE4DEDF4250EAB6000C7FB88 /* DES.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE452FA8250EA6FA006B22C0 /* DES.swift */; };
 		CE4DEDF7250EB56900C7FB88 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4DEDF6250EB56900C7FB88 /* String+Extension.swift */; };
+		CE8C250125213B3D006FC090 /* GOST.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8C250025213B3D006FC090 /* GOST.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,6 +32,7 @@
 		CE452FA8250EA6FA006B22C0 /* DES.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DES.swift; sourceTree = "<group>"; };
 		CE452FAB250EA7CC006B22C0 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		CE4DEDF6250EB56900C7FB88 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		CE8C250025213B3D006FC090 /* GOST.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GOST.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,8 +66,9 @@
 			isa = PBXGroup;
 			children = (
 				CE4DEDF6250EB56900C7FB88 /* String+Extension.swift */,
-				CE452FA8250EA6FA006B22C0 /* DES.swift */,
 				CE452FAB250EA7CC006B22C0 /* File.swift */,
+				CE452FA8250EA6FA006B22C0 /* DES.swift */,
+				CE8C250025213B3D006FC090 /* GOST.swift */,
 				CE452FA1250EA60F006B22C0 /* main.swift */,
 			);
 			path = mzi;
@@ -130,6 +133,7 @@
 			files = (
 				CE4DEDF7250EB56900C7FB88 /* String+Extension.swift in Sources */,
 				CE4DEDF4250EAB6000C7FB88 /* DES.swift in Sources */,
+				CE8C250125213B3D006FC090 /* GOST.swift in Sources */,
 				CE452FAC250EA7CC006B22C0 /* File.swift in Sources */,
 				CE452FA2250EA60F006B22C0 /* main.swift in Sources */,
 			);
