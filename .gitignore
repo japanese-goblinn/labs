@@ -2,3 +2,7 @@
 term7/mmod/.ipynb_checkpoints/lab1-checkpoint.ipynb
 venv/
 term7/mmod/.virtual_documents/lab1.ipynb
+term7/mzi/mzi/mzi.xcodeproj/xcuserdata/saisuicied.xcuserdatad/xcschemes/xcschememanagement.plist
+*.xcworkspace
+xcuserdata/
+term7/mzi/lab2/__pycache__
