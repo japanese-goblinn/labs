@@ -230,11 +230,20 @@ class STB:
         if self.mode == PLAIN:
             results = self.encode_block_plain(chunks)
         elif self.mode == BLOCK_LINKING:
-            results = self.encode_block_coupled(chunks, kwargs['synchro_link'])
+            results = self.encode_block_coupled(
+                chunks, 
+                int.from_bytes(str.encode(kwargs['synchro_link']), "big")
+            )
         elif self.mode == GAMMING:
-            results = self.encode_block_gamming(chunks, kwargs['synchro_link'])
+            results = self.encode_block_gamming(
+                chunks, 
+                int.from_bytes(str.encode(kwargs['synchro_link']), "big")
+            )
         elif self.mode == COUNTER:
-            results = self.encode_counter(chunks, kwargs['synchro_link'])
+            results = self.encode_counter(
+                chunks, 
+                int.from_bytes(str.encode(kwargs['synchro_link']), "big")
+            )
             
         answer = self.join_message(results)
         return answer.to_bytes((answer.bit_length() + 7) // 8, 'big')
@@ -246,11 +255,20 @@ class STB:
         if self.mode == PLAIN:
             results = self.decode_block_plain(chunks)
         elif self.mode == BLOCK_LINKING:
-            results = self.decode_block_coupled(chunks, kwargs['synchro_link'])
+            results = self.decode_block_coupled(
+                chunks, 
+                int.from_bytes(str.encode(kwargs['synchro_link']), "big")
+            )
         elif self.mode == GAMMING:
-            results = self.decode_block_gamming(chunks, kwargs['synchro_link'])
+            results = self.decode_block_gamming(
+                chunks, 
+                int.from_bytes(str.encode(kwargs['synchro_link']), "big")
+            )
         elif self.mode == COUNTER:
-            results = self.decode_counter(chunks, kwargs['synchro_link'])
+            results = self.decode_counter(
+                chunks, 
+                int.from_bytes(str.encode(kwargs['synchro_link']), "big")
+            )
 
         answer = self.join_message(reversed(results))
         return answer.to_bytes((answer.bit_length() + 7) // 8, 'big').decode()

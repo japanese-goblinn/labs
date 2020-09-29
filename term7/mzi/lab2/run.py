@@ -18,7 +18,7 @@ def print_stb(stb, text, title, s_link=None):
 
 def main():
     text, key = file_info()
-    synchro_link = 16
+    synchro_link = "Kek"
     print_stb(
         STB(key, mode=PLAIN), 
         text=text, 
