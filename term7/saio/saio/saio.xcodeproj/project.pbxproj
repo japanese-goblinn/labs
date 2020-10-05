@@ -31,6 +31,7 @@
 		CEF529B72529253000C00BD7 /* Tests.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Tests.mm; sourceTree = "<group>"; };
 		CEF529B92529253000C00BD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CEF529DF25292B9E00C00BD7 /* dijkstras_algorithm.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = dijkstras_algorithm.hpp; sourceTree = "<group>"; };
+		CEF529E2252A4AA300C00BD7 /* file.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = file.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +75,7 @@
 			children = (
 				CEF529842529202400C00BD7 /* dijkstras_algorithm.cpp */,
 				CEF529DF25292B9E00C00BD7 /* dijkstras_algorithm.hpp */,
+				CEF529E2252A4AA300C00BD7 /* file.txt */,
 			);
 			path = dijkstras_algorithm;
 			sourceTree = "<group>";

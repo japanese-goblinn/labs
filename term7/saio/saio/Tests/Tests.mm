@@ -9,13 +9,10 @@
 #import "dijkstras_algorithm.hpp"
 
 @interface Tests : XCTestCase
-
 @end
 
 @implementation Tests
 
-- (void)testAdd {
-    XCTAssertEqual(Add(2, 3), 5);
-}
+- (void)testStuff {}
 
 @end
