@@ -1,7 +1,8 @@
 import rsa
 
+
 def file_info(filename="file.txt"):
-    with open(filename) as file_handler: 
+    with open(filename) as file_handler:
         text = file_handler.readline().strip()
         return text
 

@@ -1,11 +1,12 @@
 import random
 import math
 
+
 def mod_invers(a, m):
-    a = a % m; 
-    for x in range(1, m) : 
-        if ((a * x) % m == 1) : 
-            return x 
+    a = a % m
+    for x in range(1, m):
+        if ((a * x) % m == 1):
+            return x
     return 1
 
 
