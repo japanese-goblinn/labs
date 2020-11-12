@@ -1,12 +1,5 @@
-from stb import STB, PLAIN, BLOCK_LINKING, GAMMING, COUNTER
-
-
-def file_info(filename="file.txt"):
-    with open(filename) as file_handler: 
-        text = file_handler.readline().strip()
-        key = file_handler.readline()
-        return text, key
-
+from helpers.stb import STB, PLAIN, BLOCK_LINKING, GAMMING, COUNTER
+from helpers.file_info import read_text_and_key
 
 def print_stb(stb, text, title, s_link=None):
     print(f"\033[95m\n" + title + f"\n{len(title) * '-'}\033[0m")
@@ -17,7 +10,7 @@ def print_stb(stb, text, title, s_link=None):
 
 
 def main():
-    text, key = file_info()
+    text, key = read_text_and_key(filename="resources/lab2.txt")
     synchro_link = "Kek"
     print_stb(
         STB(key, mode=PLAIN), 
