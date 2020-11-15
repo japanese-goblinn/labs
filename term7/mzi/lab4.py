@@ -1,5 +1,5 @@
 import random
-from helpers import elgamal
+from algorithms import elgamal
 from helpers.colored_text import *
 from helpers.file_info import read_text
 

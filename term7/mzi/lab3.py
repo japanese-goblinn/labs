@@ -1,4 +1,4 @@
-import helpers.rsa as rsa
+from algorithms import rsa
 from helpers.colored_text import *
 from helpers.file_info import read_text
 

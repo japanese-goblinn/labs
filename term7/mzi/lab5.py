@@ -1,4 +1,4 @@
-from helpers.md5 import MD5
+from algorithms.md5 import MD5
 from helpers.file_info import read_text
 from helpers.colored_text import colored_text
 
