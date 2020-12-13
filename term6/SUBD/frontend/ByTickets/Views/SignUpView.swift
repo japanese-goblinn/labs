@@ -63,7 +63,7 @@ struct SignUpView: View {
                 }
                 TextField("Username", text: $username)
                 TextField("Email", text: $email)
-                CardInputView()
+//                CardInputView()
                 SecureField("Password", text: $password)
                 SecureField("Repeat password", text: $repeatPassword)
                 
