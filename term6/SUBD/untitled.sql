@@ -239,9 +239,7 @@ USE `byTickets`$$
 CREATE DEFINER=`root`@`%` TRIGGER `login_AFTER_INSERT` AFTER INSERT ON `login` FOR EACH ROW 
 BEGIN
 	IF (NEW.status='ok') THEN 
-    UPDATE user SET 
-    last_login=NOW()
-    WHERE username=NEW.username;
+        UPDATE user SET last_login=NOW() WHERE username=NEW.username;
     END IF;
 END$$
 DELIMITER ;
