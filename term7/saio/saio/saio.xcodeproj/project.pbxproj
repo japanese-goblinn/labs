@@ -10,7 +10,6 @@
 		CDF82DAF258A05E500FE5F79 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDF82DAE258A05E500FE5F79 /* main.cpp */; };
 		CDF82DBF258A0AB700FE5F79 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDF82DBE258A0AB700FE5F79 /* main.cpp */; };
 		CDF82DD2258A4AF500FE5F79 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDF82DD1258A4AF500FE5F79 /* main.cpp */; };
-		CDF82DFB258B63AE00FE5F79 /* test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDF82DE0258AB7F600FE5F79 /* test.cpp */; };
 		CDF82E0F258BE66A00FE5F79 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDF82E0E258BE66A00FE5F79 /* main.cpp */; };
 		CEF529852529202400C00BD7 /* dijkstras_algorithm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEF529842529202400C00BD7 /* dijkstras_algorithm.cpp */; };
 		CEF529B82529253000C00BD7 /* Tests.mm in Sources */ = {isa = PBXBuildFile; fileRef = CEF529B72529253000C00BD7 /* Tests.mm */; };
@@ -81,7 +80,6 @@
 		CDF82DBE258A0AB700FE5F79 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		CDF82DCF258A4AF500FE5F79 /* pajiloi_traveler */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = pajiloi_traveler; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDF82DD1258A4AF500FE5F79 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		CDF82DE0258AB7F600FE5F79 /* test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = test.cpp; sourceTree = "<group>"; };
 		CDF82DF4258B63A600FE5F79 /* pajiloi_traveler copy */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "pajiloi_traveler copy"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDF82E0C258BE66A00FE5F79 /* dinica */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = dinica; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDF82E0E258BE66A00FE5F79 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
@@ -167,7 +165,6 @@
 			isa = PBXGroup;
 			children = (
 				CDF82DD1258A4AF500FE5F79 /* main.cpp */,
-				CDF82DE0258AB7F600FE5F79 /* test.cpp */,
 			);
 			path = pajiloi_traveler;
 			sourceTree = "<group>";
@@ -439,7 +436,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CDF82DFB258B63AE00FE5F79 /* test.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
